@@ -1,0 +1,22 @@
+"use client";
+
+import { tv } from "@/lib/tv.config";
+import { FieldErrorTextProps, Field } from "@ark-ui/react";
+import * as React from "react";
+
+const errorTextVariants = tv({
+    base: ['text-xs text-error'],
+})
+
+
+const ErrorText = React.forwardRef<
+  React.ElementRef<typeof Field.ErrorText>,
+  FieldErrorTextProps
+>((props, ref) => {
+  const { className, ...rest } = props;
+  return <Field.ErrorText ref={ref} className={errorTextVariants({
+    className
+  })} {...rest} />;
+});
+
+export { ErrorText };

@@ -1,21 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/red.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@variant data-checked (&:where([data-state="checked"] *));
+
+@utility container {
+  @apply mx-auto px-5 md:px-6 @lg:px-10;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@theme {
+  --font-sans: var(--font-sans), sans-serif;
+  /* [Colors] */
+  /* background  */
+  --color-background: var(--gray-1);
+  --color-foreground: var(--gray-12);
+  /* Muted  */
+  --color-muted-background: var(--gray-4);
+  --color-muted-foreground: var(--gray-11);
+  --color-accent: var(--gray-12);
+  --color-accent-foreground: var(--gray-1);
+  --color-primary: var(--gray-12);
+  --color-primary-foreground: var(--gray-1);
+  --color-secondary: var(--gray-3);
+  --color-secondary-foreground: var(--gray-11);
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+
+  /* border  */
+  --color-border: var(--gray-7);
+  --color-border-hover: var(--gray-8);
+  --color-ring: var(--gray-7);
+
+  /* semantic  */
+  --color-error: var(--red-9);
+
+ 
+
+  /* other  */
+  --color-backdrop: var(--gray-2);
+
+  /* Radius  */
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
 }
