@@ -17,7 +17,7 @@ const checkboxVariants = tv({
     root: ["flex items-baseline gap-2"],
     group: ['space-y-4'],
     control: [
-      "size-4 shrink-0 rounded border flex justify-center items-center border-border",
+      "size-5 shrink-0 rounded border flex justify-center items-center border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary", 'motion-safe:transition-colors'
     ],
     indicator: ["size-3 [&_svg]:size-full"],
   },
@@ -53,7 +53,7 @@ const Checkbox = React.forwardRef<
         {label ? (
           <CheckboxPrimitive.Label
             className={labelVariants({
-              className: "order-last leading-relaxed",
+              className: "order-last leading-relaxed text-foreground text-sm",
             })}
           >
             {label}
@@ -64,7 +64,7 @@ const Checkbox = React.forwardRef<
           <CheckboxPrimitive.Indicator
             className={checkboxVariants().indicator()}
           >
-            <Check />
+            <Check weight="bold" />
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Control>
         <CheckboxPrimitive.HiddenInput ref={ref} />

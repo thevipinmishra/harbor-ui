@@ -5,7 +5,7 @@ import { Field, FieldLabelProps } from "@ark-ui/react";
 import * as React from "react";
 
 const labelVariants = tv({
-    base: ['font-medium text-xs text-secondary-foreground', 'data-invalid:text-error'],
+    base: ['font-medium text-xs text-foreground', 'data-[invalid]:text-destructive'],
 })
 
 

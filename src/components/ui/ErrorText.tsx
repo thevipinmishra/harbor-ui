@@ -5,7 +5,7 @@ import { FieldErrorTextProps, Field } from "@ark-ui/react";
 import * as React from "react";
 
 const errorTextVariants = tv({
-    base: ['text-xs text-error'],
+    base: ['text-xs font-medium text-destructive'],
 })
 
 

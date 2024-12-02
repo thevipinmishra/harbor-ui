@@ -7,10 +7,10 @@ import { tv } from "@/lib/tv.config";
 
 const tooltipContentVariants = tv({
   slots: {
-    content: ["bg-background shadow rounded-md text-sm p-2"],
-    arrow: ['[--arrow-size:12px]'],
-    arrowTip: ['[--arrow-background:var(--color-background)]'],
-  }
+    content: ["bg-background shadow rounded-md text-sm p-2", "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in ", "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out "],
+    arrow: ["[--arrow-size:12px]"],
+    arrowTip: ["[--arrow-background:var(--color-background)]"],
+  },
 });
 
 interface TooltipContentProps extends TooltipPrimitiveContentProps {
@@ -32,8 +32,10 @@ const TooltipContent = React.forwardRef<
         {...rest}
       >
         {withArrow ? (
-          <TooltipPrimitive.Arrow  className={tooltipContentVariants().arrow()}>
-            <TooltipPrimitive.ArrowTip  className={tooltipContentVariants().arrowTip()} />
+          <TooltipPrimitive.Arrow className={tooltipContentVariants().arrow()}>
+            <TooltipPrimitive.ArrowTip
+              className={tooltipContentVariants().arrowTip()}
+            />
           </TooltipPrimitive.Arrow>
         ) : null}
         {children}

@@ -18,10 +18,10 @@ const switchVariants = tv({
     control: [
       "w-10 rounded-full inline-flex items-center h-6 shrink-0 border-2 border-transparent",
       "transition-colors",
-      "bg-muted-background data-checked:bg-accent",
+      "data-[state=unchecked]:bg-input data-[state=checked]:bg-primary",
     ],
     thumb: [
-      "size-5 rounded-full bg-primary-foreground data-checked:translate-x-4 data-checked:bg-accent-foreground",
+      "size-5 rounded-full bg-primary-foreground data-[state=checked]:translate-x-4 ddata-[state=checked]:bg-accent-foreground",
       "transition-all will-change-transform",
       "pointer-events-none",
     ],
@@ -43,7 +43,7 @@ const Switch = React.forwardRef<
         {label ? (
           <SwitchPrimitive.Label
             className={labelVariants({
-              className: "text-sm",
+              className: "text-base text-foreground",
             })}
           >
             {label}

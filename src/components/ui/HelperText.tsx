@@ -5,7 +5,7 @@ import { FieldHelperTextProps, Field } from "@ark-ui/react";
 import * as React from "react";
 
 const helperTextVariants = tv({
-    base: ['text-xs text-secondary-foreground'],
+    base: ['text-xs text-muted-foreground'],
 })
 
 const HelperText = React.forwardRef<
