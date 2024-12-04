@@ -37,36 +37,39 @@ import {
   RadioGroupItem,
   RadioGroupLabel,
 } from "@/components/ui/RadioGroup";
+import {
+  Slider,
+  SliderContext,
+  SliderControl,
+  SliderLabel,
+  SliderValueText,
+} from "@/components/ui/Slider";
 
 export default function HomePage() {
-  const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
-  const frameworks = ["React and solid and vue and angular and lit and something else i dont even know", "Solid", "Vue"];
+  const collection = createListCollection({
+    items: [
+      "React and solid and vue and angular and lit and something else i dont even know",
+      "Solid",
+      "Vue",
+      "Angular",
+      "Lit",
+      "jQuery",
+      "Alpine",
+      "Astro",
+      "Remix",
+      "Tanstack Start",
+      "Solid Start",
+    ],
+  });
+  const frameworks = [
+    "React and solid and vue and angular and lit and something else i dont even know",
+    "Solid",
+    "Vue",
+  ];
   return (
     <main>
       <div className="py-8 ">
         <div className="container space-y-10">
-          <div className="flex flex-wrap gap-2">
-            <Button size="md" variant="filled">
-              Hello world
-            </Button>
-            <Button size="md" variant="plain">
-              Hello world
-            </Button>
-            <Button size="md" variant="outlined">
-              Hello world
-            </Button>
-            <Textfield
-              label="First name"
-              helperText="Please enter your first name."
-            />
-            <Textfield
-              invalid
-              errorMessage="hey there"
-              label="First name"
-              helperText="Please enter your first name."
-            />
-          </div>
-
           <div>
             <Checkbox label="I agree to agree with all the terms and policies mentioned in the group and know the consequences of providing the forged documents and details" />
           </div>
@@ -168,6 +171,13 @@ export default function HomePage() {
                 </RadioGroupItem>
               ))}
             </RadioGroup>
+          </div>
+
+          <div>
+            <Slider>
+              <SliderLabel>Slider</SliderLabel>
+              <SliderControl />
+            </Slider>
           </div>
         </div>
       </div>

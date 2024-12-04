@@ -16,7 +16,6 @@ import { CaretUpDown, Check } from "@phosphor-icons/react";
 import { FieldProps } from "@/types";
 import { tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
-import { error } from "console";
 import { ErrorText } from "./ErrorText";
 import { HelperText } from "./HelperText";
 
@@ -31,17 +30,20 @@ const selectVariants = tv({
       "data-invalid:border-error data-invalid:focus:ring-error/50",
     ],
     content: [
-      "outline-none bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative min-w-[var(--reference-width)]",
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-95 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-bottom-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-top-2",
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:zoom-out-95 motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-bottom-2 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-top-2",
+      "outline-none border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-width))] overflow-y-auto",
+    //   In animation 
+      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-95 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
+    //   Out animation 
+      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:zoom-out-95 motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-2 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-2",
     ],
     positioner: ["!z-20"],
     control: ["w-full"],
-    itemText: ["text-ellipsis"],
+    itemText: ["truncate"],
+    valueText: ['truncate'],
     indicator: ["text-muted-foreground"],
     itemIndicator: [""],
     item: [
-      "text-sm rounded-sm transition-colors flex justify-between items-center gap-2 px-3 py-2",
+      "text-sm rounded-sm transition-colors flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
     ],
   },
@@ -117,7 +119,7 @@ const SelectTrigger = React.forwardRef<
         {...rest}
         ref={ref}
       >
-        <SelectPrimitive.ValueText placeholder={placeholder} />
+        <SelectPrimitive.ValueText className={selectVariants().valueText()} placeholder={placeholder} />
         <SelectPrimitive.Indicator className={selectVariants().indicator()}>
           <CaretUpDown />
         </SelectPrimitive.Indicator>
