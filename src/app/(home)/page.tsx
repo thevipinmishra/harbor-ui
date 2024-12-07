@@ -50,6 +50,9 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/Select";
+import { Accordion, AccordionContext, AccordionItem, AccordionItemContent, AccordionItemTrigger } from "@/components/ui/Accordion";
+import { MenuItem } from "@ark-ui/react";
+import { Avatar } from "@/components/ui/Avatar";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -169,6 +172,36 @@ export default function HomePage() {
             </TooltipContent>
           </Tooltip>
          </div>
+        </div>
+
+        <div>
+            <Accordion collapsible>
+                
+                <AccordionItem value="item-1">
+                    <AccordionItemTrigger>What is React and why is it so awesome to use?</AccordionItemTrigger>
+                    <AccordionItemContent>React is a JavaScript library for building user interfaces.</AccordionItemContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                    <AccordionItemTrigger>What is Solid?</AccordionItemTrigger>
+                    <AccordionItemContent>Solid is a declarative JavaScript library for building user interfaces.</AccordionItemContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                    <AccordionItemTrigger>What is Vue?</AccordionItemTrigger>
+                    <AccordionItemContent>Vue is a progressive framework for building user interfaces.</AccordionItemContent>
+                </AccordionItem>
+                <AccordionItem value="item-4">
+                    <AccordionItemTrigger>What is Angular?</AccordionItemTrigger>
+                    <AccordionItemContent>Angular is a platform for building mobile and desktop web applications.</AccordionItemContent>
+                </AccordionItem>
+            </Accordion>
+        </div>
+
+        <div>
+           <div className="flex gap-5">
+           <Avatar fallback='VM' src="https://avatars.githubusercontent.com/u/54212400?v=4" />
+
+           <Avatar className="size-16" fallback='V' src="https://avatar.iran.liara.run/public/39" />
+           </div>
         </div>
       </div>
     </main>
