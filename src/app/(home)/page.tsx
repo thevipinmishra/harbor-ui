@@ -50,9 +50,21 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/Select";
-import { Accordion, AccordionContext, AccordionItem, AccordionItemContent, AccordionItemTrigger } from "@/components/ui/Accordion";
+import {
+  Accordion,
+  AccordionContext,
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+} from "@/components/ui/Accordion";
 import { MenuItem } from "@ark-ui/react";
 import { Avatar } from "@/components/ui/Avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/Popover";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -149,10 +161,10 @@ export default function HomePage() {
 
         <div>
           <Slider>
-           <div className='flex gap-4 justify-between items-center'>
-           <SliderLabel>Volume</SliderLabel>
-           <SliderValueText />
-           </div>
+            <div className="flex gap-4 justify-between items-center">
+              <SliderLabel>Volume</SliderLabel>
+              <SliderValueText />
+            </div>
             <SliderControl />
           </Slider>
         </div>
@@ -162,46 +174,91 @@ export default function HomePage() {
         </div>
 
         <div>
-         <div>
-         <Tooltip>
-            <TooltipTrigger asChild>
-              <Button className='self-center'>Hover me</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Tooltip content</p>
-            </TooltipContent>
-          </Tooltip>
-         </div>
+          <div>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className="self-center">Hover me</Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Tooltip content</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </div>
 
         <div>
-            <Accordion collapsible>
-                
-                <AccordionItem value="item-1">
-                    <AccordionItemTrigger>What is React and why is it so awesome to use?</AccordionItemTrigger>
-                    <AccordionItemContent>React is a JavaScript library for building user interfaces.</AccordionItemContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                    <AccordionItemTrigger>What is Solid?</AccordionItemTrigger>
-                    <AccordionItemContent>Solid is a declarative JavaScript library for building user interfaces.</AccordionItemContent>
-                </AccordionItem>
-                <AccordionItem value="item-3">
-                    <AccordionItemTrigger>What is Vue?</AccordionItemTrigger>
-                    <AccordionItemContent>Vue is a progressive framework for building user interfaces.</AccordionItemContent>
-                </AccordionItem>
-                <AccordionItem value="item-4">
-                    <AccordionItemTrigger>What is Angular?</AccordionItemTrigger>
-                    <AccordionItemContent>Angular is a platform for building mobile and desktop web applications.</AccordionItemContent>
-                </AccordionItem>
-            </Accordion>
+          <Accordion collapsible>
+            <AccordionItem value="item-1">
+              <AccordionItemTrigger>
+                What is React and why is it so awesome to use?
+              </AccordionItemTrigger>
+              <AccordionItemContent>
+                React is a JavaScript library for building user interfaces.
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionItemTrigger>What is Solid?</AccordionItemTrigger>
+              <AccordionItemContent>
+                Solid is a declarative JavaScript library for building user
+                interfaces.
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionItemTrigger>What is Vue?</AccordionItemTrigger>
+              <AccordionItemContent>
+                Vue is a progressive framework for building user interfaces.
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionItemTrigger>What is Angular?</AccordionItemTrigger>
+              <AccordionItemContent>
+                Angular is a platform for building mobile and desktop web
+                applications.
+              </AccordionItemContent>
+            </AccordionItem>
+          </Accordion>
         </div>
 
         <div>
-           <div className="flex gap-5">
-           <Avatar fallback='VM' src="https://avatars.githubusercontent.com/u/54212400?v=4" />
+          <div className="flex gap-5">
+            <Avatar
+              fallback="VM"
+              src="https://avatars.githubusercontent.com/u/54212400?v=4"
+            />
 
-           <Avatar className="size-16" fallback='V' src="https://avatar.iran.liara.run/public/39" />
-           </div>
+            <Avatar
+              className="size-16"
+              fallback="V"
+              src="https://avatar.iran.liara.run/public/39"
+            />
+          </div>
+        </div>
+
+        <div>
+          <Tabs>
+            <TabsList>
+              <TabsTrigger value="react">React</TabsTrigger>
+              <TabsTrigger value="vue">Vue</TabsTrigger>
+              <TabsTrigger value="solid">Solid</TabsTrigger>
+            </TabsList>
+            <TabsContent value="react">React Content</TabsContent>
+            <TabsContent value="vue">Vue Content</TabsContent>
+            <TabsContent value="solid">Solid Content</TabsContent>
+          </Tabs>
+        </div>
+
+        <div>
+          <div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button>Click me</Button>
+              </PopoverTrigger>
+              <PopoverContent className="space-y-2">
+                This is a popover message providing additional information.
+                <Button variant="outlined">Learn more</Button>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </main>
