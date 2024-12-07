@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import {
   SliderControlProps,
@@ -11,11 +13,12 @@ import { labelVariants } from "./Label";
 
 const sliderVariants = tv({
   slots: {
-    root: 'flex flex-col gap-2',
+    root: "flex flex-col gap-2",
     control: "flex items-center",
     track: "bg-secondary w-full h-2 rounded-md",
-    range: 'bg-primary h-2 rounded-md',
-    thumb: "bg-background border-2 border-primary size-5 rounded-full block ring-offset-background transition-colors data-[focus]:outline-none data-[focus]:ring-2 data-[focus]:ring-ring data-[focus]:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    range: "bg-primary h-2 rounded-md",
+    thumb:
+      "bg-background border-2 border-primary size-5 rounded-full block ring-offset-background transition-colors data-[focus]:outline-none data-[focus]:ring-2 data-[focus]:ring-ring data-[focus]:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   },
 });
 

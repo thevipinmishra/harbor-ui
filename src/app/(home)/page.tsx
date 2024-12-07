@@ -17,14 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/Dialog";
 import { Switch } from "@/components/ui/Switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "@/components/ui/Select";
-import { createListCollection } from "@ark-ui/react";
+import { createListCollection } from "@ark-ui/react/select";
 import {
   Splitter,
   SplitterPanel,
@@ -44,141 +37,138 @@ import {
   SliderLabel,
   SliderValueText,
 } from "@/components/ui/Slider";
+import {
+  PinInput,
+  PinInputControl,
+  PinInputField,
+  PinInputLabel,
+} from "@/components/ui/PinInput";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+} from "@/components/ui/Select";
 
 export default function HomePage() {
-  const collection = createListCollection({
-    items: [
-      "React and solid and vue and angular and lit and something else i dont even know",
-      "Solid",
-      "Vue",
-      "Angular",
-      "Lit",
-      "jQuery",
-      "Alpine",
-      "Astro",
-      "Remix",
-      "Tanstack Start",
-      "Solid Start",
-    ],
-  });
-  const frameworks = [
-    "React and solid and vue and angular and lit and something else i dont even know",
-    "Solid",
-    "Vue",
-  ];
+  const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
+
   return (
     <main>
-      <div className="py-8 ">
-        <div className="container space-y-10">
-          <div>
-            <Checkbox label="I agree to agree with all the terms and policies mentioned in the group and know the consequences of providing the forged documents and details" />
+      <div className=" border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
+        <div>
+          <div className="flex gap-4 flex-wrap">
+            <Button>Default</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button variant="plain">Plain</Button>
           </div>
-
-          <div>
-            <CheckboxGroup name="something">
-              <Checkbox label="I agree to sell my privacy." />
-              <Checkbox label="I agree to sell my privacy." />
-              <Checkbox label="I agree to sell my privacy." />
-            </CheckboxGroup>
+        </div>
+        <div>
+          <div className="grid gap-5">
+            <Textfield placeholder="Username" />
+            <Textfield label="Account number" />
+            <Textfield
+              label="Account number"
+              helperText="Should be 16 digits max."
+            />
+            <Textfield
+              label="Last name"
+              helperText="Should be 16 digits max."
+              errorMessage="Invalid last name"
+              invalid
+            />
           </div>
+        </div>
 
-          <div>
-            <Tooltip>
-              <TooltipTrigger>Tooltip</TooltipTrigger>
-              <TooltipContent>
-                <div>Tooltip content</div>
-              </TooltipContent>
-            </Tooltip>
+        <div>
+          <div className="grid gap-5">
+            <Checkbox label="I agree to the terms and conditions" />
+
+            <Checkbox label="Remember me" helperText="Sample helper text" />
           </div>
+        </div>
 
-          <div>
-            <Dialog>
-              <DialogTrigger>Open dialog</DialogTrigger>
-              <DialogContent className="space-y-4">
-                <div className="flex justify-between items-baseline gap-4">
-                  <DialogTitle>Login to continue</DialogTitle>
-                  <DialogCloseTrigger asChild>
-                    <Button size="icon" variant="outlined">
-                      <X />
-                    </Button>
-                  </DialogCloseTrigger>
-                </div>
-                <form className="space-y-4">
-                  <Textfield placeholder="thevipinmishra" label="Username" />
-                  <Textfield
-                    placeholder="thevipinmishra@gmail.com"
-                    label="Email address"
-                  />
-                  <Textfield
-                    placeholder="Password"
-                    type="password"
-                    helperText="Should contain minimum 8 characters, including a number and a symbol."
-                    label="Password"
-                  />
-                  <Button fullWidth>Submit</Button>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
+        <div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent className="space-y-6">
+              <DialogTitle>Dialog Title</DialogTitle>
+              <form className="space-y-4">
+                <Textfield label="Username" />
+                <Textfield label="Password" type="password" />
+                <Button fullWidth>Submit</Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
 
-          <div>
-            <Switch label="Airplane mode" />
-          </div>
-
-          <div>
-            <Select collection={collection}>
-              <SelectLabel>Select a framework</SelectLabel>
-              <SelectTrigger />
-              <SelectContent>
-                {collection.items.map((item) => (
-                  <SelectItem item={item} key={item}>
-                    {item}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Splitter
-              className="items-stretch"
-              defaultSize={[
-                { id: "a", size: 50 },
-                { id: "b", size: 50 },
-              ]}
-            >
-              <SplitterPanel id="a">
-                <div className="border border-border p-4 h-full rounded-md">
-                  Panel 1
-                </div>
-              </SplitterPanel>
-              <SplitterResizeTrigger id="a:b"></SplitterResizeTrigger>
-              <SplitterPanel id="b">
-                <div className="border border-border p-4 h-full rounded-md">
-                  Panel 2
-                </div>
-              </SplitterPanel>
-            </Splitter>
-          </div>
-
-          <div>
-            <RadioGroup>
-              <RadioGroupLabel>Framework</RadioGroupLabel>
-
-              {frameworks.map((framework) => (
-                <RadioGroupItem key={framework} value={framework}>
-                  {framework}
-                </RadioGroupItem>
+        <div>
+          <PinInput>
+            <PinInputLabel>Enter OTP</PinInputLabel>
+            <PinInputControl>
+              {[1, 2, 3, 4, 5].map((id, index) => (
+                <PinInputField key={id} index={index} />
               ))}
-            </RadioGroup>
-          </div>
+            </PinInputControl>
+          </PinInput>
+        </div>
 
-          <div>
-            <Slider>
-              <SliderLabel>Slider</SliderLabel>
-              <SliderControl />
-            </Slider>
-          </div>
+        <div>
+          <RadioGroup>
+            <RadioGroupLabel>Choose your favorite framework</RadioGroupLabel>
+            <RadioGroupItem value="react">React</RadioGroupItem>
+            <RadioGroupItem value="solid">Solid</RadioGroupItem>
+            <RadioGroupItem value="vue">Vue</RadioGroupItem>
+            <RadioGroupItem value="angular">Angular</RadioGroupItem>
+            <RadioGroupItem value="lit">Lit</RadioGroupItem>
+            <RadioGroupItem value="something else">
+              Something else
+            </RadioGroupItem>
+          </RadioGroup>
+        </div>
+
+        <div>
+          <Select collection={collection}>
+            <SelectLabel>Select a framework</SelectLabel>
+            <SelectTrigger />
+            <SelectContent>
+              {collection.items.map((item) => (
+                <SelectItem item={item} key={item}>
+                  {item}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Slider>
+           <div className='flex gap-4 justify-between items-center'>
+           <SliderLabel>Volume</SliderLabel>
+           <SliderValueText />
+           </div>
+            <SliderControl />
+          </Slider>
+        </div>
+
+        <div>
+          <Switch label="Dark mode" />
+        </div>
+
+        <div>
+         <div>
+         <Tooltip>
+            <TooltipTrigger asChild>
+              <Button className='self-center'>Hover me</Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Tooltip content</p>
+            </TooltipContent>
+          </Tooltip>
+         </div>
         </div>
       </div>
     </main>

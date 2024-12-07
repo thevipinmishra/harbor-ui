@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react'
 import {Splitter as SplitterPrimitive, SplitterResizeTriggerProps} from '@ark-ui/react/splitter'
 import { tv } from '@/lib/tv.config';

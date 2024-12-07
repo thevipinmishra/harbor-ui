@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import {
   Switch as SwitchPrimitive,
@@ -8,7 +10,7 @@ import { FieldProps } from "@/types";
 import { tv } from "@/lib/tv.config";
 import { labelVariants } from "./Label";
 
-interface SwitchProps extends SwitchRootProps, FieldProps {
+interface SwitchProps extends Omit<SwitchRootProps, 'ids'>, FieldProps {
   label: string;
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import {
     CheckboxGroupProps,
@@ -23,7 +25,7 @@ const checkboxVariants = tv({
   },
 });
 
-interface CheckboxProps extends CheckboxRootProps, FieldProps {
+interface CheckboxProps extends Omit<CheckboxRootProps, 'ids'>, FieldProps {
   label: string;
 }
 

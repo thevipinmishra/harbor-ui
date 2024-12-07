@@ -8,4 +8,6 @@ export type FieldProps = {
     required?: FieldRootProps["required"];
     errorMessage?: string;
     helperText?: string;
+    ids?: FieldRootProps["ids"];
+    id?: FieldRootProps['id']
 }

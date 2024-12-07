@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import { Portal } from "@ark-ui/react/portal";
 import { Field } from "@ark-ui/react/field";
@@ -59,7 +61,7 @@ const selectVariants = tv({
   },
 });
 
-interface SelectProps extends SelectRootProps<any>, FieldProps {}
+interface SelectProps extends Omit<SelectRootProps<any>, 'ids'>, FieldProps {}
 interface SelectTriggerProps extends SelectPrimitiveTriggerProps {
   placeholder?: SelectValueTextProps["placeholder"];
 }

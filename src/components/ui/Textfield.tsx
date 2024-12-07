@@ -29,6 +29,7 @@ const Textfield = React.forwardRef<
     helperText,
     disabled,
     invalid,
+    id,
     readOnly,
     ...rest
   } = props;
@@ -38,6 +39,7 @@ const Textfield = React.forwardRef<
       disabled={disabled}
       required={required}
       readOnly={readOnly}
+      id={id}
       className={textFieldStyles()}
     >
       {label ? <Label>{label}</Label> : null}

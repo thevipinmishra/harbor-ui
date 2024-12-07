@@ -5,14 +5,14 @@ import { fieldHeight } from "@/utils/styles";
 import { Field, FieldInputProps } from "@ark-ui/react/field";
 import * as React from "react";
 
-const inputVariants = tv({
+export const inputVariants = tv({
   base: [
-    "border w-full text-sm outline-0 text-foreground bg-background rounded border-input px-2 py-1",
+    "border shadow-sm w-full text-sm outline-0 text-foreground bg-background rounded border-input px-2 py-1",
     "hover:border-border-hover motion-safe:transition-all",
     "placeholder:text-muted-foreground placeholder:font-normal",
-    'data-invalid:text-error',
+    'data-[invalid]:text-destructive',
     "focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
-    "data-invalid:border-error data-invalid:focus:ring-error/50",
+    "data-[invalid]:border-destructive data-[invalid]:focus:ring-destructive/50",
   ],
   variants: {
     size: {

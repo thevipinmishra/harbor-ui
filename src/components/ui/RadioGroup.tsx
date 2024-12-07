@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import { Field } from "@ark-ui/react/field";
 import {
@@ -23,7 +25,7 @@ const radioGroupVariants = tv({
   },
 });
 
-interface RadioGroupProps extends RadioGroupRootProps, FieldProps {}
+interface RadioGroupProps extends Omit<RadioGroupRootProps, 'ids'>, FieldProps {}
 interface RadioGroupItemProps
   extends Omit<RadioGroupPrimitiveItemProps, "children"> {
   children: RadioGroupItemTextProps["children"];
