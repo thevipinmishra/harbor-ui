@@ -24,7 +24,7 @@ import {
   SplitterResizeTrigger,
 } from "@/components/ui/Splitter";
 import Link from "next/link";
-import { X } from "@phosphor-icons/react";
+import { SpeakerHigh, SpeakerX, X } from "@phosphor-icons/react";
 import {
   RadioGroup,
   RadioGroupItem,
@@ -66,7 +66,19 @@ import {
   PopoverTrigger,
 } from "@/components/ui/Popover";
 import { Text } from "@/components/ui/Text";
-import { NumberInput, NumberInputField, NumberInputLabel } from "@/components/ui/NumberInput";
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputLabel,
+} from "@/components/ui/NumberInput";
+import { Calendar } from "@/components/ui/Calendar";
+import {
+  LinearProgress,
+  LinearProgressLabel,
+  LinearProgressTrack,
+  LinearProgressValue,
+} from "@/components/ui/LinearProgress";
+import { Toggle, ToggleContext } from "@/components/ui/Toggle";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -237,7 +249,7 @@ export default function HomePage() {
         </div>
 
         <div>
-          <Tabs>
+          <Tabs defaultValue={'react'}>
             <TabsList>
               <TabsTrigger value="react">React</TabsTrigger>
               <TabsTrigger value="vue">Vue</TabsTrigger>
@@ -256,7 +268,9 @@ export default function HomePage() {
                 <Button>Click me</Button>
               </PopoverTrigger>
               <PopoverContent className="space-y-2">
-                <Text>This is a popover message providing additional information.</Text>
+                <Text>
+                  This is a popover message providing additional information.
+                </Text>
                 <Button variant="outlined">Learn more</Button>
               </PopoverContent>
             </Popover>
@@ -264,10 +278,39 @@ export default function HomePage() {
         </div>
 
         <div>
-            <NumberInput min={0} max={50}>
-                <NumberInputLabel>Quantity</NumberInputLabel>
-                <NumberInputField placeholder="Enter 0-50" />
-            </NumberInput>
+          <NumberInput min={0} max={50}>
+            <NumberInputLabel>Quantity</NumberInputLabel>
+            <NumberInputField placeholder="Enter 0-50" />
+          </NumberInput>
+        </div>
+
+        <div>
+          <div>
+            <Calendar />
+          </div>
+        </div>
+
+        <div>
+          <LinearProgress>
+           <div className="flex gap-6 items-baseline justify-between">
+           <LinearProgressLabel>Progress</LinearProgressLabel>
+           <LinearProgressValue />
+           </div>
+            <LinearProgressTrack />
+           
+          </LinearProgress>
+        </div>
+
+        <div>
+            <div className="flex justify-center">
+                <Toggle asChild>
+                <Button size="icon-lg">
+                    <ToggleContext>
+                        {(context) => context.pressed ? <SpeakerHigh /> : <SpeakerX />}
+                    </ToggleContext>
+                    </Button>
+                </Toggle>
+            </div>
         </div>
       </div>
     </main>

@@ -6,7 +6,7 @@ import { ark, HTMLArkProps } from "@ark-ui/react/factory";
 import * as React from "react";
 import { VariantProps } from "tailwind-variants";
 
-const buttonVariants = tv({
+export const buttonVariants = tv({
   base: ["select-none inline-flex text-sm items-center rounded justify-center gap-2",  "transition-all"],
   variants: {
     variant: {
