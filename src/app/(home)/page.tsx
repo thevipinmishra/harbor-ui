@@ -65,6 +65,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/Popover";
+import { Text } from "@/components/ui/Text";
+import { NumberInput, NumberInputField, NumberInputLabel } from "@/components/ui/NumberInput";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -254,11 +256,18 @@ export default function HomePage() {
                 <Button>Click me</Button>
               </PopoverTrigger>
               <PopoverContent className="space-y-2">
-                This is a popover message providing additional information.
+                <Text>This is a popover message providing additional information.</Text>
                 <Button variant="outlined">Learn more</Button>
               </PopoverContent>
             </Popover>
           </div>
+        </div>
+
+        <div>
+            <NumberInput min={0} max={50}>
+                <NumberInputLabel>Quantity</NumberInputLabel>
+                <NumberInputField placeholder="Enter 0-50" />
+            </NumberInput>
         </div>
       </div>
     </main>

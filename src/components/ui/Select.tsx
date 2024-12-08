@@ -32,7 +32,7 @@ const selectVariants = tv({
       "data-invalid:border-error data-invalid:focus:ring-error/50",
     ],
     content: [
-      "outline-none border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-width))] overflow-y-auto",
+      "outline-none border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-height))] overflow-y-auto",
     //   In animation 
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-95 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
     //   Out animation 
