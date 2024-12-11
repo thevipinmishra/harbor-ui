@@ -79,6 +79,8 @@ import {
   LinearProgressValue,
 } from "@/components/ui/LinearProgress";
 import { Toggle, ToggleContext } from "@/components/ui/Toggle";
+import { Flex } from "@/components/ui/Flex";
+import { Badge } from "@/components/ui/Badge";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -249,7 +251,7 @@ export default function HomePage() {
         </div>
 
         <div>
-          <Tabs defaultValue={'react'}>
+          <Tabs defaultValue={"react"}>
             <TabsList>
               <TabsTrigger value="react">React</TabsTrigger>
               <TabsTrigger value="vue">Vue</TabsTrigger>
@@ -292,25 +294,35 @@ export default function HomePage() {
 
         <div>
           <LinearProgress>
-           <div className="flex gap-6 items-baseline justify-between">
-           <LinearProgressLabel>Progress</LinearProgressLabel>
-           <LinearProgressValue />
-           </div>
+            <div className="flex gap-6 items-baseline justify-between">
+              <LinearProgressLabel>Progress</LinearProgressLabel>
+              <LinearProgressValue />
+            </div>
             <LinearProgressTrack />
-           
           </LinearProgress>
         </div>
 
         <div>
-            <div className="flex justify-center">
-                <Toggle asChild>
-                <Button size="icon-lg">
-                    <ToggleContext>
-                        {(context) => context.pressed ? <SpeakerHigh /> : <SpeakerX />}
-                    </ToggleContext>
-                    </Button>
-                </Toggle>
-            </div>
+          <div className="flex justify-center">
+            <Toggle asChild>
+              <Button size="icon-lg">
+                <ToggleContext>
+                  {(context) =>
+                    context.pressed ? <SpeakerHigh /> : <SpeakerX />
+                  }
+                </ToggleContext>
+              </Button>
+            </Toggle>
+          </div>
+        </div>
+
+        <div>
+           <div className="flex flexflex-wrap items-center gap-4">
+            <Badge>Updated</Badge>
+            <Badge variant="outlined">Draft</Badge>
+            <Badge variant="plain">Due in 30 days</Badge>
+            <Badge variant="destructive">Due in 18 mins.</Badge>
+           </div>
         </div>
       </div>
     </main>
