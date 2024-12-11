@@ -87,7 +87,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className=" border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
+      <div className="max-w-md mx-auto border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
         <div>
           <div className="flex gap-4 flex-wrap">
             <Button>Default</Button>
