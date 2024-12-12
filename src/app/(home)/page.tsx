@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Textfield } from "@/components/ui/Textfield";
 import * as React from "react";
-import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
+import { Checkbox } from "@/components/ui/Checkbox";
 import {
   Tooltip,
   TooltipContent,
@@ -11,19 +11,12 @@ import {
 } from "@/components/ui/Tooltip";
 import {
   Dialog,
-  DialogCloseTrigger,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
 import { Switch } from "@/components/ui/Switch";
 import { createListCollection } from "@ark-ui/react/select";
-import {
-  Splitter,
-  SplitterPanel,
-  SplitterResizeTrigger,
-} from "@/components/ui/Splitter";
-import Link from "next/link";
 import { SpeakerHigh, SpeakerX, X } from "@phosphor-icons/react";
 import {
   RadioGroup,
@@ -32,7 +25,6 @@ import {
 } from "@/components/ui/RadioGroup";
 import {
   Slider,
-  SliderContext,
   SliderControl,
   SliderLabel,
   SliderValueText,
@@ -52,12 +44,10 @@ import {
 } from "@/components/ui/Select";
 import {
   Accordion,
-  AccordionContext,
   AccordionItem,
   AccordionItemContent,
   AccordionItemTrigger,
 } from "@/components/ui/Accordion";
-import { MenuItem } from "@ark-ui/react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import {
@@ -79,14 +69,24 @@ import {
   LinearProgressValue,
 } from "@/components/ui/LinearProgress";
 import { Toggle, ToggleContext } from "@/components/ui/Toggle";
-import { Flex } from "@/components/ui/Flex";
 import { Badge } from "@/components/ui/Badge";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/HoverCard";
+import {
+  CircularProgress,
+  CircularProgressCircle,
+  CircularProgressLabel,
+  CircularProgressValue,
+} from "@/components/ui/CircularProgress";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
 
   return (
-    <main>
+    <main className="py-10">
       <div className="max-w-md mx-auto border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
         <div>
           <div className="flex gap-4 flex-wrap">
@@ -267,7 +267,7 @@ export default function HomePage() {
           <div>
             <Popover>
               <PopoverTrigger asChild>
-                <Button>Click me</Button>
+                <Button>Popover</Button>
               </PopoverTrigger>
               <PopoverContent className="space-y-2">
                 <Text>
@@ -276,6 +276,19 @@ export default function HomePage() {
                 <Button variant="outlined">Learn more</Button>
               </PopoverContent>
             </Popover>
+          </div>
+        </div>
+        <div>
+          <div>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Button>Hover card</Button>
+              </HoverCardTrigger>
+              <HoverCardContent className="space-y-2">
+                <Text>This is a message providing additional information.</Text>
+                <Button variant="outlined">Learn more</Button>
+              </HoverCardContent>
+            </HoverCard>
           </div>
         </div>
 
@@ -303,6 +316,14 @@ export default function HomePage() {
         </div>
 
         <div>
+          <CircularProgress>
+            <CircularProgressLabel>Progress</CircularProgressLabel>
+            <CircularProgressCircle />
+            <CircularProgressValue />
+          </CircularProgress>
+        </div>
+
+        <div>
           <div className="flex justify-center">
             <Toggle asChild>
               <Button size="icon-lg">
@@ -317,12 +338,12 @@ export default function HomePage() {
         </div>
 
         <div>
-           <div className="flex flexflex-wrap items-center gap-4">
+          <div className="flex flexflex-wrap items-center gap-4">
             <Badge>Updated</Badge>
             <Badge variant="outlined">Draft</Badge>
             <Badge variant="plain">Due in 30 days</Badge>
             <Badge variant="destructive">Due in 18 mins.</Badge>
-           </div>
+          </div>
         </div>
       </div>
     </main>

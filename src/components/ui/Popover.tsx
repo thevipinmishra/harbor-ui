@@ -7,7 +7,7 @@ import {
 } from "@ark-ui/react/popover";
 import { tv } from "@/lib/tv.config";
 
-const popoverVariants = tv({
+export const popoverVariants = tv({
   slots: {
     content: [
       "bg-popover text-popover-foreground rounded-md shadow p-4 max-h-[var(--available-height))] max-w-[var(--available-width)]", //   In animation
