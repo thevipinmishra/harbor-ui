@@ -87,6 +87,7 @@ import {
   SplitterResizeTrigger,
 } from "@/components/ui/Splitter";
 import { SegmentGroup, SegmentGroupItem } from "@/components/ui/SegmentGroup";
+import { Pagination, PaginationControls, PaginationNextTrigger, PaginationPrevTrigger } from "@/components/ui/Pagination";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -376,15 +377,25 @@ export default function HomePage() {
         </div>
 
         <div>
-         <div>
-         <SegmentGroup>
-            {["React", "Vue", "Solid"].map((item) => (
-              <SegmentGroupItem value={item} key={item}>
-                {item}
-              </SegmentGroupItem>
-            ))}
-          </SegmentGroup>
-         </div>
+          <div>
+            <SegmentGroup>
+              {["React", "Vue", "Solid"].map((item) => (
+                <SegmentGroupItem value={item} key={item}>
+                  {item}
+                </SegmentGroupItem>
+              ))}
+            </SegmentGroup>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <Pagination count={90}>
+                <PaginationPrevTrigger />
+              <PaginationControls />
+              <PaginationNextTrigger />
+            </Pagination>
+          </div>
         </div>
       </div>
     </main>
