@@ -86,6 +86,7 @@ import {
   SplitterPanel,
   SplitterResizeTrigger,
 } from "@/components/ui/Splitter";
+import { SegmentGroup, SegmentGroupItem } from "@/components/ui/SegmentGroup";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -335,9 +336,19 @@ export default function HomePage() {
               { id: "b", size: 50 },
             ]}
           >
-            <SplitterPanel id="a" className="bg-muted text-muted-foreground p-4">A</SplitterPanel>
+            <SplitterPanel
+              id="a"
+              className="bg-muted text-muted-foreground p-4"
+            >
+              A
+            </SplitterPanel>
             <SplitterResizeTrigger id="a:b" />
-            <SplitterPanel id="b" className="bg-muted text-muted-foreground p-4">B</SplitterPanel>
+            <SplitterPanel
+              id="b"
+              className="bg-muted text-muted-foreground p-4"
+            >
+              B
+            </SplitterPanel>
           </Splitter>
         </div>
 
@@ -362,6 +373,18 @@ export default function HomePage() {
             <Badge variant="plain">Due in 30 days</Badge>
             <Badge variant="destructive">Due in 18 mins.</Badge>
           </div>
+        </div>
+
+        <div>
+         <div>
+         <SegmentGroup>
+            {["React", "Vue", "Solid"].map((item) => (
+              <SegmentGroupItem value={item} key={item}>
+                {item}
+              </SegmentGroupItem>
+            ))}
+          </SegmentGroup>
+         </div>
         </div>
       </div>
     </main>
