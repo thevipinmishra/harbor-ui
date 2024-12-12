@@ -81,6 +81,11 @@ import {
   CircularProgressLabel,
   CircularProgressValue,
 } from "@/components/ui/CircularProgress";
+import {
+  Splitter,
+  SplitterPanel,
+  SplitterResizeTrigger,
+} from "@/components/ui/Splitter";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -321,6 +326,19 @@ export default function HomePage() {
             <CircularProgressCircle />
             <CircularProgressValue />
           </CircularProgress>
+        </div>
+
+        <div>
+          <Splitter
+            defaultSize={[
+              { id: "a", size: 50 },
+              { id: "b", size: 50 },
+            ]}
+          >
+            <SplitterPanel id="a" className="bg-muted text-muted-foreground p-4">A</SplitterPanel>
+            <SplitterResizeTrigger id="a:b" />
+            <SplitterPanel id="b" className="bg-muted text-muted-foreground p-4">B</SplitterPanel>
+          </Splitter>
         </div>
 
         <div>
