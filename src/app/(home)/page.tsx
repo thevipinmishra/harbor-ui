@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/Dialog";
 import { Switch } from "@/components/ui/Switch";
 import { createListCollection } from "@ark-ui/react/select";
-import { SpeakerHigh, SpeakerX, X } from "@phosphor-icons/react";
+import { Gear, SignOut, SpeakerHigh, SpeakerX, User, X } from "@phosphor-icons/react";
 import {
   RadioGroup,
   RadioGroupItem,
@@ -88,6 +88,7 @@ import {
 } from "@/components/ui/Splitter";
 import { SegmentGroup, SegmentGroupItem } from "@/components/ui/SegmentGroup";
 import { Pagination, PaginationControls, PaginationNextTrigger, PaginationPrevTrigger } from "@/components/ui/Pagination";
+import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "@/components/ui/Menu";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -368,7 +369,7 @@ export default function HomePage() {
         </div>
 
         <div>
-          <div className="flex flexflex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <Badge>Updated</Badge>
             <Badge variant="outlined">Draft</Badge>
             <Badge variant="plain">Due in 30 days</Badge>
@@ -396,6 +397,22 @@ export default function HomePage() {
               <PaginationNextTrigger />
             </Pagination>
           </div>
+        </div>
+
+        <div>
+            <div>
+                <Menu>
+                    <MenuTrigger asChild>
+                        <Button>Menu</Button>
+                    </MenuTrigger>
+                    <MenuContent>
+                        <MenuItem value="profile"><User /> Profile</MenuItem>
+                        <MenuItem value='settings'><Gear /> Settings</MenuItem>
+                        <MenuSeparator />
+                        <MenuItem value="logout"><SignOut /> Logout</MenuItem>
+                    </MenuContent>
+                </Menu>
+            </div>
         </div>
       </div>
     </main>
