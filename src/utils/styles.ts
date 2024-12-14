@@ -1,5 +1,5 @@
 export const fieldHeight = {
-  sm: "h-7",
+  sm: "h-8",
   md: "h-9",
-  lg: "h-12",
+  lg: "h-10",
 };

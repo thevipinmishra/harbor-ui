@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Textfield } from "@/components/ui/Textfield";
 import * as React from "react";
-import { Checkbox } from "@/components/ui/Checkbox";
+import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
 import {
   Tooltip,
   TooltipContent,
@@ -109,6 +109,7 @@ import {
 } from "@/components/ui/Menu";
 import { Chip } from "@/components/ui/Chip";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
+import { Label } from "@/components/ui/Label";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -117,34 +118,125 @@ export default function HomePage() {
     <main className="py-10">
       <div className="max-w-md mx-auto border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
         <div>
-          <div className="flex gap-4 flex-wrap">
-            <Button>Default</Button>
-            <Button variant="outlined">Outlined</Button>
-            <Button variant="plain">Plain</Button>
+          <div className="flex flex-col items-start gap-4">
+            <div className="flex items-start gap-3">
+              <Button size="sm">Default</Button>
+              <Button size="sm" variant="outlined">
+                Outlined
+              </Button>
+              <Button size="sm" variant="plain">
+                Plain
+              </Button>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Button size="md">Default</Button>
+              <Button size="md" variant="outlined">
+                Outlined
+              </Button>
+              <Button size="md" variant="plain">
+                Plain
+              </Button>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Button size="lg">Default</Button>
+              <Button size="lg" variant="outlined">
+                Outlined
+              </Button>
+              <Button size="lg" variant="plain">
+                Plain
+              </Button>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Button variant="filled" disabled>
+                Default
+              </Button>
+              <Button variant="outlined" disabled>
+                Outlined
+              </Button>
+              <Button variant="plain" disabled>
+                Plain
+              </Button>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Button size="md" loading>
+                Default
+              </Button>
+              <Button size="md" variant="outlined" loading>
+                Outlined
+              </Button>
+              <Button size="md" variant="plain" loading>
+                Plain
+              </Button>
+            </div>
           </div>
         </div>
         <div>
           <div className="grid gap-5">
-            <Textfield placeholder="Username" />
-            <Textfield label="Account number" />
             <Textfield
-              label="Account number"
-              helperText="Should be 16 digits max."
-            />
-            <Textfield
+              size="sm"
               label="Last name"
               helperText="Should be 16 digits max."
-              errorMessage="Invalid last name"
+            />
+
+            <Textfield
+              size="md"
+              label="Last name"
+              helperText="Should be 16 digits max."
+            />
+
+            <Textfield
+              size="lg"
+              label="Last name"
+              helperText="Should be 16 digits max."
+            />
+
+            <Textfield
               invalid
+              size="md"
+              label="Last name"
+              helperText="Should be 16 digits max."
+              errorMessage="This field is required."
+            />
+
+            <Textfield
+              readOnly
+              size="md"
+              label="Last name"
+              placeholder="Read only"
+            />
+
+            <Textfield
+              disabled
+              size="md"
+              label="Last name"
+              placeholder="Disabled"
             />
           </div>
         </div>
 
         <div>
           <div className="grid gap-5">
-            <Checkbox label="I agree to the terms and conditions" />
+            <Checkbox label="I agree to sell my privacy" />
+
+            <Checkbox invalid label="I agree to sell my privacy" />
+
+            <Checkbox disabled label="I'm disabled" />
+
+            <Checkbox checked="indeterminate" label="Indeterminate checkbox" />
 
             <Checkbox label="Remember me" helperText="Sample helper text" />
+            <CheckboxGroup>
+              <Checkbox label="React" value="react" />
+              <Checkbox label="Vue" value="vue" />
+              <Checkbox label="Solid" value="solid" />
+              <Checkbox label="Angular" value="angular" />
+              <Checkbox label="Lit" value="lit" />
+              <Checkbox label="Something else" value="something else" />
+            </CheckboxGroup>
           </div>
         </div>
 
@@ -165,14 +257,34 @@ export default function HomePage() {
         </div>
 
         <div>
-          <PinInput>
-            <PinInputLabel>Enter OTP</PinInputLabel>
-            <PinInputControl>
-              {[1, 2, 3, 4, 5].map((id, index) => (
-                <PinInputField key={id} index={index} />
-              ))}
-            </PinInputControl>
-          </PinInput>
+          <div className="grid gap-4">
+            <PinInput>
+              <PinInputLabel>Enter OTP</PinInputLabel>
+              <PinInputControl>
+                {[1, 2, 3, 4, 5].map((id, index) => (
+                  <PinInputField key={id} index={index} />
+                ))}
+              </PinInputControl>
+            </PinInput>
+
+            <PinInput invalid>
+              <PinInputLabel>Enter passcode to continue</PinInputLabel>
+              <PinInputControl>
+                {[1, 2, 3, 4].map((id, index) => (
+                  <PinInputField key={id} index={index} />
+                ))}
+              </PinInputControl>
+            </PinInput>
+
+            <PinInput mask>
+              <PinInputLabel>Enter passcode to continue</PinInputLabel>
+              <PinInputControl>
+                {[1, 2, 3, 4].map((id, index) => (
+                  <PinInputField key={id} index={index} />
+                ))}
+              </PinInputControl>
+            </PinInput>
+          </div>
         </div>
 
         <div>

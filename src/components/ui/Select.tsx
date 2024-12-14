@@ -123,7 +123,7 @@ const SelectTrigger = React.forwardRef<
       >
         <SelectPrimitive.ValueText className={selectVariants().valueText()} placeholder={placeholder} />
         <SelectPrimitive.Indicator className={selectVariants().indicator()}>
-          <CaretUpDown />
+          <CaretUpDown weight='bold' />
         </SelectPrimitive.Indicator>
       </SelectPrimitive.Trigger>
     </SelectPrimitive.Control>
@@ -158,7 +158,7 @@ const SelectItem = (props: SelectPrimitiveProps) => {
         {children}
       </SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator className={selectVariants().itemText()}>
-        <Check />
+        <Check weight='bold' />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );

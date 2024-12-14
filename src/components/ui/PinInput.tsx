@@ -20,13 +20,10 @@ const pinInputVariants = tv({
     }
 })
 
-const PinInput = React.forwardRef<
-  React.ElementRef<typeof PinInputPrimitive.HiddenInput>,
-  PinInputRootProps
->((props, ref) => {
+const PinInput = (props:PinInputRootProps) => {
     const { className, placeholder = '#', ...rest } = props;
-  return <PinInputPrimitive.Root ref={ref} className={pinInputVariants().root()} placeholder={placeholder} {...rest} />;
-});
+  return <PinInputPrimitive.Root  className={pinInputVariants().root()} placeholder={placeholder} {...rest} />;
+};
 
 const PinInputLabel = (props: PinInputLabelProps) => {
     const { className, ...rest } = props;
