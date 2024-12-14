@@ -17,7 +17,14 @@ import {
 } from "@/components/ui/Dialog";
 import { Switch } from "@/components/ui/Switch";
 import { createListCollection } from "@ark-ui/react/select";
-import { Gear, SignOut, SpeakerHigh, SpeakerX, User, X } from "@phosphor-icons/react";
+import {
+  Gear,
+  SignOut,
+  SpeakerHigh,
+  SpeakerX,
+  User,
+  X,
+} from "@phosphor-icons/react";
 import {
   RadioGroup,
   RadioGroupItem,
@@ -87,8 +94,21 @@ import {
   SplitterResizeTrigger,
 } from "@/components/ui/Splitter";
 import { SegmentGroup, SegmentGroupItem } from "@/components/ui/SegmentGroup";
-import { Pagination, PaginationControls, PaginationNextTrigger, PaginationPrevTrigger } from "@/components/ui/Pagination";
-import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "@/components/ui/Menu";
+import {
+  Pagination,
+  PaginationControls,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+} from "@/components/ui/Pagination";
+import {
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuSeparator,
+  MenuTrigger,
+} from "@/components/ui/Menu";
+import { Chip } from "@/components/ui/Chip";
+import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 
 export default function HomePage() {
   const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
@@ -392,7 +412,7 @@ export default function HomePage() {
         <div>
           <div>
             <Pagination count={90}>
-                <PaginationPrevTrigger />
+              <PaginationPrevTrigger />
               <PaginationControls />
               <PaginationNextTrigger />
             </Pagination>
@@ -400,19 +420,47 @@ export default function HomePage() {
         </div>
 
         <div>
-            <div>
-                <Menu>
-                    <MenuTrigger asChild>
-                        <Button>Menu</Button>
-                    </MenuTrigger>
-                    <MenuContent>
-                        <MenuItem value="profile"><User /> Profile</MenuItem>
-                        <MenuItem value='settings'><Gear /> Settings</MenuItem>
-                        <MenuSeparator />
-                        <MenuItem value="logout"><SignOut /> Logout</MenuItem>
-                    </MenuContent>
-                </Menu>
-            </div>
+          <div>
+            <Menu>
+              <MenuTrigger asChild>
+                <Button>Menu</Button>
+              </MenuTrigger>
+              <MenuContent>
+                <MenuItem value="profile">
+                  <User /> Profile
+                </MenuItem>
+                <MenuItem value="settings">
+                  <Gear /> Settings
+                </MenuItem>
+                <MenuSeparator />
+                <MenuItem value="logout">
+                  <SignOut /> Logout
+                </MenuItem>
+              </MenuContent>
+            </Menu>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex flex-wrap gap-4">
+            <Chip>Chip</Chip>
+            <Chip variant="outlined">Chip</Chip>
+          </div>
+        </div>
+
+        <div>
+          <ChipGroup>
+            <ChipGroupItem value="a">Chip A</ChipGroupItem>
+            <ChipGroupItem value="b">Chip B</ChipGroupItem>
+            <ChipGroupItem value="c">Chip C</ChipGroupItem>
+          </ChipGroup>
+        </div>
+        <div>
+          <ChipGroup multiple>
+            <ChipGroupItem value="a">Chip A</ChipGroupItem>
+            <ChipGroupItem value="b">Chip B</ChipGroupItem>
+            <ChipGroupItem value="c">Chip C</ChipGroupItem>
+          </ChipGroup>
         </div>
       </div>
     </main>

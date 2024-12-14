@@ -2,9 +2,15 @@ import { tv } from "@/lib/tv.config";
 import { VariantProps } from "tailwind-variants";
 import { HTMLArkProps, ark } from "@ark-ui/react";
 
-const badgeVariants = tv({
+
+export const badgeBaseVariant = tv({
+    base: [ "inline-flex justify-center uppercase select-none text-ellipsis leading-tight text-xs font-medium rounded-full items-center whitespace-nowrap line-clamp-1 min-w-0",]
+})
+
+
+export const badgeVariants = tv({
   base: [
-    "inline-flex justify-center uppercase select-none text-ellipsis leading-tight text-xs font-medium rounded-full items-center whitespace-nowrap line-clamp-1 min-w-0",
+   badgeBaseVariant(),
   ],
   variants: {
     variant: {
