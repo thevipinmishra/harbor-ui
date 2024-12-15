@@ -1,7 +1,7 @@
 "use client";
 
 import { cn, tv } from "@/lib/tv.config";
-import { Field, FieldInputProps } from "@ark-ui/react/field";
+import { Field } from "@ark-ui/react/field";
 import * as React from "react";
 import { Input, InputProps } from "./Input";
 import { Label } from "./Label";
@@ -27,7 +27,6 @@ const Textfield = (props: TextfieldProps) => {
     helperText,
     disabled,
     invalid,
-    id,
     readOnly,
     ...rest
   } = props;
@@ -37,7 +36,6 @@ const Textfield = (props: TextfieldProps) => {
       disabled={disabled}
       required={required}
       readOnly={readOnly}
-      id={id}
       className={textFieldStyles()}
     >
       {label ? <Label>{label}</Label> : null}

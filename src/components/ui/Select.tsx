@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import * as React from "react";
 import { Portal } from "@ark-ui/react/portal";
@@ -23,7 +23,7 @@ import { HelperText } from "./HelperText";
 
 const selectVariants = tv({
   slots: {
-    root: "flex flex-col gap-2 items-start",
+    root: "flex flex-col gap-2 w-full items-start",
     trigger: [
       "border w-full flex justify-between items-center text-sm outline-0 text-foreground rounded border-border px-2 py-1",
       "hover:border-border-hover motion-safe:transition-all",
@@ -32,16 +32,16 @@ const selectVariants = tv({
       "data-invalid:border-error data-invalid:focus:ring-error/50",
     ],
     content: [
-      "outline-none border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-height))] overflow-y-auto",
-    //   In animation 
+      "outline-none !z-20 border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-height))] overflow-y-auto",
+      //   In animation
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-95 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
-    //   Out animation 
+      //   Out animation
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:zoom-out-95 motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-2 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-2",
     ],
-    positioner: ["!z-20"],
+    positioner: [""],
     control: ["w-full"],
     itemText: ["truncate"],
-    valueText: ['truncate'],
+    valueText: ["truncate"],
     indicator: ["text-muted-foreground"],
     itemIndicator: [""],
     item: [
@@ -61,7 +61,7 @@ const selectVariants = tv({
   },
 });
 
-interface SelectProps extends Omit<SelectRootProps<any>, 'ids'>, FieldProps {}
+interface SelectProps extends Omit<SelectRootProps<any>, "ids">, FieldProps {}
 interface SelectTriggerProps extends SelectPrimitiveTriggerProps {
   placeholder?: SelectValueTextProps["placeholder"];
 }
@@ -72,10 +72,7 @@ interface SelectPrimitiveProps extends Omit<SelectItemProps, "children"> {
 
 interface SelectContentProps extends SelectPrimitiveContentProps {}
 
-const Select = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.HiddenSelect>,
-  SelectProps
->((props, ref) => {
+const Select = (props: SelectProps) => {
   const {
     className,
     children,
@@ -96,39 +93,35 @@ const Select = React.forwardRef<
     >
       <SelectPrimitive.Root className={selectVariants().root()} {...rest}>
         {children}
-        <SelectPrimitive.HiddenSelect ref={ref} />
+        <SelectPrimitive.HiddenSelect />
       </SelectPrimitive.Root>
       {helperText ? <HelperText>{helperText}</HelperText> : null}
       {invalid && errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
     </Field.Root>
   );
-});
+};
 
 const SelectLabel = (props: SelectLabelProps) => {
   const { className, ...rest } = props;
   return <SelectPrimitive.Label className={labelVariants()} {...rest} />;
 };
 
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  SelectTriggerProps
->((props, ref) => {
+const SelectTrigger = (props: SelectTriggerProps) => {
   const { className, placeholder = "Select", ...rest } = props;
   return (
     <SelectPrimitive.Control className={selectVariants().control()}>
-      <SelectPrimitive.Trigger
-        className={selectVariants().trigger()}
-        {...rest}
-        ref={ref}
-      >
-        <SelectPrimitive.ValueText className={selectVariants().valueText()} placeholder={placeholder} />
+      <SelectPrimitive.Trigger className={selectVariants().trigger()} {...rest}>
+        <SelectPrimitive.ValueText
+          className={selectVariants().valueText()}
+          placeholder={placeholder}
+        />
         <SelectPrimitive.Indicator className={selectVariants().indicator()}>
-          <CaretUpDown weight='bold' />
+          <CaretUpDown weight="bold" />
         </SelectPrimitive.Indicator>
       </SelectPrimitive.Trigger>
     </SelectPrimitive.Control>
   );
-});
+};
 
 const SelectContent = (props: SelectContentProps) => {
   const { className, ...rest } = props;
@@ -158,7 +151,7 @@ const SelectItem = (props: SelectPrimitiveProps) => {
         {children}
       </SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator className={selectVariants().itemText()}>
-        <Check weight='bold' />
+        <Check weight="bold" />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );

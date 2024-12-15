@@ -112,7 +112,27 @@ import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { Label } from "@/components/ui/Label";
 
 export default function HomePage() {
-  const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
+  const collection = createListCollection({
+    items: [
+      "React",
+      "Solid",
+      "Vue",
+      "Angular",
+      "Lit",
+      "Alpine",
+      "Svelte",
+      "Ember",
+      "Backbone",
+      "Meteor",
+      "Knockout",
+      "Polymer",
+      "Aurelia",
+      "Mithril",
+      "Preact",
+      "Marko",
+      "Inferno",
+    ],
+  });
 
   return (
     <main className="py-10">
@@ -222,11 +242,17 @@ export default function HomePage() {
           <div className="grid gap-5">
             <Checkbox label="I agree to sell my privacy" />
 
-            <Checkbox invalid label="I agree to sell my privacy" />
+            <Checkbox
+              invalid
+              label="I agree to sell my privacy"
+              errorMessage="No, you can't agree to that."
+            />
 
             <Checkbox disabled label="I'm disabled" />
 
             <Checkbox checked="indeterminate" label="Indeterminate checkbox" />
+
+            <Checkbox readOnly label="Read only checkbox" />
 
             <Checkbox label="Remember me" helperText="Sample helper text" />
             <CheckboxGroup>
@@ -267,7 +293,7 @@ export default function HomePage() {
               </PinInputControl>
             </PinInput>
 
-            <PinInput invalid>
+            <PinInput invalid errorMessage="Invalid OTP">
               <PinInputLabel>Enter passcode to continue</PinInputLabel>
               <PinInputControl>
                 {[1, 2, 3, 4].map((id, index) => (
@@ -276,8 +302,26 @@ export default function HomePage() {
               </PinInputControl>
             </PinInput>
 
-            <PinInput mask>
-              <PinInputLabel>Enter passcode to continue</PinInputLabel>
+            <PinInput helperText="Sample helper text" mask>
+              <PinInputLabel>Enter passcode with input mask</PinInputLabel>
+              <PinInputControl>
+                {[1, 2, 3, 4].map((id, index) => (
+                  <PinInputField key={id} index={index} />
+                ))}
+              </PinInputControl>
+            </PinInput>
+
+            <PinInput disabled>
+              <PinInputLabel>Disabled pin input</PinInputLabel>
+              <PinInputControl>
+                {[1, 2, 3, 4].map((id, index) => (
+                  <PinInputField key={id} index={index} />
+                ))}
+              </PinInputControl>
+            </PinInput>
+
+            <PinInput readOnly>
+              <PinInputLabel>Read only pin input</PinInputLabel>
               <PinInputControl>
                 {[1, 2, 3, 4].map((id, index) => (
                   <PinInputField key={id} index={index} />
@@ -288,17 +332,43 @@ export default function HomePage() {
         </div>
 
         <div>
-          <RadioGroup>
-            <RadioGroupLabel>Choose your favorite framework</RadioGroupLabel>
-            <RadioGroupItem value="react">React</RadioGroupItem>
-            <RadioGroupItem value="solid">Solid</RadioGroupItem>
-            <RadioGroupItem value="vue">Vue</RadioGroupItem>
-            <RadioGroupItem value="angular">Angular</RadioGroupItem>
-            <RadioGroupItem value="lit">Lit</RadioGroupItem>
-            <RadioGroupItem value="something else">
-              Something else
-            </RadioGroupItem>
-          </RadioGroup>
+         <div className="grid gap-5">
+            
+         <RadioGroup>
+              <RadioGroupLabel>Choose your favorite framework</RadioGroupLabel>
+              <RadioGroupItem value="react">React</RadioGroupItem>
+              <RadioGroupItem value="solid">Solid</RadioGroupItem>
+              <RadioGroupItem value="vue">Vue</RadioGroupItem>
+              <RadioGroupItem value="angular">Angular</RadioGroupItem>
+              <RadioGroupItem value="lit">Lit</RadioGroupItem>
+              <RadioGroupItem value="something else">
+                Something else
+              </RadioGroupItem>
+            </RadioGroup>
+         
+
+        
+            <RadioGroup>
+              <RadioGroupLabel>Favourite fruit</RadioGroupLabel>
+              <RadioGroupItem value="apple">Apple</RadioGroupItem>
+              <RadioGroupItem value="banana">Banana</RadioGroupItem>
+              <RadioGroupItem value="orange">Orange</RadioGroupItem>
+              <RadioGroupItem value="grape">Grape</RadioGroupItem>
+              <RadioGroupItem value="mango">Mango</RadioGroupItem>
+              <RadioGroupItem value="watermelon" disabled>Watermelon</RadioGroupItem>
+            </RadioGroup>
+
+            <RadioGroup disabled>
+              <RadioGroupLabel>Favourite fruit</RadioGroupLabel>
+              <RadioGroupItem value="apple">Apple</RadioGroupItem>
+              <RadioGroupItem value="banana">Banana</RadioGroupItem>
+              <RadioGroupItem value="orange">Orange</RadioGroupItem>
+              <RadioGroupItem value="grape">Grape</RadioGroupItem>
+              <RadioGroupItem value="mango">Mango</RadioGroupItem>
+              <RadioGroupItem value="watermelon" disabled>Watermelon</RadioGroupItem>
+            </RadioGroup>
+         
+         </div>
         </div>
 
         <div>
