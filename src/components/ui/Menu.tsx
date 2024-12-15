@@ -20,7 +20,7 @@ const menuVariants = tv({
     positioner: [""],
     separator: ["border-border -px-[inherit]"],
     item: [
-      "flex w-full px-3 py-1.5 cursor-default text-sm font-medium text-foreground bg-background items-center justify-start gap-2 rounded-md",
+      "flex w-full px-3 py-2 cursor-default text-sm font-medium text-foreground bg-background items-center justify-start gap-3 rounded-md",
       "data-[highlighted]:bg-secondary",
       "motion-safe:transition-colors",
     ],

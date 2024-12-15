@@ -35,7 +35,7 @@ const textVariants = tv({
   },
 });
 
-const Text = (props: HTMLArkProps<"span">) => {
+const Text = (props: HTMLArkProps<"p">) => {
   const { className, ...rest } = props;
   return (
     <ark.p

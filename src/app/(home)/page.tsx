@@ -23,6 +23,7 @@ import {
   SpeakerHigh,
   SpeakerX,
   User,
+  Warning,
   X,
 } from "@phosphor-icons/react";
 import {
@@ -110,6 +111,7 @@ import {
 import { Chip } from "@/components/ui/Chip";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { Label } from "@/components/ui/Label";
+import { Alert } from "@/components/ui/Alert";
 
 export default function HomePage() {
   const collection = createListCollection({
@@ -647,8 +649,8 @@ export default function HomePage() {
         </div>
 
         <div>
-          <div>
-            <SegmentGroup>
+          <div className="flex justify-center">
+            <SegmentGroup defaultValue="React">
               {["React", "Vue", "Solid"].map((item) => (
                 <SegmentGroupItem value={item} key={item}>
                   {item}
@@ -710,6 +712,12 @@ export default function HomePage() {
             <ChipGroupItem value="b">Chip B</ChipGroupItem>
             <ChipGroupItem value="c">Chip C</ChipGroupItem>
           </ChipGroup>
+        </div>
+        <div>
+           <div className="grid gap-5">
+           <Alert title="Alert" description="This is an alert message." />
+           <Alert icon={<Warning />} variant='destructive' title="Heads up!" description="This is an alert message." />
+           </div>
         </div>
       </div>
     </main>
