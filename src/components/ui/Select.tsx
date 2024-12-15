@@ -28,8 +28,9 @@ const selectVariants = tv({
       "border w-full flex justify-between items-center text-sm outline-0 text-foreground rounded border-border px-2 py-1",
       "hover:border-border-hover motion-safe:transition-all",
       "data-invalid:text-error",
+      "disabled:opacity-50 disabled:pointer-events-none",
       "focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
-      "data-invalid:border-error data-invalid:focus:ring-error/50",
+      "data-[invalid]:border-destructive data-[invalid]:focus:ring-destructive data-[invalid]:text-destructive",
     ],
     content: [
       "outline-none !z-20 border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-height))] overflow-y-auto",
@@ -41,12 +42,13 @@ const selectVariants = tv({
     positioner: [""],
     control: ["w-full"],
     itemText: ["truncate"],
-    valueText: ["truncate"],
-    indicator: ["text-muted-foreground"],
+    valueText: ["truncate", 'data-[placeholder=true]:text-muted-foreground'],
+    indicator: ["text-muted-foreground data-[invalid]:text-destructive"],
     itemIndicator: [""],
     item: [
       "text-sm rounded-sm transition-colors flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
+      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],
   },
   variants: {
@@ -110,15 +112,23 @@ const SelectTrigger = (props: SelectTriggerProps) => {
   const { className, placeholder = "Select", ...rest } = props;
   return (
     <SelectPrimitive.Control className={selectVariants().control()}>
-      <SelectPrimitive.Trigger className={selectVariants().trigger()} {...rest}>
-        <SelectPrimitive.ValueText
-          className={selectVariants().valueText()}
-          placeholder={placeholder}
-        />
-        <SelectPrimitive.Indicator className={selectVariants().indicator()}>
-          <CaretUpDown weight="bold" />
-        </SelectPrimitive.Indicator>
-      </SelectPrimitive.Trigger>
+      <SelectPrimitive.Context>
+        {(context) => (
+          <SelectPrimitive.Trigger
+            className={selectVariants().trigger()}
+            {...rest}
+          >
+            <SelectPrimitive.ValueText
+              className={selectVariants().valueText()}
+              placeholder={placeholder}
+              data-placeholder={!context.hasSelectedItems}
+            />
+            <SelectPrimitive.Indicator className={selectVariants().indicator()}>
+              <CaretUpDown weight="bold" />
+            </SelectPrimitive.Indicator>
+          </SelectPrimitive.Trigger>
+        )}
+      </SelectPrimitive.Context>
     </SelectPrimitive.Control>
   );
 };

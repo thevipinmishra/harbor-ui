@@ -134,6 +134,18 @@ export default function HomePage() {
     ],
   });
 
+  const newCollection = createListCollection({
+    items: [
+      { label: "React", value: "react", disabled: false },
+      { label: "Solid", value: "solid", disabled: false },
+      { label: "Vue", value: "vue", disabled: false },
+      { label: "Angular", value: "angular", disabled: false },
+      { label: "Lit", value: "lit", disabled: false },
+      { label: "Alpine", value: "alpine", disabled: true },
+      { label: "Svelte", value: "svelte", disabled: true },
+    ],
+  });
+
   return (
     <main className="py-10">
       <div className="max-w-md mx-auto border border-border rounded-md divide-y divide-border *:flex *:items-center *:*:w-full *:min-h-24 *:p-5">
@@ -332,9 +344,8 @@ export default function HomePage() {
         </div>
 
         <div>
-         <div className="grid gap-5">
-            
-         <RadioGroup>
+          <div className="grid gap-5">
+            <RadioGroup>
               <RadioGroupLabel>Choose your favorite framework</RadioGroupLabel>
               <RadioGroupItem value="react">React</RadioGroupItem>
               <RadioGroupItem value="solid">Solid</RadioGroupItem>
@@ -345,9 +356,7 @@ export default function HomePage() {
                 Something else
               </RadioGroupItem>
             </RadioGroup>
-         
 
-        
             <RadioGroup>
               <RadioGroupLabel>Favourite fruit</RadioGroupLabel>
               <RadioGroupItem value="apple">Apple</RadioGroupItem>
@@ -355,7 +364,9 @@ export default function HomePage() {
               <RadioGroupItem value="orange">Orange</RadioGroupItem>
               <RadioGroupItem value="grape">Grape</RadioGroupItem>
               <RadioGroupItem value="mango">Mango</RadioGroupItem>
-              <RadioGroupItem value="watermelon" disabled>Watermelon</RadioGroupItem>
+              <RadioGroupItem value="watermelon" disabled>
+                Watermelon
+              </RadioGroupItem>
             </RadioGroup>
 
             <RadioGroup disabled>
@@ -365,34 +376,90 @@ export default function HomePage() {
               <RadioGroupItem value="orange">Orange</RadioGroupItem>
               <RadioGroupItem value="grape">Grape</RadioGroupItem>
               <RadioGroupItem value="mango">Mango</RadioGroupItem>
-              <RadioGroupItem value="watermelon" disabled>Watermelon</RadioGroupItem>
+              <RadioGroupItem value="watermelon" disabled>
+                Watermelon
+              </RadioGroupItem>
             </RadioGroup>
-         
-         </div>
+          </div>
         </div>
 
         <div>
-          <Select collection={collection}>
-            <SelectLabel>Select a framework</SelectLabel>
-            <SelectTrigger />
-            <SelectContent>
-              {collection.items.map((item) => (
-                <SelectItem item={item} key={item}>
-                  {item}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="grid gap-5">
+            <Select collection={collection}>
+              <SelectLabel>Select a framework</SelectLabel>
+              <SelectTrigger />
+              <SelectContent>
+                {collection.items.map((item) => (
+                  <SelectItem item={item} key={item}>
+                    {item}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select
+              invalid
+              errorMessage="Invalid choice"
+              collection={collection}
+            >
+              <SelectLabel>Select a framework</SelectLabel>
+              <SelectTrigger />
+              <SelectContent>
+                {collection.items.map((item) => (
+                  <SelectItem item={item} key={item}>
+                    {item}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select
+              disabled
+              helperText="Please try again later"
+              collection={collection}
+            >
+              <SelectLabel>Disabled select</SelectLabel>
+              <SelectTrigger />
+              <SelectContent>
+                {collection.items.map((item) => (
+                  <SelectItem item={item} key={item}>
+                    {item}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select collection={newCollection}>
+              <SelectLabel>Select a new framework</SelectLabel>
+              <SelectTrigger />
+              <SelectContent>
+                {newCollection.items.map((item) => (
+                  <SelectItem item={item} key={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div>
-          <Slider>
-            <div className="flex gap-4 justify-between items-center">
-              <SliderLabel>Volume</SliderLabel>
-              <SliderValueText />
-            </div>
-            <SliderControl />
-          </Slider>
+          <div className="grid gap-5">
+            <Slider>
+              <div className="flex gap-4 justify-between items-center">
+                <SliderLabel>Volume</SliderLabel>
+                <SliderValueText />
+              </div>
+              <SliderControl />
+            </Slider>
+
+            <Slider invalid>
+              <div className="flex gap-4 justify-between items-center">
+                <SliderLabel>Volume</SliderLabel>
+                <SliderValueText />
+              </div>
+              <SliderControl />
+            </Slider>
+          </div>
         </div>
 
         <div>
