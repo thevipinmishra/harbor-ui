@@ -13,7 +13,7 @@ export interface InputProps
 export const inputVariants = tv({
   base: [
     "border shadow-sm w-full outline-0 text-foreground bg-background rounded border-input ",
-    "hover:border-border-hover motion-safe:transition-all",
+    "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
     "data-[invalid]:text-destructive",
     'disabled:opacity-50 disabled:pointer-events-none',

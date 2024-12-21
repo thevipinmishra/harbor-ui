@@ -81,11 +81,21 @@ module.exports = {
           "0%,70%,100%": { opacity: "1" },
           "20%,50%": { opacity: "0" },
         },
+        "slide-down": {
+          from: { height: "0" },
+          to: { height: "var(--height)" },
+        },
+        "slide-up": {
+            from: { height: "var(--height)" },
+            to: { height: "0" },
+          },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
+        "slide-down": "slide-down 0.2s ease-out",
+        "slide-up": "slide-up 0.2s ease-out",
       },
     },
   },

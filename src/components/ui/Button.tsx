@@ -1,11 +1,17 @@
 "use client";
 
-import { tv } from "@/lib/tv.config";
+import { cn, tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
 import { ark, HTMLArkProps } from "@ark-ui/react/factory";
 import { SpinnerGap } from "@phosphor-icons/react";
 import * as React from "react";
 import { VariantProps } from "tailwind-variants";
+
+const buttonGroupVariants = tv({
+  base: [
+    "flex [&_.hbui-button:not(:first-of-type)]:rounded-l-none [&_.hbui-button:not(:last-of-type)]:rounded-r-none",
+  ],
+});
 
 export const buttonVariants = tv({
   base: [
@@ -26,6 +32,10 @@ export const buttonVariants = tv({
       outlined: [
         "bg-background text-foreground border border-border",
         "hover:bg-muted",
+      ],
+      destructive: [
+        "bg-destructive text-destructive-foreground",
+        "hover:opacity-90",
       ],
     },
     size: {
@@ -67,16 +77,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       ...rest
     } = props;
+
+    const staticClass = "hbui-button";
     return (
       <ark.button
         ref={ref}
         disabled={loading || disabled}
-        className={buttonVariants({
-          className,
-          size,
-          variant,
-          fullWidth,
-        })}
+        className={cn(
+          buttonVariants({
+            className,
+            size,
+            variant,
+            fullWidth,
+          }),
+          staticClass
+        )}
         {...rest}
       >
         {loading ? <SpinnerGap className="animate-spin" /> : null}
@@ -86,4 +101,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export { Button };
+const ButtonGroup = (props: HTMLArkProps<"div">) => {
+  const { className, ...rest } = props;
+  return (
+    <ark.div
+      className={buttonGroupVariants({
+        className,
+      })}
+      {...rest}
+    />
+  );
+};
+
+export { Button, ButtonGroup };

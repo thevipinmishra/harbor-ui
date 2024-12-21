@@ -8,7 +8,8 @@ import {
 const segmentGroupVariants = tv({
     slots: {
         root: ['flex bg-muted rounded-md p-1 w-max'],
-        item: ['inline-flex relative text-sm z-[1] py-1 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center', 'data-[state=checked]:text-foreground motion-safe:transition-colors'],
+        item: ['inline-flex relative text-sm z-[1] py-1.5 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center', 'data-[state=checked]:text-foreground motion-safe:transition-colors'],
+        itemText: ['inline-flex gap-2 justify-center items-center'],
         indicator: ['bg-background rounded-[inherit] h-[var(--height)] w-[var(--width)] left-[var(--left)] top-[var(--top)]'],
     }
 })
@@ -29,7 +30,7 @@ const SegmentGroupItem = (props: SegmentGroupItemProps) => {
     <SegmentGroupPrimitive.Item className={segmentGroupVariants().item({
         className
       })} {...rest}>
-      <SegmentGroupPrimitive.ItemText>
+      <SegmentGroupPrimitive.ItemText className={segmentGroupVariants().itemText()}>
         {children}
       </SegmentGroupPrimitive.ItemText>
       <SegmentGroupPrimitive.ItemControl />

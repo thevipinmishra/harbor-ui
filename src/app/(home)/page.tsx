@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button, ButtonGroup } from "@/components/ui/Button";
 import { Textfield } from "@/components/ui/Textfield";
 import * as React from "react";
 import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
@@ -18,13 +18,16 @@ import {
 import { Switch } from "@/components/ui/Switch";
 import { createListCollection } from "@ark-ui/react/select";
 import {
+  DotsThree,
   Gear,
   SignOut,
   SpeakerHigh,
   SpeakerX,
   User,
   Warning,
-  X,
+  Cherries,
+  Avocado,
+  Orange,
 } from "@phosphor-icons/react";
 import {
   RadioGroup,
@@ -112,6 +115,11 @@ import { Chip } from "@/components/ui/Chip";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { Label } from "@/components/ui/Label";
 import { Alert } from "@/components/ui/Alert";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/Collapsible";
 
 export default function HomePage() {
   const collection = createListCollection({
@@ -161,6 +169,9 @@ export default function HomePage() {
               <Button size="sm" variant="plain">
                 Plain
               </Button>
+              <Button size="sm" variant="destructive">
+                Destructive
+              </Button>
             </div>
 
             <div className="flex items-start gap-3">
@@ -205,6 +216,13 @@ export default function HomePage() {
               <Button size="md" variant="plain" loading>
                 Plain
               </Button>
+            </div>
+
+            <div>
+              <ButtonGroup>
+                <Button variant="filled">Default</Button>
+                <Button variant="outlined">Outlined</Button>
+              </ButtonGroup>
             </div>
           </div>
         </div>
@@ -469,10 +487,23 @@ export default function HomePage() {
         </div>
 
         <div>
-          <div>
+          <div className="grid gap-5 justify-start">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button className="self-center">Hover me</Button>
+                <Button variant='outlined' className="self-center">Hover me</Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Tooltip content</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip
+              positioning={{
+                placement: "top",
+              }}
+            >
+              <TooltipTrigger asChild>
+                <Button variant='outlined' className="self-center">Top tooltip</Button>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Tooltip content</p>
@@ -650,10 +681,15 @@ export default function HomePage() {
 
         <div>
           <div className="flex justify-center">
-            <SegmentGroup defaultValue="React">
-              {["React", "Vue", "Solid"].map((item) => (
-                <SegmentGroupItem value={item} key={item}>
-                  {item}
+            <SegmentGroup defaultValue="Cherry">
+              {[
+                { name: "Cherry", icon: <Cherries size={20} /> },
+                { name: "Avocado", icon: <Avocado size={20} /> },
+                { name: "Orange", icon: <Orange size={20} /> },
+              ].map((item) => (
+                <SegmentGroupItem value={item.name} key={item.name}>
+                  {item.icon}
+                  {item.name}
                 </SegmentGroupItem>
               ))}
             </SegmentGroup>
@@ -690,6 +726,31 @@ export default function HomePage() {
               </MenuContent>
             </Menu>
           </div>
+
+          <div>
+            <ButtonGroup>
+              <Button>Button</Button>
+              <Menu>
+                <MenuTrigger asChild>
+                  <Button variant="outlined">
+                    <DotsThree />
+                  </Button>
+                </MenuTrigger>
+                <MenuContent>
+                  <MenuItem value="profile">
+                    <User /> Profile
+                  </MenuItem>
+                  <MenuItem value="settings">
+                    <Gear /> Settings
+                  </MenuItem>
+                  <MenuSeparator />
+                  <MenuItem value="logout">
+                    <SignOut /> Logout
+                  </MenuItem>
+                </MenuContent>
+              </Menu>
+            </ButtonGroup>
+          </div>
         </div>
 
         <div>
@@ -714,10 +775,32 @@ export default function HomePage() {
           </ChipGroup>
         </div>
         <div>
-           <div className="grid gap-5">
-           <Alert title="Alert" description="This is an alert message." />
-           <Alert icon={<Warning />} variant='destructive' title="Heads up!" description="This is an alert message." />
-           </div>
+          <div className="grid gap-5">
+            <Alert title="Alert" description="This is an alert message." />
+            <Alert
+              icon={<Warning />}
+              variant="destructive"
+              title="Heads up!"
+              description="This is an alert message."
+            />
+          </div>
+        </div>
+
+        <div>
+          <Collapsible>
+            <CollapsibleTrigger asChild>
+              <Button>Toggle</Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
+              </Text>
+            </CollapsibleContent>
+          </Collapsible>
         </div>
       </div>
     </main>

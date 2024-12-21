@@ -26,7 +26,7 @@ const dialogVariants = tv({
     ],
     content: [
       "bg-background shadow-md p-4 lg:p-5 rounded-lg w-full",
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6 ",
+      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-90 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6 ",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:slide-out-to-bottom-1",
     ],
     title: "font-semibold text-lg text-foreground",
