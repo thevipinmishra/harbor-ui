@@ -9,9 +9,8 @@ import { ErrorText } from "./ErrorText";
 import { HelperText } from "./HelperText";
 import { FieldProps } from "@/types";
 
-
 interface TextfieldProps extends InputProps, FieldProps {
-  label?: string;
+  label?: React.ReactNode;
 }
 
 const textFieldStyles = tv({
@@ -38,8 +37,14 @@ const Textfield = (props: TextfieldProps) => {
       readOnly={readOnly}
       className={textFieldStyles()}
     >
-      {label ? <Label>{label}</Label> : null}
-      <Input  className={cn(className)} {...rest} />
+      {label ? (
+        typeof label === "string" ? (
+          <Label>{label}</Label>
+        ) : (
+          label
+        )
+      ) : null}
+      <Input className={cn(className)} {...rest} />
       {helperText ? <HelperText>{helperText}</HelperText> : null}
       {invalid && errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
     </Field.Root>

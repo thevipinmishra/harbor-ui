@@ -34,7 +34,7 @@ const pinInputVariants = tv({
 const PinInput = (props: PinInputProps) => {
   const {
     className,
-    placeholder = "#",
+    placeholder,
     children,
     invalid,
     readOnly,

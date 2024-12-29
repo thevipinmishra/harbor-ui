@@ -1,5 +1,6 @@
-import * as React from "react";
+
 import { HTMLArkProps, ark } from "@ark-ui/react";
+import {VariantProps} from 'tailwind-variants'
 import { tv } from "@/lib/tv.config";
 
 const textVariants = tv({
@@ -35,12 +36,15 @@ const textVariants = tv({
   },
 });
 
-const Text = (props: HTMLArkProps<"p">) => {
-  const { className, ...rest } = props;
+const Text = (props: HTMLArkProps<"p"> & VariantProps<typeof textVariants>) => {
+  const { className,weight, size, muted, ...rest } = props;
   return (
     <ark.p
       className={textVariants({
         className,
+        weight,
+        size,
+        muted,
       })}
       {...rest}
     />

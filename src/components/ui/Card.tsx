@@ -3,9 +3,9 @@ import { ark, HTMLArkProps } from "@ark-ui/react";
 
 const cardVariants = tv({
   slots: {
-    card: ["bg-card text-card-foreground rounded-md border border-border"],
+    card: ["bg-card text-card-foreground rounded-md border border-border shadow-sm"],
     cardSection: [""],
-    cardBody: [""],
+    cardBody: ["p-5"],
   },
 });
 

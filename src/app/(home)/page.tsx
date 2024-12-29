@@ -28,6 +28,7 @@ import {
   Cherries,
   Avocado,
   Orange,
+  Info,
 } from "@phosphor-icons/react";
 import {
   RadioGroup,
@@ -231,6 +232,7 @@ export default function HomePage() {
             <Textfield
               size="sm"
               label="Last name"
+              placeholder="Enter your last name"
               helperText="Should be 16 digits max."
             />
 
@@ -242,7 +244,19 @@ export default function HomePage() {
 
             <Textfield
               size="lg"
-              label="Last name"
+              label={
+                <div className="flex gap-2">
+                  <Label>Label with tooltip</Label>
+                  <Tooltip openDelay={100} closeDelay={100}>
+                    <TooltipTrigger className="text-muted-foreground hover:text-foreground transition-colors">
+                      <Info />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Something important about the input.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              }
               helperText="Should be 16 digits max."
             />
 
@@ -490,7 +504,9 @@ export default function HomePage() {
           <div className="grid gap-5 justify-start">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant='outlined' className="self-center">Hover me</Button>
+                <Button variant="outlined" className="self-center">
+                  Hover me
+                </Button>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Tooltip content</p>
@@ -503,7 +519,9 @@ export default function HomePage() {
               }}
             >
               <TooltipTrigger asChild>
-                <Button variant='outlined' className="self-center">Top tooltip</Button>
+                <Button variant="outlined" className="self-center">
+                  Top tooltip
+                </Button>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Tooltip content</p>
