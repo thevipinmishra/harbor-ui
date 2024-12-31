@@ -29,6 +29,8 @@ import {
   Avocado,
   Orange,
   Info,
+  CaretLeft,
+  CaretRight,
 } from "@phosphor-icons/react";
 import {
   RadioGroup,
@@ -121,6 +123,18 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/Collapsible";
+import { ScrollArea } from "@/components/ui/ScrollArea";
+import {
+  Carousel,
+  CarouselControl,
+  CarouselIndicator,
+  CarouselIndicatorGroup,
+  CarouselItem,
+  CarouselItemGroup,
+  CarouselNextTrigger,
+  CarouselPrevTrigger,
+} from "@/components/ui/Carousel";
+import { TagsInput, TagsInputControl, TagsInputLabel } from "@/components/ui/TagsInput";
 
 export default function HomePage() {
   const collection = createListCollection({
@@ -156,6 +170,11 @@ export default function HomePage() {
       { label: "Svelte", value: "svelte", disabled: true },
     ],
   });
+
+  const images = Array.from(
+    { length: 5 },
+    (_, i) => `https://picsum.photos/seed/${i + 1}/500/300`
+  );
 
   return (
     <main className="py-10">
@@ -819,6 +838,81 @@ export default function HomePage() {
               </Text>
             </CollapsibleContent>
           </Collapsible>
+        </div>
+
+        <div>
+          <ScrollArea className="h-44 bg-secondary p-2 rounded-lg">
+            <div className="space-y-3 text-sm">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
+              </p>
+            </div>
+          </ScrollArea>
+        </div>
+
+        <div>
+          <Carousel padding="10px" spacing="4px" loop>
+            <CarouselItemGroup>
+              {images.map((image, index) => (
+                <CarouselItem key={index} index={index}>
+                  <img src={image} alt={`Slide ${index}`} />
+                </CarouselItem>
+              ))}
+            </CarouselItemGroup>
+            <CarouselIndicatorGroup className="mt-3 flex justify-center gap-2 transition-colors">
+              {images.map((_, index) => (
+                <CarouselIndicator
+                  className="size-2 rounded-full data-[current]:bg-primary bg-border"
+                  key={index}
+                  index={index}
+                />
+              ))}
+            </CarouselIndicatorGroup>
+            <CarouselControl className="mt-3 flex justify-center gap-4">
+              <CarouselPrevTrigger asChild>
+                <Button size="icon" variant="outlined">
+                  <CaretLeft />
+                </Button>
+              </CarouselPrevTrigger>
+              <CarouselNextTrigger asChild>
+                <Button size="icon" variant="outlined">
+                  <CaretRight />
+                </Button>
+              </CarouselNextTrigger>
+            </CarouselControl>
+          </Carousel>
+        </div>
+
+        <div>
+          <TagsInput>
+            <TagsInputLabel>Tags</TagsInputLabel>
+            <TagsInputControl inputPlaceholder="Add a tag..." />
+          </TagsInput>
         </div>
       </div>
     </main>

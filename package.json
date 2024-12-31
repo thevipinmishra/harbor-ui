@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^4.6.0",
+    "@base-ui-components/react": "1.0.0-alpha.4",
     "@mantine/form": "^7.15.2",
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/colors": "^3.0.0",
