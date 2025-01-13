@@ -4,7 +4,7 @@ import { HTMLArkProps, ark } from "@ark-ui/react";
 
 
 export const badgeBaseVariant = tv({
-    base: [ "inline-flex justify-center uppercase select-none text-ellipsis leading-tight text-xs font-medium rounded-full items-center whitespace-nowrap line-clamp-1 min-w-0",]
+    base: [ "inline-flex leading-[1.1] justify-center uppercase select-none text-ellipsis text-xs font-medium rounded-full items-center whitespace-nowrap line-clamp-1 min-w-0",]
 })
 
 
