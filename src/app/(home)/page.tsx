@@ -270,7 +270,7 @@ export default function HomePage() {
                 <HoverCardTrigger asChild>
                     <Button>Hover me</Button>
                 </HoverCardTrigger>
-                <HoverCardContent>
+                <HoverCardContent className="max-w-sm">
                     <div>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
