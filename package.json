@@ -10,9 +10,9 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "@ark-ui/react": "^4.8.0",
+    "@ark-ui/react": "^4.8.1",
     "@base-ui-components/react": "1.0.0-alpha.4",
-    "@mantine/form": "^7.15.3",
+    "@mantine/form": "^7.16.0",
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/colors": "^3.0.0",
     "clsx": "^2.1.1",
@@ -26,10 +26,10 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/node": "^22.10.6",
-    "@types/react": "^19.0.6",
+    "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.0",
+    "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.7.3",
