@@ -1,6 +1,7 @@
 "use client";
 
 import { tv } from "@/lib/tv.config";
+import * as React from "react";
 import {
   TagsInput as Primitive,
   TagsInputClearTriggerProps,
@@ -21,24 +22,37 @@ interface TagsInputControlProps extends PrimitiveControlProps {
     inputPlaceholder?: string;
 }
 
-const TagsInput = (props: TagsInputRootProps) => {
+const TagsInput = React.forwardRef<
+  React.ElementRef<typeof Primitive.Root>,
+  TagsInputRootProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <Primitive.Root
+      ref={ref}
       className={tagsInputVariants().root({
         className,
       })}
       {...rest}
     />
   );
-};
+});
 
-const TagsInputControl = (props: TagsInputControlProps) => {
-    const { className, inputPlaceholder, ...rest } = props;
+TagsInput.displayName = 'TagsInput';
+
+const TagsInputControl = React.forwardRef<
+  React.ElementRef<typeof Primitive.Control>,
+  TagsInputControlProps
+>((props, ref) => {
+  const { className, inputPlaceholder, ...rest } = props;
   return (
-    <Primitive.Control  className={tagsInputVariants().control({
+    <Primitive.Control
+      ref={ref}
+      className={tagsInputVariants().control({
         className,
-      })} {...rest}>
+      })}
+      {...rest}
+    >
       <Primitive.Context>
         {(tagsInput) => (
           <>
@@ -59,7 +73,9 @@ const TagsInputControl = (props: TagsInputControlProps) => {
       <Primitive.Input placeholder={inputPlaceholder} className={tagsInputVariants().input()} />
     </Primitive.Control>
   );
-};
+});
+
+TagsInputControl.displayName = 'TagsInputControl';
 
 const TagsInputLabel = (props: TagsInputLabelProps) => {
   return <Primitive.Label {...props} />;

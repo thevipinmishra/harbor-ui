@@ -9,6 +9,7 @@ import {
 } from "@ark-ui/react/pagination";
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";
 import { buttonVariants } from "./Button";
+import React from "react";
 
 const paginationVariants = tv({
   slots: {
@@ -23,14 +24,19 @@ const paginationVariants = tv({
   },
 });
 
-const Pagination = (props: PaginationRootProps) => {
+const Pagination = React.forwardRef<
+  React.ElementRef<typeof PaginationPrimitive.Root>,
+  PaginationRootProps
+>((props, ref) => {
   return (
     <PaginationPrimitive.Root
+      ref={ref}
       className={paginationVariants().root()}
       {...props}
     />
   );
-};
+});
+Pagination.displayName = "Pagination";
 
 const PaginationPrevTrigger = (props: PaginationPrevTriggerProps) => {
   return (
@@ -66,29 +72,36 @@ const PaginationNextTrigger = (props: PaginationNextTriggerProps) => {
   );
 };
 
-const PaginationControls = () => {
+const PaginationControls = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
   return (
     <PaginationPrimitive.Context>
-      {(pagination) =>
-        pagination.pages.map((page, index) =>
-          page.type === "page" ? (
-            <PaginationPrimitive.Item
-              className={paginationVariants().item()}
-              key={index}
-              {...page}
-            >
-              {page.value}
-            </PaginationPrimitive.Item>
-          ) : (
-            <PaginationPrimitive.Ellipsis key={index} index={index}>
-              <DotsThree />
-            </PaginationPrimitive.Ellipsis>
-          )
-        )
-      }
+      {(pagination) => (
+        <div ref={ref} {...props}>
+          {pagination.pages.map((page, index) =>
+            page.type === "page" ? (
+              <PaginationPrimitive.Item
+                className={paginationVariants().item()}
+                key={index}
+                {...page}
+              >
+                {page.value}
+              </PaginationPrimitive.Item>
+            ) : (
+              <PaginationPrimitive.Ellipsis 
+                key={index} 
+                index={index}
+                aria-label="More pages"
+              >
+                <DotsThree />
+              </PaginationPrimitive.Ellipsis>
+            )
+          )}
+        </div>
+      )}
     </PaginationPrimitive.Context>
   );
-};
+});
+PaginationControls.displayName = "PaginationControls";
 
 export {
   Pagination,

@@ -6,6 +6,7 @@ import {
   ProgressTrackProps,
   ProgressValueTextProps,
 } from "@ark-ui/react/progress";
+import * as React from "react";
 import { labelVariants } from "./Label";
 
 const linearProgressVariants = tv({
@@ -17,10 +18,20 @@ const linearProgressVariants = tv({
     }
 })
 
-const LinearProgress = (props: ProgressRootProps) => {
-    const { className, ...rest } = props;
-  return <Progress.Root className={linearProgressVariants().root()}  {...rest} />;
-};
+const LinearProgress = React.forwardRef<
+  React.ElementRef<typeof Progress.Root>,
+  ProgressRootProps
+>((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <Progress.Root 
+      ref={ref}
+      className={linearProgressVariants().root()} 
+      {...rest} 
+    />
+  );
+});
+LinearProgress.displayName = "LinearProgress";
 
 const LinearProgressLabel = (props: ProgressLabelProps) => {
     const { className, ...rest } = props;
@@ -36,16 +47,22 @@ const LinearProgressValue = (props: ProgressValueTextProps) => {
   })} {...rest} />;
 };
 
-const LinearProgressTrack = (props: ProgressTrackProps) => {
+const LinearProgressTrack = React.forwardRef<
+  React.ElementRef<typeof Progress.Track>,
+  ProgressTrackProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
-    <Progress.Track className={linearProgressVariants().track({
-        className
-    })} {...rest}>
+    <Progress.Track 
+      ref={ref}
+      className={linearProgressVariants().track({ className })} 
+      {...rest}
+    >
       <Progress.Range className={linearProgressVariants().range()} />
     </Progress.Track>
   );
-};
+});
+LinearProgressTrack.displayName = "LinearProgressTrack";
 
 export {
   LinearProgress,

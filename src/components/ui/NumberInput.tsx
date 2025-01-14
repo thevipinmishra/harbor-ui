@@ -8,6 +8,7 @@ import {
 import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { labelVariants } from "./Label";
 import { fieldHeight } from "@/utils/styles";
+import React from "react";
 
 const numberInputVariants = tv({
   slots: {
@@ -40,17 +41,22 @@ const numberInputVariants = tv({
   }
 });
 
-const NumberInput = (props: NumberInputRootProps) => {
+const NumberInput = React.forwardRef<
+  React.ElementRef<typeof NumberInputPrimitive.Root>,
+  NumberInputRootProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <NumberInputPrimitive.Root
+      ref={ref}
       className={numberInputVariants().root({
         className,
       })}
       {...rest}
     />
   );
-};
+});
+NumberInput.displayName = "NumberInput";
 
 const NumberInputLabel = (props: NumberInputLabelProps) => {
   const { className, ...rest } = props;
@@ -64,14 +70,18 @@ const NumberInputLabel = (props: NumberInputLabelProps) => {
   );
 };
 
-const NumberInputField = (props: NumberInputInputProps) => {
-  const { className, ...rest } = props;
+const NumberInputField = React.forwardRef<
+  React.ElementRef<typeof NumberInputPrimitive.Input>,
+  NumberInputInputProps & { size?: 'sm' | 'md' | 'lg' }
+>((props, ref) => {
+  const { className, size = 'md', ...rest } = props;
   return (
     <NumberInputPrimitive.Control className={numberInputVariants().control()}>
       <NumberInputPrimitive.Input
+        ref={ref}
         className={numberInputVariants().input({
           className,
-          size: 'md'
+          size
         })}
         {...rest}
       />
@@ -87,6 +97,7 @@ const NumberInputField = (props: NumberInputInputProps) => {
       </NumberInputPrimitive.DecrementTrigger>
     </NumberInputPrimitive.Control>
   );
-};
+});
+NumberInputField.displayName = "NumberInputField";
 
 export { NumberInput, NumberInputLabel, NumberInputField };

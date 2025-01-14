@@ -27,7 +27,10 @@ const pinInputVariants = tv({
   },
 });
 
-const PinInput = (props: PinInputProps) => {
+const PinInput = React.forwardRef<
+  React.ElementRef<typeof PinInputPrimitive.Root>,
+  PinInputProps
+>((props, ref) => {
   const {
     className,
     placeholder,
@@ -35,15 +38,16 @@ const PinInput = (props: PinInputProps) => {
   } = props;
   return (
     <PinInputPrimitive.Root
+      ref={ref}
       className={pinInputVariants().root({
         className
       })}
       placeholder={placeholder}
       {...rest}
-   / >
-      
+    />
   );
-};
+});
+PinInput.displayName = "PinInput";
 
 const PinInputLabel = (props: PinInputLabelProps) => {
   const { className, ...rest } = props;
@@ -60,12 +64,20 @@ const PinInputControl = (props: PinInputControlProps) => {
   );
 };
 
-const PinInputField = (props: PinInputInputProps) => {
+const PinInputField = React.forwardRef<
+  React.ElementRef<typeof PinInputPrimitive.Input>,
+  PinInputInputProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
-    <PinInputPrimitive.Input className={pinInputVariants().input()} {...rest} />
+    <PinInputPrimitive.Input 
+      ref={ref}
+      className={pinInputVariants().input()} 
+      {...rest} 
+    />
   );
-};
+});
+PinInputField.displayName = "PinInputField";
 
 const PinInputContext = PinInputPrimitive.Context;
 

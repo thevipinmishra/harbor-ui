@@ -68,6 +68,8 @@ const DialogContent = React.forwardRef<
   );
 });
 
+DialogContent.displayName = "DialogContent";
+
 const DialogTitle = (props: DialogTitleProps) => {
   const { className, ...rest } = props;
   return (
@@ -79,6 +81,8 @@ const DialogTitle = (props: DialogTitleProps) => {
     />
   );
 };
+
+DialogTitle.displayName = "DialogTitle";
 
 const DialogCloseTrigger = DialogPrimitive.CloseTrigger;
 const DialogContext = DialogPrimitive.Context;

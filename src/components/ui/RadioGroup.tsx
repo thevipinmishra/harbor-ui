@@ -31,28 +31,31 @@ interface RadioGroupItemProps
   children: RadioGroupItemTextProps["children"];
 }
 
-const RadioGroup = (props: RadioGroupProps) => {
-  const {
-    className,
-   
-    readOnly,
-    disabled,
-    ...rest
-  } = props;
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  RadioGroupProps
+>((props, ref) => {
+  const { className, readOnly, disabled, ...rest } = props;
   return (
-      <RadioGroupPrimitive.Root
-        disabled={disabled}
-        readOnly={readOnly}
-        className={radioGroupVariants().root()}
-        {...rest}
-      />
+    <RadioGroupPrimitive.Root
+      ref={ref}
+      disabled={disabled}
+      readOnly={readOnly}
+      className={radioGroupVariants().root()}
+      {...rest}
+    />
   );
-};
+});
+RadioGroup.displayName = "RadioGroup";
 
-const RadioGroupLabel = (props: RadioGroupLabelProps) => {
+const RadioGroupLabel = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Label>,
+  RadioGroupLabelProps
+>((props, ref) => {
   const { className, ...rest } = props;
-  return <RadioGroupPrimitive.Label className={labelVariants()} {...rest} />;
-};
+  return <RadioGroupPrimitive.Label ref={ref} className={labelVariants()} {...rest} />;
+});
+RadioGroupLabel.displayName = "RadioGroupLabel";
 
 const RadioGroupItem = (props: RadioGroupItemProps) => {
   const { className, children, ...rest } = props;

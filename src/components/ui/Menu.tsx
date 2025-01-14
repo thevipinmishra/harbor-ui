@@ -7,6 +7,7 @@ import {
   Menu as MenuPrimitive,
 } from "@ark-ui/react/menu";
 import { popoverVariants } from "./Popover";
+import React from "react";
 
 const Menu = MenuPrimitive.Root;
 const MenuTrigger = MenuPrimitive.Trigger;
@@ -27,19 +28,37 @@ const menuVariants = tv({
   },
 });
 
-const MenuContent = (props: MenuContentProps) => {
+const MenuContent = React.forwardRef<
+  React.ElementRef<typeof MenuPrimitive.Content>,
+  MenuContentProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <MenuPrimitive.Positioner className={menuVariants().positioner()}>
-      <MenuPrimitive.Content className={menuVariants().content()} {...rest} />
+      <MenuPrimitive.Content
+        ref={ref}
+        className={menuVariants().content()}
+        {...rest}
+      />
     </MenuPrimitive.Positioner>
   );
-};
+});
+MenuContent.displayName = "MenuContent";
 
-const MenuItem = (props: MenuItemProps) => {
+const MenuItem = React.forwardRef<
+  React.ElementRef<typeof MenuPrimitive.Item>,
+  MenuItemProps
+>((props, ref) => {
   const { className, ...rest } = props;
-  return <MenuPrimitive.Item className={menuVariants().item()} {...rest} />;
-};
+  return (
+    <MenuPrimitive.Item
+      ref={ref}
+      className={menuVariants().item()}
+      {...rest}
+    />
+  );
+});
+MenuItem.displayName = "MenuItem";
 
 const MenuItemGroup = (props: MenuItemGroupProps) => {
   return <MenuPrimitive.ItemGroup {...props} />;

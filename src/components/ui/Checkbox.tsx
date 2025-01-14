@@ -27,6 +27,7 @@ const checkboxVariants = tv({
 });
 
 interface CheckboxProps extends CheckboxRootProps {
+  /** Text label to display next to the checkbox */
   label: string;
 }
 
@@ -68,11 +69,18 @@ const Checkbox = React.forwardRef<
   );
 });
 
-const CheckboxGroup = (props: CheckboxGroupProps) => {
+Checkbox.displayName = 'Checkbox';
+
+const CheckboxGroup = React.forwardRef<
+  HTMLDivElement, 
+  CheckboxGroupProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <CheckboxPrimitive.Group className={checkboxVariants().group()} {...rest} />
   );
-};
+});
+
+CheckboxGroup.displayName = 'CheckboxGroup';
 
 export { Checkbox, CheckboxGroup };

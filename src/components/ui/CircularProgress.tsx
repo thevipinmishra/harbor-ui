@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 
 import { tv } from "@/lib/tv.config";
 import {
@@ -27,6 +27,8 @@ const CircularProgress = (props: ProgressRootProps) => {
   );
 };
 
+CircularProgress.displayName = "CircularProgress";
+
 const CircularProgressLabel = (props: ProgressLabelProps) => {
   const { className, ...rest } = props;
   return (
@@ -39,6 +41,8 @@ const CircularProgressLabel = (props: ProgressLabelProps) => {
   );
 };
 
+CircularProgressLabel.displayName = "CircularProgressLabel";
+
 const CircularProgressValue = (props: ProgressValueTextProps) => {
   const { className, ...rest } = props;
   return (
@@ -50,6 +54,8 @@ const CircularProgressValue = (props: ProgressValueTextProps) => {
     />
   );
 };
+
+CircularProgressValue.displayName = "CircularProgressValue";
 
 const CircularProgressCircle = (props: ProgressCircleProps) => {
   const { className, ...rest } = props;
@@ -66,6 +72,8 @@ const CircularProgressCircle = (props: ProgressCircleProps) => {
     </Progress.Circle>
   );
 };
+
+CircularProgressCircle.displayName = "CircularProgressCircle";
 
 const CircularProgressContext = Progress.Context;
 

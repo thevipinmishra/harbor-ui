@@ -10,11 +10,15 @@ import { popoverVariants } from "./Popover";
 const HoverCard = HoverCardPrimitive.Root;
 const HoverCardTrigger = HoverCardPrimitive.Trigger;
 
-const HoverCardContent = (props: HoverCardContentProps) => {
+const HoverCardContent = React.forwardRef<
+  React.ElementRef<typeof HoverCardPrimitive.Content>,
+  HoverCardContentProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <HoverCardPrimitive.Positioner>
       <HoverCardPrimitive.Content
+        ref={ref}
         className={popoverVariants().content({
           className,
         })}
@@ -22,6 +26,7 @@ const HoverCardContent = (props: HoverCardContentProps) => {
       />
     </HoverCardPrimitive.Positioner>
   );
-};
+});
+HoverCardContent.displayName = "HoverCardContent";
 
 export { HoverCard, HoverCardTrigger, HoverCardContent };

@@ -22,11 +22,15 @@ export const popoverVariants = tv({
 const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const PopoverContent = (props: PopoverContentProps) => {
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  PopoverContentProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <PopoverPrimitive.Positioner>
       <PopoverPrimitive.Content
+        ref={ref}
         className={popoverVariants().content({
           className,
         })}
@@ -34,6 +38,7 @@ const PopoverContent = (props: PopoverContentProps) => {
       />
     </PopoverPrimitive.Positioner>
   );
-};
+});
+PopoverContent.displayName = "PopoverContent";
 
 export { Popover, PopoverTrigger, PopoverContent };

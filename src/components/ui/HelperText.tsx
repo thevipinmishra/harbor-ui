@@ -18,4 +18,6 @@ const HelperText = React.forwardRef<
   })} {...rest} />;
 });
 
+HelperText.displayName = "HelperText";
+
 export { HelperText };

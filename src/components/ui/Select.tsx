@@ -72,7 +72,10 @@ interface SelectPrimitiveProps extends Omit<SelectItemProps, "children"> {
 
 interface SelectContentProps extends SelectPrimitiveContentProps {}
 
-const Select = (props: SelectProps) => {
+const Select = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Root>,
+  SelectProps
+>((props, ref) => {
   const {
     className,
     children,
@@ -81,6 +84,7 @@ const Select = (props: SelectProps) => {
   } = props;
   return (
     <SelectPrimitive.Root
+      ref={ref}
       className={selectVariants().root({
         className,
       })}
@@ -90,20 +94,26 @@ const Select = (props: SelectProps) => {
       <SelectPrimitive.HiddenSelect />
     </SelectPrimitive.Root>
   );
-};
+});
+
+Select.displayName = 'Select';
 
 const SelectLabel = (props: SelectLabelProps) => {
   const { className, ...rest } = props;
   return <SelectPrimitive.Label className={labelVariants()} {...rest} />;
 };
 
-const SelectTrigger = (props: SelectTriggerProps) => {
+const SelectTrigger = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  SelectTriggerProps
+>((props, ref) => {
   const { className, placeholder = "Select", ...rest } = props;
   return (
     <SelectPrimitive.Control className={selectVariants().control()}>
       <SelectPrimitive.Context>
         {(context) => (
           <SelectPrimitive.Trigger
+            ref={ref}
             className={selectVariants().trigger()}
             {...rest}
           >
@@ -120,26 +130,38 @@ const SelectTrigger = (props: SelectTriggerProps) => {
       </SelectPrimitive.Context>
     </SelectPrimitive.Control>
   );
-};
+});
 
-const SelectContent = (props: SelectContentProps) => {
+SelectTrigger.displayName = 'SelectTrigger';
+
+const SelectContent = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Content>,
+  SelectContentProps
+>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <Portal>
       <SelectPrimitive.Positioner className={selectVariants().positioner()}>
         <SelectPrimitive.Content
+          ref={ref}
           className={selectVariants().content()}
           {...rest}
         />
       </SelectPrimitive.Positioner>
     </Portal>
   );
-};
+});
 
-const SelectItem = (props: SelectPrimitiveProps) => {
+SelectContent.displayName = 'SelectContent';
+
+const SelectItem = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Item>,
+  SelectPrimitiveProps
+>((props, ref) => {
   const { className, children, item, ...rest } = props;
   return (
     <SelectPrimitive.Item
+      ref={ref}
       item={item}
       className={selectVariants().item({
         className,
@@ -154,6 +176,8 @@ const SelectItem = (props: SelectPrimitiveProps) => {
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );
-};
+});
+
+SelectItem.displayName = 'SelectItem';
 
 export { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel };

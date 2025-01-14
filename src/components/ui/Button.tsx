@@ -62,6 +62,7 @@ export const buttonVariants = tv({
 interface ButtonProps
   extends HTMLArkProps<"button">,
     VariantProps<typeof buttonVariants> {
+  /** Shows a loading spinner and disables the button */
   loading?: boolean;
 }
 
@@ -101,16 +102,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-const ButtonGroup = (props: HTMLArkProps<"div">) => {
+Button.displayName = 'Button';
+
+const ButtonGroup = React.forwardRef<HTMLDivElement, HTMLArkProps<"div">>((props, ref) => {
   const { className, ...rest } = props;
   return (
     <ark.div
+      ref={ref}
       className={buttonGroupVariants({
         className,
       })}
       {...rest}
     />
   );
-};
+});
+
+ButtonGroup.displayName = 'ButtonGroup';
 
 export { Button, ButtonGroup };

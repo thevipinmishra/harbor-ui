@@ -19,4 +19,6 @@ const ErrorText = React.forwardRef<
   })} {...rest} />;
 });
 
+ErrorText.displayName = "ErrorText";
+
 export { ErrorText };
