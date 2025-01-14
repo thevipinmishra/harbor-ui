@@ -4,17 +4,15 @@ import type { ReactNode } from "react";
 import clsx from "clsx";
 
 const fontSans = Inter({
-	display: "swap",
-	variable: "--font-sans",
-	subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+  subsets: ["latin"],
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
-	return (
-		<html lang="en" className={fontSans.variable}>
-			<body className={clsx("min-h-dvh bg-background font-sans")}>
-				{children}
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en" className={fontSans.variable}>
+      <body className={clsx("min-h-dvh bg-background font-sans")}>{children}</body>
+    </html>
+  );
 }
