@@ -17,7 +17,7 @@ const radioGroupVariants = tv({
     item: ["flex items-baseline gap-2", "data-[disabled]:opacity-50"],
     itemText: ["text-sm text-foreground order-last"],
     itemControl: [
-      "size-6 rounded-full bg-background shrink-0 border border-input motion-safe:transition-colors",
+      "size-5 rounded-full bg-background shrink-0 border border-input motion-safe:transition-colors",
       "data-[state=checked]:border-primary data-[state=checked]:border-[6px]",
       "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],

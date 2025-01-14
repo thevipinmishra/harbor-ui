@@ -30,19 +30,43 @@ import {
   CircularProgress,
   CircularProgressCircle,
 } from "@/components/ui/CircularProgress";
-import { LinearProgress, LinearProgressTrack } from "@/components/ui/LinearProgress";
+import {
+  LinearProgress,
+  LinearProgressTrack,
+} from "@/components/ui/LinearProgress";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/HoverCard";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/HoverCard";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/Popover";
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/Menu";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/Select";
+import { createListCollection } from "@ark-ui/react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
 
 export default function HomePage() {
+  const collection = createListCollection({ items: ["React", "Solid", "Vue"] });
   return (
     <main className="py-10">
       <div className="max-w-md mx-auto border border-border rounded-md divide-y divide-border  *:min-h-24 *:p-5">
@@ -130,28 +154,32 @@ export default function HomePage() {
           <ScrollArea className="h-44 bg-secondary p-2 rounded-lg">
             <div className="space-y-3 text-sm">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-                tortor nec odio fermentum ultrices. Donec nec sollicitudin metus. Nullam
-                nec nisi at orci tincidunt fermentum. Nullam nec nisi at orci tincidunt
-                fermentum. Nullam nec nisi at orci tincidunt
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-                tortor nec odio fermentum ultrices. Donec nec sollicitudin metus. Nullam
-                nec nisi at orci tincidunt fermentum. Nullam nec nisi at orci tincidunt
-                fermentum. Nullam nec nisi at orci tincidunt
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-                tortor nec odio fermentum ultrices. Donec nec sollicitudin metus. Nullam
-                nec nisi at orci tincidunt fermentum. Nullam nec nisi at orci tincidunt
-                fermentum. Nullam nec nisi at orci tincidunt
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-                tortor nec odio fermentum ultrices. Donec nec sollicitudin metus. Nullam
-                nec nisi at orci tincidunt fermentum. Nullam nec nisi at orci tincidunt
-                fermentum. Nullam nec nisi at orci tincidunt
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet tortor nec odio fermentum ultrices. Donec nec sollicitudin
+                metus. Nullam nec nisi at orci tincidunt fermentum. Nullam nec
+                nisi at orci tincidunt fermentum. Nullam nec nisi at orci
+                tincidunt
               </p>
             </div>
           </ScrollArea>
@@ -193,7 +221,10 @@ export default function HomePage() {
 
         <div>
           <div className="flex">
-            <Avatar fallback="V" src="https://avatar.iran.liara.run/public/10" />
+            <Avatar
+              fallback="V"
+              src="https://avatar.iran.liara.run/public/10"
+            />
           </div>
         </div>
 
@@ -253,10 +284,10 @@ export default function HomePage() {
               <DialogTitle>Dialog Title</DialogTitle>
               <div>
                 <p className="text-sm text-muted-foreground">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vitae
-                  facere maiores hic unde dolor, sapiente fuga repudiandae ipsam alias
-                  saepe quisquam laborum incidunt nulla voluptates odit. Libero, veniam
-                  reprehenderit!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repellat vitae facere maiores hic unde dolor, sapiente fuga
+                  repudiandae ipsam alias saepe quisquam laborum incidunt nulla
+                  voluptates odit. Libero, veniam reprehenderit!
                 </p>
               </div>
             </DialogContent>
@@ -271,10 +302,10 @@ export default function HomePage() {
             <HoverCardContent className="max-w-sm">
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vitae
-                  facere maiores hic unde dolor, sapiente fuga repudiandae ipsam alias
-                  saepe quisquam laborum incidunt nulla voluptates odit. Libero, veniam
-                  reprehenderit!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repellat vitae facere maiores hic unde dolor, sapiente fuga
+                  repudiandae ipsam alias saepe quisquam laborum incidunt nulla
+                  voluptates odit. Libero, veniam reprehenderit!
                 </p>
               </div>
             </HoverCardContent>
@@ -289,10 +320,10 @@ export default function HomePage() {
             <PopoverContent className="max-w-sm">
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vitae
-                  facere maiores hic unde dolor, sapiente fuga repudiandae ipsam alias
-                  saepe quisquam laborum incidunt nulla voluptates odit. Libero, veniam
-                  reprehenderit!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repellat vitae facere maiores hic unde dolor, sapiente fuga
+                  repudiandae ipsam alias saepe quisquam laborum incidunt nulla
+                  voluptates odit. Libero, veniam reprehenderit!
                 </p>
               </div>
             </PopoverContent>
@@ -321,6 +352,27 @@ export default function HomePage() {
               <p>Tooltip</p>
             </TooltipContent>
           </Tooltip>
+        </div>
+
+        <div>
+          <Select collection={collection}>
+            <SelectTrigger />
+            <SelectContent>
+              {collection.items.map((item) => (
+                <SelectItem key={item} item={item}>
+                  {item}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <RadioGroup>
+            <RadioGroupItem value="react">React</RadioGroupItem>
+            <RadioGroupItem value="solid">Solid</RadioGroupItem>
+            <RadioGroupItem value="vue">Vue</RadioGroupItem>
+          </RadioGroup>
         </div>
       </div>
     </main>

@@ -50,7 +50,7 @@ const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {
       className={accordionVariants().itemTrigger()}
       {...rest}
     >
-      {children}{" "}
+      {children}
       <AccordionPrimitive.ItemIndicator className={accordionVariants().itemIndicator()}>
         <Plus /> &#x200B;
       </AccordionPrimitive.ItemIndicator>
