@@ -2,110 +2,113 @@
 
 import { cn, tv } from "@/lib/tv.config";
 import {
-  PaginationNextTriggerProps,
-  PaginationPrevTriggerProps,
-  Pagination as PaginationPrimitive,
-  PaginationRootProps,
+	type PaginationNextTriggerProps,
+	type PaginationPrevTriggerProps,
+	Pagination as PaginationPrimitive,
+	type PaginationRootProps,
 } from "@ark-ui/react/pagination";
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";
 import { buttonVariants } from "./Button";
 import React from "react";
 
 const paginationVariants = tv({
-  slots: {
-    root: "flex gap-1 items-end",
-    item: [
-      buttonVariants({
-        variant: "outlined",
-        size: "sm",
-      }),
-      "tabular-nums px-2.5 font-medium",
-    ],
-  },
+	slots: {
+		root: "flex gap-1 items-end",
+		item: [
+			buttonVariants({
+				variant: "outlined",
+				size: "sm",
+			}),
+			"tabular-nums px-2.5 font-medium",
+		],
+	},
 });
 
 const Pagination = React.forwardRef<
-  React.ElementRef<typeof PaginationPrimitive.Root>,
-  PaginationRootProps
+	React.ElementRef<typeof PaginationPrimitive.Root>,
+	PaginationRootProps
 >((props, ref) => {
-  return (
-    <PaginationPrimitive.Root
-      ref={ref}
-      className={paginationVariants().root()}
-      {...props}
-    />
-  );
+	return (
+		<PaginationPrimitive.Root
+			ref={ref}
+			className={paginationVariants().root()}
+			{...props}
+		/>
+	);
 });
 Pagination.displayName = "Pagination";
 
 const PaginationPrevTrigger = (props: PaginationPrevTriggerProps) => {
-  return (
-    <PaginationPrimitive.PrevTrigger
-      className={cn(
-        buttonVariants({
-          variant: "plain",
-          size: "sm",
-        }),
-        "px-2.5"
-      )}
-      {...props}
-    >
-      <CaretLeft />
-    </PaginationPrimitive.PrevTrigger>
-  );
+	return (
+		<PaginationPrimitive.PrevTrigger
+			className={cn(
+				buttonVariants({
+					variant: "plain",
+					size: "sm",
+				}),
+				"px-2.5",
+			)}
+			{...props}
+		>
+			<CaretLeft />
+		</PaginationPrimitive.PrevTrigger>
+	);
 };
 
 const PaginationNextTrigger = (props: PaginationNextTriggerProps) => {
-  return (
-    <PaginationPrimitive.NextTrigger
-      className={cn(
-        buttonVariants({
-          variant: "plain",
-          size: "sm",
-        }),
-        "px-2.5"
-      )}
-      {...props}
-    >
-      <CaretRight />
-    </PaginationPrimitive.NextTrigger>
-  );
+	return (
+		<PaginationPrimitive.NextTrigger
+			className={cn(
+				buttonVariants({
+					variant: "plain",
+					size: "sm",
+				}),
+				"px-2.5",
+			)}
+			{...props}
+		>
+			<CaretRight />
+		</PaginationPrimitive.NextTrigger>
+	);
 };
 
-const PaginationControls = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
-  return (
-    <PaginationPrimitive.Context>
-      {(pagination) => (
-        <div ref={ref} {...props}>
-          {pagination.pages.map((page, index) =>
-            page.type === "page" ? (
-              <PaginationPrimitive.Item
-                className={paginationVariants().item()}
-                key={index}
-                {...page}
-              >
-                {page.value}
-              </PaginationPrimitive.Item>
-            ) : (
-              <PaginationPrimitive.Ellipsis 
-                key={index} 
-                index={index}
-                aria-label="More pages"
-              >
-                <DotsThree />
-              </PaginationPrimitive.Ellipsis>
-            )
-          )}
-        </div>
-      )}
-    </PaginationPrimitive.Context>
-  );
+const PaginationControls = React.forwardRef<
+	HTMLDivElement,
+	React.HTMLAttributes<HTMLDivElement>
+>((props, ref) => {
+	return (
+		<PaginationPrimitive.Context>
+			{(pagination) => (
+				<div ref={ref} {...props}>
+					{pagination.pages.map((page, index) =>
+						page.type === "page" ? (
+							<PaginationPrimitive.Item
+								className={paginationVariants().item()}
+								key={index}
+								{...page}
+							>
+								{page.value}
+							</PaginationPrimitive.Item>
+						) : (
+							<PaginationPrimitive.Ellipsis
+								key={index}
+								index={index}
+								aria-label="More pages"
+							>
+								<DotsThree />
+							</PaginationPrimitive.Ellipsis>
+						),
+					)}
+				</div>
+			)}
+		</PaginationPrimitive.Context>
+	);
 });
 PaginationControls.displayName = "PaginationControls";
 
 export {
-  Pagination,
-  PaginationPrevTrigger,
-  PaginationNextTrigger,
-  PaginationControls,
+	Pagination,
+	PaginationPrevTrigger,
+	PaginationNextTrigger,
+	PaginationControls,
 };

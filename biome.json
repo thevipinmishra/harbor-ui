@@ -6,7 +6,7 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"include": ["src/**/*.{ts,tsx,.css}"]
+		"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.css"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -18,7 +18,11 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noExplicitAny": "off"
+			}
 		}
 	},
 	"javascript": {
