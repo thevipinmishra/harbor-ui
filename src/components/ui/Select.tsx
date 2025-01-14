@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Portal } from "@ark-ui/react/portal";
-import { Field } from "@ark-ui/react/field";
 import {
   SelectLabelProps,
   Select as SelectPrimitive,
@@ -15,7 +14,6 @@ import {
 } from "@ark-ui/react/select";
 import { labelVariants } from "./Label";
 import { CaretUpDown, Check } from "@phosphor-icons/react";
-import { FieldProps } from "@/types";
 import { tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
 import { ErrorText } from "./ErrorText";
@@ -42,7 +40,7 @@ const selectVariants = tv({
     positioner: [""],
     control: ["w-full"],
     itemText: ["truncate"],
-    valueText: ["truncate", 'data-[placeholder=true]:text-muted-foreground'],
+    valueText: ["truncate", "data-[placeholder=true]:text-muted-foreground"],
     indicator: ["text-muted-foreground data-[invalid]:text-destructive"],
     itemIndicator: [""],
     item: [
@@ -63,7 +61,7 @@ const selectVariants = tv({
   },
 });
 
-interface SelectProps extends Omit<SelectRootProps<any>, "ids">, FieldProps {}
+interface SelectProps extends SelectRootProps<any> {}
 interface SelectTriggerProps extends SelectPrimitiveTriggerProps {
   placeholder?: SelectValueTextProps["placeholder"];
 }
@@ -78,28 +76,19 @@ const Select = (props: SelectProps) => {
   const {
     className,
     children,
-    readOnly,
-    required,
-    disabled,
-    invalid,
-    helperText,
-    errorMessage,
+
     ...rest
   } = props;
   return (
-    <Field.Root
-      readOnly={readOnly}
-      invalid={invalid}
-      required={required}
-      disabled={disabled}
+    <SelectPrimitive.Root
+      className={selectVariants().root({
+        className,
+      })}
+      {...rest}
     >
-      <SelectPrimitive.Root className={selectVariants().root()} {...rest}>
-        {children}
-        <SelectPrimitive.HiddenSelect />
-      </SelectPrimitive.Root>
-      {helperText ? <HelperText>{helperText}</HelperText> : null}
-      {invalid && errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
-    </Field.Root>
+      {children}
+      <SelectPrimitive.HiddenSelect />
+    </SelectPrimitive.Root>
   );
 };
 

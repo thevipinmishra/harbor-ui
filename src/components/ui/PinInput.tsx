@@ -11,12 +11,8 @@ import {
 import { tv } from "@/lib/tv.config";
 import { inputVariants } from "./Input";
 import { labelVariants } from "./Label";
-import { FieldProps } from "@/types";
-import { Field } from "@ark-ui/react/field";
-import { ErrorText } from "./ErrorText";
-import { HelperText } from "./HelperText";
 
-interface PinInputProps extends Omit<PinInputRootProps, "ids">, FieldProps {}
+interface PinInputProps extends PinInputRootProps {}
 
 const pinInputVariants = tv({
   slots: {
@@ -35,36 +31,17 @@ const PinInput = (props: PinInputProps) => {
   const {
     className,
     placeholder,
-    children,
-    invalid,
-    readOnly,
-    errorMessage,
-    helperText,
-    ids,
-    disabled,
-    required,
     ...rest
   } = props;
   return (
-    <Field.Root
-      invalid={invalid}
-      ids={ids}
-      disabled={disabled}
-      required={required}
-      readOnly={readOnly}
-      className={pinInputVariants().field()}
-    >
-      <PinInputPrimitive.Root
-        ids={ids}
-        className={pinInputVariants().root()}
-        placeholder={placeholder}
-        {...rest}
-      >
-        {children}
-      </PinInputPrimitive.Root>
-      {helperText ? <HelperText>{helperText}</HelperText> : null}
-      {invalid && errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
-    </Field.Root>
+    <PinInputPrimitive.Root
+      className={pinInputVariants().root({
+        className
+      })}
+      placeholder={placeholder}
+      {...rest}
+   / >
+      
   );
 };
 

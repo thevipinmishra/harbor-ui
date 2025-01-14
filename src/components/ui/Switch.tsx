@@ -1,16 +1,14 @@
-'use client';
+"use client";
 
 import * as React from "react";
 import {
   Switch as SwitchPrimitive,
   SwitchRootProps,
 } from "@ark-ui/react/switch";
-import { Field } from "@ark-ui/react/field";
-import { FieldProps } from "@/types";
 import { tv } from "@/lib/tv.config";
 import { labelVariants } from "./Label";
 
-interface SwitchProps extends Omit<SwitchRootProps, 'ids'>, FieldProps {
+interface SwitchProps extends SwitchRootProps {
   label: string;
 }
 
@@ -36,24 +34,22 @@ const Switch = React.forwardRef<
 >((props, ref) => {
   const { className, label, ...rest } = props;
   return (
-    <Field.Root>
-      <SwitchPrimitive.Root className={switchVariants().root()} {...rest}>
-        <SwitchPrimitive.Control className={switchVariants().control()}>
-          &#x200B;
-          <SwitchPrimitive.Thumb className={switchVariants().thumb()} />
-        </SwitchPrimitive.Control>
-        {label ? (
-          <SwitchPrimitive.Label
-            className={labelVariants({
-              className: "text-base text-foreground",
-            })}
-          >
-            {label}
-          </SwitchPrimitive.Label>
-        ) : null}
-        <SwitchPrimitive.HiddenInput ref={ref} />
-      </SwitchPrimitive.Root>
-    </Field.Root>
+    <SwitchPrimitive.Root className={switchVariants().root()} {...rest}>
+      <SwitchPrimitive.Control className={switchVariants().control()}>
+        &#x200B;
+        <SwitchPrimitive.Thumb className={switchVariants().thumb()} />
+      </SwitchPrimitive.Control>
+      {label ? (
+        <SwitchPrimitive.Label
+          className={labelVariants({
+            className: "text-base text-foreground",
+          })}
+        >
+          {label}
+        </SwitchPrimitive.Label>
+      ) : null}
+      <SwitchPrimitive.HiddenInput ref={ref} />
+    </SwitchPrimitive.Root>
   );
 });
 

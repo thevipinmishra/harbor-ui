@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Field } from "@ark-ui/react/field";
 import {
   RadioGroupItemProps as RadioGroupPrimitiveItemProps,
   RadioGroupLabelProps,
@@ -9,7 +8,6 @@ import {
   RadioGroupRootProps,
   RadioGroupItemTextProps,
 } from "@ark-ui/react/radio-group";
-import { FieldProps } from "@/types";
 import { tv } from "@/lib/tv.config";
 import { labelVariants } from "./Label";
 
@@ -27,8 +25,7 @@ const radioGroupVariants = tv({
 });
 
 interface RadioGroupProps
-  extends Omit<RadioGroupRootProps, "ids">,
-    FieldProps {}
+  extends RadioGroupRootProps {}
 interface RadioGroupItemProps
   extends Omit<RadioGroupPrimitiveItemProps, "children"> {
   children: RadioGroupItemTextProps["children"];
@@ -37,28 +34,18 @@ interface RadioGroupItemProps
 const RadioGroup = (props: RadioGroupProps) => {
   const {
     className,
-    required,
-    invalid,
+   
     readOnly,
     disabled,
-    helperText,
-    errorMessage,
     ...rest
   } = props;
   return (
-    <Field.Root
-      invalid={invalid}
-      disabled={disabled}
-      required={required}
-      readOnly={readOnly}
-    >
       <RadioGroupPrimitive.Root
         disabled={disabled}
         readOnly={readOnly}
         className={radioGroupVariants().root()}
         {...rest}
       />
-    </Field.Root>
   );
 };
 

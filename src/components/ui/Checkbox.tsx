@@ -34,8 +34,7 @@ const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.HiddenInput>,
   CheckboxProps
 >((props, ref) => {
-  const { label, required, invalid, readOnly, checked, disabled, ...rest } =
-    props;
+  const { label, checked, ...rest } = props;
 
   return (
     <CheckboxPrimitive.Root
