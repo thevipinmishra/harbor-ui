@@ -25,7 +25,7 @@ const dialogVariants = tv({
       "fixed inset-0 flex justify-center items-center p-4 lg:p-10 z-50",
     ],
     content: [
-      "bg-background shadow-md p-4 lg:p-5 rounded-lg w-full",
+      "bg-background shadow-md grid gap-2 p-4 lg:p-5 rounded-lg w-full",
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-90 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6 ",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:slide-out-to-bottom-1",
     ],

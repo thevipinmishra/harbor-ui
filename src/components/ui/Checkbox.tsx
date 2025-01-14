@@ -6,12 +6,8 @@ import {
   Checkbox as CheckboxPrimitive,
   CheckboxRootProps,
 } from "@ark-ui/react/checkbox";
-import { Field } from "@ark-ui/react/field";
 import { Check, Minus } from "@phosphor-icons/react";
 import { labelVariants } from "./Label";
-import { FieldProps } from "@/types";
-import { HelperText } from "./HelperText";
-import { ErrorText } from "./ErrorText";
 import { tv } from "@/lib/tv.config";
 
 const checkboxVariants = tv({
@@ -30,7 +26,7 @@ const checkboxVariants = tv({
   },
 });
 
-interface CheckboxProps extends Omit<CheckboxRootProps, "ids">, FieldProps {
+interface CheckboxProps extends CheckboxRootProps {
   label: string;
 }
 
@@ -38,58 +34,38 @@ const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.HiddenInput>,
   CheckboxProps
 >((props, ref) => {
-  const {
-    label,
-    required,
-    invalid,
-    readOnly,
-    checked,
-    disabled,
-    helperText,
-    errorMessage,
-    ...rest
-  } = props;
+  const { label, required, invalid, readOnly, checked, disabled, ...rest } =
+    props;
 
   return (
-    <Field.Root
-      invalid={invalid}
-      disabled={disabled}
-      required={required}
-      readOnly={readOnly}
+    <CheckboxPrimitive.Root
+      className={checkboxVariants().root()}
+      checked={checked}
+      {...rest}
     >
-      <CheckboxPrimitive.Root
-        className={checkboxVariants().root()}
-        checked={checked}
-        {...rest}
-      >
-        {label ? (
-          <CheckboxPrimitive.Label
-            className={labelVariants({
-              className: "order-last leading-relaxed text-foreground",
-            })}
-          >
-            {label}
-          </CheckboxPrimitive.Label>
-        ) : null}
-        <CheckboxPrimitive.Control className={checkboxVariants().control()}>
-          &#x200B;
-          <CheckboxPrimitive.Indicator
-            className={checkboxVariants().indicator()}
-          >
-            <Check weight="bold" />
-          </CheckboxPrimitive.Indicator>
-          <CheckboxPrimitive.Indicator
-            className={checkboxVariants().indicator()}
-            indeterminate
-          >
-            <Minus weight="bold" />
-          </CheckboxPrimitive.Indicator>
-        </CheckboxPrimitive.Control>
-        <CheckboxPrimitive.HiddenInput ref={ref} />
-      </CheckboxPrimitive.Root>
-      {helperText ? <HelperText>{helperText}</HelperText> : null}
-      {invalid && errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
-    </Field.Root>
+      {label ? (
+        <CheckboxPrimitive.Label
+          className={labelVariants({
+            className: "order-last leading-relaxed text-foreground",
+          })}
+        >
+          {label}
+        </CheckboxPrimitive.Label>
+      ) : null}
+      <CheckboxPrimitive.Control className={checkboxVariants().control()}>
+        &#x200B;
+        <CheckboxPrimitive.Indicator className={checkboxVariants().indicator()}>
+          <Check weight="bold" />
+        </CheckboxPrimitive.Indicator>
+        <CheckboxPrimitive.Indicator
+          className={checkboxVariants().indicator()}
+          indeterminate
+        >
+          <Minus weight="bold" />
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Control>
+      <CheckboxPrimitive.HiddenInput ref={ref} />
+    </CheckboxPrimitive.Root>
   );
 });
 

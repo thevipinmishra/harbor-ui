@@ -11,8 +11,11 @@ const calendarVariants = tv({
     view: ["flex flex-col gap-4"],
     viewControl: ["flex justify-between gap-4"],
     nextPrevTrigger: [buttonVariants({ size: "icon", variant: 'outlined' })],
+    viewTrigger: ['font-semibold'],
     tableHeader: ['text-sm text-muted-foreground font-medium text-left'],
+    td: ['p-1'],
     cellTrigger: [buttonVariants({ size: "icon-md", variant: 'plain' }), 'data-[disabled]:opacity-50 data-[disabled]:pointer-events-none', 'data-[selected]:bg-primary data-[selected]:text-primary-foreground'],
+    cellTriggerMonthYear: [buttonVariants({ size: "md", variant: 'plain' }), 'data-[disabled]:opacity-50 data-[disabled]:pointer-events-none', 'data-[selected]:bg-primary data-[selected]:text-primary-foreground w-full'],
   },
 });
 
@@ -33,7 +36,7 @@ const Calendar = (props: CalendarProps) => {
                   >
                     <CaretLeft />
                   </DatePicker.PrevTrigger>
-                  <DatePicker.ViewTrigger>
+                  <DatePicker.ViewTrigger className={calendarVariants().viewTrigger()}>
                     <DatePicker.RangeText />
                   </DatePicker.ViewTrigger>
                   <DatePicker.NextTrigger
@@ -56,7 +59,7 @@ const Calendar = (props: CalendarProps) => {
                     {datePicker.weeks.map((week, id) => (
                       <DatePicker.TableRow key={id}>
                         {week.map((day, id) => (
-                          <DatePicker.TableCell key={id} value={day}>
+                          <DatePicker.TableCell key={id} value={day} className={calendarVariants().td()}>
                             <DatePicker.TableCellTrigger className={calendarVariants().cellTrigger()}>
                               {day.day}
                             </DatePicker.TableCellTrigger>
@@ -80,7 +83,7 @@ const Calendar = (props: CalendarProps) => {
                   <DatePicker.PrevTrigger  className={calendarVariants().nextPrevTrigger()}>
                     <CaretLeft />
                   </DatePicker.PrevTrigger>
-                  <DatePicker.ViewTrigger>
+                  <DatePicker.ViewTrigger className={calendarVariants().viewTrigger()}>
                     <DatePicker.RangeText />
                   </DatePicker.ViewTrigger>
                   <DatePicker.NextTrigger  className={calendarVariants().nextPrevTrigger()}>
@@ -94,8 +97,8 @@ const Calendar = (props: CalendarProps) => {
                       .map((months, id) => (
                         <DatePicker.TableRow key={id}>
                           {months.map((month, id) => (
-                            <DatePicker.TableCell key={id} value={month.value}>
-                              <DatePicker.TableCellTrigger>
+                            <DatePicker.TableCell key={id} value={month.value} className={calendarVariants().td()}>
+                              <DatePicker.TableCellTrigger className={calendarVariants().cellTriggerMonthYear()}>
                                 {month.label}
                               </DatePicker.TableCellTrigger>
                             </DatePicker.TableCell>
@@ -118,7 +121,7 @@ const Calendar = (props: CalendarProps) => {
                   <DatePicker.PrevTrigger  className={calendarVariants().nextPrevTrigger()}>
                     <CaretLeft />
                   </DatePicker.PrevTrigger>
-                  <DatePicker.ViewTrigger>
+                  <DatePicker.ViewTrigger className={calendarVariants().viewTrigger()}>
                     <DatePicker.RangeText />
                   </DatePicker.ViewTrigger>
                   <DatePicker.NextTrigger  className={calendarVariants().nextPrevTrigger()}>
@@ -132,8 +135,8 @@ const Calendar = (props: CalendarProps) => {
                       .map((years, id) => (
                         <DatePicker.TableRow key={id}>
                           {years.map((year, id) => (
-                            <DatePicker.TableCell key={id} value={year.value}>
-                              <DatePicker.TableCellTrigger>
+                            <DatePicker.TableCell key={id} value={year.value} className={calendarVariants().td()}>
+                              <DatePicker.TableCellTrigger className={calendarVariants().cellTriggerMonthYear()}>
                                 {year.label}
                               </DatePicker.TableCellTrigger>
                             </DatePicker.TableCell>

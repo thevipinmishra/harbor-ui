@@ -81,21 +81,22 @@ module.exports = {
           "0%,70%,100%": { opacity: "1" },
           "20%,50%": { opacity: "0" },
         },
-        "slide-down": {
-          from: { height: "0" },
+        
+        "collapse-in": {
+          from: { height: 0 },
           to: { height: "var(--height)" },
         },
-        "slide-up": {
+        "collapse-out": {
             from: { height: "var(--height)" },
-            to: { height: "0" },
+            to: { height: 0 },
           },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
-        "slide-down": "slide-down 0.2s ease-out",
-        "slide-up": "slide-up 0.2s ease-out",
+        "collapse-in": "collapse-in 250ms cubic-bezier(0.05,0.7,0.1,1.0)",
+        "collapse-out": "collapse-out 200ms cubic-bezier(0.3,0.0,0.8,0.15)",
       },
     },
   },

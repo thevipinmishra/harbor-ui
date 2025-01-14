@@ -54,7 +54,9 @@ const CircularProgressValue = (props: ProgressValueTextProps) => {
 const CircularProgressCircle = (props: ProgressCircleProps) => {
   const { className, ...rest } = props;
   return (
-    <Progress.Circle className={circularProgressVariants().circle()} {...rest}>
+    <Progress.Circle className={circularProgressVariants().circle({
+        className,
+    })} {...rest}>
       <Progress.CircleTrack
         className={circularProgressVariants().circleTrack()}
       />

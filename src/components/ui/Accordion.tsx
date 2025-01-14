@@ -9,13 +9,13 @@ import {
   AccordionRootProps,
 } from "@ark-ui/react/accordion";
 import { tv } from "@/lib/tv.config";
-import { CaretDown, Plus } from "@phosphor-icons/react";
+import { Plus } from "@phosphor-icons/react";
 
 const accordionVariants = tv({
   slots: {
     root: "border border-border rounded-md divide-y divide-border",
     item: [
-      "first:rounded-t-[inherit] relative last:rounded-b-[inherit]",
+      "first:rounded-t-[inherit] group relative last:rounded-b-[inherit]",
       "data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:z-[1] overflow-hidden",
     ],
     itemTrigger: [
@@ -23,8 +23,8 @@ const accordionVariants = tv({
       "outline-none",
     ],
     itemContent: [
-      "px-3  data-[state=open]:pb-3 overflow-hidden text-sm",
-      "overflow-hidden data-[state=open]:motion-safe:animate-slide-down data-[state=closed]:motion-safe:animate-slide-up",
+      "px-3 transition-[padding-bottom] ease-linear pb-3 group-data-[state=closed]:pb-3 overflow-hidden text-sm",
+      " data-[state=open]:motion-safe:animate-collapse-in data-[state=closed]:motion-safe:animate-collapse-out",
     ],
     itemIndicator: [
       "[&_svg]:size-5 flex items-center text-muted-foreground data-[state=open]:rotate-45",
