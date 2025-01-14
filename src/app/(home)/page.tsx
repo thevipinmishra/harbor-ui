@@ -289,7 +289,7 @@ export default function HomePage() {
                 <PopoverTrigger asChild>
                     <Button>Popover</Button>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent className="max-w-sm">
                     <div>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
