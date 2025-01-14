@@ -19,6 +19,7 @@ const sliderVariants = tv({
     range: "bg-primary h-2 rounded-md",
     thumb:
       "bg-background border-2 border-primary size-5 rounded-full block ring-offset-background transition-colors data-[focus]:outline-none data-[focus]:ring-2 data-[focus]:ring-ring data-[focus]:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+      valueText: ['text-sm font-medium']
   },
 });
 
@@ -34,7 +35,7 @@ const SliderLabel = (props: SliderLabelProps) => {
 
 const SliderValueText = (props: SliderValueTextProps) => {
   const { className, ...rest } = props;
-  return <SliderPrimitive.ValueText className="" {...rest} />;
+  return <SliderPrimitive.ValueText className={sliderVariants().valueText({className})} {...rest} />;
 };
 
 const SliderControl = React.forwardRef<

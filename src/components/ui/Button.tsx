@@ -9,16 +9,17 @@ import type { VariantProps } from "tailwind-variants";
 
 const buttonGroupVariants = tv({
   base: [
-    "flex [&_.hbui-button:not(:first-of-type)]:rounded-l-none [&_.hbui-button:not(:last-of-type)]:rounded-r-none",
+    "flex [&_.hbui-button:not(:first-of-type)]:rounded-l-none [&_.hbui-button:not(:last-of-type)]:rounded-r-none -space-x-px",
   ],
 });
 
 export const buttonVariants = tv({
   base: [
-    "select-none inline-flex text-sm items-center rounded justify-center gap-2",
+    "select-none inline-flex text-sm no-underline items-center rounded cursor-default justify-center gap-2",
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
     "motion-safe:transition-[opacity,background-color,color]",
+    '[&_svg]:shrink-0'
   ],
   variants: {
     variant: {
@@ -30,7 +31,7 @@ export const buttonVariants = tv({
       ],
       plain: ["bg-background text-foreground", "hover:bg-muted"],
       outlined: ["bg-background text-foreground border border-border", "hover:bg-muted"],
-      destructive: ["bg-destructive text-destructive-foreground", "hover:opacity-90"],
+      destructive: ["bg-destructive text-destructive-foreground", "hover:opacity-90", 'focus:ring-destructive/50'],
     },
     size: {
       sm: [fieldHeight.sm, "px-3 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],

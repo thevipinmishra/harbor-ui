@@ -12,15 +12,16 @@ import React from "react";
 
 const numberInputVariants = tv({
   slots: {
-    root: ["flex flex-col gap-2"],
+    root: ["flex flex-col gap-2",],
     control: [
-      "border border-input grid grid-cols-[1fr_2rem] grid-rows-2 shadow-sm text-sm rounded data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:ring-offset-1 data-[focus]:ring-offset-background",
+      "border border-input group grid grid-cols-[1fr_2rem] grid-rows-2 shadow-sm text-sm rounded data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:ring-offset-1 data-[focus]:ring-offset-background",
+      "data-[invalid]:border-destructive data-[invalid]:data-[focus]:ring-destructive/50",
     ],
     input: [
-      "row-span-2 rounded-l-[inherit] rounded-r-none outline-none px-2 py-1 border-r border-input tabular-nums",
+      "row-span-2 rounded-l-[inherit] rounded-r-none outline-none px-2 py-1 border-r border-input tabular-nums data-[invalid]:border-destructive",
     ],
     trigger: [
-      "flex flex-col outline-none justify-center items-center shrink-0 data-[part=decrement-trigger]:rounded-br-[inherit] data-[part=decrement-trigger]:border-t data-[part=decrement-trigger]:border-input data-[part=increment-trigger]:rounded-tr-[inherit] disabled:opacity-50 disabled:cursor-not-allowed",
+      "flex flex-col outline-none justify-center items-center shrink-0 data-[part=decrement-trigger]:rounded-br-[inherit] data-[part=decrement-trigger]:border-t data-[part=decrement-trigger]:border-input group-data-[invalid]:border-destructive data-[part=increment-trigger]:rounded-tr-[inherit] disabled:opacity-50 disabled:cursor-not-allowed",
     ],
   },
   variants: {

@@ -35,12 +35,16 @@ const accordionVariants = tv({
 
 const Accordion = (props: AccordionRootProps) => {
   const { className, ...rest } = props;
-  return <AccordionPrimitive.Root className={accordionVariants().root()} {...rest} />;
+  return (
+    <AccordionPrimitive.Root className={accordionVariants().root()} {...rest} />
+  );
 };
 
 const AccordionItem = (props: AccordionItemProps) => {
   const { className, ...rest } = props;
-  return <AccordionPrimitive.Item className={accordionVariants().item()} {...rest} />;
+  return (
+    <AccordionPrimitive.Item className={accordionVariants().item()} {...rest} />
+  );
 };
 
 const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {
@@ -50,8 +54,10 @@ const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {
       className={accordionVariants().itemTrigger()}
       {...rest}
     >
-      {children}
-      <AccordionPrimitive.ItemIndicator className={accordionVariants().itemIndicator()}>
+      <div className='flex gap-2 items-center'>{children}</div>
+      <AccordionPrimitive.ItemIndicator
+        className={accordionVariants().itemIndicator()}
+      >
         <Plus /> &#x200B;
       </AccordionPrimitive.ItemIndicator>
     </AccordionPrimitive.ItemTrigger>

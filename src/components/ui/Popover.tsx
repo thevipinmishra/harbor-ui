@@ -12,9 +12,9 @@ export const popoverVariants = tv({
     content: [
       "bg-popover text-popover-foreground rounded-md shadow p-4 max-h-[var(--available-height))] max-w-[var(--available-width)]",
       //   In animation
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:zoom-in-95 motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-1 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-1",
+      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-1 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-1",
       //   Out animation
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:zoom-out-95 motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-1 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-1",
+      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-1 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-1",
     ],
   },
 });
