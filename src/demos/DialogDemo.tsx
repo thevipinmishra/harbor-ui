@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/Dialog";
+import { Dialog, DialogCloseTrigger, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
 import { Field } from "@/components/ui/Field";
 import { Label } from "@/components/ui/Label";
@@ -29,8 +29,14 @@ export function DialogDemo() {
               <Input placeholder="Brief project description" />
             </Field>
             <div className="flex justify-end gap-3">
-              <Button variant="outlined">Cancel</Button>
-              <Button>Create</Button>
+                <DialogCloseTrigger asChild>
+                <Button variant="outlined">Cancel</Button>
+                </DialogCloseTrigger>
+             
+                <DialogCloseTrigger asChild>
+                <Button>Create</Button>
+                </DialogCloseTrigger>
+             
             </div>
           </div>
         </DialogContent>
@@ -47,8 +53,12 @@ export function DialogDemo() {
             Are you sure you want to delete your account? This action cannot be undone.
           </p>
           <div className="flex justify-end gap-3">
-            <Button variant="outlined">Cancel</Button>
-            <Button variant="destructive">Delete Account</Button>
+            <DialogCloseTrigger asChild>
+              <Button variant="outlined">Cancel</Button>
+            </DialogCloseTrigger>
+            <DialogCloseTrigger asChild>
+              <Button variant="destructive">Delete Account</Button>
+            </DialogCloseTrigger>
           </div>
         </DialogContent>
       </Dialog>
@@ -61,11 +71,11 @@ export function DialogDemo() {
         <DialogContent className="max-w-xl">
           <DialogTitle>User Preferences</DialogTitle>
           <div className="space-y-4 mt-4">
-            <Field className="flex items-center justify-between">
+            <Field className="flex flex-row items-center justify-between">
               <Label>Dark Mode</Label>
               <Switch />
             </Field>
-            <Field className="flex items-center justify-between">
+            <Field className="flex flex-row items-center justify-between">
               <Label>Desktop Notifications</Label>
               <Switch defaultChecked />
             </Field>
