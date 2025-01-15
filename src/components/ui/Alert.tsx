@@ -6,7 +6,7 @@ import { Info } from "@phosphor-icons/react";
 interface AlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {
-  variant?: "destructive" | "default";
+  variant?: "destructive" | "default" | "success" | "warning" | "info";
   icon?: React.ReactNode;
   title: string;
   description?: string;
@@ -26,6 +26,18 @@ const alertVariants = tv({
       destructive: {
         root: "border-destructive text-destructive bg-destructive/5",
         description: "text-destructive",
+      },
+      success: {
+        root: "border-green-600 text-green-600 bg-green-50",
+        description: "text-green-600",
+      },
+      warning: {
+        root: "border-yellow-600 text-yellow-600 bg-yellow-50",
+        description: "text-yellow-600",
+      },
+      info: {
+        root: "border-blue-600 text-blue-600 bg-blue-50",
+        description: "text-blue-600",
       },
       default: {
         root: "border-border text-card-foreground bg-card",

@@ -5,15 +5,199 @@ import { Input } from "@/components/ui/Input";
 import { Field } from "@/components/ui/Field";
 import { Label } from "@/components/ui/Label";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/Select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Switch } from "@/components/ui/Switch";
+import { Calendar } from "@/components/ui/Calendar";
+import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { createListCollection } from "@ark-ui/react";
+import { useState } from "react";
 
 export function FormDemo() {
+  // Common collections
   const roleCollection = createListCollection({
     items: ["Admin", "Editor", "Viewer", "Developer", "Analyst"],
   });
+
+  function OnboardingForm() {
+    const [step, setStep] = useState(1);
+
+    return (
+      <form className="space-y-6 max-w-md">
+        {step === 1 && (
+          <div className="space-y-4">
+            <h3 className="font-medium">Basic Information</h3>
+            <Field>
+              <Label>Company Name</Label>
+              <Input placeholder="Enter your company name" required />
+            </Field>
+
+            <Field>
+              <Label>Industry</Label>
+              <Select
+                collection={createListCollection({
+                  items: [
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "Education",
+                    "Manufacturing",
+                  ],
+                })}
+              >
+                <SelectTrigger />
+                <SelectContent>
+                  {[
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "Education",
+                    "Manufacturing",
+                  ].map((industry) => (
+                    <SelectItem key={industry} item={industry}>
+                      {industry}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Field>
+
+            <Field>
+              <Label>Company Size</Label>
+              <ChipGroup multiple={false} defaultValue={["10-50"]}>
+                <ChipGroupItem value="1-10">1-10</ChipGroupItem>
+                <ChipGroupItem value="10-50">10-50</ChipGroupItem>
+                <ChipGroupItem value="50-200">50-200</ChipGroupItem>
+                <ChipGroupItem value="200+">200+</ChipGroupItem>
+              </ChipGroup>
+            </Field>
+
+            <Button onClick={() => setStep(2)} type="button" className="w-full">
+              Continue
+            </Button>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="space-y-4">
+            <h3 className="font-medium">Account Setup</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <Field>
+                <Label>First Name</Label>
+                <Input placeholder="First name" required />
+              </Field>
+              <Field>
+                <Label>Last Name</Label>
+                <Input placeholder="Last name" required />
+              </Field>
+            </div>
+
+            <Field>
+              <Label>Work Email</Label>
+              <Input type="email" placeholder="name@company.com" required />
+              <ErrorMessage>Please enter a valid work email</ErrorMessage>
+            </Field>
+
+            <Field>
+              <Label>Password</Label>
+              <Input type="password" placeholder="Min. 8 characters" required />
+            </Field>
+
+            <div className="space-y-2">
+              <Checkbox label="I agree to the Terms of Service" required />
+              <Checkbox label="Subscribe to product updates" defaultChecked />
+            </div>
+
+            <div className="flex gap-3">
+              <Button
+                variant="outlined"
+                onClick={() => setStep(1)}
+                type="button"
+              >
+                Back
+              </Button>
+              <Button type="submit" className="flex-1">
+                Create Account
+              </Button>
+            </div>
+          </div>
+        )}
+      </form>
+    );
+  }
+
+  function UserSettingsForm() {
+    return (
+      <form className="space-y-6 max-w-md">
+        <div className="space-y-4">
+          <Field>
+            <Label>Display Name</Label>
+            <Input placeholder="How others will see you" />
+          </Field>
+
+          <Field>
+            <Label>Time Zone</Label>
+            <Select
+              collection={createListCollection({
+                items: ["UTC-8", "UTC-5", "UTC+0", "UTC+1", "UTC+5:30"],
+              })}
+            >
+              <SelectTrigger />
+              <SelectContent>
+                {["UTC-8", "UTC-5", "UTC+0", "UTC+1", "UTC+5:30"].map((tz) => (
+                  <SelectItem key={tz} item={tz}>
+                    {tz}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Field>
+            <Label>Date Format</Label>
+            <ChipGroup multiple={false} defaultValue={["MM/DD/YYYY"]}>
+              <ChipGroupItem value="MM/DD/YYYY">MM/DD/YYYY</ChipGroupItem>
+              <ChipGroupItem value="DD/MM/YYYY">DD/MM/YYYY</ChipGroupItem>
+              <ChipGroupItem value="YYYY-MM-DD">YYYY-MM-DD</ChipGroupItem>
+            </ChipGroup>
+          </Field>
+
+          <Field>
+            <Label>Birth Date</Label>
+            <Calendar />
+          </Field>
+
+          <div className="space-y-3">
+            <Label>Notification Preferences</Label>
+            <div className="space-y-2">
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Email Notifications</Label>
+                <Switch defaultChecked />
+              </Field>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Push Notifications</Label>
+                <Switch />
+              </Field>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Weekly Digest</Label>
+                <Switch defaultChecked />
+              </Field>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-3">
+          <Button variant="outlined">Reset</Button>
+          <Button type="submit">Save Changes</Button>
+        </div>
+      </form>
+    );
+  }
 
   function SubscriptionForm() {
     return (
@@ -21,11 +205,17 @@ export function FormDemo() {
         <div className="space-y-4">
           <Field>
             <Label>Plan Type</Label>
-            <Select collection={createListCollection({ items: ["Basic", "Pro", "Enterprise"] })}>
+            <Select
+              collection={createListCollection({
+                items: ["Basic", "Pro", "Enterprise"],
+              })}
+            >
               <SelectTrigger />
               <SelectContent>
                 {["Basic", "Pro", "Enterprise"].map((plan) => (
-                  <SelectItem key={plan} item={plan}>{plan}</SelectItem>
+                  <SelectItem key={plan} item={plan}>
+                    {plan}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -33,11 +223,17 @@ export function FormDemo() {
 
           <Field>
             <Label>Billing Cycle</Label>
-            <Select collection={createListCollection({ items: ["Monthly", "Annual"] })}>
+            <Select
+              collection={createListCollection({
+                items: ["Monthly", "Annual"],
+              })}
+            >
               <SelectTrigger />
               <SelectContent>
                 {["Monthly", "Annual"].map((cycle) => (
-                  <SelectItem key={cycle} item={cycle}>{cycle}</SelectItem>
+                  <SelectItem key={cycle} item={cycle}>
+                    {cycle}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -54,7 +250,9 @@ export function FormDemo() {
           </div>
         </div>
 
-        <Button type="submit" className="w-full">Subscribe Now</Button>
+        <Button type="submit" className="w-full">
+          Subscribe Now
+        </Button>
       </form>
     );
   }
@@ -92,6 +290,16 @@ export function FormDemo() {
 
   return (
     <div className="space-y-12">
+      <div>
+        <h2 className="text-lg font-medium mb-6">Onboarding</h2>
+        <OnboardingForm />
+      </div>
+
+      <div>
+        <h2 className="text-lg font-medium mb-6">User Settings</h2>
+        <UserSettingsForm />
+      </div>
+
       {/* Original form */}
       <div>
         <h2 className="text-lg font-medium mb-6">Create User</h2>
@@ -150,7 +358,9 @@ export function FormDemo() {
 
           <div className="flex justify-end gap-3">
             <Button variant="outlined">Cancel</Button>
-            <Button type="submit" loading>Creating User...</Button>
+            <Button type="submit" loading>
+              Creating User...
+            </Button>
           </div>
         </form>
       </div>
