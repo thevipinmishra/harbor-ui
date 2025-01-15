@@ -1,7 +1,6 @@
 "use client";
 
 import { Alert } from "@/components/ui/Alert";
-import { Button } from "@/components/ui/Button";
 
 export function AlertDemo() {
   return (
@@ -20,6 +19,27 @@ export function AlertDemo() {
       <Alert
         title="Certificate Expiring"
         description="SSL certificate will expire in 7 days"
+      />
+
+      {/* With actions */}
+      <Alert
+        title="Update Available"
+        description="A new version (2.0.0) is available. Update now to get the latest features."
+      />
+
+      <Alert
+        title="Storage Warning"
+        description="You have used 90% of your storage quota"
+      />
+
+      <Alert
+        title="Payment Received"
+        description="Payment of $299.00 was successfully processed"
+      />
+
+      <Alert
+        title="Beta Feature"
+        description="You're previewing a beta feature. Some functionality may be limited."
       />
     </div>
   );

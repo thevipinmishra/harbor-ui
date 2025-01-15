@@ -39,6 +39,8 @@ export default function HomePage() {
           <h2 className="text-xl font-semibold mb-6">Alerts</h2>
           <AlertDemo />
         </section>
+
+       
       </div>
     </main>
   );

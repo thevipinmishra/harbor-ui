@@ -6,7 +6,7 @@ import { tv } from "@/lib/tv.config";
 import { labelVariants } from "./Label";
 
 interface SwitchProps extends SwitchRootProps {
-  label: string;
+  label?: string;
 }
 
 const switchVariants = tv({

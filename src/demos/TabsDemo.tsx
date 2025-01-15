@@ -7,36 +7,64 @@ import { Label } from "@/components/ui/Label";
 
 export function TabsDemo() {
   return (
-    <Tabs defaultValue="metrics">
-      <TabsList>
-        <TabsTrigger value="metrics">Metrics</TabsTrigger>
-        <TabsTrigger value="usage">Resource Usage</TabsTrigger>
+    <Tabs defaultValue="overview">
+      <TabsList className="w-full">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="performance">Performance</TabsTrigger>
+        <TabsTrigger value="resources">Resources</TabsTrigger>
+        <TabsTrigger value="logs">Logs</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="metrics">
-        <div className="grid grid-cols-3 gap-4 p-4">
-          <div className="text-center">
-            <CircularProgress value={85}>
-              <CircularProgressCircle />
-            </CircularProgress>
-            <Label className="mt-2">Uptime</Label>
-          </div>
-          <div className="text-center">
-            <CircularProgress value={92}>
+      <TabsContent value="overview">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+          <div className="text-center p-6 border rounded-lg">
+            <CircularProgress value={99.9}>
               <CircularProgressCircle className="text-success" />
             </CircularProgress>
-            <Label className="mt-2">Success Rate</Label>
+            <Label className="mt-2">Availability</Label>
           </div>
-          <div className="text-center">
-            <CircularProgress value={23}>
-              <CircularProgressCircle className="text-destructive" />
+          <div className="text-center p-6 border rounded-lg">
+            <CircularProgress value={78}>
+              <CircularProgressCircle />
             </CircularProgress>
-            <Label className="mt-2">Error Rate</Label>
+            <Label className="mt-2">Performance</Label>
+          </div>
+          <div className="text-center p-6 border rounded-lg">
+            <CircularProgress value={12}>
+              <CircularProgressCircle className="text-warning" />
+            </CircularProgress>
+            <Label className="mt-2">Issues</Label>
           </div>
         </div>
       </TabsContent>
 
-      <TabsContent value="usage">
+      <TabsContent value="performance">
+        <div className="space-y-6 p-4">
+          <div className="p-4 border rounded-lg">
+            <Label>Response Time</Label>
+            <LinearProgress value={82}>
+              <LinearProgressTrack className="text-success" />
+            </LinearProgress>
+            <span className="text-sm text-muted-foreground">82ms avg</span>
+          </div>
+          <div className="p-4 border rounded-lg">
+            <Label>Throughput</Label>
+            <LinearProgress value={65}>
+              <LinearProgressTrack />
+            </LinearProgress>
+            <span className="text-sm text-muted-foreground">2.3k req/sec</span>
+          </div>
+          <div className="p-4 border rounded-lg">
+            <Label>Error Rate</Label>
+            <LinearProgress value={3}>
+              <LinearProgressTrack className="text-destructive" />
+            </LinearProgress>
+            <span className="text-sm text-muted-foreground">0.3%</span>
+          </div>
+        </div>
+      </TabsContent>
+
+      <TabsContent value="resources">
         <div className="space-y-4 p-4">
           <div>
             <Label>CPU Usage</Label>
@@ -51,6 +79,10 @@ export function TabsDemo() {
             </LinearProgress>
           </div>
         </div>
+      </TabsContent>
+
+      <TabsContent value="logs">
+        {/* Add logs content here */}
       </TabsContent>
     </Tabs>
   );

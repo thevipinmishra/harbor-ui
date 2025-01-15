@@ -16,8 +16,6 @@ import { labelVariants } from "./Label";
 import { CaretUpDown, Check } from "@phosphor-icons/react";
 import { tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
-import { ErrorText } from "./ErrorText";
-import { HelperText } from "./HelperText";
 
 const selectVariants = tv({
   slots: {
