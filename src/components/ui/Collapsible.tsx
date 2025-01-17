@@ -6,11 +6,12 @@ import {
 
 const Collapsible = CollapsiblePrimitive.Root;
 const CollapsibleTrigger = CollapsiblePrimitive.Trigger;
+const CollapsibleContext = CollapsiblePrimitive.Context;
 
 const collapsibleVariants = tv({
   slots: {
     content:
-      "overflow-hidden data-[state=open]:motion-safe:animate-slide-down data-[state=closed]:motion-safe:animate-slide-up",
+      "overflow-hidden data-[state=open]:motion-safe:animate-collapse-in data-[state=closed]:motion-safe:animate-collapse-out",
   },
 });
 
@@ -21,4 +22,4 @@ const CollapsibleContent = (props: CollapsibleContentProps) => {
   );
 };
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export { Collapsible, CollapsibleTrigger, CollapsibleContent, CollapsibleContext };
