@@ -15,13 +15,12 @@ import {
 } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Switch } from "@/components/ui/Switch";
-import { Calendar } from "@/components/ui/Calendar";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { createListCollection } from "@ark-ui/react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
 import { Info } from "@phosphor-icons/react";
-import { Slider } from "@/components/ui/Slider";
+import { Slider, SliderControl } from "@/components/ui/Slider";
 import { toaster } from "@/components/ui/Toast";
 import { DatePicker } from "@/components/ui/Datepicker";
 
@@ -216,7 +215,9 @@ export function FormDemo() {
               max={100}
               step={10}
               className="my-4"
-            />
+            >
+              <SliderControl />
+            </Slider>
           </Field>
 
           <div className="space-y-3">
@@ -320,7 +321,9 @@ export function FormDemo() {
               max={100}
               step={5}
               className="my-4"
-            />
+            >
+              <SliderControl />
+            </Slider>
             <p className="text-sm text-muted-foreground">GB of storage</p>
           </Field>
 
@@ -394,7 +397,7 @@ export function FormDemo() {
           </ChipGroup>
         </Field>
 
-        <Field>
+        <Field className="space-y-2">
           <div className="flex gap-2">
             <Label>Storage Quota</Label>
             <Tooltip>
@@ -412,7 +415,9 @@ export function FormDemo() {
             max={100}
             step={5}
             className="my-4"
-          />
+          >
+            <SliderControl />
+          </Slider>
           <p className="text-sm text-muted-foreground">GB of storage</p>
         </Field>
 
@@ -498,7 +503,9 @@ export function FormDemo() {
             max={90}
             step={7}
             className="my-4"
-          />
+          >
+            <SliderControl />
+          </Slider>
           <p className="text-sm text-muted-foreground">Days</p>
         </Field>
 
