@@ -1,11 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Portal } from "@ark-ui/react/portal";
+import { Portal, type PortalProps } from "@ark-ui/react/portal";
 import {
   type SelectLabelProps,
   Select as SelectPrimitive,
   type SelectTriggerProps as SelectPrimitiveTriggerProps,
+  type SelectItemGroupProps,
+  type SelectItemGroupLabelProps,
   type SelectContentProps as SelectPrimitiveContentProps,
   type SelectValueTextProps,
   type SelectRootProps,
@@ -29,7 +31,7 @@ const selectVariants = tv({
       "data-[invalid]:border-destructive data-[invalid]:focus:ring-destructive data-[invalid]:text-destructive",
     ],
     content: [
-      "outline-none !z-[51] border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(12rem,var(--available-height))] overflow-y-auto",
+      "outline-none !z-[51] border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(16rem,var(--available-height))] overflow-y-auto",
       //   In animation
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
       //   Out animation
@@ -46,6 +48,8 @@ const selectVariants = tv({
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
       "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],
+    itemGroup: ["space-y-2"],
+    itemGroupLabel: ["text-sm font-semibold px-3 py-2"],
   },
   variants: {
     size: {
@@ -68,7 +72,9 @@ interface SelectPrimitiveProps extends Omit<SelectItemProps, "children"> {
   children: SelectItemTextProps["children"];
 }
 
-interface SelectContentProps extends SelectPrimitiveContentProps {}
+interface SelectContentProps extends SelectPrimitiveContentProps {
+  portalProps?: PortalProps;
+}
 
 const Select = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Root>,
@@ -136,9 +142,9 @@ const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   SelectContentProps
 >((props, ref) => {
-  const { className, ...rest } = props;
+  const { className, portalProps, ...rest } = props;
   return (
-    <Portal>
+    <Portal {...portalProps}>
       <SelectPrimitive.Positioner className={selectVariants().positioner()}>
         <SelectPrimitive.Content
           ref={ref}
@@ -178,4 +184,32 @@ const SelectItem = React.forwardRef<
 
 SelectItem.displayName = "SelectItem";
 
-export { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel };
+const SelectItemGroup = (props: SelectItemGroupProps) => {
+  const { className, ...rest } = props;
+  return (
+    <SelectPrimitive.ItemGroup
+      className={selectVariants().itemGroup()}
+      {...rest}
+    />
+  );
+};
+
+const SelectItemGroupLabel = (props: SelectItemGroupLabelProps) => {
+  const { className, ...rest } = props;
+  return (
+    <SelectPrimitive.ItemGroupLabel
+      className={selectVariants().itemGroupLabel()}
+      {...rest}
+    />
+  );
+};
+
+export {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectItemGroup,
+  SelectItemGroupLabel,
+};

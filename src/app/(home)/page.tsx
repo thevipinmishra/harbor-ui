@@ -14,6 +14,12 @@ import {
 } from "@/components/ui/Collapsible";
 import { Button } from "@/components/ui/Button";
 import { toaster } from "@/components/ui/Toast";
+import {
+  Slider,
+  SliderControl,
+  SliderLabel,
+  SliderValueText,
+} from "@/components/ui/Slider";
 
 export default function HomePage() {
   return (
@@ -49,11 +55,11 @@ export default function HomePage() {
           <AlertDemo />
         </section>
 
-        <section className="container">
+        <section className="border border-border rounded-lg p-6">
           <DatePicker locale="en-IN" />
         </section>
 
-        <section className="container">
+        <section className="border border-border rounded-lg p-6">
           <Collapsible>
             <CollapsibleTrigger asChild>
               <Button>
@@ -86,17 +92,36 @@ export default function HomePage() {
           </Collapsible>
         </section>
 
-        <section className="container">
+        <section className="border border-border rounded-lg p-6">
           <Button
             onClick={() =>
               toaster.create({
                 title: "Toast",
                 description: "Your toast is ready!",
+                type: "error",
               })
             }
           >
             Cook a toast
           </Button>
+        </section>
+
+        <section className="border border-border rounded-lg p-6 space-y-8">
+          <Slider>
+            <div className="flex gap-4 justify-between">
+              <SliderLabel className="flex-1">Volume</SliderLabel>
+              <SliderValueText />
+            </div>
+            <SliderControl />
+          </Slider>
+
+          <Slider defaultValue={[5, 10]}>
+            <div className="flex gap-4 justify-between">
+              <SliderLabel className="flex-1">Volume</SliderLabel>
+              <SliderValueText />
+            </div>
+            <SliderControl />
+          </Slider>
         </section>
       </div>
     </main>

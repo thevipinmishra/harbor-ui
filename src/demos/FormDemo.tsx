@@ -10,6 +10,8 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
+  SelectItemGroup,
+  SelectItemGroupLabel,
 } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Switch } from "@/components/ui/Switch";
@@ -17,11 +19,25 @@ import { Calendar } from "@/components/ui/Calendar";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
 import { createListCollection } from "@ark-ui/react";
 import { useState } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
+import { Info } from "@phosphor-icons/react";
 
 export function FormDemo() {
-  // Common collections
+  // Updated collections with grouped items
   const roleCollection = createListCollection({
-    items: ["Admin", "Editor", "Viewer", "Developer", "Analyst"],
+    items: [
+      { group: "Technical", items: ["Developer", "DevOps", "Architect"] },
+      { group: "Management", items: ["Admin", "Project Manager", "Team Lead"] },
+      { group: "Business", items: ["Analyst", "Consultant", "Stakeholder"] }
+    ]
+  });
+
+  const industryCollection = createListCollection({
+    items: [
+      { group: "Technology", items: ["Software", "Hardware", "IT Services"] },
+      { group: "Healthcare", items: ["Hospitals", "Pharmaceuticals", "Medical Devices"] },
+      { group: "Finance", items: ["Banking", "Insurance", "Investment"] }
+    ]
   });
 
   function OnboardingForm() {
@@ -38,30 +54,28 @@ export function FormDemo() {
             </Field>
 
             <Field>
-              <Label>Industry</Label>
-              <Select
-                collection={createListCollection({
-                  items: [
-                    "Technology",
-                    "Healthcare",
-                    "Finance",
-                    "Education",
-                    "Manufacturing",
-                  ],
-                })}
-              >
+             <div className="flex gap-2">
+             <Label>Industry</Label> <Tooltip>
+                <TooltipTrigger className="cursor-pointer text-muted-foreground hover:text-foreground">
+                    <Info className='size-4' />
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p className="text-sm">Select the industry that best describes your company</p>
+                </TooltipContent>
+             </Tooltip>
+             </div>
+              <Select collection={industryCollection}>
                 <SelectTrigger />
                 <SelectContent>
-                  {[
-                    "Technology",
-                    "Healthcare",
-                    "Finance",
-                    "Education",
-                    "Manufacturing",
-                  ].map((industry) => (
-                    <SelectItem key={industry} item={industry}>
-                      {industry}
-                    </SelectItem>
+                  {industryCollection.items.map((group) => (
+                    <SelectItemGroup key={group.group}>
+                      <SelectItemGroupLabel>{group.group}</SelectItemGroupLabel>
+                      {group.items.map((item) => (
+                        <SelectItem key={item} item={item}>
+                          {item}
+                        </SelectItem>
+                      ))}
+                    </SelectItemGroup>
                   ))}
                 </SelectContent>
               </Select>
@@ -327,10 +341,15 @@ export function FormDemo() {
               <Select collection={roleCollection}>
                 <SelectTrigger />
                 <SelectContent>
-                  {roleCollection.items.map((role) => (
-                    <SelectItem key={role} item={role}>
-                      {role}
-                    </SelectItem>
+                  {roleCollection.items.map((group) => (
+                    <SelectItemGroup key={group.group}>
+                      <SelectItemGroupLabel>{group.group}</SelectItemGroupLabel>
+                      {group.items.map((item) => (
+                        <SelectItem key={item} item={item}>
+                          {item}
+                        </SelectItem>
+                      ))}
+                    </SelectItemGroup>
                   ))}
                 </SelectContent>
               </Select>

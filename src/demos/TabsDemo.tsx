@@ -16,20 +16,20 @@ export function TabsDemo() {
       </TabsList>
 
       <TabsContent value="overview">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
-          <div className="text-center p-6 border rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
             <CircularProgress value={99.9}>
               <CircularProgressCircle className="text-success" />
             </CircularProgress>
             <Label className="mt-2">Availability</Label>
           </div>
-          <div className="text-center p-6 border rounded-lg">
+          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
             <CircularProgress value={78}>
               <CircularProgressCircle />
             </CircularProgress>
             <Label className="mt-2">Performance</Label>
           </div>
-          <div className="text-center p-6 border rounded-lg">
+          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
             <CircularProgress value={12}>
               <CircularProgressCircle className="text-warning" />
             </CircularProgress>
@@ -39,33 +39,33 @@ export function TabsDemo() {
       </TabsContent>
 
       <TabsContent value="performance">
-        <div className="space-y-6 p-4">
-          <div className="p-4 border rounded-lg">
+        <div className="space-y-6">
+          <div className="p-4 border space-y-3 rounded-lg">
             <Label>Response Time</Label>
             <LinearProgress value={82}>
               <LinearProgressTrack className="text-success" />
             </LinearProgress>
-            <span className="text-sm text-muted-foreground">82ms avg</span>
+            <p className="text-sm text-muted-foreground">82ms avg</p>
           </div>
-          <div className="p-4 border rounded-lg">
+          <div className="p-4 space-y-3 border rounded-lg">
             <Label>Throughput</Label>
             <LinearProgress value={65}>
               <LinearProgressTrack />
             </LinearProgress>
-            <span className="text-sm text-muted-foreground">2.3k req/sec</span>
+            <p className="text-sm text-muted-foreground">2.3k req/sec</p>
           </div>
-          <div className="p-4 border rounded-lg">
+          <div className="p-4 space-y-3 border rounded-lg">
             <Label>Error Rate</Label>
             <LinearProgress value={3}>
               <LinearProgressTrack className="text-destructive" />
             </LinearProgress>
-            <span className="text-sm text-muted-foreground">0.3%</span>
+            <p className="text-sm text-muted-foreground">0.3%</p>
           </div>
         </div>
       </TabsContent>
 
       <TabsContent value="resources">
-        <div className="space-y-4 p-4">
+        <div className="space-y-4">
           <div>
             <Label>CPU Usage</Label>
             <LinearProgress value={65}>

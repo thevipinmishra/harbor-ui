@@ -2,13 +2,15 @@
 
 import * as React from "react";
 import {
+  type DialogDescriptionProps,
   Dialog as DialogPrimitive,
   type DialogContentProps as DialogPrimitiveContentProps,
   type DialogTitleProps,
 } from "@ark-ui/react/dialog";
-import { tv } from "@/lib/tv.config";
+import { cn, tv } from "@/lib/tv.config";
 import { Portal } from "@ark-ui/react";
 import type { VariantProps } from "tailwind-variants";
+import { X } from "@phosphor-icons/react";
 
 interface DialogContentProps
   extends DialogPrimitiveContentProps,
@@ -21,13 +23,16 @@ const dialogVariants = tv({
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out",
     ],
-    positioner: ["fixed inset-0 flex justify-center items-center p-4 lg:p-10 z-50"],
+    positioner: [
+      "fixed inset-0 flex justify-center items-center p-4 lg:p-10 z-50",
+    ],
     content: [
-      "bg-background shadow-md grid gap-2 p-4 lg:p-5 rounded w-full lg:max-w-lg",
+      "bg-background relative shadow-md grid gap-2 p-4 lg:p-5 rounded w-full lg:max-w-lg",
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:slide-out-to-bottom-1",
     ],
     title: "font-semibold text-lg text-foreground",
+    description: "text-sm text-muted-foreground",
   },
 });
 
@@ -38,7 +43,7 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   DialogContentProps
 >((props, ref) => {
-  const { className, ...rest } = props;
+  const { className, children, ...rest } = props;
   return (
     <Portal>
       <DialogPrimitive.Backdrop className={dialogVariants().backdrop()} />
@@ -49,7 +54,13 @@ const DialogContent = React.forwardRef<
           })}
           {...rest}
           ref={ref}
-        />
+        >
+          {children}
+          <DialogPrimitive.CloseTrigger className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </DialogPrimitive.CloseTrigger>
+        </DialogPrimitive.Content>
       </DialogPrimitive.Positioner>
     </Portal>
   );
@@ -57,11 +68,37 @@ const DialogContent = React.forwardRef<
 
 DialogContent.displayName = "DialogContent";
 
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+);
+DialogHeader.displayName = "DialogHeader";
+
 const DialogTitle = (props: DialogTitleProps) => {
   const { className, ...rest } = props;
   return (
     <DialogPrimitive.Title
       className={dialogVariants().title({
+        className,
+      })}
+      {...rest}
+    />
+  );
+};
+
+const DialogDescription = (props: DialogDescriptionProps) => {
+  const { className, ...rest } = props;
+  return (
+    <DialogPrimitive.Description
+      className={dialogVariants().description({
         className,
       })}
       {...rest}
@@ -78,7 +115,9 @@ export {
   Dialog,
   DialogTrigger,
   DialogContent,
+  DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogCloseTrigger,
   DialogContext,
 };
