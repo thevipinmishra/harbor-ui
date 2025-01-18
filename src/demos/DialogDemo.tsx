@@ -117,6 +117,50 @@ export function DialogDemo() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Advanced Settings Dialog */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outlined">Advanced Settings</Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>System Preferences</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div className="space-y-4">
+              <h3 className="font-medium">Appearance</h3>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Dark Mode</Label>
+                <Switch />
+              </Field>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Compact View</Label>
+                <Switch defaultChecked />
+              </Field>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-medium">Notifications</h3>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Email Digest</Label>
+                <Switch defaultChecked />
+              </Field>
+              <Field className="flex flex-row items-center justify-between">
+                <Label>Push Alerts</Label>
+                <Switch />
+              </Field>
+            </div>
+          </div>
+          <div className="flex justify-end gap-3 mt-6">
+            <DialogCloseTrigger asChild>
+              <Button variant="outlined">Cancel</Button>
+            </DialogCloseTrigger>
+            <DialogCloseTrigger asChild>
+              <Button>Save Changes</Button>
+            </DialogCloseTrigger>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

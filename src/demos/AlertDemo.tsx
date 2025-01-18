@@ -1,7 +1,9 @@
 "use client";
 
 import { Alert } from "@/components/ui/Alert";
-import { CheckCircle, Warning, Info, X, Clock, Star, Lock } from "@phosphor-icons/react";
+import { CheckCircle, Warning, Info, X, Clock, Star, Lock, Download } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/Button";
+import { LinearProgress, LinearProgressTrack } from "@/components/ui/LinearProgress";
 
 export function AlertDemo() {
   return (
@@ -68,6 +70,38 @@ export function AlertDemo() {
         icon={<Lock />}
         title="Security Update"
         description="Multi-factor authentication is now enabled for your account"
+      />
+
+      <Alert
+        variant="info"
+        icon={<Download />}
+        title="Downloading Update"
+        description={
+          <div className="space-y-2">
+            <p>System update is being downloaded</p>
+            <LinearProgress value={65}>
+              <LinearProgressTrack />
+            </LinearProgress>
+            <div className="flex justify-end">
+              <Button size="sm" variant="plain">Cancel</Button>
+            </div>
+          </div>
+        }
+      />
+
+      <Alert
+        variant="warning"
+        icon={<Warning />}
+        title="Session Expiring"
+        description={
+          <div className="space-y-2">
+            <p>Your session will expire in 5 minutes</p>
+            <div className="flex justify-end gap-2">
+              <Button size="sm" variant="outlined">Logout</Button>
+              <Button size="sm">Extend Session</Button>
+            </div>
+          </div>
+        }
       />
     </div>
   );

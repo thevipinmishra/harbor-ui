@@ -82,7 +82,31 @@ export function TabsDemo() {
       </TabsContent>
 
       <TabsContent value="logs">
-        {/* Add logs content here */}
+        <div className="space-y-4">
+          <div className="p-4 border rounded-lg space-y-3">
+            <div className="flex items-center gap-2">
+              <CircularProgress value={100}>
+                <CircularProgressCircle className="text-success" />
+              </CircularProgress>
+              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:32]</span>
+              <span>Application started successfully</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CircularProgress value={100}>
+                <CircularProgressCircle className="text-warning" />
+              </CircularProgress>
+              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:30]</span>
+              <span>High memory usage detected</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CircularProgress value={100}>
+                <CircularProgressCircle className="text-destructive" />
+              </CircularProgress>
+              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:28]</span>
+              <span>Database connection timeout</span>
+            </div>
+          </div>
+        </div>
       </TabsContent>
     </Tabs>
   );

@@ -9,7 +9,7 @@ interface AlertProps
   variant?: "destructive" | "default" | "success" | "warning" | "info";
   icon?: React.ReactNode;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
 }
 
 const alertVariants = tv({
@@ -52,6 +52,8 @@ const alertVariants = tv({
 const Alert = (props: AlertProps) => {
   const { className, icon, title, description, variant, ...rest } = props;
 
+  const DescriptionElement = typeof description === 'string' ? 'p' : 'div';
+
   return (
     <div
       className={alertVariants().root({
@@ -63,7 +65,9 @@ const Alert = (props: AlertProps) => {
       <div className={alertVariants().iconSlot()}>{icon ? icon : <Info />}</div>
       <p className={alertVariants().title()}>{title}</p>
       {description ? (
-        <p className={alertVariants().description()}>{description}</p>
+        <DescriptionElement className={alertVariants().description()}>
+          {description}
+        </DescriptionElement>
       ) : null}
     </div>
   );
