@@ -48,7 +48,7 @@ const selectVariants = tv({
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
       "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],
-    itemGroup: ["space-y-2"],
+    itemGroup: ["space-y-[2px]"],
     itemGroupLabel: ["text-sm font-semibold px-3 py-2"],
   },
   variants: {

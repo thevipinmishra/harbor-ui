@@ -23,22 +23,23 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip
 import { Info } from "@phosphor-icons/react";
 
 export function FormDemo() {
-  // Updated collections with grouped items
-  const roleCollection = createListCollection({
-    items: [
-      { group: "Technical", items: ["Developer", "DevOps", "Architect"] },
-      { group: "Management", items: ["Admin", "Project Manager", "Team Lead"] },
-      { group: "Business", items: ["Analyst", "Consultant", "Stakeholder"] }
-    ]
-  });
+  // Flatten the collections while keeping visual groups
+  const roleItems = ["Developer", "DevOps", "Architect", "Admin", "Project Manager", "Team Lead", "Analyst", "Consultant", "Stakeholder"];
+  const roleGroups = [
+    { group: "Technical", items: ["Developer", "DevOps", "Architect"] },
+    { group: "Management", items: ["Admin", "Project Manager", "Team Lead"] },
+    { group: "Business", items: ["Analyst", "Consultant", "Stakeholder"] }
+  ];
 
-  const industryCollection = createListCollection({
-    items: [
-      { group: "Technology", items: ["Software", "Hardware", "IT Services"] },
-      { group: "Healthcare", items: ["Hospitals", "Pharmaceuticals", "Medical Devices"] },
-      { group: "Finance", items: ["Banking", "Insurance", "Investment"] }
-    ]
-  });
+  const industryItems = ["Software", "Hardware", "IT Services", "Hospitals", "Pharmaceuticals", "Medical Devices", "Banking", "Insurance", "Investment"];
+  const industryGroups = [
+    { group: "Technology", items: ["Software", "Hardware", "IT Services"] },
+    { group: "Healthcare", items: ["Hospitals", "Pharmaceuticals", "Medical Devices"] },
+    { group: "Finance", items: ["Banking", "Insurance", "Investment"] }
+  ];
+
+  const roleCollection = createListCollection({ items: roleItems });
+  const industryCollection = createListCollection({ items: industryItems });
 
   function OnboardingForm() {
     const [step, setStep] = useState(1);
@@ -67,7 +68,7 @@ export function FormDemo() {
               <Select collection={industryCollection}>
                 <SelectTrigger />
                 <SelectContent>
-                  {industryCollection.items.map((group) => (
+                  {industryGroups.map((group) => (
                     <SelectItemGroup key={group.group}>
                       <SelectItemGroupLabel>{group.group}</SelectItemGroupLabel>
                       {group.items.map((item) => (
@@ -341,7 +342,7 @@ export function FormDemo() {
               <Select collection={roleCollection}>
                 <SelectTrigger />
                 <SelectContent>
-                  {roleCollection.items.map((group) => (
+                  {roleGroups.map((group) => (
                     <SelectItemGroup key={group.group}>
                       <SelectItemGroupLabel>{group.group}</SelectItemGroupLabel>
                       {group.items.map((item) => (
