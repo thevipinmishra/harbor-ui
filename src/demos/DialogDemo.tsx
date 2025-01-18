@@ -105,7 +105,9 @@ export function DialogDemo() {
                 })}
               >
                 <SelectTrigger />
-                <SelectContent>
+                <SelectContent portalProps={{
+                    disabled: true,
+                }}>
                   {["English", "Spanish", "French"].map((lang) => (
                     <SelectItem key={lang} item={lang}>
                       {lang}

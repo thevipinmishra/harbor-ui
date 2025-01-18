@@ -5,16 +5,27 @@ import { Portal } from "@ark-ui/react";
 import {
   type DatePickerRootProps as PrimitiveRootProps,
   DatePicker as Primitive,
+  type UseDatePickerProps,
 } from "@ark-ui/react/date-picker";
 import { CalendarBlank } from "@phosphor-icons/react";
 import { inputVariants } from "./Input";
 import { CalendarContent } from "./Calendar";
 import { popoverVariants } from "./Popover";
+import { DateFormatter } from "@internationalized/date";
 
+// Default configuration
+const DEFAULT_CONFIG = {
+  timeZone: 'UTC',
+  locale: 'en-IN',
+  placeholder: 'Select'
+} as const;
+
+// Types
 interface DatePickerRootProps extends PrimitiveRootProps {
   placeholder?: string;
 }
 
+// Styles
 const datePickerVariants = tv({
   slots: {
     content: [
@@ -24,14 +35,32 @@ const datePickerVariants = tv({
   },
 });
 
-const DatePicker = (props: DatePickerRootProps) => {
-  const {
-    className,
+// Utility function for date formatting
+const createDateFormatter = (locale: string, timeZone: string) => {
+  const opts: Intl.DateTimeFormatOptions = {
     timeZone,
-    locale,
-    placeholder = "Select",
-    ...rest
-  } = props;
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  };
+  return new DateFormatter(locale, opts);
+};
+
+const DatePicker = ({
+  className,
+  timeZone = DEFAULT_CONFIG.timeZone,
+  locale = DEFAULT_CONFIG.locale,
+  format,
+  placeholder = DEFAULT_CONFIG.placeholder,
+  ...rest
+}: DatePickerRootProps) => {
+  const formatter = createDateFormatter(locale, timeZone);
+  
+  const formatValue = (value: UseDatePickerProps['value']) => {
+    return value?.map((date) => 
+      format?.(date) ?? formatter.format(date.toDate(timeZone))
+    );
+  };
 
   return (
     <Primitive.Root timeZone={timeZone} locale={locale} {...rest}>
@@ -42,12 +71,12 @@ const DatePicker = (props: DatePickerRootProps) => {
               className={cn(inputVariants(), "flex items-center gap-4")}
             >
               <span
-                className="flex-1 text-left text-ellipsis"
+                className="flex-1 text-left font-medium text-ellipsis"
                 data-placeholder={context.valueAsString.length === 0}
               >
-                {context.valueAsString[0] || placeholder}
+                {formatValue(context.value) || placeholder}
               </span>
-              <CalendarBlank />
+              <CalendarBlank className="size-5 shrink-0" />
             </Primitive.Trigger>
           )}
         </Primitive.Context>

@@ -19,7 +19,7 @@ export const buttonVariants = tv({
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
     "motion-safe:transition-[opacity,background-color,color]",
-    '[&_svg]:shrink-0'
+    "[&_svg]:shrink-0",
   ],
   variants: {
     variant: {
@@ -30,8 +30,15 @@ export const buttonVariants = tv({
         "disabled:bg-disab",
       ],
       plain: ["bg-background text-foreground", "hover:bg-muted"],
-      outlined: ["bg-background text-foreground border border-border", "hover:bg-muted"],
-      destructive: ["bg-destructive text-destructive-foreground", "hover:opacity-90", 'focus:ring-destructive/50'],
+      outlined: [
+        "bg-background text-foreground border border-border",
+        "hover:bg-muted",
+      ],
+      destructive: [
+        "bg-destructive text-destructive-foreground",
+        "hover:opacity-90",
+        "focus:ring-destructive/50",
+      ],
     },
     size: {
       sm: [fieldHeight.sm, "px-3 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],
@@ -61,39 +68,43 @@ interface ButtonProps
   loading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const {
-    className,
-    size,
-    variant,
-    children,
-    loading = false,
-    disabled,
-    fullWidth,
-    ...rest
-  } = props;
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      className,
+      size,
+      variant,
+      children,
+      loading = false,
+      type = "button",
+      disabled,
+      fullWidth,
+      ...rest
+    } = props;
 
-  const staticClass = "hbui-button";
-  return (
-    <ark.button
-      ref={ref}
-      disabled={loading || disabled}
-      className={cn(
-        buttonVariants({
-          className,
-          size,
-          variant,
-          fullWidth,
-        }),
-        staticClass,
-      )}
-      {...rest}
-    >
-      {loading ? <SpinnerGap className="animate-spin" /> : null}
-      {children}
-    </ark.button>
-  );
-});
+    const staticClass = "hbui-button";
+    return (
+      <ark.button
+        ref={ref}
+        disabled={loading || disabled}
+        className={cn(
+          buttonVariants({
+            className,
+            size,
+            variant,
+            fullWidth,
+          }),
+          staticClass
+        )}
+        type={type}
+        {...rest}
+      >
+        {loading ? <SpinnerGap className="animate-spin" /> : null}
+        {children}
+      </ark.button>
+    );
+  }
+);
 
 Button.displayName = "Button";
 
@@ -109,7 +120,7 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, HTMLArkProps<"div">>(
         {...rest}
       />
     );
-  },
+  }
 );
 
 ButtonGroup.displayName = "ButtonGroup";
