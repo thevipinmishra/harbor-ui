@@ -20,6 +20,14 @@ import {
   SliderLabel,
   SliderValueText,
 } from "@/components/ui/Slider";
+import {
+  FileUpload,
+  FileUploadContext,
+  FileUploadDropzone,
+  FileUploadPreview,
+  FileUploadTrigger,
+} from "@/components/ui/FileUpload";
+import { Upload } from "@phosphor-icons/react";
 
 export default function HomePage() {
   return (
@@ -122,6 +130,28 @@ export default function HomePage() {
             </div>
             <SliderControl />
           </Slider>
+        </section>
+
+        <section className="container space-y-8 p-6">
+          <FileUpload>
+            <FileUploadTrigger asChild>
+              <Button fullWidth>
+                Upload File <Upload />
+              </Button>
+            </FileUploadTrigger>
+            <FileUploadPreview />
+          </FileUpload>
+
+          <FileUpload>
+            <FileUploadDropzone>
+              <FileUploadTrigger asChild>
+                <Button>
+                  Upload File <Upload />
+                </Button>
+              </FileUploadTrigger>
+            </FileUploadDropzone>
+            <FileUploadPreview />
+          </FileUpload>
         </section>
       </div>
     </main>
