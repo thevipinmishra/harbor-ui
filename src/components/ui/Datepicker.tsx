@@ -16,7 +16,7 @@ import { DateFormatter } from "@internationalized/date";
 // Default configuration
 const DEFAULT_CONFIG = {
   timeZone: 'UTC',
-  locale: 'en-IN',
+  locale: 'en-US',
   placeholder: 'Select'
 } as const;
 
@@ -51,19 +51,29 @@ const DatePicker = ({
   timeZone = DEFAULT_CONFIG.timeZone,
   locale = DEFAULT_CONFIG.locale,
   format,
+  selectionMode,
   placeholder = DEFAULT_CONFIG.placeholder,
   ...rest
 }: DatePickerRootProps) => {
   const formatter = createDateFormatter(locale, timeZone);
   
-  const formatValue = (value: UseDatePickerProps['value']) => {
-    return value?.map((date) => 
-      format?.(date) ?? formatter.format(date.toDate(timeZone))
+const formatValue = (value: UseDatePickerProps['value']) => {
+    if (!value) return '';
+    const formattedDates = value.map((date) => 
+        format?.(date) ?? formatter.format(date.toDate(timeZone))
     );
-  };
+    
+    if (selectionMode === 'multiple') {
+        return formattedDates.join(', ');
+    }
+    if (selectionMode === 'range') {
+        return formattedDates.join(' - ');
+    }
+    return formattedDates[0];
+};
 
   return (
-    <Primitive.Root timeZone={timeZone} locale={locale} {...rest}>
+    <Primitive.Root timeZone={timeZone} locale={locale} selectionMode={selectionMode} {...rest}>
       <Primitive.Control>
         <Primitive.Context>
           {(context) => (

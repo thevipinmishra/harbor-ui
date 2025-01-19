@@ -22,12 +22,13 @@ import {
 } from "@/components/ui/Slider";
 import {
   FileUpload,
-  FileUploadContext,
   FileUploadDropzone,
   FileUploadPreview,
   FileUploadTrigger,
 } from "@/components/ui/FileUpload";
 import { Upload } from "@phosphor-icons/react";
+import { Field } from "@/components/ui/Field";
+import { Label } from "@/components/ui/Label";
 
 export default function HomePage() {
   return (
@@ -63,8 +64,21 @@ export default function HomePage() {
           <AlertDemo />
         </section>
 
-        <section className="border border-border rounded-lg p-6">
-          <DatePicker locale="en-IN" />
+        <section className="border border-border space-y-8 rounded-lg p-6">
+          <Field>
+            <Label>Default datepicker</Label>
+            <DatePicker locale="en-IN" />
+          </Field>
+
+          <Field>
+            <Label>Multiple</Label>
+            <DatePicker selectionMode="multiple" locale="en-IN" />
+          </Field>
+
+          <Field>
+            <Label>Range</Label>
+            <DatePicker selectionMode="range" locale="en-IN" />
+          </Field>
         </section>
 
         <section className="border border-border rounded-lg p-6">

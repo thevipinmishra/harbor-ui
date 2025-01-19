@@ -2,11 +2,10 @@ import { tv } from "@/lib/tv.config";
 import {
   DatePicker,
   type DatePickerRootProps,
-  type DatePickerContentProps
+  type DatePickerContentProps,
 } from "@ark-ui/react/date-picker";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { buttonVariants } from "./Button";
-import { popoverVariants } from "./Popover";
 
 interface CalendarProps extends Exclude<DatePickerRootProps, "open"> {}
 
@@ -22,7 +21,9 @@ export const calendarVariants = tv({
     cellTrigger: [
       buttonVariants({ size: "icon-md", variant: "plain" }),
       "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
-      "data-[selected]:bg-primary data-[selected]:text-primary-foreground",
+      "data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[in-range]:bg-muted",
+      "data-[range-start]:bg-primary data-[range-start]:text-primary-foreground  ",
+      "data-[range-end]:bg-primary data-[range-end]:text-primary-foreground"
     ],
     cellTriggerMonthYear: [
       buttonVariants({ size: "md", variant: "plain" }),
@@ -42,7 +43,7 @@ const Calendar = (props: CalendarProps) => {
 };
 
 export const CalendarContent = (props: DatePickerContentProps) => {
-    const { className, ...rest } = props;
+  const { className, ...rest } = props;
   return (
     <DatePicker.Content className={className} {...rest}>
       <DatePicker.View className={calendarVariants().view()} view="day">
