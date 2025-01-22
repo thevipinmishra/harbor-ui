@@ -4,108 +4,116 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { CircularProgress, CircularProgressCircle } from "@/components/ui/CircularProgress";
 import { LinearProgress, LinearProgressTrack } from "@/components/ui/LinearProgress";
 import { Label } from "@/components/ui/Label";
+import { Field } from "@/components/ui/Field";
+
+const registryMetrics = [
+  {
+    label: "Storage Used",
+    value: 75,
+    color: "text-primary",
+    description: "2.3TB of 3TB",
+  },
+  {
+    label: "Image Pull Rate",
+    value: 92,
+    color: "text-success",
+    description: "15.2k pulls/hour",
+  },
+  {
+    label: "Vulnerability Rate",
+    value: 8,
+    color: "text-warning",
+    description: "8% images affected",
+  },
+];
+
+const popularImages = [
+  { name: "nginx:1.25", pulls: 25430, size: "183MB", lastPush: "2h ago" },
+  { name: "redis:7.2", pulls: 18920, size: "105MB", lastPush: "5h ago" },
+  { name: "postgres:15", pulls: 15670, size: "314MB", lastPush: "1d ago" },
+];
+
+const securityIssues = [
+  { image: "nginx:1.25", severity: "Critical", count: 2, type: "CVE-2024-1234" },
+  { image: "redis:7.2", severity: "High", count: 3, type: "CVE-2024-5678" },
+  { image: "postgres:15", severity: "Medium", count: 5, type: "CVE-2024-9012" },
+];
 
 export function TabsDemo() {
   return (
-    <Tabs defaultValue="overview">
-      <TabsList className="w-full">
+    <Tabs defaultValue="overview" className="w-full">
+      <TabsList className="w-full overflow-x-auto flex-nowrap md:flex-wrap">
         <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="performance">Performance</TabsTrigger>
-        <TabsTrigger value="resources">Resources</TabsTrigger>
-        <TabsTrigger value="logs">Logs</TabsTrigger>
+        <TabsTrigger value="images">Images</TabsTrigger>
+        <TabsTrigger value="security">Security</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="overview">
+      <TabsContent value="overview" className="mt-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
-            <CircularProgress value={99.9}>
-              <CircularProgressCircle className="text-success" />
-            </CircularProgress>
-            <Label className="mt-2">Availability</Label>
-          </div>
-          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
-            <CircularProgress value={78}>
-              <CircularProgressCircle />
-            </CircularProgress>
-            <Label className="mt-2">Performance</Label>
-          </div>
-          <div className="text-center p-6 flex gap-4 items-center border rounded-lg">
-            <CircularProgress value={12}>
-              <CircularProgressCircle className="text-warning" />
-            </CircularProgress>
-            <Label className="mt-2">Issues</Label>
-          </div>
+          {registryMetrics.map((metric) => (
+            <div key={metric.label} className="p-6 border rounded-lg">
+              <div className="flex items-center gap-4">
+                <CircularProgress value={metric.value}>
+                  <CircularProgressCircle className={metric.color} />
+                </CircularProgress>
+                <div>
+                  <Label>{metric.label}</Label>
+                  <p className="text-sm text-muted-foreground">{metric.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </TabsContent>
 
-      <TabsContent value="performance">
-        <div className="space-y-6">
-          <div className="p-4 border space-y-3 rounded-lg">
-            <Label>Response Time</Label>
-            <LinearProgress value={82}>
-              <LinearProgressTrack className="text-success" />
-            </LinearProgress>
-            <p className="text-sm text-muted-foreground">82ms avg</p>
-          </div>
-          <div className="p-4 space-y-3 border rounded-lg">
-            <Label>Throughput</Label>
-            <LinearProgress value={65}>
-              <LinearProgressTrack />
-            </LinearProgress>
-            <p className="text-sm text-muted-foreground">2.3k req/sec</p>
-          </div>
-          <div className="p-4 space-y-3 border rounded-lg">
-            <Label>Error Rate</Label>
-            <LinearProgress value={3}>
-              <LinearProgressTrack className="text-destructive" />
-            </LinearProgress>
-            <p className="text-sm text-muted-foreground">0.3%</p>
-          </div>
+      <TabsContent value="images" className="mt-6">
+        <div className="border rounded-lg overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-muted">
+              <tr>
+                <th className="px-4 py-3 text-left">Image</th>
+                <th className="px-4 py-3 text-left">Pull Count</th>
+                <th className="px-4 py-3 text-left">Size</th>
+                <th className="px-4 py-3 text-left">Last Push</th>
+              </tr>
+            </thead>
+            <tbody>
+              {popularImages.map((img) => (
+                <tr key={img.name} className="border-t">
+                  <td className="px-4 py-3">{img.name}</td>
+                  <td className="px-4 py-3">{img.pulls.toLocaleString()}</td>
+                  <td className="px-4 py-3">{img.size}</td>
+                  <td className="px-4 py-3">{img.lastPush}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </TabsContent>
 
-      <TabsContent value="resources">
+      <TabsContent value="security" className="mt-6">
         <div className="space-y-4">
-          <div>
-            <Label>CPU Usage</Label>
-            <LinearProgress value={65}>
-              <LinearProgressTrack />
-            </LinearProgress>
-          </div>
-          <div>
-            <Label>Memory Usage</Label>
-            <LinearProgress value={45}>
-              <LinearProgressTrack />
-            </LinearProgress>
-          </div>
-        </div>
-      </TabsContent>
-
-      <TabsContent value="logs">
-        <div className="space-y-4">
-          <div className="p-4 border rounded-lg space-y-3">
-            <div className="flex items-center gap-2">
-              <CircularProgress value={100}>
-                <CircularProgressCircle className="text-success" />
-              </CircularProgress>
-              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:32]</span>
-              <span>Application started successfully</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircularProgress value={100}>
-                <CircularProgressCircle className="text-warning" />
-              </CircularProgress>
-              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:30]</span>
-              <span>High memory usage detected</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircularProgress value={100}>
-                <CircularProgressCircle className="text-destructive" />
-              </CircularProgress>
-              <span className="text-sm text-muted-foreground">[2024-02-20 10:15:28]</span>
-              <span>Database connection timeout</span>
-            </div>
-          </div>
+          {securityIssues.map((issue) => (
+            <Field key={issue.image} className="p-4 border rounded-lg">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>{issue.image}</Label>
+                  <p className="text-sm text-muted-foreground">
+                    {issue.type} - {issue.count} vulnerabilities found
+                  </p>
+                </div>
+                <LinearProgress value={issue.count * 20} className="w-24">
+                  <LinearProgressTrack 
+                    className={
+                      issue.severity === "Critical" ? "text-destructive" :
+                      issue.severity === "High" ? "text-warning" :
+                      "text-primary"
+                    }
+                  />
+                </LinearProgress>
+              </div>
+            </Field>
+          ))}
         </div>
       </TabsContent>
     </Tabs>

@@ -56,10 +56,13 @@ export function FormDemo() {
     };
 
     return (
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
+      <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-xl mx-auto">
         {step === 1 && (
-          <div className="space-y-4">
-            <h3 className="font-medium">Basic Information</h3>
+          <div className="space-y-6">
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-medium">Basic Information</h3>
+              <p className="text-sm text-muted-foreground">Let's get started with your company details</p>
+            </div>
             <Field>
               <Label>Company Name</Label>
               <Input placeholder="Enter your company name" required />
@@ -110,8 +113,11 @@ export function FormDemo() {
         )}
 
         {step === 2 && (
-          <div className="space-y-4">
-            <h3 className="font-medium">Account Setup</h3>
+          <div className="space-y-6">
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-medium">Account Setup</h3>
+              <p className="text-sm text-muted-foreground">Set up your personal account</p>
+            </div>
             <div className="grid grid-cols-2 gap-4">
               <Field>
                 <Label>First Name</Label>
@@ -168,8 +174,8 @@ export function FormDemo() {
     };
 
     return (
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
-        <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-8 w-full max-w-xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Field>
             <Label>Display Name</Label>
             <Input placeholder="How others will see you" />

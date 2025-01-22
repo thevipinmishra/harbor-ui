@@ -20,10 +20,11 @@ import {
   SelectItem,
 } from "@/components/ui/Select";
 import { createListCollection } from "@ark-ui/react";
+import { Avatar } from "@/components/ui/Avatar";
 
 export function DialogDemo() {
   return (
-    <div className="space-x-4">
+    <div className="flex gap-4 flex-wrap">
       {/* Existing Create Project Dialog */}
       <Dialog>
         <DialogTrigger asChild>
@@ -105,9 +106,11 @@ export function DialogDemo() {
                 })}
               >
                 <SelectTrigger />
-                <SelectContent portalProps={{
+                <SelectContent
+                  portalProps={{
                     disabled: true,
-                }}>
+                  }}
+                >
                   {["English", "Spanish", "French"].map((lang) => (
                     <SelectItem key={lang} item={lang}>
                       {lang}
@@ -160,6 +163,82 @@ export function DialogDemo() {
             <DialogCloseTrigger asChild>
               <Button>Save Changes</Button>
             </DialogCloseTrigger>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Team Management Dialog */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Manage Team</Button>
+        </DialogTrigger>
+        <DialogContent className="w-[90vw] max-w-3xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Team Management</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6 mt-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <Field>
+                  <Label>Team Name</Label>
+                  <Input placeholder="Engineering Team" />
+                </Field>
+              </div>
+             <div className="flex-1">
+             <Field>
+                <Label>Department</Label>
+                <Select
+                  collection={createListCollection({
+                    items: ["Engineering", "Design", "Marketing", "Sales"],
+                  })}
+                >
+                  <SelectTrigger />
+                  <SelectContent>
+                    {["Engineering", "Design", "Marketing", "Sales"].map(
+                      (dept) => (
+                        <SelectItem key={dept} item={dept}>
+                          {dept}
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectContent>
+                </Select>
+              </Field>
+             </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <h4 className="font-medium mb-4">Team Members</h4>
+              <div className="space-y-3">
+                {["John Doe", "Jane Smith", "Alex Johnson"].map((member) => (
+                  <div
+                    key={member}
+                    className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-2 hover:bg-muted rounded-md"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Avatar src="https://avatar.iran.liara.run/public/44" />
+                      <div>
+                        <p className="font-medium">{member}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Engineer
+                        </p>
+                      </div>
+                    </div>
+                    <Button variant="destructive" size="sm">
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Field>
+              <Label>Add Members</Label>
+              <div className="flex gap-2">
+                <Input placeholder="Enter email address" />
+                <Button>Add</Button>
+              </div>
+            </Field>
           </div>
         </DialogContent>
       </Dialog>

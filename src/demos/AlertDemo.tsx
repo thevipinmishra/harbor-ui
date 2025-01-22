@@ -1,75 +1,43 @@
 "use client";
 
 import { Alert } from "@/components/ui/Alert";
-import { CheckCircle, Warning, Info, Download, Clock } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/Button";
-import { LinearProgress, LinearProgressTrack } from "@/components/ui/LinearProgress";
+import { CheckCircle, Warning, Info, X } from "@phosphor-icons/react";
 
 export function AlertDemo() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full max-w-3xl mx-auto">
       <Alert
         variant="success"
         icon={<CheckCircle />}
-        title="Deployment Successful"
-        description="Your changes have been deployed to production"
+        title="Success"
+        description="Operation completed successfully"
       />
 
       <Alert
         variant="warning"
         icon={<Warning />}
-        title="Certificate Expiring"
-        description={
-          <div className="space-y-2">
-            <p>SSL certificate will expire in 7 days</p>
-            <div className="flex justify-end gap-2">
-              <Button size="sm" variant="outlined">Ignore</Button>
-              <Button size="sm">Renew Now</Button>
-            </div>
-          </div>
-        }
+        title="Warning"
+        description="Please review your information before continuing"
       />
 
       <Alert
         variant="destructive"
-        icon={<Clock />}
-        title="Session Timeout"
-        description={
-          <div className="space-y-2">
-            <p>Your session will expire in 5 minutes</p>
-            <LinearProgress value={25}>
-              <LinearProgressTrack />
-            </LinearProgress>
-            <div className="flex justify-end">
-              <Button size="sm" variant="plain">Extend Session</Button>
-            </div>
-          </div>
-        }
+        icon={<X />}
+        title="Error"
+        description="An error occurred while processing your request"
       />
 
       <Alert
         variant="info"
-        icon={<Download />}
-        title="Downloading Update"
-        description={
-          <div className="space-y-2">
-            <p>System update (v2.0.0) is being downloaded</p>
-            <LinearProgress value={65}>
-              <LinearProgressTrack />
-            </LinearProgress>
-            <div className="flex justify-end gap-2">
-              <Button size="sm" variant="outlined">Pause</Button>
-              <Button size="sm" variant="plain">Cancel</Button>
-            </div>
-          </div>
-        }
+        icon={<Info />}
+        title="Information"
+        description="Here's some helpful information for you"
       />
 
       <Alert
         variant="default"
-        icon={<Info />}
-        title="Beta Feature"
-        description="You're previewing a beta feature. Some functionality may be limited."
+        title="Note"
+        description="This is a simple notification message"
       />
     </div>
   );

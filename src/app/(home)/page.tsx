@@ -29,36 +29,65 @@ import {
 import { Upload } from "@phosphor-icons/react";
 import { Field } from "@/components/ui/Field";
 import { Label } from "@/components/ui/Label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
+import { Toggle, ToggleContext } from "@/components/ui/Toggle";
+import {
+  RadioGroup,
+  RadioGroupItem,
+  RadioGroupLabel,
+} from "@/components/ui/RadioGroup";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+} from "@/components/ui/Accordion";
+import { Avatar } from "@/components/ui/Avatar";
+import { Badge } from "@/components/ui/Badge";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/HoverCard";
+import { FileOrganizerDemo } from "@/demos/FileOrganizerDemo";
 
 export default function HomePage() {
   return (
     <main className="py-10">
       <div className="max-w-4xl mx-auto space-y-12">
-        {/* Button Components */}
+        <section className="border border-border rounded-lg p-6">
+          <h2 className="text-xl font-semibold mb-6">File Organization</h2>
+          <FileOrganizerDemo />
+        </section>
+
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Buttons</h2>
           <ButtonDemo />
         </section>
 
-        {/* Form Components */}
+
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Form</h2>
           <FormDemo />
         </section>
 
-        {/* Dialog Components */}
+
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Dialog</h2>
           <DialogDemo />
         </section>
 
-        {/* Tabs and Progress Components */}
+
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Tabs and Progress</h2>
           <TabsDemo />
         </section>
 
-        {/* Alert Components */}
+
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Alerts</h2>
           <AlertDemo />
@@ -166,6 +195,110 @@ export default function HomePage() {
             </FileUploadDropzone>
             <FileUploadPreview />
           </FileUpload>
+        </section>
+
+        <section className="p-6">
+          <Tooltip>
+            <TooltipTrigger>tooltip</TooltipTrigger>
+            <TooltipContent>
+              <p>This is a tooltip</p>
+            </TooltipContent>
+          </Tooltip>
+        </section>
+        <section className="p-6">
+          <Toggle asChild>
+            <Button>
+              <ToggleContext>
+                {({ pressed }) => (pressed ? "Mute" : "Unmute")}
+              </ToggleContext>
+            </Button>
+          </Toggle>
+        </section>
+
+        <section className="p-6">
+          <RadioGroup>
+            <RadioGroupLabel>Your Favourite Fruit</RadioGroupLabel>
+            <RadioGroupItem value="1">Apple</RadioGroupItem>
+            <RadioGroupItem value="2">Banana</RadioGroupItem>
+            <RadioGroupItem value="3">Orange</RadioGroupItem>
+          </RadioGroup>
+        </section>
+
+        <section className="p-6">
+          <Accordion collapsible>
+            <AccordionItem value="account">
+              <AccordionItemTrigger>Account Settings</AccordionItemTrigger>
+              <AccordionItemContent>
+                <div className="space-y-2">
+                  <p>Manage your account preferences and security settings:</p>
+                  <ul className="list-disc list-inside">
+                    <li>Update profile information</li>
+                    <li>Change password</li>
+                    <li>Two-factor authentication</li>
+                    <li>Connected devices</li>
+                  </ul>
+                </div>
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="billing">
+              <AccordionItemTrigger>
+                Billing & Subscriptions
+              </AccordionItemTrigger>
+              <AccordionItemContent>
+                <div className="">
+                  <p className="mb-2">Your current plan: Professional</p>
+                  <p className="text-sm text-gray-600">
+                    Next billing date: January 1, 2024
+                  </p>
+                  <div className="mt-2">
+                    <code className="block bg-gray-100 px-4 py-3 rounded-lg">
+                      Monthly cost: $29/month
+                    </code>
+                  </div>
+                </div>
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="notifications">
+              <AccordionItemTrigger>
+                Notification Preferences
+              </AccordionItemTrigger>
+              <AccordionItemContent>
+                <ul className="space-y-2 list-outside">
+                  <li>Email notifications: Enabled</li>
+                  <li>Push notifications: Disabled</li>
+                  <li>Weekly reports: Enabled</li>
+                  <li>Marketing communications: Disabled</li>
+                </ul>
+              </AccordionItemContent>
+            </AccordionItem>
+            <AccordionItem value="privacy">
+              <AccordionItemTrigger>Privacy & Data</AccordionItemTrigger>
+              <AccordionItemContent>
+                <p className="">
+                  Your data is encrypted and stored securely. We never share
+                  your personal information with third parties without your
+                  explicit consent.
+                </p>
+              </AccordionItemContent>
+            </AccordionItem>
+          </Accordion>
+        </section>
+
+        <section className="p-6 space-y-6">
+          <Avatar src="https://avatar.iran.liara.run/public/47" />
+
+          <Badge>Online</Badge>
+
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Button size="sm" variant="outlined">
+                @thevipinmishra
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              <p className="text-sm text-gray-600">Vipin Mishra</p>
+            </HoverCardContent>
+          </HoverCard>
         </section>
       </div>
     </main>
