@@ -32,6 +32,7 @@ const datePickerVariants = tv({
       popoverVariants().content(),
       "max-w-xs bg-card shadow-md p-4 rounded-md",
     ],
+    value: ['flex-1 inline-block text-left font-medium whitespace-nowrap overflow-hidden text-ellipsis', 'data-[placeholder=true]:text-muted-foreground']
   },
 });
 
@@ -81,7 +82,7 @@ const formatValue = (value: UseDatePickerProps['value']) => {
               className={cn(inputVariants(), "flex items-center gap-4")}
             >
               <span
-                className="flex-1 text-left font-medium text-ellipsis"
+                className={datePickerVariants().value()}
                 data-placeholder={context.valueAsString.length === 0}
               >
                 {formatValue(context.value) || placeholder}
