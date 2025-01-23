@@ -55,7 +55,11 @@ import {
 } from "@/components/ui/HoverCard";
 import { FileOrganizerDemo } from "@/demos/FileOrganizerDemo";
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/Menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/Popover";
 import { Input } from "@/components/ui/Input";
 
 export default function HomePage() {
