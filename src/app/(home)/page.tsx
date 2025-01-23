@@ -54,6 +54,9 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/HoverCard";
 import { FileOrganizerDemo } from "@/demos/FileOrganizerDemo";
+import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/Menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover";
+import { Input } from "@/components/ui/Input";
 
 export default function HomePage() {
   return (
@@ -69,24 +72,20 @@ export default function HomePage() {
           <ButtonDemo />
         </section>
 
-
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Form</h2>
           <FormDemo />
         </section>
-
 
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Dialog</h2>
           <DialogDemo />
         </section>
 
-
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Tabs and Progress</h2>
           <TabsDemo />
         </section>
-
 
         <section className="border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Alerts</h2>
@@ -289,16 +288,48 @@ export default function HomePage() {
 
           <Badge>Online</Badge>
 
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <Button size="sm" variant="outlined">
-                @thevipinmishra
-              </Button>
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <p className="text-sm text-gray-600">Vipin Mishra</p>
-            </HoverCardContent>
-          </HoverCard>
+          <div>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Button size="sm" variant="outlined">
+                  @thevipinmishra
+                </Button>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <p>Vipin Mishra</p>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+
+          <div>
+            <Menu>
+              <MenuTrigger>
+                <Avatar src="https://avatar.iran.liara.run/public/47" />
+              </MenuTrigger>
+              <MenuContent>
+                <MenuItem value="profile">Profile</MenuItem>
+                <MenuItem value="settings">Settings</MenuItem>
+                <MenuItem value="logout">Logout</MenuItem>
+              </MenuContent>
+            </Menu>
+          </div>
+
+          <div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button size="sm" variant="outlined">
+                  Popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <form className="space-y-4">
+                  <Input />
+                  <Input />
+                  <Button>Login</Button>
+                </form>
+              </PopoverContent>
+            </Popover>
+          </div>
         </section>
       </div>
     </main>
