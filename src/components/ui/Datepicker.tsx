@@ -5,13 +5,13 @@ import { Portal } from "@ark-ui/react";
 import {
   type DatePickerRootProps as PrimitiveRootProps,
   DatePicker as Primitive,
-  type UseDatePickerProps,
+  type UseDatePickerContext,
 } from "@ark-ui/react/date-picker";
 import { CalendarBlank } from "@phosphor-icons/react";
 import { inputVariants } from "./Input";
 import { CalendarContent } from "./Calendar";
 import { popoverVariants } from "./Popover";
-import { DateFormatter } from "@internationalized/date";
+import { useMemo } from "react";
 
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -20,12 +20,15 @@ const DEFAULT_CONFIG = {
   placeholder: "Select",
 } as const;
 
-// Types
+/**
+ * Props for the DatePicker root component
+ * @extends PrimitiveRootProps from @ark-ui/react/date-picker
+ */
 interface DatePickerRootProps extends PrimitiveRootProps {
+  /** Placeholder text when no date is selected */
   placeholder?: string;
 }
 
-// Styles
 const datePickerVariants = tv({
   slots: {
     content: [
@@ -39,17 +42,14 @@ const datePickerVariants = tv({
   },
 });
 
-// Utility function for date formatting
-const createDateFormatter = (locale: string, timeZone: string) => {
-  const opts: Intl.DateTimeFormatOptions = {
-    timeZone,
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  };
-  return new DateFormatter(locale, opts);
-};
-
+/**
+ * A date picker component that supports single, multiple, and range selection modes.
+ * @param props.timeZone - The timezone to use for date operations (default: 'UTC')
+ * @param props.locale - The locale to use for formatting (default: 'en-US')
+ * @param props.format - Optional custom date formatting function
+ * @param props.selectionMode - 'single' | 'multiple' | 'range'
+ * @param props.placeholder - Text to show when no date is selected
+ */
 const DatePicker = ({
   className,
   timeZone = DEFAULT_CONFIG.timeZone,
@@ -59,26 +59,30 @@ const DatePicker = ({
   placeholder = DEFAULT_CONFIG.placeholder,
   ...rest
 }: DatePickerRootProps) => {
-  const formatter = createDateFormatter(locale, timeZone);
+  const formatDateString = useMemo(
+    () => (context: UseDatePickerContext) => {
+      if (!context.value) return "";
+      if (!format) {
+        if (selectionMode === "multiple") {
+          return context.valueAsString.map((date) => date).join(", ");
+        }
 
-  const formatValue = (value: UseDatePickerProps["value"]) => {
-    if (!value) return "";
-    const formattedDates = value.map(
-      (date) =>
+        if (selectionMode === "range") {
+          return context.valueAsString.map((date) => date).join(" - ");
+        }
+
+        return context.valueAsString[0];
+      }
+
+      return context.value.map((date) =>
         format?.(date, {
           locale,
           timeZone,
-        }) ?? formatter.format(date.toDate(timeZone))
-    );
-
-    if (selectionMode === "multiple") {
-      return formattedDates.join(", ");
-    }
-    if (selectionMode === "range") {
-      return formattedDates.join(" - ");
-    }
-    return formattedDates[0];
-  };
+        })
+      );
+    },
+    [format, selectionMode, locale, timeZone]
+  );
 
   return (
     <Primitive.Root
@@ -97,7 +101,7 @@ const DatePicker = ({
                 className={datePickerVariants().value()}
                 data-placeholder={context.valueAsString.length === 0}
               >
-                {formatValue(context.value) || placeholder}
+                {formatDateString(context) || placeholder}
               </span>
               <CalendarBlank className="size-5 shrink-0" />
             </Primitive.Trigger>
