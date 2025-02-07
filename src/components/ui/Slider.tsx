@@ -14,12 +14,15 @@ import { labelVariants } from "./Label";
 const sliderVariants = tv({
   slots: {
     root: "flex flex-col gap-2",
-    control: "flex items-center",
-    track: "bg-secondary w-full h-2 rounded-md",
-    range: "bg-primary h-2 rounded-md",
+    control:
+      "flex data-[orientation=vertical]:flex-col items-center data-[orientation=vertical]:w-max",
+    track:
+      "bg-secondary   rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
+    range:
+      "bg-primary data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",
     thumb:
       "bg-background border-2 border-primary size-5 rounded-full block ring-offset-background transition-colors data-[focus]:outline-none data-[focus]:ring-2 data-[focus]:ring-ring data-[focus]:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-      valueText: ['text-sm font-medium']
+    valueText: ["text-sm font-medium"],
   },
 });
 
@@ -35,13 +38,15 @@ const SliderLabel = (props: SliderLabelProps) => {
 
 const SliderValueText = (props: SliderValueTextProps) => {
   const { className, ...rest } = props;
-  return <SliderPrimitive.ValueText className={sliderVariants().valueText({className})} {...rest} />;
+  return (
+    <SliderPrimitive.ValueText
+      className={sliderVariants().valueText({ className })}
+      {...rest}
+    />
+  );
 };
 
-const SliderControl = React.forwardRef<
-  React.ElementRef<typeof SliderPrimitive.HiddenInput>,
-  SliderControlProps
->((props, ref) => {
+const SliderControl = (props: SliderControlProps) => {
   const { className, ...rest } = props;
   return (
     <SliderPrimitive.Control className={sliderVariants().control()} {...rest}>
@@ -56,14 +61,14 @@ const SliderControl = React.forwardRef<
               key={`slider-thumb-${index}`}
               className={sliderVariants().thumb()}
             >
-              <SliderPrimitive.HiddenInput ref={ref} />
+              <SliderPrimitive.HiddenInput />
             </SliderPrimitive.Thumb>
           ))
         }
       </SliderPrimitive.Context>
     </SliderPrimitive.Control>
   );
-});
+};
 
 const SliderContext = SliderPrimitive.Context;
 

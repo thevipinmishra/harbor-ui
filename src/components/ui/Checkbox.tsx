@@ -31,10 +31,7 @@ interface CheckboxProps extends CheckboxRootProps {
   label: string;
 }
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.HiddenInput>,
-  CheckboxProps
->((props, ref) => {
+const Checkbox = (props: CheckboxProps) => {
   const { label, checked, ...rest } = props;
 
   return (
@@ -64,20 +61,22 @@ const Checkbox = React.forwardRef<
           <Minus weight="bold" />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Control>
-      <CheckboxPrimitive.HiddenInput ref={ref} />
+      <CheckboxPrimitive.HiddenInput />
     </CheckboxPrimitive.Root>
   );
-});
+};
 
 Checkbox.displayName = "Checkbox";
 
-const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(
-  (props, ref) => {
-    const { className, ...rest } = props;
-    return <CheckboxPrimitive.Group className={checkboxVariants().group()} {...rest} />;
-  },
-);
+const CheckboxGroup = (props: CheckboxGroupProps) => {
+  const { className, ...rest } = props;
+  return (
+    <CheckboxPrimitive.Group className={checkboxVariants().group()} {...rest} />
+  );
+};
+
+const CheckboxContext = CheckboxPrimitive.Context;
 
 CheckboxGroup.displayName = "CheckboxGroup";
 
-export { Checkbox, CheckboxGroup };
+export { Checkbox, CheckboxGroup, CheckboxContext };

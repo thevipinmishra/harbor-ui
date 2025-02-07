@@ -16,7 +16,7 @@ const buttonGroupVariants = tv({
 export const buttonVariants = tv({
   base: [
     "select-none inline-flex text-sm no-underline items-center rounded cursor-default justify-center gap-2",
-    "disabled:opacity-50 disabled:pointer-events-none",
+    "disabled:opacity-50 disabled:bg-muted disabled:pointer-events-none",
     "focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
     "motion-safe:transition-[opacity,background-color,color]",
     "[&_svg]:shrink-0",
@@ -68,60 +68,54 @@ interface ButtonProps
   loading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
-      className,
-      size,
-      variant,
-      children,
-      loading = false,
-      type = "button",
-      disabled,
-      fullWidth,
-      ...rest
-    } = props;
+const Button = (props: ButtonProps) => {
+  const {
+    className,
+    size,
+    variant,
+    children,
+    loading = false,
+    type = "button",
+    disabled,
+    fullWidth,
+    ...rest
+  } = props;
 
-    const staticClass = "hbui-button";
-    return (
-      <ark.button
-        ref={ref}
-        disabled={loading || disabled}
-        className={cn(
-          buttonVariants({
-            className,
-            size,
-            variant,
-            fullWidth,
-          }),
-          staticClass
-        )}
-        type={type}
-        {...rest}
-      >
-        {loading ? <SpinnerGap className="animate-spin" /> : null}
-        {children}
-      </ark.button>
-    );
-  }
-);
+  const staticClass = "hbui-button";
+  return (
+    <ark.button
+      disabled={loading || disabled}
+      className={cn(
+        buttonVariants({
+          className,
+          size,
+          variant,
+          fullWidth,
+        }),
+        staticClass
+      )}
+      type={type}
+      {...rest}
+    >
+      {loading ? <SpinnerGap className="animate-spin" /> : null}
+      {children}
+    </ark.button>
+  );
+};
 
 Button.displayName = "Button";
 
-const ButtonGroup = React.forwardRef<HTMLDivElement, HTMLArkProps<"div">>(
-  (props, ref) => {
-    const { className, ...rest } = props;
-    return (
-      <ark.div
-        ref={ref}
-        className={buttonGroupVariants({
-          className,
-        })}
-        {...rest}
-      />
-    );
-  }
-);
+const ButtonGroup = (props: HTMLArkProps<"div">) => {
+  const { className, ...rest } = props;
+  return (
+    <ark.div
+      className={buttonGroupVariants({
+        className,
+      })}
+      {...rest}
+    />
+  );
+};
 
 ButtonGroup.displayName = "ButtonGroup";
 

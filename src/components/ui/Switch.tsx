@@ -25,10 +25,7 @@ const switchVariants = tv({
   },
 });
 
-const Switch = React.forwardRef<
-  React.ElementRef<typeof SwitchPrimitive.HiddenInput>,
-  SwitchProps
->((props, ref) => {
+const Switch = (props: SwitchProps) => {
   const { className, label, ...rest } = props;
   return (
     <SwitchPrimitive.Root className={switchVariants().root()} {...rest}>
@@ -45,10 +42,10 @@ const Switch = React.forwardRef<
           {label}
         </SwitchPrimitive.Label>
       ) : null}
-      <SwitchPrimitive.HiddenInput ref={ref} />
+      <SwitchPrimitive.HiddenInput />
     </SwitchPrimitive.Root>
   );
-});
+};
 
 Switch.displayName = "Switch";
 

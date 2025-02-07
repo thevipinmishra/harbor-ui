@@ -1,3 +1,5 @@
+"use client";
+
 import { tv } from "@/lib/tv.config";
 import {
   type MenuCheckboxItemProps,
@@ -5,46 +7,52 @@ import {
   type MenuItemGroupProps,
   type MenuItemProps,
   Menu as MenuPrimitive,
+  type MenuTriggerItemProps,
 } from "@ark-ui/react/menu";
 import { popoverVariants } from "./Popover";
 import React from "react";
+import { Portal } from "@ark-ui/react";
 
 const Menu = MenuPrimitive.Root;
 const MenuTrigger = MenuPrimitive.Trigger;
+const MenuContextTrigger = MenuPrimitive.ContextTrigger;
 
 const menuVariants = tv({
   slots: {
-    content: [popoverVariants().content(), "flex flex-col gap-1 outline-none p-1"],
+    content: [
+      popoverVariants().content(),
+      "flex flex-col gap-1 outline-none p-1",
+    ],
     positioner: [""],
     separator: ["border-border -px-[inherit]"],
     item: [
       "flex w-full px-3 py-1.5 cursor-default text-sm text-foreground bg-background items-center justify-start gap-3 rounded-md",
       "data-[highlighted]:bg-secondary",
       "motion-safe:transition-colors",
+      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],
   },
 });
 
-const MenuContent = React.forwardRef<
-  React.ElementRef<typeof MenuPrimitive.Content>,
-  MenuContentProps
->((props, ref) => {
+const MenuContent = (props: MenuContentProps) => {
   const { className, ...rest } = props;
   return (
     <MenuPrimitive.Positioner className={menuVariants().positioner()}>
-      <MenuPrimitive.Content ref={ref} className={menuVariants().content()} {...rest} />
+      <MenuPrimitive.Content
+        className={menuVariants().content()}
+        {...rest}
+      />
     </MenuPrimitive.Positioner>
   );
-});
+};
 MenuContent.displayName = "MenuContent";
 
-const MenuItem = React.forwardRef<
-  React.ElementRef<typeof MenuPrimitive.Item>,
-  MenuItemProps
->((props, ref) => {
+const MenuItem = (props: MenuItemProps) => {
   const { className, ...rest } = props;
-  return <MenuPrimitive.Item ref={ref} className={menuVariants().item()} {...rest} />;
-});
+  return (
+    <MenuPrimitive.Item className={menuVariants().item()} {...rest} />
+  );
+};
 MenuItem.displayName = "MenuItem";
 
 const MenuItemGroup = (props: MenuItemGroupProps) => {
@@ -70,6 +78,21 @@ const MenuSeparator = (props: MenuItemGroupProps) => {
 const MenuCheckboxItem = (props: MenuCheckboxItemProps) => {
   return <MenuPrimitive.CheckboxItem {...props} />;
 };
+const MenuSubTrigger = (props: MenuTriggerItemProps) => {
+  const { className, ...rest } = props;
+  return (
+    <MenuPrimitive.TriggerItem className={menuVariants().item()} {...rest} />
+  );
+};
+
+const MenuSubContent = (props: MenuContentProps) => {
+  const { className, ...rest } = props;
+  return (
+    <Portal>
+      <MenuContent {...rest} />
+    </Portal>
+  );
+};
 
 const MenuContext = MenuPrimitive.Context;
 
@@ -83,4 +106,7 @@ export {
   MenuSeparator,
   MenuCheckboxItem,
   MenuContext,
+  MenuContextTrigger,
+  MenuSubTrigger,
+  MenuSubContent,
 };

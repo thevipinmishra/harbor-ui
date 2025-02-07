@@ -12,7 +12,7 @@ import React from "react";
 
 const numberInputVariants = tv({
   slots: {
-    root: ["flex flex-col gap-2",],
+    root: ["flex flex-col gap-2"],
     control: [
       "border border-input group grid grid-cols-[1fr_2rem] grid-rows-2 shadow-sm text-sm rounded data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:ring-offset-1 data-[focus]:ring-offset-background",
       "data-[invalid]:border-destructive data-[invalid]:data-[focus]:ring-destructive/50",
@@ -42,21 +42,17 @@ const numberInputVariants = tv({
   },
 });
 
-const NumberInput = React.forwardRef<
-  React.ElementRef<typeof NumberInputPrimitive.Root>,
-  NumberInputRootProps
->((props, ref) => {
+const NumberInput = (props: NumberInputRootProps) => {
   const { className, ...rest } = props;
   return (
     <NumberInputPrimitive.Root
-      ref={ref}
       className={numberInputVariants().root({
         className,
       })}
       {...rest}
     />
   );
-});
+};
 NumberInput.displayName = "NumberInput";
 
 const NumberInputLabel = (props: NumberInputLabelProps) => {
@@ -71,30 +67,32 @@ const NumberInputLabel = (props: NumberInputLabelProps) => {
   );
 };
 
-const NumberInputField = React.forwardRef<
-  React.ElementRef<typeof NumberInputPrimitive.Input>,
-  NumberInputInputProps & { size?: "sm" | "md" | "lg" }
->((props, ref) => {
+const NumberInputField = (
+  props: NumberInputInputProps & { size?: "sm" | "md" | "lg" }
+) => {
   const { className, size = "md", ...rest } = props;
   return (
     <NumberInputPrimitive.Control className={numberInputVariants().control()}>
       <NumberInputPrimitive.Input
-        ref={ref}
         className={numberInputVariants().input({
           className,
           size,
         })}
         {...rest}
       />
-      <NumberInputPrimitive.IncrementTrigger className={numberInputVariants().trigger()}>
+      <NumberInputPrimitive.IncrementTrigger
+        className={numberInputVariants().trigger()}
+      >
         <CaretUp />
       </NumberInputPrimitive.IncrementTrigger>
-      <NumberInputPrimitive.DecrementTrigger className={numberInputVariants().trigger()}>
+      <NumberInputPrimitive.DecrementTrigger
+        className={numberInputVariants().trigger()}
+      >
         <CaretDown />
       </NumberInputPrimitive.DecrementTrigger>
     </NumberInputPrimitive.Control>
   );
-});
+};
 NumberInputField.displayName = "NumberInputField";
 
 export { NumberInput, NumberInputLabel, NumberInputField };

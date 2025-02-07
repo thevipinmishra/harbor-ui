@@ -39,10 +39,7 @@ const dialogVariants = tv({
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  DialogContentProps
->((props, ref) => {
+const DialogContent = (props: DialogContentProps) => {
   const { className, children, ...rest } = props;
   return (
     <Portal>
@@ -53,7 +50,6 @@ const DialogContent = React.forwardRef<
             className,
           })}
           {...rest}
-          ref={ref}
         >
           {children}
           <DialogPrimitive.CloseTrigger className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
@@ -64,7 +60,7 @@ const DialogContent = React.forwardRef<
       </DialogPrimitive.Positioner>
     </Portal>
   );
-});
+};
 
 DialogContent.displayName = "DialogContent";
 

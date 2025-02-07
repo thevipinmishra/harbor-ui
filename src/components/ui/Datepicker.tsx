@@ -1,11 +1,12 @@
 "use client";
 
 import { cn, tv } from "@/lib/tv.config";
-import { Portal } from "@ark-ui/react";
+import { Portal, useLocaleContext } from "@ark-ui/react";
 import {
   type DatePickerRootProps as PrimitiveRootProps,
   DatePicker as Primitive,
   type UseDatePickerContext,
+  parseDate,
 } from "@ark-ui/react/date-picker";
 import { CalendarBlank } from "@phosphor-icons/react";
 import { inputVariants } from "./Input";
@@ -13,19 +14,7 @@ import { CalendarContent } from "./Calendar";
 import { popoverVariants } from "./Popover";
 import { useMemo } from "react";
 
-// Default configuration
-const DEFAULT_CONFIG = {
-  timeZone: "UTC",
-  locale: "en-US",
-  placeholder: "Select",
-} as const;
-
-/**
- * Props for the DatePicker root component
- * @extends PrimitiveRootProps from @ark-ui/react/date-picker
- */
 interface DatePickerRootProps extends PrimitiveRootProps {
-  /** Placeholder text when no date is selected */
   placeholder?: string;
 }
 
@@ -42,23 +31,16 @@ const datePickerVariants = tv({
   },
 });
 
-/**
- * A date picker component that supports single, multiple, and range selection modes.
- * @param props.timeZone - The timezone to use for date operations (default: 'UTC')
- * @param props.locale - The locale to use for formatting (default: 'en-US')
- * @param props.format - Optional custom date formatting function
- * @param props.selectionMode - 'single' | 'multiple' | 'range'
- * @param props.placeholder - Text to show when no date is selected
- */
 const DatePicker = ({
   className,
-  timeZone = DEFAULT_CONFIG.timeZone,
-  locale = DEFAULT_CONFIG.locale,
+  timeZone = "UTC",
   format,
   selectionMode,
-  placeholder = DEFAULT_CONFIG.placeholder,
+  placeholder,
   ...rest
 }: DatePickerRootProps) => {
+  const { locale } = useLocaleContext();
+
   const formatDateString = useMemo(
     () => (context: UseDatePickerContext) => {
       if (!context.value) return "";
@@ -117,4 +99,4 @@ const DatePicker = ({
   );
 };
 
-export { DatePicker };
+export { DatePicker, parseDate };

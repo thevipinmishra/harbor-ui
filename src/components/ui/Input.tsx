@@ -12,7 +12,7 @@ export interface InputProps
 
 export const inputVariants = tv({
   base: [
-    "border w-full outline-0 text-foreground bg-background rounded border-input ",
+    "border w-full shadow-sm shadow-input/40 outline-0 text-foreground bg-background rounded border-input ",
     "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
     "data-[invalid]:text-destructive",
@@ -22,7 +22,7 @@ export const inputVariants = tv({
   ],
   variants: {
     size: {
-      sm: [fieldHeight.sm, "text-sm px-2 py-1"],
+      sm: [fieldHeight.sm, "text-sm px-2.5 py-1"],
       md: [fieldHeight.md, "text-sm px-3 py-1.5"],
       lg: [fieldHeight.lg, "text-base px-3.5 py-1.5"],
     },

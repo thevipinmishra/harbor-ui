@@ -76,19 +76,14 @@ interface SelectContentProps extends SelectPrimitiveContentProps {
   portalProps?: PortalProps;
 }
 
-const Select = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Root>,
-  SelectProps
->((props, ref) => {
+const Select = (props: SelectProps) => {
   const {
     className,
     children,
-
     ...rest
   } = props;
   return (
     <SelectPrimitive.Root
-      ref={ref}
       className={selectVariants().root({
         className,
       })}
@@ -98,7 +93,7 @@ const Select = React.forwardRef<
       <SelectPrimitive.HiddenSelect />
     </SelectPrimitive.Root>
   );
-});
+};
 
 Select.displayName = "Select";
 
@@ -107,17 +102,13 @@ const SelectLabel = (props: SelectLabelProps) => {
   return <SelectPrimitive.Label className={labelVariants()} {...rest} />;
 };
 
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  SelectTriggerProps
->((props, ref) => {
+const SelectTrigger = (props: SelectTriggerProps) => {
   const { className, placeholder = "Select", ...rest } = props;
   return (
     <SelectPrimitive.Control className={selectVariants().control()}>
       <SelectPrimitive.Context>
         {(context) => (
           <SelectPrimitive.Trigger
-            ref={ref}
             className={selectVariants().trigger()}
             {...rest}
           >
@@ -134,38 +125,30 @@ const SelectTrigger = React.forwardRef<
       </SelectPrimitive.Context>
     </SelectPrimitive.Control>
   );
-});
+};
 
 SelectTrigger.displayName = "SelectTrigger";
 
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  SelectContentProps
->((props, ref) => {
+const SelectContent = (props: SelectContentProps) => {
   const { className, portalProps, ...rest } = props;
   return (
     <Portal {...portalProps}>
       <SelectPrimitive.Positioner className={selectVariants().positioner()}>
         <SelectPrimitive.Content
-          ref={ref}
           className={selectVariants().content()}
           {...rest}
         />
       </SelectPrimitive.Positioner>
     </Portal>
   );
-});
+};
 
 SelectContent.displayName = "SelectContent";
 
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  SelectPrimitiveProps
->((props, ref) => {
+const SelectItem = (props: SelectPrimitiveProps) => {
   const { className, children, item, ...rest } = props;
   return (
     <SelectPrimitive.Item
-      ref={ref}
       item={item}
       className={selectVariants().item({
         className,
@@ -180,7 +163,7 @@ const SelectItem = React.forwardRef<
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );
-});
+};
 
 SelectItem.displayName = "SelectItem";
 
