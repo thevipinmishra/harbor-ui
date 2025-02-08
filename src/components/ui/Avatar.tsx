@@ -14,7 +14,7 @@ const avatarVariants = tv({
     root: " shrink-0  bg-muted rounded-full border border-background",
     fallback:
       "size-full rounded-[inherit] text-muted-foreground flex justify-center items-center text-sm data-[state=hidden]:hidden",
-    image: "size-full rounded-[inherit]",
+    image: "size-full rounded-[inherit] object-cover",
   },
   variants: {
     size: {
