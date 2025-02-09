@@ -15,7 +15,7 @@ const buttonGroupVariants = tv({
 
 export const buttonVariants = tv({
   base: [
-    "select-none inline-flex text-sm no-underline items-center rounded cursor-default justify-center gap-2",
+    "select-none inline-flex text-sm no-underline items-center rounded justify-center gap-2",
     "disabled:opacity-50 disabled:bg-muted disabled:pointer-events-none",
     "focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
     "motion-safe:transition-[opacity,background-color,color]",

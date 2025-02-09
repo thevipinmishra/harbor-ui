@@ -15,7 +15,7 @@ const checkboxVariants = tv({
     root: ["flex items-baseline gap-2"],
     group: ["space-y-4"],
     control: [
-      "size-5 shrink-0 rounded border flex justify-center items-center border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary",
+      "size-5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary",
       "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary",
       "data-[focus-visible]:ring-1 data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-1 data-[focus-visible]:ring-offset-background",
       "data-[invalid]:data-[state=checked]:border-destructive data-[invalid]:data-[state=checked]:bg-destructive data-[invalid]:data-[focus-visible]:ring-destructive/50",
@@ -43,7 +43,7 @@ const Checkbox = (props: CheckboxProps) => {
       {label ? (
         <CheckboxPrimitive.Label
           className={labelVariants({
-            className: "order-last leading-relaxed text-foreground",
+            className: "order-last leading-relaxed cursor-pointer data-[disabled]:pointer-events-none text-foreground",
           })}
         >
           {label}

@@ -15,7 +15,7 @@
     "@ark-ui/react": "^4.9.1",
     "@base-ui-components/react": "1.0.0-alpha.5",
     "@internationalized/date": "^3.7.0",
-    "@mantine/form": "^7.16.2",
+    "@mantine/form": "^7.16.3",
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/colors": "^3.0.0",
     "clsx": "^2.1.1",

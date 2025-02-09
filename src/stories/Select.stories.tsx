@@ -29,16 +29,18 @@ A select component allows users to choose a single option from a dropdown list.
       },
     },
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Select>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Select>;
 
 const fruits = createListCollection({
   items: ["Apple", "Banana", "Orange", "Mango", "Pineapple"],
 });
 
 export const Basic: Story = {
+  args: {},
   render: () => (
     <Select collection={fruits} className="w-[200px]">
       <SelectTrigger />
@@ -65,6 +67,7 @@ const groupedItems = createListCollection({
 });
 
 export const Grouped: Story = {
+  args: {},
   render: () => (
     <Select collection={groupedItems} className="w-[200px]">
       <SelectTrigger placeholder="Select framework" />
@@ -95,6 +98,7 @@ export const Grouped: Story = {
 };
 
 export const Disabled: Story = {
+  args: {},
   render: () => (
     <Select collection={fruits} className="w-[200px]" disabled>
       <SelectTrigger />
@@ -120,6 +124,7 @@ const fruitsWithDisabled = createListCollection({
 });
 
 export const WithDisabledItems: Story = {
+  args: {},
   render: () => (
     <Select collection={fruitsWithDisabled} className="w-[200px]">
       <SelectTrigger />

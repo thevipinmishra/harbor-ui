@@ -27,7 +27,7 @@ const dialogVariants = tv({
       "fixed inset-0 flex justify-center items-center p-4 lg:p-10 z-50",
     ],
     content: [
-      "bg-background relative shadow-md grid gap-2 p-4 lg:p-5 rounded w-full lg:max-w-lg",
+      "bg-background relative shadow-md grid gap-2 p-4 lg:p-5 rounded w-full md:max-w-md",
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:slide-out-to-bottom-1",
     ],
@@ -70,7 +70,7 @@ const DialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col space-y-1.5 text-center sm:text-left",
+      "flex flex-col space-y-1.5",
       className
     )}
     {...props}

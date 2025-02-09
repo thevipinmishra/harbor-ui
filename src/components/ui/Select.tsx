@@ -23,7 +23,7 @@ const selectVariants = tv({
   slots: {
     root: "flex flex-col gap-2 w-full items-start",
     trigger: [
-      "border w-full flex justify-between items-center text-sm outline-0 cursor-default text-foreground rounded border-border px-2 py-1",
+      "border w-full flex justify-between items-center text-sm outline-0  text-foreground rounded border-border px-2 py-1",
       "hover:border-border-hover motion-safe:transition-all",
       "data-invalid:text-error",
       "disabled:opacity-50 disabled:pointer-events-none",
@@ -44,7 +44,7 @@ const selectVariants = tv({
     indicator: ["text-muted-foreground data-[invalid]:text-destructive"],
     itemIndicator: [""],
     item: [
-      "text-sm rounded-sm transition-colors cursor-default select-none flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
+      "text-sm rounded-sm transition-colors cursor-pointer select-none flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
       "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
     ],

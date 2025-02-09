@@ -9,33 +9,22 @@ import {
 } from "@ark-ui/react/pagination";
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";
 import { buttonVariants } from "./Button";
-import React from "react";
+import { inputVariants } from "./Input";
 
 const paginationVariants = tv({
   slots: {
     root: "flex gap-1 items-end",
-    item: [
-      buttonVariants({
-        variant: "outlined",
-        size: "sm",
-      }),
-      "tabular-nums px-2.5 font-medium",
-    ],
   },
 });
 
-const Pagination = React.forwardRef<
-  React.ElementRef<typeof PaginationPrimitive.Root>,
-  PaginationRootProps
->((props, ref) => {
+const Pagination = (props: PaginationRootProps) => {
   return (
     <PaginationPrimitive.Root
-      ref={ref}
       className={paginationVariants().root()}
       {...props}
     />
   );
-});
+};
 Pagination.displayName = "Pagination";
 
 const PaginationPrevTrigger = (props: PaginationPrevTriggerProps) => {
@@ -46,7 +35,7 @@ const PaginationPrevTrigger = (props: PaginationPrevTriggerProps) => {
           variant: "plain",
           size: "sm",
         }),
-        "px-2.5",
+        "px-2.5"
       )}
       {...props}
     >
@@ -63,7 +52,7 @@ const PaginationNextTrigger = (props: PaginationNextTriggerProps) => {
           variant: "plain",
           size: "sm",
         }),
-        "px-2.5",
+        "px-2.5"
       )}
       {...props}
     >
@@ -72,18 +61,18 @@ const PaginationNextTrigger = (props: PaginationNextTriggerProps) => {
   );
 };
 
-const PaginationControls = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->((props, ref) => {
+const PaginationControls = () => {
   return (
     <PaginationPrimitive.Context>
       {(pagination) => (
-        <div ref={ref} {...props}>
+        <>
           {pagination.pages.map((page, index) =>
             page.type === "page" ? (
               <PaginationPrimitive.Item
-                className={paginationVariants().item()}
+                className={buttonVariants({
+                  size: "sm",
+                  variant: pagination.page === page.value ? "filled" : "outlined",
+                })}
                 key={index}
                 {...page}
               >
@@ -97,13 +86,18 @@ const PaginationControls = React.forwardRef<
               >
                 <DotsThree />
               </PaginationPrimitive.Ellipsis>
-            ),
+            )
           )}
-        </div>
+        </>
       )}
     </PaginationPrimitive.Context>
   );
-});
+};
 PaginationControls.displayName = "PaginationControls";
 
-export { Pagination, PaginationPrevTrigger, PaginationNextTrigger, PaginationControls };
+export {
+  Pagination,
+  PaginationPrevTrigger,
+  PaginationNextTrigger,
+  PaginationControls,
+};

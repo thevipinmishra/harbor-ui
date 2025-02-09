@@ -40,17 +40,17 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-4">
       <NumberInput defaultValue={'10'}>
         <NumberInputLabel>Small</NumberInputLabel>
-        <NumberInputField />
+        <NumberInputField size='sm' />
       </NumberInput>
       
       <NumberInput defaultValue={'10'}>
         <NumberInputLabel>Medium</NumberInputLabel>
-        <NumberInputField />
+        <NumberInputField size='md' />
       </NumberInput>
       
       <NumberInput defaultValue={'10'}>
         <NumberInputLabel>Large</NumberInputLabel>
-        <NumberInputField />
+        <NumberInputField size='lg' />
       </NumberInput>
     </div>
   ),

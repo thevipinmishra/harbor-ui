@@ -9,6 +9,11 @@ import { CaretDown, CaretUp } from "@phosphor-icons/react";
 import { labelVariants } from "./Label";
 import { fieldHeight } from "@/utils/styles";
 import React from "react";
+import type { InputProps } from "./Input";
+
+interface NumberInputFieldProps extends Omit<NumberInputInputProps, 'size'> {
+    size?: InputProps["size"];
+}
 
 const numberInputVariants = tv({
   slots: {
@@ -68,9 +73,9 @@ const NumberInputLabel = (props: NumberInputLabelProps) => {
 };
 
 const NumberInputField = (
-  props: NumberInputInputProps & { size?: "sm" | "md" | "lg" }
+  props: NumberInputFieldProps
 ) => {
-  const { className, size = "md", ...rest } = props;
+  const { className, size, ...rest } = props;
   return (
     <NumberInputPrimitive.Control className={numberInputVariants().control()}>
       <NumberInputPrimitive.Input

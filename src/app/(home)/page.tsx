@@ -1,19 +1,22 @@
 "use client";
 
-
-import { Calendar } from "@/components/ui/Calendar";
-
+import {
+  Pagination,
+  PaginationControls,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+} from "@/components/ui/Pagination";
 
 export default function HomePage() {
   return (
     <main className="py-10">
       <div className="p-6">
-        <Calendar />
+        <Pagination count={50}>
+          <PaginationPrevTrigger />
+          <PaginationControls />
+          <PaginationNextTrigger />
+        </Pagination>
       </div>
-
-     
-
-     
     </main>
   );
 }

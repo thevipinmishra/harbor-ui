@@ -15,13 +15,13 @@ export const badgeVariants = tv({
     variant: {
       filled: ["bg-primary text-primary-foreground"],
       outlined: ["border bg-background border-primary text-foreground"],
-      plain: ["bg-muted text-muted-foreground"],
+      plain: ["bg-secondary text-foreground"],
       destructive: ["bg-destructive text-destructive-foreground"],
     },
     size: {
-      sm: ["px-2 py-0.5"],
-      md: ["px-3 py-1"],
-      lg: ["px-4 py-1.5"],
+      sm: ["px-2.5 py-1"],
+      md: ["px-3 py-1.5"],
+      lg: ["px-4 py-2"],
     },
   },
   defaultVariants: {

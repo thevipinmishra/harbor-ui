@@ -19,7 +19,7 @@ const accordionVariants = tv({
       "data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:z-[1] overflow-hidden",
     ],
     itemTrigger: [
-      "font-medium text-left w-full text-sm flex items-center justify-between gap-4 cursor-default p-3 text-foreground",
+      "font-medium text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
       "outline-none",
     ],
     itemContent: [
