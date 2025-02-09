@@ -34,7 +34,7 @@ export const Default: Story = {
 
 export const Placements: Story = {
   render: () => (
-    <div className="flex gap-4 flex-wrap">
+    <div className="flex flex-wrap gap-4 justify-center">
       {(["top", "bottom", "left", "right"]).map((placement) => (
         // @ts-ignore
         <Tooltip key={placement} positioning={{ placement }}>
@@ -69,7 +69,7 @@ export const CustomWidth: Story = {
       <TooltipTrigger asChild>
         <Button>Hover for wide tooltip</Button>
       </TooltipTrigger>
-      <TooltipContent className="max-w-[300px]">
+      <TooltipContent className="max-w-[200px] sm:max-w-[300px]">
         <p>This is a tooltip with custom width and wrapping long content. It demonstrates how tooltips can accommodate larger blocks of text.</p>
       </TooltipContent>
     </Tooltip>

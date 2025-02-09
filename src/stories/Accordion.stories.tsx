@@ -92,7 +92,7 @@ export const WithIcons: Story = {
 
 export const FAQ: Story = {
   render: () => (
-    <div className="max-w-[600px] mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full max-w-[600px] mx-auto p-4 sm:p-6 bg-white rounded-lg">
       <h2 className="text-2xl font-semibold mb-6">
         Frequently Asked Questions
       </h2>
@@ -138,7 +138,7 @@ export const FAQ: Story = {
 
 export const AccountSettings: Story = {
   render: () => (
-    <div className="max-w-[800px] mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full max-w-[800px] mx-auto p-4 sm:p-6 bg-white rounded-lg">
       <h2 className="text-2xl font-semibold mb-6">Account Settings</h2>
       <Accordion multiple defaultValue={["profile"]}>
         <AccordionItem value="profile">
@@ -155,7 +155,7 @@ export const AccountSettings: Story = {
           </AccordionItemTrigger>
           <AccordionItemContent>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Field>
                     <Label>Full Name</Label>

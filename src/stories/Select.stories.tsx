@@ -42,7 +42,7 @@ const fruits = createListCollection({
 export const Basic: Story = {
   args: {},
   render: () => (
-    <Select collection={fruits} className="w-[200px]">
+    <Select collection={fruits} className="w-full max-w-[200px]">
       <SelectTrigger />
       <SelectContent>
         {fruits.items.map((fruit) => (
@@ -69,7 +69,7 @@ const groupedItems = createListCollection({
 export const Grouped: Story = {
   args: {},
   render: () => (
-    <Select collection={groupedItems} className="w-[200px]">
+    <Select collection={groupedItems} className="w-full max-w-[200px]">
       <SelectTrigger placeholder="Select framework" />
       <SelectContent>
         <SelectItemGroup>
@@ -100,7 +100,7 @@ export const Grouped: Story = {
 export const Disabled: Story = {
   args: {},
   render: () => (
-    <Select collection={fruits} className="w-[200px]" disabled>
+    <Select collection={fruits} className="w-full max-w-[200px]" disabled>
       <SelectTrigger />
       <SelectContent>
         {fruits.items.map((fruit) => (
@@ -126,7 +126,7 @@ const fruitsWithDisabled = createListCollection({
 export const WithDisabledItems: Story = {
   args: {},
   render: () => (
-    <Select collection={fruitsWithDisabled} className="w-[200px]">
+    <Select collection={fruitsWithDisabled} className="w-full max-w-[200px]">
       <SelectTrigger />
       <SelectContent>
         {fruitsWithDisabled.items.map((fruit) => (

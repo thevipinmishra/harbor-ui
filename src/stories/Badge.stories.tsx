@@ -40,8 +40,14 @@ export const Sizes: Story = {
   ),
 };
 
-export const CustomColors: Story = {
+export const Examples: Story = {
   render: () => (
-    <Badge className="bg-blue-500 text-white">Custom Styled Badge</Badge>
+    <div className="flex gap-6">
+      <Badge variant="destructive" size="sm">3 new</Badge>
+      <Badge variant="outlined">Status</Badge>
+      <Badge variant="plain">Beta</Badge>
+      <Badge>Active</Badge>
+      <Badge variant="outlined">PRO</Badge>
+    </div>
   ),
 };

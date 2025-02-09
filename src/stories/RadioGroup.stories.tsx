@@ -50,13 +50,3 @@ export const ReadOnly: Story = {
     </RadioGroup>
   ),
 };
-
-export const WithoutLabel: Story = {
-  render: () => (
-    <RadioGroup defaultValue="1">
-      <RadioGroupItem value="1">Option 1</RadioGroupItem>
-      <RadioGroupItem value="2">Option 2</RadioGroupItem>
-      <RadioGroupItem value="3">Option 3</RadioGroupItem>
-    </RadioGroup>
-  ),
-};
