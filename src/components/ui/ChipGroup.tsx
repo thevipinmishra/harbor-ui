@@ -41,7 +41,7 @@ const ChipGroupItem = (props: ChipGroupItemProps) => {
       <ToggleGroup.Context>
         {(context) =>
           context.value.includes(value) ? (
-            <Check weight="bold" className={cn("shrink-0")} />
+            <Check weight="bold" className={cn("shrink-0 mr-1")} />
           ) : null
         }
       </ToggleGroup.Context>

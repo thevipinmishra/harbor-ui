@@ -21,7 +21,7 @@ const sliderVariants = tv({
     range:
       "bg-primary data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",
     thumb:
-      "bg-background border-2 cursor-pointer border-primary size-5 rounded-full block ring-offset-background transition-colors data-[focus]:outline-none data-[focus]:ring-2 data-[focus]:ring-ring data-[focus]:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+      "bg-background border-2 cursor-pointer border-primary size-5 rounded-full block ring-offset-background transition-colors data-focus:outline-hidden data-focus:ring-2 data-focus:ring-ring data-focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     valueText: ["text-sm font-medium"],
   },
 });

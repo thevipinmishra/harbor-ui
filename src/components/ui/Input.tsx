@@ -12,13 +12,13 @@ export interface InputProps
 
 export const inputVariants = tv({
   base: [
-    "border w-full shadow-sm shadow-input/40 outline-0 text-foreground bg-background rounded border-input ",
+    "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded border-input ",
     "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
-    "data-[invalid]:text-destructive",
+    "data-invalid:text-destructive",
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
-    "data-[invalid]:border-destructive data-[invalid]:focus:ring-destructive/50",
+    "data-invalid:border-destructive data-invalid:focus:ring-destructive/50",
   ],
   variants: {
     size: {

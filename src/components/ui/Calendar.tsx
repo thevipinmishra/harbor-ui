@@ -20,15 +20,15 @@ export const calendarVariants = tv({
     td: ["p-1"],
     cellTrigger: [
       buttonVariants({ size: "icon-md", variant: "plain" }),
-      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
-      "data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[in-range]:bg-muted",
-      "data-[range-start]:bg-primary data-[range-start]:text-primary-foreground  ",
-      "data-[range-end]:bg-primary data-[range-end]:text-primary-foreground"
+      "data-disabled:opacity-50 data-disabled:pointer-events-none",
+      "data-selected:bg-primary data-selected:text-primary-foreground data-in-range:bg-muted",
+      "data-range-start:bg-primary data-range-start:text-primary-foreground  ",
+      "data-range-end:bg-primary data-range-end:text-primary-foreground"
     ],
     cellTriggerMonthYear: [
       buttonVariants({ size: "md", variant: "plain" }),
-      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
-      "data-[selected]:bg-primary data-[selected]:text-primary-foreground w-full",
+      "data-disabled:opacity-50 data-disabled:pointer-events-none",
+      "data-selected:bg-primary data-selected:text-primary-foreground w-full",
     ],
   },
 });

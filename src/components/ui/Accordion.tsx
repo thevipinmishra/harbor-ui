@@ -16,15 +16,15 @@ const accordionVariants = tv({
     root: "border border-border rounded-md divide-y divide-border",
     item: [
       "first:rounded-t-[inherit] group relative last:rounded-b-[inherit]",
-      "data-[focus]:ring-1 data-[focus]:ring-ring data-[focus]:z-[1] overflow-hidden",
+      "data-focus:ring-1 data-focus:ring-ring data-focus:z-1 overflow-hidden",
     ],
     itemTrigger: [
-      "font-medium text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
-      "outline-none",
+      "font-medium cursor-pointer hover:underline text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
+      "outline-hidden",
     ],
     itemContent: [
       "px-3 transition-[padding-bottom] ease-linear pb-3 group-data-[state=closed]:pb-3 text-sm",
-      " data-[state=open]:motion-safe:animate-collapse-in data-[state=closed]:motion-safe:animate-collapse-out",
+      " motion-safe:data-[state=open]:animate-collapse-in motion-safe:data-[state=closed]:animate-collapse-out",
     ],
     itemIndicator: [
       "[&_svg]:size-5 flex items-center text-muted-foreground data-[state=open]:rotate-45",

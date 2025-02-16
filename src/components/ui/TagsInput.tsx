@@ -14,7 +14,7 @@ const tagsInputVariants = tv({
   slots: {
     root: ["flex flex-col gap-1"],
     control: ["border border-input p-1.5 rounded-md flex flex-wrap gap-1"],
-    input: ["outline-none text-sm"],
+    input: ["outline-hidden text-sm"],
   },
 });
 

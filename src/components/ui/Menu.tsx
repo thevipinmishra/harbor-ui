@@ -21,15 +21,15 @@ const menuVariants = tv({
   slots: {
     content: [
       popoverVariants().content(),
-      "flex flex-col gap-1 outline-none p-1",
+      "flex flex-col gap-1 outline-hidden p-1",
     ],
     positioner: [""],
     separator: ["border-border -px-[inherit]"],
     item: [
-      "flex w-full px-3 py-1.5 cursor-default text-sm text-foreground bg-background items-center justify-start gap-3 rounded-md",
-      "data-[highlighted]:bg-secondary",
+      "flex w-full px-3 py-1.5 cursor-pointer text-sm text-foreground bg-background items-center justify-start gap-3 rounded-md",
+      "data-highlighted:bg-secondary",
       "motion-safe:transition-colors",
-      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
+      "data-disabled:opacity-50 data-disabled:pointer-events-none",
     ],
   },
 });

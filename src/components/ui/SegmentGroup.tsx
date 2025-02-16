@@ -9,7 +9,7 @@ const segmentGroupVariants = tv({
   slots: {
     root: ["flex bg-muted rounded-md p-1 w-max"],
     item: [
-      "inline-flex relative text-sm z-[1] py-1.5 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center",
+      "inline-flex relative cursor-pointer text-sm z-1 py-1.5 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center",
       "data-[state=checked]:text-foreground motion-safe:transition-colors",
     ],
     itemText: ["inline-flex gap-2 justify-center items-center"],

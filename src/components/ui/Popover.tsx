@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   Popover as PopoverPrimitive,
+  type PopoverRootProps,
   type PopoverContentProps,
 } from "@ark-ui/react/popover";
 import { tv } from "@/lib/tv.config";
@@ -10,7 +11,7 @@ import { tv } from "@/lib/tv.config";
 export const popoverVariants = tv({
   slots: {
     content: [
-      "bg-popover text-popover-foreground rounded-md shadow p-4 max-h-[var(--available-height))] max-w-[var(--available-width)]",
+      "bg-popover text-popover-foreground rounded-md shadow-sm p-4 max-h-[var(--available-height))] max-w-[var(--available-width)]",
       //   In animation
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-1 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-1",
       //   Out animation
@@ -19,18 +20,30 @@ export const popoverVariants = tv({
   },
 });
 
-const Popover = PopoverPrimitive.Root;
+const Popover = (props: PopoverRootProps) => {
+  const {
+    lazyMount = true,
+    unmountOnExit = true,
+    portalled = true,
+    ...rest
+  } = props;
+  return (
+    <PopoverPrimitive.Root
+      lazyMount={lazyMount}
+      unmountOnExit={unmountOnExit}
+      portalled={portalled}
+      {...rest}
+    />
+  );
+};
+
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const PopoverContent = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
-  PopoverContentProps
->((props, ref) => {
+const PopoverContent = (props: PopoverContentProps) => {
   const { className, ...rest } = props;
   return (
     <PopoverPrimitive.Positioner>
       <PopoverPrimitive.Content
-        ref={ref}
         className={popoverVariants().content({
           className,
         })}
@@ -38,7 +51,7 @@ const PopoverContent = React.forwardRef<
       />
     </PopoverPrimitive.Positioner>
   );
-});
+};
 PopoverContent.displayName = "PopoverContent";
 
 export { Popover, PopoverTrigger, PopoverContent };

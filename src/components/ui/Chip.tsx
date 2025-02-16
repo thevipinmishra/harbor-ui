@@ -7,7 +7,7 @@ import { Check } from "@phosphor-icons/react";
 type ChipProps = ToggleRootProps & VariantProps<typeof chipVariants>;
 
 export const chipVariants = tv({
-  base: [badgeBaseVariant(), "normal-case inline-flex gap-1 items-center min-w-16"],
+  base: [badgeBaseVariant(), "normal-case cursor-pointer gap-0 inline-flex items-center justify-center min-w-16"],
   variants: {
     size: {
       sm: ["px-2 py-0.5", "h-6"],
@@ -44,7 +44,7 @@ const Chip = (props: ChipProps) => {
     >
       <Toggle.Context>
         {(context) =>
-          context.pressed ? <Check weight="bold" className={cn("shrink-0")} /> : null
+          context.pressed ? <Check weight="bold" className={cn("shrink-0 mr-1")} /> : null
         }
       </Toggle.Context>
       {children}

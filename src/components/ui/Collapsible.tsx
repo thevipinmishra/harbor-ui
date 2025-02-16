@@ -11,7 +11,7 @@ const CollapsibleContext = CollapsiblePrimitive.Context;
 const collapsibleVariants = tv({
   slots: {
     content:
-      "overflow-hidden data-[state=open]:motion-safe:animate-collapse-in data-[state=closed]:motion-safe:animate-collapse-out",
+      "overflow-hidden motion-safe:data-[state=open]:animate-collapse-in motion-safe:data-[state=closed]:animate-collapse-out",
   },
 });
 

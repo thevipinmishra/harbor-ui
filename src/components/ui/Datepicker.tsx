@@ -77,7 +77,7 @@ const DatePicker = ({
         <Primitive.Context>
           {(context) => (
             <Primitive.Trigger
-              className={cn(inputVariants(), "flex items-center gap-4")}
+              className={cn(inputVariants(), "flex cursor-pointer items-center gap-4")}
             >
               <span
                 className={datePickerVariants().value()}

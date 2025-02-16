@@ -10,7 +10,7 @@ import { tv } from "@/lib/tv.config";
 const tooltipContentVariants = tv({
   slots: {
     content: [
-      "bg-primary text-primary-foreground shadow rounded-md text-xs will-change-transform py-2 px-2.5",
+      "bg-primary text-primary-foreground shadow-sm rounded-md text-xs will-change-transform py-2 px-2.5",
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in",
       "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out ",
       "motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-bottom-1 ",

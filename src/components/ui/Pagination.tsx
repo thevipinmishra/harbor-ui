@@ -9,7 +9,6 @@ import {
 } from "@ark-ui/react/pagination";
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";
 import { buttonVariants } from "./Button";
-import { inputVariants } from "./Input";
 
 const paginationVariants = tv({
   slots: {
@@ -35,7 +34,7 @@ const PaginationPrevTrigger = (props: PaginationPrevTriggerProps) => {
           variant: "plain",
           size: "sm",
         }),
-        "px-2.5"
+        "px-2"
       )}
       {...props}
     >
@@ -52,7 +51,7 @@ const PaginationNextTrigger = (props: PaginationNextTriggerProps) => {
           variant: "plain",
           size: "sm",
         }),
-        "px-2.5"
+        "px-2"
       )}
       {...props}
     >

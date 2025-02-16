@@ -42,7 +42,7 @@ const fruits = createListCollection({
 export const Basic: Story = {
   args: {},
   render: () => (
-    <Select collection={fruits} className="w-full max-w-[200px]">
+    <Select collection={fruits} className="w-full w-[200px]">
       <SelectTrigger />
       <SelectContent>
         {fruits.items.map((fruit) => (

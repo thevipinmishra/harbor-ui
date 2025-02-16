@@ -14,12 +14,12 @@ import { labelVariants } from "./Label";
 const radioGroupVariants = tv({
   slots: {
     root: ["flex flex-col gap-2 items-start"],
-    item: ["flex items-baseline cursor-pointer gap-2", "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none"],
+    item: ["flex items-baseline cursor-pointer gap-2", "data-disabled:opacity-50 data-disabled:pointer-events-none"],
     itemText: ["text-sm text-foreground order-last"],
     itemControl: [
       "size-5 rounded-full bg-background shrink-0 border border-input motion-safe:transition-colors",
       "data-[state=checked]:border-primary data-[state=checked]:border-[6px]",
-      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
+      "data-disabled:opacity-50 data-disabled:pointer-events-none",
     ],
   },
 });

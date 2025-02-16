@@ -12,15 +12,17 @@ import { buttonVariants } from "./Button";
 const toastVariants = tv({
   slots: {
     root: [
-      "bg-background rounded shadow min-w-[280px]   ",
-      "h-[var(--height)]  opacity-[var(--opacity)] [overflow-wrap:anywhere]",
-      "p-4 relative space-y-1",
+      "bg-background rounded-lg shadow-lg min-w-[320px] max-w-[420px]",
+      "h-[var(--height)] opacity-[var(--opacity)] [overflow-wrap:anywhere]",
+      "p-4 relative border border-border",
       "scale-[var(--scale)] z-[var(--z-index)] [translate:var(--x)_var(--y)_0]",
-      "transition-all will-change-[translate,_opacity,_scale]",
+      "transition-all duration-200 will-change-[translate,_opacity,_scale]",
+      "data-[state=entering]:animate-in data-[state=closed]:animate-out",
+      "hover:shadow-md",
     ],
-    closeTrigger: ["absolute top-2 right-2 cursor-pointer"],
-    title: ['text-sm font-semibold text-foreground'],
-    description: ['text-sm text-muted-foreground'],
+    closeTrigger: ["absolute top-3 right-3 cursor-pointer opacity-70 hover:opacity-100"],
+    title: ["text-sm font-semibold text-foreground mb-1"],
+    description: ["text-sm text-muted-foreground leading-relaxed"],
   },
 });
 
@@ -28,6 +30,7 @@ const toaster = createToaster({
   placement: "top-end",
   overlap: true,
   gap: 12,
+  duration: 5000, // 5 seconds default duration
 });
 
 const Toaster = () => {

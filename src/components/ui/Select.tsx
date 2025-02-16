@@ -23,15 +23,15 @@ const selectVariants = tv({
   slots: {
     root: "flex flex-col gap-2 w-full items-start",
     trigger: [
-      "border w-full flex justify-between items-center text-sm outline-0  text-foreground rounded border-border px-2 py-1",
+      "border w-full gap-2 flex justify-between items-center cursor-pointer text-sm outline-0  text-foreground rounded border-border px-2 py-1",
       "hover:border-border-hover motion-safe:transition-all",
       "data-invalid:text-error",
       "disabled:opacity-50 disabled:pointer-events-none",
       "focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
-      "data-[invalid]:border-destructive data-[invalid]:focus:ring-destructive data-[invalid]:text-destructive",
+      "data-invalid:border-destructive data-invalid:focus:ring-destructive data-invalid:text-destructive",
     ],
     content: [
-      "outline-none !z-[51] border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(16rem,var(--available-height))] overflow-y-auto",
+      "outline-hidden z-51! border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(16rem,var(--available-height))] overflow-y-auto",
       //   In animation
       "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
       //   Out animation
@@ -41,12 +41,12 @@ const selectVariants = tv({
     control: ["w-full"],
     itemText: ["truncate"],
     valueText: ["truncate", "data-[placeholder=true]:text-muted-foreground"],
-    indicator: ["text-muted-foreground data-[invalid]:text-destructive"],
+    indicator: ["text-muted-foreground shrink-0 data-invalid:text-destructive"],
     itemIndicator: [""],
     item: [
       "text-sm rounded-sm transition-colors cursor-pointer select-none flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
-      "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[highlighted]:bg-muted",
-      "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
+      "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-highlighted:bg-muted",
+      "data-disabled:opacity-50 data-disabled:pointer-events-none",
     ],
     itemGroup: ["space-y-[2px]"],
     itemGroupLabel: ["text-sm font-semibold px-3 py-2"],

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toggle } from "@/components/ui/Toggle";
-import { Heart, Bell } from "@phosphor-icons/react";
+import { Toggle, ToggleIndicator } from "@/components/ui/Toggle";
+import { Heart, SpeakerHigh, SpeakerX } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/Button";
 
 const meta: Meta<typeof Toggle> = {
@@ -17,44 +17,29 @@ type Story = StoryObj<typeof Toggle>;
 
 export const Basic: Story = {
   args: {
-    children: "Toggle me",
+    children: <Button>Toggle me</Button>,
+    asChild: true,
   },
-};
-
-export const WithIcon: Story = {
-  render: () => (
-    <Toggle>
-      <Heart className="w-4 h-4" />
-    </Toggle>
-  ),
-};
-
-export const NotificationExample: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Toggle>
-        <Bell className="w-5 h-5" />
-      </Toggle>
-      <span className="text-sm">Toggle notifications</span>
-    </div>
-  ),
-};
-
-export const LikeButtonExample: Story = {
-  render: () => (
-    <Toggle className="flex items-center gap-2 data-[state=on]:text-red-500">
-      <Heart className="w-5 h-5" />
-      <span>Like</span>
-    </Toggle>
-  ),
 };
 
 export const WithButton: Story = {
   render: () => (
     <Toggle asChild>
       <Button>
-        <Heart className="w-4 h-4 mr-2" />
+        <Heart />
         Like
+      </Button>
+    </Toggle>
+  ),
+};
+
+export const WithIndicator: Story = {
+  render: () => (
+    <Toggle asChild>
+      <Button>
+        <ToggleIndicator fallback={<SpeakerX />}>
+          <SpeakerHigh />
+        </ToggleIndicator>
       </Button>
     </Toggle>
   ),

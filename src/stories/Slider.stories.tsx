@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   render: () => (
-    <div className="w-full max-w-[300px]">
+    <div className="w-[300px]">
       <Slider defaultValue={[50]}>
         <SliderValueText />
         <SliderControl />
@@ -31,7 +31,7 @@ export const Basic: Story = {
 
 export const Range: Story = {
   render: () => (
-    <div className="w-full max-w-[300px]">
+    <div className="w-[300px]">
       <Slider defaultValue={[20, 80]}>
         <SliderValueText />
         <SliderControl />
@@ -55,7 +55,7 @@ export const Controlled: Story = {
   render: () => {
     const [value, setValue] = useState([25]);
     return (
-      <div className="w-full max-w-[300px]">
+      <div className="w-[300px]">
         <Slider 
           value={value} 
           onValueChange={(details) => setValue(details.value)}
