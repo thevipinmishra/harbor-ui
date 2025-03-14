@@ -13,13 +13,13 @@ import { Plus } from "@phosphor-icons/react";
 
 const accordionVariants = tv({
   slots: {
-    root: "border border-border rounded-md divide-y divide-border",
+    root: " rounded-md divide-y divide-border",
     item: [
       "first:rounded-t-[inherit] group relative last:rounded-b-[inherit]",
       "data-focus:ring-1 data-focus:ring-ring data-focus:z-1 overflow-hidden",
     ],
     itemTrigger: [
-      "font-medium cursor-pointer hover:underline text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
+      "font-medium cursor-pointer text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
       "outline-hidden",
     ],
     itemContent: [

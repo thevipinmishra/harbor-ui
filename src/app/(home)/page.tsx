@@ -1,6 +1,11 @@
 "use client";
 
-import { Accordion, AccordionItem, AccordionItemContent, AccordionItemTrigger } from "@/components/ui/Accordion";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+} from "@/components/ui/Accordion";
 import { Alert } from "@/components/ui/Alert";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
@@ -10,7 +15,10 @@ import { Card, CardBody } from "@/components/ui/Card";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Chip } from "@/components/ui/Chip";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
-import { CircularProgress, CircularProgressCircle } from "@/components/ui/CircularProgress";
+import {
+  CircularProgress,
+  CircularProgressCircle,
+} from "@/components/ui/CircularProgress";
 import { DatePicker } from "@/components/ui/Datepicker";
 import {
   Dialog,
@@ -23,7 +31,12 @@ import { Field } from "@/components/ui/Field";
 import { HelperText } from "@/components/ui/HelperText";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { LinearProgress, LinearProgressTrack } from "@/components/ui/LinearProgress";
+import {
+  LinearProgress,
+  LinearProgressLabel,
+  LinearProgressTrack,
+  LinearProgressValue,
+} from "@/components/ui/LinearProgress";
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/Menu";
 import {
   NumberInput,
@@ -53,16 +66,30 @@ import {
 import { Switch } from "@/components/ui/Switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { Toggle, ToggleContext } from "@/components/ui/Toggle";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
 import ComponentBox from "@/components/web/component-box";
 import { createListCollection } from "@ark-ui/react";
 import { Bell, CreditCard, SignOut, User } from "@phosphor-icons/react";
 import { GearFine } from "@phosphor-icons/react/dist/ssr";
 
 export default function HomePage() {
-  const countries = createListCollection({ items: ["United States", "Canada", "United Kingdom", "Australia", "Germany"] });
-  const frameworks = createListCollection({ items: ["React", "Vue", "Angular", "Svelte"] });
-  
+  const countries = createListCollection({
+    items: [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "Australia",
+      "Germany",
+    ],
+  });
+  const frameworks = createListCollection({
+    items: ["React", "Vue", "Angular", "Svelte"],
+  });
+
   return (
     <main className="py-10 container space-y-10">
       {/* Basic Elements */}
@@ -96,19 +123,25 @@ export default function HomePage() {
 
       <ComponentBox title="Alert" fullWidth>
         <div className="space-y-3">
-          <Alert variant="success" title="Success" description="Your changes have been saved successfully" />
-          <Alert variant="destructive" title="Error" description="There was a problem processing your request" />
+          <Alert
+            variant="success"
+            title="Success"
+            description="Your changes have been saved successfully"
+          />
+          <Alert
+            variant="destructive"
+            title="Error"
+            description="There was a problem processing your request"
+          />
         </div>
       </ComponentBox>
 
       <ComponentBox title="Tooltip">
         <Tooltip>
-            <TooltipTrigger asChild>
-                <Button variant="outlined">Profile Settings</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-                Manage your profile preferences
-            </TooltipContent>
+          <TooltipTrigger asChild>
+            <Button variant="outlined">Profile Settings</Button>
+          </TooltipTrigger>
+          <TooltipContent>Manage your profile preferences</TooltipContent>
         </Tooltip>
       </ComponentBox>
 
@@ -158,7 +191,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox fullWidth title="NumberInput">
-        <NumberInput defaultValue={'1'}>
+        <NumberInput defaultValue={"1"}>
           <NumberInputLabel>Quantity</NumberInputLabel>
           <NumberInputField />
         </NumberInput>
@@ -190,9 +223,9 @@ export default function HomePage() {
         <div>
           <p className="text-sm mb-2 font-medium">Filter by technology:</p>
           <ChipGroup>
-              <ChipGroupItem value="react">React</ChipGroupItem>
-              <ChipGroupItem value="typescript">TypeScript</ChipGroupItem>
-              <ChipGroupItem value="node">Node.js</ChipGroupItem>
+            <ChipGroupItem value="react">React</ChipGroupItem>
+            <ChipGroupItem value="typescript">TypeScript</ChipGroupItem>
+            <ChipGroupItem value="node">Node.js</ChipGroupItem>
           </ChipGroup>
         </div>
       </ComponentBox>
@@ -216,40 +249,39 @@ export default function HomePage() {
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
           </TabsList>
           <TabsContent value="account" className="pt-4">
-            <p>
-              Manage your account settings and personal information.
-            </p>
+            <p>Manage your account settings and personal information.</p>
           </TabsContent>
           <TabsContent value="password" className="pt-4">
-            <p>
-              Change your password and security preferences.
-            </p>
+            <p>Change your password and security preferences.</p>
           </TabsContent>
           <TabsContent value="notifications" className="pt-4">
-            <p>
-              Configure email and push notification preferences.
-            </p>
+            <p>Configure email and push notification preferences.</p>
           </TabsContent>
         </Tabs>
       </ComponentBox>
-      
+
       {/* Progress Elements */}
       <ComponentBox title="Circular Progress">
         <div className="flex items-center gap-6">
           <CircularProgress value={25}>
-              <CircularProgressCircle />
+            <CircularProgressCircle />
           </CircularProgress>
           <CircularProgress value={75}>
-              <CircularProgressCircle />
+            <CircularProgressCircle />
           </CircularProgress>
         </div>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Linear Progress">
         <div className="space-y-3">
-          <p className="text-sm font-medium">Uploading file (35%)</p>
           <LinearProgress value={35}>
-              <LinearProgressTrack />
+            <div className="flex items-center gap-1">
+              <LinearProgressLabel>Uploading file</LinearProgressLabel>
+              <span>
+                (<LinearProgressValue />)
+              </span>
+            </div>
+            <LinearProgressTrack />
           </LinearProgress>
         </div>
       </ComponentBox>
@@ -257,9 +289,11 @@ export default function HomePage() {
       {/* Interactive Elements */}
       <ComponentBox title="Toggle">
         <Toggle asChild>
-          <Button><ToggleContext>
-              {(api) => api.pressed ? 'Bookmarked' : 'Bookmark'}
-          </ToggleContext></Button>
+          <Button>
+            <ToggleContext>
+              {(api) => (api.pressed ? "Bookmarked" : "Bookmark")}
+            </ToggleContext>
+          </Button>
         </Toggle>
       </ComponentBox>
 
@@ -346,76 +380,86 @@ export default function HomePage() {
 
       {/* Content Organization */}
       <ComponentBox title="Accordion" fullWidth>
-       <Accordion>
-        <AccordionItem value="1">
-            <AccordionItemTrigger>Ancient Egyptian Pyramids</AccordionItemTrigger>
+        <Accordion>
+          <AccordionItem value="1">
+            <AccordionItemTrigger>
+              Ancient Egyptian Pyramids
+            </AccordionItemTrigger>
             <AccordionItemContent>
-                <p>
-                    The Great Pyramid of Giza was built around 2560 BCE and remained the 
-                    tallest man-made structure in the world for over 3,800 years. The ancient 
-                    Egyptians built the pyramids as tombs for their pharaohs and queens.
-                </p>
+              <p>
+                The Great Pyramid of Giza was built around 2560 BCE and remained
+                the tallest man-made structure in the world for over 3,800
+                years. The ancient Egyptians built the pyramids as tombs for
+                their pharaohs and queens.
+              </p>
             </AccordionItemContent>
-        </AccordionItem>
-        <AccordionItem value="2">
+          </AccordionItem>
+          <AccordionItem value="2">
             <AccordionItemTrigger>The Renaissance Period</AccordionItemTrigger>
             <AccordionItemContent>
-                <p>
-                    The Renaissance was a period of European cultural, artistic, political and 
-                    scientific "rebirth" that spanned from the 14th to the 17th centuries. 
-                    Leonardo da Vinci, Michelangelo, and Raphael are among the most famous artists 
-                    from this transformative era.
-                </p>
+              <p>
+                The Renaissance was a period of European cultural, artistic,
+                political and scientific "rebirth" that spanned from the 14th to
+                the 17th centuries. Leonardo da Vinci, Michelangelo, and Raphael
+                are among the most famous artists from this transformative era.
+              </p>
             </AccordionItemContent>
-        </AccordionItem>
-        <AccordionItem value="3">
-            <AccordionItemTrigger>The Industrial Revolution</AccordionItemTrigger>
+          </AccordionItem>
+          <AccordionItem value="3">
+            <AccordionItemTrigger>
+              The Industrial Revolution
+            </AccordionItemTrigger>
             <AccordionItemContent>
-                <p>
-                    Beginning in Britain around 1760, the Industrial Revolution marked a transition 
-                    from hand production methods to machine manufacturing. This period fundamentally 
-                    changed economic systems and led to unprecedented sustained growth in population 
-                    and per capita income.
-                </p>
+              <p>
+                Beginning in Britain around 1760, the Industrial Revolution
+                marked a transition from hand production methods to machine
+                manufacturing. This period fundamentally changed economic
+                systems and led to unprecedented sustained growth in population
+                and per capita income.
+              </p>
             </AccordionItemContent>
-        </AccordionItem>
-       </Accordion>
+          </AccordionItem>
+        </Accordion>
       </ComponentBox>
 
       <ComponentBox title="Card" fullWidth>
         <Card>
-            <CardBody className="space-y-6">
-                <div>
-                    <h3 className="text-xl font-semibold">Login to your account</h3>
-                    <p className="text-sm text-gray-500 mt-1">Enter your credentials to access your account</p>
-                </div>
+          <CardBody className="space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold">Login to your account</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                Enter your credentials to access your account
+              </p>
+            </div>
 
-                <form className="space-y-4">
-                    <Field>
-                        <Label>Email Address</Label>
-                        <Input placeholder="john.doe@example.com" />
-                    </Field>
+            <form className="space-y-4">
+              <Field>
+                <Label>Email Address</Label>
+                <Input placeholder="john.doe@example.com" />
+              </Field>
 
-                    <Field>
-                        <Label>Password</Label>
-                        <Input type="password" placeholder="••••••••" />
-                        <HelperText>
-                            Min 8 characters with mixed case, numbers & symbols
-                        </HelperText>
-                    </Field>
-                    
-                    <div className="flex items-center justify-between">
-                        <Checkbox label="Remember me" />
-                        <Button variant="plain" size="sm">Forgot password?</Button>
-                    </div>
-                    
-                    <Button className="w-full">Sign in</Button>
-                </form>
-                
-                <div className="text-center text-sm">
-                    Don't have an account? <a href='#'>Sign up</a>
-                </div>
-            </CardBody>
+              <Field>
+                <Label>Password</Label>
+                <Input type="password" placeholder="••••••••" />
+                <HelperText>
+                  Min 8 characters with mixed case, numbers & symbols
+                </HelperText>
+              </Field>
+
+              <div className="flex items-center justify-between">
+                <Checkbox label="Remember me" />
+                <Button variant="plain" size="sm">
+                  Forgot password?
+                </Button>
+              </div>
+
+              <Button className="w-full">Sign in</Button>
+            </form>
+
+            <div className="text-center text-sm">
+              Don't have an account? <a href="#">Sign up</a>
+            </div>
+          </CardBody>
         </Card>
       </ComponentBox>
     </main>

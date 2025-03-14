@@ -14,7 +14,7 @@ const linearProgressVariants = tv({
     root: ["flex flex-col gap-2"],
     track: "bg-secondary w-full rounded relative h-2",
     range: ["h-full bg-primary rounded"],
-    progressValue: ["text-muted-foreground font-medium text-sm"],
+    progressValue: ["text-foreground font-medium text-sm"],
   },
 });
 
