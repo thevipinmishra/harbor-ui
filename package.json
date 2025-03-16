@@ -15,7 +15,7 @@
     "@ark-ui/react": "^5.0.1",
     "@base-ui-components/react": "1.0.0-alpha.5",
     "@internationalized/date": "^3.7.0",
-    "@mantine/form": "^7.17.1",
+    "@mantine/form": "^7.17.2",
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/colors": "^3.0.0",
     "clsx": "^2.1.1",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@chromatic-com/storybook": "^3.2.5",
+    "@chromatic-com/storybook": "^3.2.6",
     "@storybook/addon-essentials": "8.6.0-alpha.0",
     "@storybook/addon-interactions": "8.6.0-alpha.0",
     "@storybook/addon-onboarding": "8.6.0-alpha.0",

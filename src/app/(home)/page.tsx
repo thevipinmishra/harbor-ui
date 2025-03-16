@@ -44,6 +44,17 @@ import {
   NumberInputLabel,
 } from "@/components/ui/NumberInput";
 import {
+  Pagination,
+  PaginationControls,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+} from "@/components/ui/Pagination";
+import {
+  PinInput,
+  PinInputControl,
+  PinInputField,
+} from "@/components/ui/PinInput";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -73,7 +84,14 @@ import {
 } from "@/components/ui/Tooltip";
 import ComponentBox from "@/components/web/component-box";
 import { createListCollection } from "@ark-ui/react";
-import { Bell, CreditCard, SignOut, User } from "@phosphor-icons/react";
+import {
+  Bell,
+  CreditCard,
+  SignOut,
+  User,
+  Microphone,
+  MicrophoneSlash,
+} from "@phosphor-icons/react";
 import { GearFine } from "@phosphor-icons/react/dist/ssr";
 
 export default function HomePage() {
@@ -219,7 +237,7 @@ export default function HomePage() {
       </ComponentBox>
 
       {/* Group/Collection Elements */}
-      <ComponentBox title="Chip Group">
+      <ComponentBox title="Chip Group" fullWidth>
         <div>
           <p className="text-sm mb-2 font-medium">Filter by technology:</p>
           <ChipGroup>
@@ -289,9 +307,15 @@ export default function HomePage() {
       {/* Interactive Elements */}
       <ComponentBox title="Toggle">
         <Toggle asChild>
-          <Button>
+          <Button variant="outlined" size="icon-lg">
             <ToggleContext>
-              {(api) => (api.pressed ? "Bookmarked" : "Bookmark")}
+              {(api) =>
+                api.pressed ? (
+                  <Microphone size={20} />
+                ) : (
+                  <MicrophoneSlash size={20} />
+                )
+              }
             </ToggleContext>
           </Button>
         </Toggle>
@@ -304,19 +328,19 @@ export default function HomePage() {
           </MenuTrigger>
           <MenuContent>
             <MenuItem value="profile">
-              <User className="mr-2" /> Profile
+              <User className="mr-2 size-4" /> Profile
             </MenuItem>
             <MenuItem value="billing">
-              <CreditCard className="mr-2" /> Billing
+              <CreditCard className="mr-2 size-4" /> Billing
             </MenuItem>
             <MenuItem value="notifications">
-              <Bell className="mr-2" /> Notifications
+              <Bell className="mr-2 size-4" /> Notifications
             </MenuItem>
             <MenuItem value="settings">
-              <GearFine className="mr-2" /> Settings
+              <GearFine className="mr-2 size-4" /> Settings
             </MenuItem>
             <MenuItem value="logout">
-              <SignOut className="mr-2" /> Logout
+              <SignOut className="mr-2 size-4" /> Logout
             </MenuItem>
           </MenuContent>
         </Menu>
@@ -461,6 +485,24 @@ export default function HomePage() {
             </div>
           </CardBody>
         </Card>
+      </ComponentBox>
+
+      <ComponentBox title="Pin Input">
+        <PinInput>
+          <PinInputControl>
+            {[0, 1, 2, 3].map((id, index) => (
+              <PinInputField key={id} index={index} />
+            ))}
+          </PinInputControl>
+        </PinInput>
+      </ComponentBox>
+
+      <ComponentBox title="Pagination">
+        <Pagination count={300} pageSize={10} siblingCount={1}>
+          <PaginationPrevTrigger />
+          <PaginationControls />
+          <PaginationNextTrigger />
+        </Pagination>
       </ComponentBox>
     </main>
   );
