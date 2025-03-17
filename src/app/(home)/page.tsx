@@ -328,19 +328,19 @@ export default function HomePage() {
           </MenuTrigger>
           <MenuContent>
             <MenuItem value="profile">
-              <User className="mr-2 size-4" /> Profile
+              <User className="size-4" /> Profile
             </MenuItem>
             <MenuItem value="billing">
-              <CreditCard className="mr-2 size-4" /> Billing
+              <CreditCard className="size-4" /> Billing
             </MenuItem>
             <MenuItem value="notifications">
-              <Bell className="mr-2 size-4" /> Notifications
+              <Bell className="size-4" /> Notifications
             </MenuItem>
             <MenuItem value="settings">
-              <GearFine className="mr-2 size-4" /> Settings
+              <GearFine className="size-4" /> Settings
             </MenuItem>
             <MenuItem value="logout">
-              <SignOut className="mr-2 size-4" /> Logout
+              <SignOut className="size-4" /> Logout
             </MenuItem>
           </MenuContent>
         </Menu>
@@ -384,7 +384,11 @@ export default function HomePage() {
               <Select collection={frameworks}>
                 <SelectLabel>Framework</SelectLabel>
                 <SelectTrigger />
-                <SelectContent>
+                <SelectContent
+                  portalProps={{
+                    disabled: true,
+                  }}
+                >
                   {frameworks.items.map((framework) => (
                     <SelectItem key={framework} item={framework}>
                       {framework}

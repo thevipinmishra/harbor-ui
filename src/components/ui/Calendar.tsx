@@ -1,3 +1,5 @@
+'use client';
+
 import { tv } from "@/lib/tv.config";
 import {
   DatePicker,
