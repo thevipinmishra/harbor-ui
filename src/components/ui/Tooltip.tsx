@@ -10,17 +10,13 @@ import { tv } from "@/lib/tv.config";
 const tooltipContentVariants = tv({
   slots: {
     content: [
-      "bg-primary text-primary-foreground shadow-sm rounded-md text-xs will-change-transform py-2 px-2.5",
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in",
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out ",
-      "motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-bottom-1 ",
-      "motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-bottom-1 ",
-      "motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-top-1 ",
-      "motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-top-1 ",
-      "motion-safe:data-[state=open]:data-[placement^=right]:slide-in-from-right-1 ",
-      "motion-safe:data-[state=closed]:data-[placement^=right]:slide-out-to-right-1 ",
-      "motion-safe:data-[state=open]:data-[placement^=left]:slide-in-from-left-1 ",
-      "motion-safe:data-[state=closed]:data-[placement^=left]:slide-out-to-left-1 ",
+      "bg-primary text-primary-foreground shadow-sm rounded-md text-xs will-change-transform p-3",
+      "motion-duration-200 motion-safe:data-[state=closed]:motion-opacity-out-0",
+      "motion-safe:data-[state=open]:data-[placement^=bottom]:motion-preset-slide-up-md",
+      "motion-safe:data-[state=closed]:data-[placement^=bottom]:motion-translate-y-out-25",
+      "motion-safe:data-[state=open]:data-[placement^=top]:motion-preset-slide-down-md ",
+      "motion-safe:data-[state=open]:data-[placement^=right]:motion-preset-slide-left-md ",
+      "motion-safe:data-[state=open]:data-[placement^=left]:motion-preset-slide-right-md ",
     ],
   },
 });

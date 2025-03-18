@@ -112,16 +112,32 @@ export default function HomePage() {
     <main className="py-10 container space-y-10">
       {/* Basic Elements */}
       <ComponentBox title="Button">
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button variant="filled">Save Changes</Button>
           <Button variant="outlined">Cancel</Button>
+          <Button variant="plain">View Details</Button>
+          <Button variant="destructive">Delete</Button>
+          <Button variant="filled" disabled>
+            Disabled
+          </Button>
+          <Button variant="filled" size="sm">
+            <User className="size-3 mr-1" /> Profile
+          </Button>
+          <Button variant="outlined" size="icon-lg">
+            <Bell />
+          </Button>
         </div>
       </ComponentBox>
 
       <ComponentBox title="Badge">
-        <div className="flex gap-3">
-          <Badge>New</Badge>
-          <Badge variant="outlined">5 messages</Badge>
+        <div className="flex flex-wrap gap-3">
+          <Badge>Default</Badge>
+          <Badge variant="outlined">Outlined</Badge>
+          <Badge variant="destructive">Error</Badge>
+          <Badge variant="plain">Plain</Badge>
+          <Badge variant="outlined" className="rounded-full px-2">
+            New
+          </Badge>
         </div>
       </ComponentBox>
 
@@ -129,6 +145,26 @@ export default function HomePage() {
         <div className="flex items-center gap-3">
           <Avatar fallback="JD" src="https://avatar.iran.liara.run/public/29" />
           <Avatar fallback="TS" src="https://avatar.iran.liara.run/public/42" />
+          <div className="flex -space-x-2">
+            <Avatar
+              fallback="AB"
+              src="https://avatar.iran.liara.run/public/45"
+              className="border-2 border-white"
+            />
+            <Avatar
+              fallback="CD"
+              src="https://avatar.iran.liara.run/public/22"
+              className="border-2 border-white"
+            />
+            <Avatar
+              fallback="EF"
+              src="https://avatar.iran.liara.run/public/56"
+              className="border-2 border-white"
+            />
+            <div className="flex items-center justify-center size-12 rounded-full bg-gray-200 border-2 border-white text-xs font-medium">
+              +3
+            </div>
+          </div>
         </div>
       </ComponentBox>
 
@@ -136,6 +172,13 @@ export default function HomePage() {
         <div className="flex gap-2">
           <Chip>React</Chip>
           <Chip variant="outlined">TypeScript</Chip>
+          <Chip>
+            <User className="size-3 mr-1" />
+            User
+          </Chip>
+          <Chip variant="outlined" color="primary">
+            Pro Plan
+          </Chip>
         </div>
       </ComponentBox>
 
@@ -151,6 +194,16 @@ export default function HomePage() {
             title="Error"
             description="There was a problem processing your request"
           />
+          <Alert
+            variant="info"
+            title="Information"
+            description="Your account will be updated within 24 hours"
+          />
+          <Alert
+            variant="warning"
+            title="Warning"
+            description="Your subscription expires in 3 days"
+          />
         </div>
       </ComponentBox>
 
@@ -165,10 +218,29 @@ export default function HomePage() {
 
       {/* Form Elements */}
       <ComponentBox fullWidth title="Input Field">
-        <Field>
-          <Label>Email Address</Label>
-          <Input placeholder="john.doe@example.com" />
-        </Field>
+        <div className="space-y-4">
+          <Field>
+            <Label>Email Address</Label>
+            <Input placeholder="john.doe@example.com" />
+          </Field>
+          <Field>
+            <Label>Password</Label>
+            <Input type="password" placeholder="Enter your password" />
+            <HelperText>Must be at least 8 characters</HelperText>
+          </Field>
+          <Field>
+            <Label>Username</Label>
+            <Input placeholder="username" className="border-red-500" />
+            <HelperText className="text-red-500">
+              Username already taken
+            </HelperText>
+          </Field>
+          <Field>
+            <Label>Bio</Label>
+            <Input placeholder="Tell us about yourself" disabled />
+            <HelperText>Only available for premium users</HelperText>
+          </Field>
+        </div>
       </ComponentBox>
 
       <ComponentBox title="Checkbox">
@@ -266,14 +338,46 @@ export default function HomePage() {
             <TabsTrigger value="password">Password</TabsTrigger>
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
           </TabsList>
-          <TabsContent value="account" className="pt-4">
-            <p>Manage your account settings and personal information.</p>
+          <TabsContent value="account" className="pt-4 space-y-4">
+            <Field>
+              <Label>Display Name</Label>
+              <Input placeholder="John Doe" defaultValue="John Doe" />
+            </Field>
+            <Field>
+              <Label>Email Address</Label>
+              <Input
+                placeholder="john.doe@example.com"
+                defaultValue="john.doe@example.com"
+              />
+            </Field>
+            <div className="flex justify-end">
+              <Button>Save Changes</Button>
+            </div>
           </TabsContent>
-          <TabsContent value="password" className="pt-4">
-            <p>Change your password and security preferences.</p>
+          <TabsContent value="password" className="pt-4 space-y-4">
+            <Field>
+              <Label>Current Password</Label>
+              <Input type="password" placeholder="••••••••" />
+            </Field>
+            <Field>
+              <Label>New Password</Label>
+              <Input type="password" placeholder="••••••••" />
+            </Field>
+            <Field>
+              <Label>Confirm Password</Label>
+              <Input type="password" placeholder="••••••••" />
+            </Field>
+            <div className="flex justify-end">
+              <Button>Update Password</Button>
+            </div>
           </TabsContent>
           <TabsContent value="notifications" className="pt-4">
-            <p>Configure email and push notification preferences.</p>
+            <div className="space-y-3">
+              <Switch label="Email notifications" defaultChecked />
+              <Switch label="Push notifications" defaultChecked />
+              <Switch label="Monthly newsletter" />
+              <Switch label="Product updates" defaultChecked />
+            </div>
           </TabsContent>
         </Tabs>
       </ComponentBox>
@@ -335,11 +439,13 @@ export default function HomePage() {
             </MenuItem>
             <MenuItem value="notifications">
               <Bell className="size-4" /> Notifications
+              <Badge className="ml-2">3</Badge>
             </MenuItem>
             <MenuItem value="settings">
               <GearFine className="size-4" /> Settings
             </MenuItem>
-            <MenuItem value="logout">
+            <div className="h-px bg-gray-200 my-1"></div>
+            <MenuItem value="logout" className="text-red-500">
               <SignOut className="size-4" /> Logout
             </MenuItem>
           </MenuContent>
@@ -397,6 +503,20 @@ export default function HomePage() {
                 </SelectContent>
               </Select>
 
+              <div className="space-y-2">
+                <p className="text-sm font-medium">Project Visibility</p>
+                <RadioGroup defaultValue="private">
+                  <RadioGroupItem value="public">
+                    Public - Anyone can view
+                  </RadioGroupItem>
+                  <RadioGroupItem value="private">
+                    Private - Only team members
+                  </RadioGroupItem>
+                </RadioGroup>
+              </div>
+
+              <Checkbox label="Initialize with README.md" defaultChecked />
+
               <div className="flex justify-end gap-3">
                 <Button variant="outlined">Cancel</Button>
                 <Button>Create</Button>
@@ -451,44 +571,102 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Card" fullWidth>
-        <Card>
-          <CardBody className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold">Login to your account</h3>
-              <p className="text-sm text-gray-500 mt-1">
-                Enter your credentials to access your account
-              </p>
-            </div>
-
-            <form className="space-y-4">
-              <Field>
-                <Label>Email Address</Label>
-                <Input placeholder="john.doe@example.com" />
-              </Field>
-
-              <Field>
-                <Label>Password</Label>
-                <Input type="password" placeholder="••••••••" />
-                <HelperText>
-                  Min 8 characters with mixed case, numbers & symbols
-                </HelperText>
-              </Field>
-
-              <div className="flex items-center justify-between">
-                <Checkbox label="Remember me" />
-                <Button variant="plain" size="sm">
-                  Forgot password?
-                </Button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card>
+            <CardBody className="space-y-6">
+              <div>
+                <h3 className="text-xl font-semibold">Login to your account</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Enter your credentials to access your account
+                </p>
               </div>
 
-              <Button className="w-full">Sign in</Button>
-            </form>
+              <form className="space-y-4">
+                <Field>
+                  <Label>Email Address</Label>
+                  <Input placeholder="john.doe@example.com" />
+                </Field>
 
-            <div className="text-center text-sm">
-              Don't have an account? <a href="#">Sign up</a>
-            </div>
-          </CardBody>
-        </Card>
+                <Field>
+                  <Label>Password</Label>
+                  <Input type="password" placeholder="••••••••" />
+                  <HelperText>
+                    Min 8 characters with mixed case, numbers & symbols
+                  </HelperText>
+                </Field>
+
+                <div className="flex items-center justify-between">
+                  <Checkbox label="Remember me" />
+                  <Button variant="plain" size="sm">
+                    Forgot password?
+                  </Button>
+                </div>
+
+                <Button className="w-full">Sign in</Button>
+              </form>
+
+              <div className="text-center text-sm">
+                Don't have an account? <a href="#">Sign up</a>
+              </div>
+            </CardBody>
+          </Card>
+
+          <Card>
+            <CardBody className="flex flex-col">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold">Project Status</h3>
+                  <p className="text-sm text-gray-500">
+                    Harbor UI Design System
+                  </p>
+                </div>
+                <Badge>Active</Badge>
+              </div>
+
+              <div className="mb-6">
+                <p className="text-sm font-medium mb-1">Project Completion</p>
+                <LinearProgress value={68}>
+                  <LinearProgressTrack />
+                </LinearProgress>
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>Started: May 15</span>
+                  <span>68% complete</span>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-sm font-medium mb-2">Team Members</p>
+                <div className="flex -space-x-2">
+                  <Avatar
+                    fallback="JD"
+                    src="https://avatar.iran.liara.run/public/29"
+                    className="border-2 border-white"
+                  />
+                  <Avatar
+                    fallback="TS"
+                    src="https://avatar.iran.liara.run/public/42"
+                    className="border-2 border-white"
+                  />
+                  <Avatar
+                    fallback="MK"
+                    src="https://avatar.iran.liara.run/public/33"
+                    className="border-2 border-white"
+                  />
+                  <div className="flex items-center justify-center size-12 rounded-full bg-gray-200 border-2 border-white text-xs font-medium">
+                    +2
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto pt-4 border-t flex justify-between">
+                <Button variant="outlined" size="sm">
+                  View Details
+                </Button>
+                <Button size="sm">Update Status</Button>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
       </ComponentBox>
 
       <ComponentBox title="Pin Input">

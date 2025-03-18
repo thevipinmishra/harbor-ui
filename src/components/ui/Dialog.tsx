@@ -20,16 +20,17 @@ const dialogVariants = tv({
   slots: {
     backdrop: [
       "fixed inset-0 bg-black/80 z-40",
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in",
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out",
+      "motion-safe:data-[state=open]:motion-opacity-in-0 motion-duration-200",
+      "motion-safe:data-[state=closed]:motion-opacity-out-0",
     ],
     positioner: [
       "fixed inset-0 flex justify-center items-center p-4 lg:p-10 z-50",
     ],
     content: [
       "bg-background relative shadow-md grid gap-2 p-4 lg:p-5 rounded w-full md:max-w-md",
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:slide-in-from-bottom-6",
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:slide-out-to-bottom-1",
+      "motion-safe:data-[state=open]:motion-duration-300 motion-safe:data-[state=closed]:motion-duration-100",
+      "motion-safe:data-[state=open]:motion-translate-y-in-[1rem] ",
+      "motion-safe:data-[state=closed]:motion-opacity-out-0 motion-safe:data-[state=closed]:motion-translate-y-out-[1rem]",
     ],
     title: "font-semibold text-lg text-foreground",
     description: "text-sm text-muted-foreground",

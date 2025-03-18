@@ -32,10 +32,11 @@ const selectVariants = tv({
     ],
     content: [
       "outline-hidden z-51! border border-border bg-popover space-y-[2px] text-popover-foreground p-1 rounded-md shadow-md  relative w-[max(6rem,var(--reference-width))] max-h-[min(16rem,var(--available-height))] overflow-y-auto",
+      "motion-duration-200",
       //   In animation
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-2 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-2",
+      "motion-safe:data-[state=open]:motion-opacity-in-0 motion-safe:data-[state=open]:data-[placement^=bottom]:motion-translate-y-in-[.5rem] motion-safe:data-[state=open]:data-[placement^=top]:motion-translate-y-in-[.5rem]",
       //   Out animation
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-2 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-2",
+     "motion-safe:data-[state=closed]:motion-opacity-out-0"
     ],
     positioner: [""],
     control: ["w-full"],

@@ -52,7 +52,7 @@ const alertVariants = tv({
 const Alert = (props: AlertProps) => {
   const { className, icon, title, description, variant, ...rest } = props;
 
-  const DescriptionElement = typeof description === 'string' ? 'p' : 'div';
+  const DescriptionElement = typeof description === "string" ? "p" : "div";
 
   return (
     <div

@@ -12,10 +12,11 @@ export const popoverVariants = tv({
   slots: {
     content: [
       "bg-popover text-popover-foreground rounded-md shadow-sm p-4 max-h-[var(--available-height))] max-w-[var(--available-width)]",
+      "motion-duration-200",
       //   In animation
-      "motion-safe:data-[state=open]:animate-in motion-safe:data-[state=open]:fade-in motion-safe:data-[state=open]:data-[placement^=bottom]:slide-in-from-top-1 motion-safe:data-[state=open]:data-[placement^=top]:slide-in-from-bottom-1",
+      "motion-safe:data-[state=open]:motion-opacity-in-0 motion-safe:data-[state=open]:data-[placement^=bottom]:motion-translate-y-in-[.5rem] motion-safe:data-[state=open]:data-[placement^=top]:motion-translate-y-in-[.5rem]",
       //   Out animation
-      "motion-safe:data-[state=closed]:animate-out motion-safe:data-[state=closed]:fade-out motion-safe:data-[state=closed]:data-[placement^=bottom]:slide-out-to-top-1 motion-safe:data-[state=closed]:data-[placement^=top]:slide-out-to-bottom-1",
+      "motion-safe:data-[state=closed]:motion-opacity-out-0",
     ],
   },
 });
