@@ -15,7 +15,7 @@ const buttonGroupVariants = tv({
 
 export const buttonVariants = tv({
   base: [
-    "select-none cursor-pointer inline-flex text-sm no-underline items-center rounded justify-center gap-2",
+    "select-none inline-flex text-sm no-underline items-center rounded justify-center gap-2",
     "disabled:opacity-50 disabled:bg-muted disabled:pointer-events-none",
     "focus:outline-hidden focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
     "motion-safe:transition-[opacity,background-color,color]",
@@ -35,7 +35,7 @@ export const buttonVariants = tv({
         "hover:bg-muted",
       ],
       destructive: [
-        "bg-destructive text-destructive-foreground",
+        "bg-destructive text-white",
         "hover:opacity-90",
         "focus:ring-destructive/50",
       ],

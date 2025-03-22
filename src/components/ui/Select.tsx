@@ -23,7 +23,7 @@ const selectVariants = tv({
   slots: {
     root: "flex flex-col gap-2 w-full items-start",
     trigger: [
-      "border w-full gap-2 flex justify-between items-center cursor-pointer text-sm outline-0  text-foreground rounded border-border px-2 py-1",
+      "border w-full gap-2 flex justify-between items-center text-sm outline-0  text-foreground rounded border-border px-2 py-1",
       "hover:border-border-hover motion-safe:transition-all",
       "data-invalid:text-error",
       "disabled:opacity-50 disabled:pointer-events-none",
@@ -36,7 +36,7 @@ const selectVariants = tv({
       //   In animation
       "motion-safe:data-[state=open]:motion-opacity-in-0 motion-safe:data-[state=open]:data-[placement^=bottom]:motion-translate-y-in-[.5rem] motion-safe:data-[state=open]:data-[placement^=top]:motion-translate-y-in-[.5rem]",
       //   Out animation
-     "motion-safe:data-[state=closed]:motion-opacity-out-0"
+      "motion-safe:data-[state=closed]:motion-opacity-out-0",
     ],
     positioner: [""],
     control: ["w-full"],
@@ -45,7 +45,7 @@ const selectVariants = tv({
     indicator: ["text-muted-foreground shrink-0 data-invalid:text-destructive"],
     itemIndicator: [""],
     item: [
-      "text-sm rounded-sm transition-colors cursor-pointer select-none flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
+      "text-sm rounded-sm transition-colors select-none flex justify-between items-center gap-2 px-3 py-2 scroll-m-1",
       "data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-highlighted:bg-muted",
       "data-disabled:opacity-50 data-disabled:pointer-events-none",
     ],
@@ -78,11 +78,7 @@ interface SelectContentProps extends SelectPrimitiveContentProps {
 }
 
 const Select = (props: SelectProps) => {
-  const {
-    className,
-    children,
-    ...rest
-  } = props;
+  const { className, children, ...rest } = props;
   return (
     <SelectPrimitive.Root
       className={selectVariants().root({

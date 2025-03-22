@@ -27,7 +27,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
+import { ErrorText } from "@/components/ui/ErrorText";
 import { Field } from "@/components/ui/Field";
+import {
+  FileUpload,
+  FileUploadPreview,
+  FileUploadTrigger,
+} from "@/components/ui/FileUpload";
 import { HelperText } from "@/components/ui/HelperText";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -91,8 +97,9 @@ import {
   User,
   Microphone,
   MicrophoneSlash,
+  Upload,
+  GearFine,
 } from "@phosphor-icons/react";
-import { GearFine } from "@phosphor-icons/react/dist/ssr";
 
 export default function HomePage() {
   const countries = createListCollection({
@@ -145,26 +152,6 @@ export default function HomePage() {
         <div className="flex items-center gap-3">
           <Avatar fallback="JD" src="https://avatar.iran.liara.run/public/29" />
           <Avatar fallback="TS" src="https://avatar.iran.liara.run/public/42" />
-          <div className="flex -space-x-2">
-            <Avatar
-              fallback="AB"
-              src="https://avatar.iran.liara.run/public/45"
-              className="border-2 border-white"
-            />
-            <Avatar
-              fallback="CD"
-              src="https://avatar.iran.liara.run/public/22"
-              className="border-2 border-white"
-            />
-            <Avatar
-              fallback="EF"
-              src="https://avatar.iran.liara.run/public/56"
-              className="border-2 border-white"
-            />
-            <div className="flex items-center justify-center size-12 rounded-full bg-gray-200 border-2 border-white text-xs font-medium">
-              +3
-            </div>
-          </div>
         </div>
       </ComponentBox>
 
@@ -173,8 +160,8 @@ export default function HomePage() {
           <Chip>React</Chip>
           <Chip variant="outlined">TypeScript</Chip>
           <Chip>
-            <User className="size-3 mr-1" />
             User
+            <User className="ml-1" />
           </Chip>
           <Chip variant="outlined" color="primary">
             Pro Plan
@@ -228,12 +215,10 @@ export default function HomePage() {
             <Input type="password" placeholder="Enter your password" />
             <HelperText>Must be at least 8 characters</HelperText>
           </Field>
-          <Field>
+          <Field invalid>
             <Label>Username</Label>
-            <Input placeholder="username" className="border-red-500" />
-            <HelperText className="text-red-500">
-              Username already taken
-            </HelperText>
+            <Input placeholder="@thevipinmishra" />
+            <ErrorText>Username already taken</ErrorText>
           </Field>
           <Field>
             <Label>Bio</Label>
@@ -439,7 +424,6 @@ export default function HomePage() {
             </MenuItem>
             <MenuItem value="notifications">
               <Bell className="size-4" /> Notifications
-              <Badge className="ml-2">3</Badge>
             </MenuItem>
             <MenuItem value="settings">
               <GearFine className="size-4" /> Settings
@@ -450,6 +434,17 @@ export default function HomePage() {
             </MenuItem>
           </MenuContent>
         </Menu>
+      </ComponentBox>
+
+      <ComponentBox title="File Upload">
+        <FileUpload>
+          <FileUploadTrigger asChild>
+            <Button variant="outlined">
+              <Upload /> Upload
+            </Button>
+          </FileUploadTrigger>
+          <FileUploadPreview />
+        </FileUpload>
       </ComponentBox>
 
       <ComponentBox title="Popover">
@@ -571,102 +566,44 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Card" fullWidth>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
-            <CardBody className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold">Login to your account</h3>
-                <p className="text-sm text-gray-500 mt-1">
-                  Enter your credentials to access your account
-                </p>
-              </div>
+        <Card>
+          <CardBody className="space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold">Login to your account</h3>
+              <p className="text-sm text-gray-500 mt-1">
+                Enter your credentials to access your account
+              </p>
+            </div>
 
-              <form className="space-y-4">
-                <Field>
-                  <Label>Email Address</Label>
-                  <Input placeholder="john.doe@example.com" />
-                </Field>
+            <form className="space-y-4">
+              <Field>
+                <Label>Email Address</Label>
+                <Input placeholder="john.doe@example.com" />
+              </Field>
 
-                <Field>
-                  <Label>Password</Label>
-                  <Input type="password" placeholder="••••••••" />
-                  <HelperText>
-                    Min 8 characters with mixed case, numbers & symbols
-                  </HelperText>
-                </Field>
+              <Field>
+                <Label>Password</Label>
+                <Input type="password" placeholder="••••••••" />
+                <HelperText>
+                  Min 8 characters with mixed case, numbers & symbols
+                </HelperText>
+              </Field>
 
-                <div className="flex items-center justify-between">
-                  <Checkbox label="Remember me" />
-                  <Button variant="plain" size="sm">
-                    Forgot password?
-                  </Button>
-                </div>
-
-                <Button className="w-full">Sign in</Button>
-              </form>
-
-              <div className="text-center text-sm">
-                Don't have an account? <a href="#">Sign up</a>
-              </div>
-            </CardBody>
-          </Card>
-
-          <Card>
-            <CardBody className="flex flex-col">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-lg font-semibold">Project Status</h3>
-                  <p className="text-sm text-gray-500">
-                    Harbor UI Design System
-                  </p>
-                </div>
-                <Badge>Active</Badge>
-              </div>
-
-              <div className="mb-6">
-                <p className="text-sm font-medium mb-1">Project Completion</p>
-                <LinearProgress value={68}>
-                  <LinearProgressTrack />
-                </LinearProgress>
-                <div className="flex justify-between mt-1 text-xs text-gray-500">
-                  <span>Started: May 15</span>
-                  <span>68% complete</span>
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-sm font-medium mb-2">Team Members</p>
-                <div className="flex -space-x-2">
-                  <Avatar
-                    fallback="JD"
-                    src="https://avatar.iran.liara.run/public/29"
-                    className="border-2 border-white"
-                  />
-                  <Avatar
-                    fallback="TS"
-                    src="https://avatar.iran.liara.run/public/42"
-                    className="border-2 border-white"
-                  />
-                  <Avatar
-                    fallback="MK"
-                    src="https://avatar.iran.liara.run/public/33"
-                    className="border-2 border-white"
-                  />
-                  <div className="flex items-center justify-center size-12 rounded-full bg-gray-200 border-2 border-white text-xs font-medium">
-                    +2
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-auto pt-4 border-t flex justify-between">
-                <Button variant="outlined" size="sm">
-                  View Details
+              <div className="flex items-center justify-between">
+                <Checkbox label="Remember me" />
+                <Button variant="plain" size="sm">
+                  Forgot password?
                 </Button>
-                <Button size="sm">Update Status</Button>
               </div>
-            </CardBody>
-          </Card>
-        </div>
+
+              <Button className="w-full">Sign in</Button>
+            </form>
+
+            <div className="text-center text-sm">
+              Don't have an account? <a href="#">Sign up</a>
+            </div>
+          </CardBody>
+        </Card>
       </ComponentBox>
 
       <ComponentBox title="Pin Input">

@@ -7,14 +7,14 @@ import {
 
 const segmentGroupVariants = tv({
   slots: {
-    root: ["flex bg-muted rounded-md p-1 w-max"],
+    root: ["flex bg-background rounded-md p-1 border border-input w-max"],
     item: [
-      "inline-flex relative cursor-pointer text-sm z-1 py-1.5 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center",
-      "data-[state=checked]:text-foreground motion-safe:transition-colors",
+      "inline-flex relative text-sm z-1 py-1.5 px-3 font-medium whitespace-nowrap text-muted-foreground rounded-[inherit] items-center justify-center",
+      "data-[state=checked]:text-primary-foreground motion-safe:transition-colors",
     ],
     itemText: ["inline-flex gap-2 justify-center items-center"],
     indicator: [
-      "bg-background rounded-[inherit] h-[var(--height)] w-[var(--width)] left-[var(--left)] top-[var(--top)]",
+      "bg-primary rounded-[inherit] h-[var(--height)] w-[var(--width)] left-[var(--left)] top-[var(--top)]",
     ],
   },
 });
@@ -29,7 +29,9 @@ const SegmentGroup = (props: SegmentGroupRootProps) => {
       {...rest}
     >
       {children}
-      <SegmentGroupPrimitive.Indicator className={segmentGroupVariants().indicator()} />
+      <SegmentGroupPrimitive.Indicator
+        className={segmentGroupVariants().indicator()}
+      />
     </SegmentGroupPrimitive.Root>
   );
 };
@@ -43,7 +45,9 @@ const SegmentGroupItem = (props: SegmentGroupItemProps) => {
       })}
       {...rest}
     >
-      <SegmentGroupPrimitive.ItemText className={segmentGroupVariants().itemText()}>
+      <SegmentGroupPrimitive.ItemText
+        className={segmentGroupVariants().itemText()}
+      >
         {children}
       </SegmentGroupPrimitive.ItemText>
       <SegmentGroupPrimitive.ItemControl />
