@@ -45,4 +45,10 @@ const CardBody = (props: HTMLArkProps<"div">) => {
   );
 };
 
-export { Card, CardSection, CardBody };
+Card.Body = CardBody;
+Card.Section = CardSection;
+Card.displayName = "Card";
+CardSection.displayName = "CardSection";
+CardBody.displayName = "CardBody";
+
+export { Card };

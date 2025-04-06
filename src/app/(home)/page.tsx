@@ -11,7 +11,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Calendar } from "@/components/ui/Calendar";
-import { Card, CardBody } from "@/components/ui/Card";
+import { Card } from "@/components/ui/Card";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Chip } from "@/components/ui/Chip";
 import { ChipGroup, ChipGroupItem } from "@/components/ui/ChipGroup";
@@ -73,6 +73,8 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
+  SelectItemGroup,
+  SelectItemGroupLabel,
 } from "@/components/ui/Select";
 import {
   Slider,
@@ -111,8 +113,31 @@ export default function HomePage() {
       "Germany",
     ],
   });
+
   const frameworks = createListCollection({
     items: ["React", "Vue", "Angular", "Svelte"],
+  });
+
+  const plans = createListCollection({
+    items: [{
+        label: "Free",
+        value: "free",
+    }, {
+        label: "Pro",
+        value: "pro",
+    }, {
+        label: "Enterprise",
+        value: "enterprise",
+        disabled: true,
+    }],
+  });
+
+  const languages = createListCollection({
+    items: ["JavaScript", "TypeScript", "Python"],
+  });
+
+  const options = createListCollection({
+    items: ["Option 1", "Option 2"],
   });
 
   return (
@@ -120,18 +145,68 @@ export default function HomePage() {
       {/* Basic Elements */}
       <ComponentBox title="Button">
         <div className="flex flex-wrap gap-3">
-          <Button variant="filled">Save Changes</Button>
-          <Button variant="outlined">Cancel</Button>
-          <Button variant="plain">View Details</Button>
-          <Button variant="destructive">Delete</Button>
+          {/* Variants */}
+          <Button variant="filled">Filled</Button>
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="plain">Plain</Button>
+          <Button variant="destructive">Destructive</Button>
+
+          {/* Sizes */}
+          <Button variant="filled" size="sm">Small</Button>
+          <Button variant="filled" size="md">Medium</Button>
+          <Button variant="filled" size="lg">Large</Button>
+          <Button variant="filled" size="icon">
+            <User />
+          </Button>
+          <Button variant="filled" size="icon-md">
+            <Bell />
+          </Button>
+          <Button variant="filled" size="icon-lg">
+            <GearFine />
+          </Button>
+
+          {/* Full Width */}
+          <Button variant="filled" fullWidth>
+            Full Width
+          </Button>
+
+          {/* Loading States */}
+          <Button variant="filled" loading>
+            Loading
+          </Button>
+          <Button variant="outlined" loading>
+            Loading
+          </Button>
+          <Button variant="plain" loading>
+            Loading
+          </Button>
+          <Button variant="destructive" loading>
+            Loading
+          </Button>
+
+          {/* Disabled States */}
           <Button variant="filled" disabled>
             Disabled
           </Button>
-          <Button variant="filled" size="sm">
-            <User className="size-3 mr-1" /> Profile
+          <Button variant="outlined" disabled>
+            Disabled
           </Button>
+          <Button variant="plain" disabled>
+            Disabled
+          </Button>
+          <Button variant="destructive" disabled>
+            Disabled
+          </Button>
+
+          {/* Icon Buttons */}
           <Button variant="outlined" size="icon-lg">
             <Bell />
+          </Button>
+          <Button variant="filled" size="icon-md">
+            <User />
+          </Button>
+          <Button variant="destructive" size="icon">
+            <SignOut />
           </Button>
         </div>
       </ComponentBox>
@@ -252,7 +327,9 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox fullWidth title="Select">
-        <Select collection={countries}>
+        {/* Basic Select */}
+       <div className="space-y-6">
+       <Select collection={countries}>
           <SelectLabel>Country</SelectLabel>
           <SelectTrigger />
           <SelectContent>
@@ -263,6 +340,53 @@ export default function HomePage() {
             ))}
           </SelectContent>
         </Select>
+
+       
+
+        {/* Disabled Items */}
+        <Select collection={plans}>
+          <SelectLabel>Plan</SelectLabel>
+          <SelectTrigger placeholder="Select a plan" />
+          <SelectContent>
+            {plans.items.map((plan) => (
+              <SelectItem key={plan.value} item={plan}>
+                {plan.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Custom Placeholder */}
+        <Select collection={languages}>
+          <SelectLabel>Language</SelectLabel>
+          <SelectTrigger placeholder="Pick a language" />
+          <SelectContent>
+            {languages.items.map((language) => (
+              <SelectItem key={language} item={language}>
+                {language}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Multi-line Items */}
+        <Select collection={options}>
+          <SelectLabel>Options</SelectLabel>
+          <SelectTrigger placeholder="Select an option" />
+          <SelectContent>
+            {options.items.map((option) => (
+              <SelectItem key={option} item={option}>
+                <div>
+                  <p className="font-medium">{option}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Description for {option.toLowerCase()}
+                  </p>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+       </div>
       </ComponentBox>
 
       <ComponentBox fullWidth title="NumberInput">
@@ -567,7 +691,7 @@ export default function HomePage() {
 
       <ComponentBox title="Card" fullWidth>
         <Card>
-          <CardBody className="space-y-6">
+          <Card.Body className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold">Login to your account</h3>
               <p className="text-sm text-gray-500 mt-1">
@@ -602,7 +726,7 @@ export default function HomePage() {
             <div className="text-center text-sm">
               Don't have an account? <a href="#">Sign up</a>
             </div>
-          </CardBody>
+          </Card.Body>
         </Card>
       </ComponentBox>
 
