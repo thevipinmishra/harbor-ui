@@ -2,67 +2,45 @@
 
 import * as React from "react";
 import {
-  type CheckboxGroupProps,
   Checkbox as CheckboxPrimitive,
-  type CheckboxRootProps,
-} from "@ark-ui/react/checkbox";
-import { Check, Minus } from "@phosphor-icons/react";
-import { labelVariants } from "./Label";
+  CheckboxGroup as CheckboxGroupPrimitive,
+  CheckboxProps as CheckboxPrimitiveProps,
+  CheckboxGroupProps,
+} from "react-aria-components";
 import { tv } from "@/lib/tv.config";
+import { RiCheckLine } from "@remixicon/react";
+import { accentFocusRing } from "../utils/focusRing";
 
 const checkboxVariants = tv({
   slots: {
-    root: ["flex items-baseline gap-2"],
+    root: ["flex group text-sm gap-2"],
     group: ["space-y-4"],
     control: [
-      "size-5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-input data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary",
+      "size-4.5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-accent-subtle group-data-selected:bg-accent group-data-selected:text-accent-foreground group-data-selected:border-accent",
       "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary",
-      "data-focus-visible:ring-1 data-focus-visible:ring-ring data-focus-visible:ring-offset-1 data-focus-visible:ring-offset-background",
-      "data-invalid:data-[state=checked]:border-destructive data-invalid:data-[state=checked]:bg-destructive data-invalid:data-focus-visible:ring-destructive/50",
+      accentFocusRing,
+      "data-invalid:group-data-selected:border-destructive data-invalid:group-data-selected:bg-destructive data-invalid:data-focus-visible:ring-destructive/50",
       "data-disabled:opacity-50 data-disabled:pointer-events-none",
       "motion-safe:transition-[background-color]",
     ],
-    indicator: ["size-3.5 [&_svg]:size-full"],
+    indicator: ["size-3.5 hidden group-data-selected:block"],
   },
 });
 
-interface CheckboxProps extends CheckboxRootProps {
-  /** Text label to display next to the checkbox */
-  label: string;
-}
-
-const Checkbox = (props: CheckboxProps) => {
-  const { label, checked, ...rest } = props;
+const Checkbox = (props: CheckboxPrimitiveProps) => {
+  const { children, ...rest } = props;
 
   return (
-    <CheckboxPrimitive.Root
-      className={checkboxVariants().root()}
-      checked={checked}
-      {...rest}
-    >
-      {label ? (
-        <CheckboxPrimitive.Label
-          className={labelVariants({
-            className: "order-last leading-relaxed cursor-pointer data-disabled:pointer-events-none text-foreground",
-          })}
-        >
-          {label}
-        </CheckboxPrimitive.Label>
-      ) : null}
-      <CheckboxPrimitive.Control className={checkboxVariants().control()}>
-        &#x200B;
-        <CheckboxPrimitive.Indicator className={checkboxVariants().indicator()}>
-          <Check weight="bold" />
-        </CheckboxPrimitive.Indicator>
-        <CheckboxPrimitive.Indicator
-          className={checkboxVariants().indicator()}
-          indeterminate
-        >
-          <Minus weight="bold" />
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Control>
-      <CheckboxPrimitive.HiddenInput />
-    </CheckboxPrimitive.Root>
+    <CheckboxPrimitive className={checkboxVariants().root()} {...rest}>
+      {(renderProps) => (
+        <>
+          <div className={checkboxVariants().control()}>
+            <RiCheckLine className={checkboxVariants().indicator()} />
+          </div>
+          {typeof children === "function" ? children(renderProps) : children}
+        </>
+      )}
+    </CheckboxPrimitive>
   );
 };
 
@@ -71,12 +49,10 @@ Checkbox.displayName = "Checkbox";
 const CheckboxGroup = (props: CheckboxGroupProps) => {
   const { className, ...rest } = props;
   return (
-    <CheckboxPrimitive.Group className={checkboxVariants().group()} {...rest} />
+    <CheckboxGroupPrimitive className={checkboxVariants().group()} {...rest} />
   );
 };
 
-const CheckboxContext = CheckboxPrimitive.Context;
-
 CheckboxGroup.displayName = "CheckboxGroup";
 
-export { Checkbox, CheckboxGroup, CheckboxContext };
+export { Checkbox, CheckboxGroup };

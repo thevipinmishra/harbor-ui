@@ -1,0 +1,80 @@
+:root {
+    --radius: 0.625rem;
+    --primary: var(--indigo-9);
+    --primary-subtle: var(--indigo-6);
+    --primary-ring: var(--indigo-7);
+    --primary-foreground: #fff;
+
+    --background: var(--mauve-1);
+    --foreground: var(--mauve-12);
+
+    --accent: var(--mauve-12);
+    --accent-foreground: var(--mauve-2);
+    --accent-subtle: var(--mauve-6);
+    --accent-ring: var(--mauve-7);
+    --accent-foreground-contrast: var(--mauve-1);
+
+    
+
+    --muted: var(--mauve-3);
+    --muted-foreground: var(--mauve-11);
+    --muted-subtle: var(--mauve-6);
+    --muted-foreground-contrast: var(--mauve-12);
+
+    --destructive: var(--red-9);
+    --destructive-ring: var(--red-7);
+  }
+  
+  .dark {
+  }
+  
+  @theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary-subtle: var(--primary-subtle);
+    --color-primary-ring: var(--primary-ring);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent-subtle: var(--accent-subtle);
+    --color-accent-ring: var(--accent-ring);
+    --color-accent-foreground-contrast: var(--accent-foreground-contrast);
+
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted-subtle: var(--muted-subtle);
+    --color-muted-foreground-contrast: var(--muted-foreground-contrast);
+    --color-destructive: var(--destructive);
+    --color-destructive-ring: var(--destructive-ring);
+
+
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+  
+    @keyframes accordion-down {
+      from {
+        height: 0;
+      }
+      to {
+        height: var(--radix-accordion-content-height);
+      }
+    }
+  
+    @keyframes accordion-up {
+      from {
+        height: var(--radix-accordion-content-height);
+      }
+      to {
+        height: 0;
+      }
+    }
+  }

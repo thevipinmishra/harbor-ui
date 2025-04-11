@@ -13,7 +13,7 @@ const switchVariants = tv({
   slots: {
     root: ["flex gap-2 items-baseline"],
     control: [
-      "w-10 rounded-full inline-flex items-center h-6 shrink-0 border-2 border-transparent",
+      "w-10 rounded-full cursor-pointer inline-flex items-center h-6 shrink-0 border-2 border-transparent",
       "transition-colors",
       "data-[state=unchecked]:bg-input data-[state=checked]:bg-primary",
     ],

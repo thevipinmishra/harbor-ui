@@ -2,41 +2,37 @@
 
 import * as React from "react";
 import {
-  type TooltipContentProps as TooltipPrimitiveContentProps,
   Tooltip as TooltipPrimitive,
-} from "@ark-ui/react/tooltip";
+  TooltipProps,
+  TooltipTrigger as TooltipTriggerPrimitive,
+} from "react-aria-components";
 import { tv } from "@/lib/tv.config";
 
 const tooltipContentVariants = tv({
   slots: {
     content: [
-      "bg-primary text-primary-foreground shadow-sm rounded-md text-xs will-change-transform p-3",
-      "motion-duration-200 motion-safe:data-[state=closed]:motion-opacity-out-0",
-      "motion-safe:data-[state=open]:data-[placement^=bottom]:motion-preset-slide-up-md",
-      "motion-safe:data-[state=closed]:data-[placement^=bottom]:motion-translate-y-out-25",
-      "motion-safe:data-[state=open]:data-[placement^=top]:motion-preset-slide-down-md ",
-      "motion-safe:data-[state=open]:data-[placement^=right]:motion-preset-slide-left-md ",
-      "motion-safe:data-[state=open]:data-[placement^=left]:motion-preset-slide-right-md ",
+      "bg-accent text-accent-foreground shadow-sm rounded-md text-xs will-change-transform px-3 py-2.5",
+      "motion-duration-200 motion-safe:exiting:motion-opacity-out-0",
+      "motion-safe:entering:data-[placement^=bottom]:motion-preset-slide-up-md",
+      "motion-safe:exiting:data-[placement^=bottom]:motion-translate-y-out-25",
+      "motion-safe:entering:data-[placement^=top]:motion-preset-slide-down-md ",
+      "motion-safe:entering:data-[placement^=right]:motion-preset-slide-left-md ",
+      "motion-safe:entering:data-[placement^=left]:motion-preset-slide-right-md ",
     ],
   },
 });
 
-const Tooltip = TooltipPrimitive.Root;
-const TooltipTrigger = TooltipPrimitive.Trigger;
+const TooltipTrigger = TooltipTriggerPrimitive;
 
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  TooltipPrimitiveContentProps
->((props, ref) => {
-  const { className, ...rest } = props;
+const Tooltip = (props: TooltipProps) => {
+  const { className, offset = 8, ...rest } = props;
   return (
-    <TooltipPrimitive.Positioner ref={ref}>
-      <TooltipPrimitive.Content
-        className={tooltipContentVariants().content()}
-        {...rest}
-      />
-    </TooltipPrimitive.Positioner>
+    <TooltipPrimitive
+      className={tooltipContentVariants().content()}
+      offset={offset}
+      {...rest}
+    />
   );
-});
+};
 
-export { Tooltip, TooltipTrigger, TooltipContent };
+export { Tooltip, TooltipTrigger };

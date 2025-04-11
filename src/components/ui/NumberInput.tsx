@@ -26,7 +26,7 @@ const numberInputVariants = tv({
       "row-span-2 rounded-l-[inherit] rounded-r-none outline-hidden px-2 py-1 border-r border-input tabular-nums data-invalid:border-destructive",
     ],
     trigger: [
-      "flex flex-col outline-hidden justify-center items-center shrink-0 data-[part=decrement-trigger]:rounded-br-[inherit] data-[part=decrement-trigger]:border-t data-[part=decrement-trigger]:border-input group-data-invalid:border-destructive data-[part=increment-trigger]:rounded-tr-[inherit] disabled:opacity-50 disabled:cursor-not-allowed",
+      "flex flex-col outline-hidden cursor-pointer justify-center items-center shrink-0 data-[part=decrement-trigger]:rounded-br-[inherit] data-[part=decrement-trigger]:border-t data-[part=decrement-trigger]:border-input group-data-invalid:border-destructive data-[part=increment-trigger]:rounded-tr-[inherit] disabled:opacity-50 disabled:cursor-not-allowed",
     ],
   },
   variants: {

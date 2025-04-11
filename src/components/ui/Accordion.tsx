@@ -2,84 +2,65 @@
 
 import * as React from "react";
 import {
-  type AccordionItemContentProps,
-  type AccordionItemProps,
-  type AccordionItemTriggerProps,
-  Accordion as AccordionPrimitive,
-  type AccordionRootProps,
-} from "@ark-ui/react/accordion";
+  Button,
+  Disclosure,
+  DisclosureGroup,
+  DisclosurePanel,
+  Heading,
+  DisclosureGroupProps,
+  DisclosureProps,
+  HeadingProps,
+  DisclosurePanelProps,
+} from "react-aria-components";
 import { tv } from "@/lib/tv.config";
-import { Plus } from "@phosphor-icons/react";
+import { RiAddLine } from "@remixicon/react";
 
 const accordionVariants = tv({
   slots: {
-    root: " rounded-md divide-y divide-border",
+    root: " rounded-md divide-y divide-muted-subtle",
     item: [
-      "first:rounded-t-[inherit] group relative last:rounded-b-[inherit]",
-      "data-focus:ring-1 data-focus:ring-ring data-focus:z-1 overflow-hidden",
+      "relative bg-background text-foreground",
     ],
     itemTrigger: [
-      "font-medium cursor-pointer text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
-      "outline-hidden",
+      "font-medium group cursor-pointer text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
     ],
     itemContent: [
-      "px-3 transition-[padding-bottom] ease-linear pb-3 group-data-[state=closed]:pb-3 text-sm",
-      " motion-safe:data-[state=open]:animate-collapse-in motion-safe:data-[state=closed]:animate-collapse-out",
+      "px-3 aria-hidden:hidden transition-[padding-bottom] pb-3 text-sm",
     ],
     itemIndicator: [
-      "[&_svg]:size-5 flex items-center text-muted-foreground data-[state=open]:rotate-45",
-      "motion-safe:transition-transform",
+      "size-5 text-muted-foreground group-aria-expanded:rotate-45 transition-transform",
     ],
   },
 });
 
-const Accordion = (props: AccordionRootProps) => {
+const Accordion = (props: DisclosureGroupProps) => {
   const { className, ...rest } = props;
-  return (
-    <AccordionPrimitive.Root className={accordionVariants().root()} {...rest} />
-  );
+  return <DisclosureGroup className={accordionVariants().root()} {...rest} />;
 };
 
-const AccordionItem = (props: AccordionItemProps) => {
+const AccordionItem = (props: DisclosureProps) => {
   const { className, ...rest } = props;
-  return (
-    <AccordionPrimitive.Item className={accordionVariants().item()} {...rest} />
-  );
+  return <Disclosure className={accordionVariants().item()} {...rest} />;
 };
 
-const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {
+const AccordionItemTrigger = (props: HeadingProps) => {
   const { className, children, ...rest } = props;
   return (
-    <AccordionPrimitive.ItemTrigger
-      className={accordionVariants().itemTrigger()}
-      {...rest}
-    >
-      <div className='flex gap-2 items-center'>{children}</div>
-      <AccordionPrimitive.ItemIndicator
-        className={accordionVariants().itemIndicator()}
-      >
-        <Plus /> &#x200B;
-      </AccordionPrimitive.ItemIndicator>
-    </AccordionPrimitive.ItemTrigger>
+    <Heading  {...rest}>
+      <Button className={accordionVariants().itemTrigger({
+        className
+      })} slot="trigger">
+        {children} <RiAddLine className={accordionVariants().itemIndicator()} aria-hidden />
+      </Button>
+    </Heading>
   );
 };
 
-const AccordionItemContent = (props: AccordionItemContentProps) => {
+const AccordionItemContent = (props: DisclosurePanelProps) => {
   const { className, ...rest } = props;
   return (
-    <AccordionPrimitive.ItemContent
-      className={accordionVariants().itemContent()}
-      {...rest}
-    />
+    <DisclosurePanel className={accordionVariants().itemContent()} {...rest} />
   );
 };
 
-const AccordionContext = AccordionPrimitive.Context;
-
-export {
-  Accordion,
-  AccordionItem,
-  AccordionItemTrigger,
-  AccordionItemContent,
-  AccordionContext,
-};
+export { Accordion, AccordionItem, AccordionItemTrigger, AccordionItemContent };

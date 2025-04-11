@@ -1,30 +1,27 @@
 "use client";
 
 import { tv } from "@/lib/tv.config";
-import { Field, type FieldLabelProps } from "@ark-ui/react";
+import { Label as LabelPrimitive, LabelProps } from "react-aria-components";
 import * as React from "react";
 
 const labelVariants = tv({
   base: [
-    "font-medium text-sm text-foreground",
+    "font-medium cursor-default block text-xs text-muted-foreground",
     "data-invalid:text-destructive",
     "data-disabled:opacity-50",
   ],
 });
 
-const Label = React.forwardRef<React.ElementRef<typeof Field.Label>, FieldLabelProps>(
-  (props, ref) => {
-    const { className, ...rest } = props;
-    return (
-      <Field.Label
-        ref={ref}
-        className={labelVariants({
-          className,
-        })}
-        {...rest}
-      />
-    );
-  },
-);
+const Label = (props: LabelProps) => {
+  const { className, ...rest } = props;
+  return (
+    <LabelPrimitive
+      className={labelVariants({
+        className,
+      })}
+      {...rest}
+    />
+  );
+};
 
 export { Label, labelVariants };

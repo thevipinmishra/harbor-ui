@@ -1,9 +1,9 @@
 'use client';
 
-import { Toggle as TogglePrimitive } from "@ark-ui/react/toggle";
+import {  ToggleButton as ToggleButtonPrimitive, ToggleButtonProps } from "react-aria-components";
 
-const Toggle = TogglePrimitive.Root;
-const ToggleContext = TogglePrimitive.Context;
-const ToggleIndicator = TogglePrimitive.Indicator;
+const ToggleButton = (props: ToggleButtonProps) => {
+    return <ToggleButtonPrimitive {...props} />
+}
 
-export { Toggle, ToggleContext, ToggleIndicator };
+export { ToggleButton };

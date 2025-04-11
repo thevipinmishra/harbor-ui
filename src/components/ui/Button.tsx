@@ -2,42 +2,53 @@
 
 import { cn, tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
-import { ark, type HTMLArkProps } from "@ark-ui/react/factory";
-import { SpinnerGap } from "@phosphor-icons/react";
+import {
+  Button,
+  ButtonProps as RACButtonProps,
+  composeRenderProps,
+} from "react-aria-components";
+import {  RiLoader3Line } from "@remixicon/react";
 import * as React from "react";
 import type { VariantProps } from "tailwind-variants";
+import { accentFocusRingVisible, destructiveFocusRingVisible, primaryFocusRingVisible } from "../utils/focusRing";
 
 const buttonGroupVariants = tv({
   base: [
-    "flex [&_.hbui-button:not(:first-of-type)]:rounded-l-none [&_.hbui-button:not(:last-of-type)]:rounded-r-none -space-x-px",
+    "flex  [&_.hbui-button:not(:first-of-type)]:rounded-l-none [&_.hbui-button:not(:last-of-type)]:rounded-r-none -space-x-px",
   ],
 });
 
 export const buttonVariants = tv({
   base: [
-    "select-none inline-flex text-sm no-underline items-center rounded justify-center gap-2",
-    "disabled:opacity-50 disabled:bg-muted disabled:pointer-events-none",
-    "focus:outline-hidden focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
+    "select-none cursor-pointer inline-flex text-sm no-underline items-center rounded-sm justify-center gap-2",
+    "disabled:opacity-50 disabled:pointer-events-none",
     "motion-safe:transition-[opacity,background-color,color]",
     "[&_svg]:shrink-0",
   ],
   variants: {
     variant: {
-      filled: [
+      primary: [
         "bg-primary text-primary-foreground",
         "font-medium",
         "hover:opacity-90",
-        "disabled:bg-disab",
+        primaryFocusRingVisible
       ],
-      plain: ["bg-background text-foreground", "hover:bg-muted"],
+      secondary: [
+        "bg-accent text-accent-foreground",
+        "font-medium",
+        "hover:opacity-90",
+        accentFocusRingVisible
+      ],
+      plain: ["bg-background text-foreground", "hover:bg-muted", accentFocusRingVisible],
       outlined: [
-        "bg-background text-foreground border border-border",
+        "bg-background text-foreground border border-accent-subtle",
         "hover:bg-muted",
+        accentFocusRingVisible
       ],
       destructive: [
         "bg-destructive text-white",
         "hover:opacity-90",
-        "focus:ring-destructive/50",
+        destructiveFocusRingVisible
       ],
     },
     size: {
@@ -51,64 +62,70 @@ export const buttonVariants = tv({
     fullWidth: {
       true: "w-full",
     },
-    loading: {
+    isLoading: {
       true: "cursor-wait",
     },
   },
   defaultVariants: {
     size: "md",
-    variant: "filled",
+    variant: "primary",
   },
 });
 
 interface ButtonProps
-  extends HTMLArkProps<"button">,
+  extends Omit<RACButtonProps, "size">,
     VariantProps<typeof buttonVariants> {
   /** Shows a loading spinner and disables the button */
-  loading?: boolean;
+  isLoading?: boolean;
 }
 
-const Button = (props: ButtonProps) => {
+const _Button = (props: ButtonProps) => {
   const {
     className,
     size,
     variant,
     children,
-    loading = false,
-    type = "button",
-    disabled,
+    isLoading = false,
+    isDisabled,
     fullWidth,
     ...rest
   } = props;
 
   const staticClass = "hbui-button";
   return (
-    <ark.button
-      disabled={loading || disabled}
-      className={cn(
-        buttonVariants({
-          className,
-          size,
-          variant,
-          fullWidth,
-        }),
-        staticClass
+    <Button
+      isDisabled={isLoading || isDisabled}
+      className={composeRenderProps(className, (className, renderProps) =>
+        cn(
+          buttonVariants({
+            ...renderProps,
+            size,
+            className,
+            variant,
+            fullWidth,
+            isLoading,
+          }),
+          staticClass
+        )
       )}
-      type={type}
       {...rest}
     >
-      {loading ? <SpinnerGap className="animate-spin" /> : null}
-      {children}
-    </ark.button>
+      {(values) => (
+        <>
+          {isLoading ? <RiLoader3Line className="animate-spin" /> : null}
+          {typeof children === "function" ? children(values) : children}
+        </>
+      )}
+    </Button>
   );
 };
 
-Button.displayName = "Button";
+_Button.displayName = "Button";
 
-const ButtonGroup = (props: HTMLArkProps<"div">) => {
+const ButtonGroup = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const { className, ...rest } = props;
   return (
-    <ark.div
+    <div
       className={buttonGroupVariants({
         className,
       })}
@@ -119,4 +136,5 @@ const ButtonGroup = (props: HTMLArkProps<"div">) => {
 
 ButtonGroup.displayName = "ButtonGroup";
 
-export { Button, ButtonGroup };
+export { _Button as Button, ButtonGroup };
+export type { ButtonProps };
