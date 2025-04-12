@@ -2,14 +2,17 @@
 
 import * as React from "react";
 import {
-  type SliderControlProps,
-  type SliderLabelProps,
   Slider as SliderPrimitive,
-  type SliderRootProps,
-  type SliderValueTextProps,
-} from "@ark-ui/react/slider";
+  SliderOutput as SliderOutputPrimitive,
+  SliderThumb as SliderThumbPrimitive,
+  SliderTrack as SliderTrackPrimitive,
+  SliderProps,
+  SliderOutputProps,
+  SliderTrackProps,
+  composeRenderProps,
+  SliderStateContext,
+} from "react-aria-components";
 import { tv } from "@/lib/tv.config";
-import { labelVariants } from "./Label";
 
 const sliderVariants = tv({
   slots: {
@@ -17,59 +20,49 @@ const sliderVariants = tv({
     control:
       "flex data-[orientation=vertical]:flex-col items-center data-[orientation=vertical]:w-max",
     track:
-      "bg-secondary   rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
+      "bg-muted rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
     range:
       "bg-primary data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",
     thumb:
-      "bg-background border-2 cursor-pointer border-primary size-5 rounded-full block ring-offset-background transition-colors data-focus:outline-hidden data-focus:ring-2 data-focus:ring-ring data-focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+      "bg-background border-2 top-1/2 cursor-pointer border-accent size-5 rounded-full block",
     valueText: ["text-sm font-medium"],
   },
 });
 
-const Slider = (props: SliderRootProps) => {
+const Slider = (props: SliderProps) => {
   const { className, ...rest } = props;
-  return <SliderPrimitive.Root className={sliderVariants().root()} {...rest} />;
+  return <SliderPrimitive className={sliderVariants().root()} {...rest} />;
 };
 
-const SliderLabel = (props: SliderLabelProps) => {
-  const { className, ...rest } = props;
-  return <SliderPrimitive.Label className={labelVariants()} {...rest} />;
-};
-
-const SliderValueText = (props: SliderValueTextProps) => {
+const SliderOutput = (props: SliderOutputProps) => {
   const { className, ...rest } = props;
   return (
-    <SliderPrimitive.ValueText
-      className={sliderVariants().valueText({ className })}
+    <SliderOutputPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        sliderVariants().valueText({ ...renderProps, className })
+      )}
       {...rest}
     />
   );
 };
 
-const SliderControl = (props: SliderControlProps) => {
+const SliderControl = (props: SliderTrackProps) => {
   const { className, ...rest } = props;
+  const state = React.useContext(SliderStateContext);
+
   return (
-    <SliderPrimitive.Control className={sliderVariants().control()} {...rest}>
-      <SliderPrimitive.Track className={sliderVariants().track()}>
-        <SliderPrimitive.Range className={sliderVariants().range()} />
-      </SliderPrimitive.Track>
-      <SliderPrimitive.Context>
-        {(context) =>
-          context.value.map((_, index) => (
-            <SliderPrimitive.Thumb
-              index={index}
-              key={`slider-thumb-${index}`}
-              className={sliderVariants().thumb()}
-            >
-              <SliderPrimitive.HiddenInput />
-            </SliderPrimitive.Thumb>
-          ))
-        }
-      </SliderPrimitive.Context>
-    </SliderPrimitive.Control>
+    <SliderTrackPrimitive className={sliderVariants().track()} {...rest}>
+      {state?.values.map((_, i) => (
+        <React.Fragment key={i}>
+            <div className="absolute rounded-[inherit] inset-y-0 bg-accent" style={{ width: state.getThumbPercent(0) * 100 + '%' }} />
+          <SliderThumbPrimitive
+            index={i}
+            className={sliderVariants().thumb()}
+          />
+        </React.Fragment>
+      ))}
+    </SliderTrackPrimitive>
   );
 };
 
-const SliderContext = SliderPrimitive.Context;
-
-export { Slider, SliderLabel, SliderValueText, SliderControl, SliderContext };
+export { Slider, SliderControl, SliderOutput };

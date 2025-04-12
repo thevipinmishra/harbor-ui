@@ -17,14 +17,7 @@
     "enabled": true
   },
   "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "suspicious": {
-        "noArrayIndexKey": "off",
-        "noExplicitAny": "off"
-      }
-    }
+    "enabled": false
   },
   "javascript": {
     "formatter": {

@@ -32,6 +32,9 @@ import {
   RiUserSmileLine,
 } from "@remixicon/react";
 import { useTheme } from "next-themes";
+import { Slider, SliderControl } from "@/components/ui/Slider";
+import { Input, TextField } from "@/components/ui/Input";
+import { Form } from "react-aria-components";
 
 export default function HomePage() {
   const { theme, setTheme } = useTheme();
@@ -110,10 +113,32 @@ export default function HomePage() {
         <DialogTrigger>
           <Button>Open Dialog</Button>
           <DialogContent>
-            <p>
-              This dialog provides additional information about the selected
-              feature. Please review the details carefully.
-            </p>
+           <div className="space-y-4">
+           <h3 className="text-lg font-semibold">Sign Up</h3>
+            <Form className="grid gap-4">
+              <TextField>
+                <Label>Username</Label>
+                <Input />
+              </TextField>
+              <TextField>
+                <Label>Password</Label>
+                <Input type="password" />
+              </TextField>
+              <Select>
+                <Label>Account Type</Label>
+                <SelectTrigger />
+                <SelectContent>
+                  <SelectItem textValue="personal">Personal</SelectItem>
+                  <SelectItem textValue="business">Business</SelectItem>
+                  <SelectItem textValue="enterprise">Enterprise</SelectItem>
+                </SelectContent>
+              </Select>
+              <Checkbox>I agree to the terms and conditions.</Checkbox>
+              <div className="flex justify-end">
+                <Button>Sign Up</Button>
+              </div>
+            </Form>
+           </div>
           </DialogContent>
         </DialogTrigger>
       </ComponentBox>
@@ -203,6 +228,20 @@ export default function HomePage() {
             </p>
           </TabPanel>
         </Tabs>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="Slider">
+        <Slider>
+          <Label>Volume</Label>
+          <SliderControl />
+        </Slider>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="TextField">
+        <TextField>
+          <Label>Username</Label>
+          <Input />
+        </TextField>
       </ComponentBox>
     </main>
   );

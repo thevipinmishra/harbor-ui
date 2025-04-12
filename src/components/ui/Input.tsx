@@ -2,22 +2,48 @@
 
 import { tv } from "@/lib/tv.config";
 import { fieldHeight } from "@/utils/styles";
-import { Field, type FieldInputProps } from "@ark-ui/react/field";
+import {
+  composeRenderProps,
+  Input as InputPrimitive,
+  TextField as TextFieldPrimitive,
+  InputProps as InputPrimitiveProps,
+  TextFieldProps,
+} from "react-aria-components";
 import * as React from "react";
 import type { VariantProps } from "tailwind-variants";
+import { accentFocusRingVisible } from "../utils/focusRing";
 
 export interface InputProps
-  extends Omit<FieldInputProps, "size">,
+  extends Omit<InputPrimitiveProps, "size">,
     VariantProps<typeof inputVariants> {}
+
+export const textfieldStyles = tv({
+  base: ["grid group gap-1"],
+});
+
+export const TextField = (props: TextFieldProps) => {
+  const { className, ...rest } = props;
+  return (
+    <TextFieldPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        textfieldStyles({
+          ...renderProps,
+          className,
+        })
+      )}
+      {...rest}
+    />
+  );
+};
 
 export const inputVariants = tv({
   base: [
-    "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded border-input ",
+    "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded border-accent-subtle ",
     "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
     "data-invalid:text-destructive",
     "disabled:opacity-50 disabled:pointer-events-none",
-    "focus:ring-1 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
+    accentFocusRingVisible,
     "data-invalid:border-destructive data-invalid:focus:ring-destructive/50",
   ],
   variants: {
@@ -35,11 +61,14 @@ export const inputVariants = tv({
 const Input = (props: InputProps) => {
   const { className, size, ...rest } = props;
   return (
-    <Field.Input
-      className={inputVariants({
-        className,
-        size,
-      })}
+    <InputPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        inputVariants({
+          ...renderProps,
+          className,
+          size,
+        })
+      )}
       {...rest}
     />
   );
