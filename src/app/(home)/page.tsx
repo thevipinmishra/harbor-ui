@@ -35,6 +35,9 @@ import { useTheme } from "next-themes";
 import { Slider, SliderControl } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
 import { Form } from "react-aria-components";
+import { Calendar } from "@/components/ui/Calendar";
+import { DatePicker } from "@/components/ui/Datepicker";
+import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
 
 export default function HomePage() {
   const { theme, setTheme } = useTheme();
@@ -113,32 +116,32 @@ export default function HomePage() {
         <DialogTrigger>
           <Button>Open Dialog</Button>
           <DialogContent>
-           <div className="space-y-4">
-           <h3 className="text-lg font-semibold">Sign Up</h3>
-            <Form className="grid gap-4">
-              <TextField>
-                <Label>Username</Label>
-                <Input />
-              </TextField>
-              <TextField>
-                <Label>Password</Label>
-                <Input type="password" />
-              </TextField>
-              <Select>
-                <Label>Account Type</Label>
-                <SelectTrigger />
-                <SelectContent>
-                  <SelectItem textValue="personal">Personal</SelectItem>
-                  <SelectItem textValue="business">Business</SelectItem>
-                  <SelectItem textValue="enterprise">Enterprise</SelectItem>
-                </SelectContent>
-              </Select>
-              <Checkbox>I agree to the terms and conditions.</Checkbox>
-              <div className="flex justify-end">
-                <Button>Sign Up</Button>
-              </div>
-            </Form>
-           </div>
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Sign Up</h3>
+              <Form className="grid gap-4">
+                <TextField>
+                  <Label>Username</Label>
+                  <Input />
+                </TextField>
+                <TextField>
+                  <Label>Password</Label>
+                  <Input type="password" />
+                </TextField>
+                <Select>
+                  <Label>Account Type</Label>
+                  <SelectTrigger />
+                  <SelectContent>
+                    <SelectItem textValue="personal">Personal</SelectItem>
+                    <SelectItem textValue="business">Business</SelectItem>
+                    <SelectItem textValue="enterprise">Enterprise</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Checkbox>I agree to the terms and conditions.</Checkbox>
+                <div className="flex justify-end">
+                  <Button>Sign Up</Button>
+                </div>
+              </Form>
+            </div>
           </DialogContent>
         </DialogTrigger>
       </ComponentBox>
@@ -211,17 +214,17 @@ export default function HomePage() {
           </TabList>
           <TabPanel id="tab-1">
             <p>
-              Update your personal details like name, email, and profile picture.
+              Update your personal details like name, email, and profile
+              picture.
             </p>
           </TabPanel>
           <TabPanel id="tab-2">
-            <p>
-              Manage your subscription, billing information, and password.
-            </p>
+            <p>Manage your subscription, billing information, and password.</p>
           </TabPanel>
           <TabPanel id="tab-3">
             <p>
-              Configure your notification preferences for email and in-app alerts.
+              Configure your notification preferences for email and in-app
+              alerts.
             </p>
           </TabPanel>
         </Tabs>
@@ -234,11 +237,28 @@ export default function HomePage() {
         </Slider>
       </ComponentBox>
 
+      <ComponentBox fullWidth title="Calendar">
+        <Calendar />
+      </ComponentBox>
+
       <ComponentBox fullWidth title="TextField">
         <TextField>
           <Label>Username</Label>
           <Input />
         </TextField>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="DatePicker">
+        <DatePicker label="Select a date" />
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="RadioGroup">
+        <RadioGroup>
+          <Label>Favorite pet</Label>
+          <Radio value="dogs">Dog</Radio>
+          <Radio value="cats">Cat</Radio>
+          <Radio value="dragon">Dragon</Radio>
+        </RadioGroup>
       </ComponentBox>
     </main>
   );
