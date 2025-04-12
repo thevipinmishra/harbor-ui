@@ -70,7 +70,7 @@ const PaginationControls = () => {
               <PaginationPrimitive.Item
                 className={buttonVariants({
                   size: "sm",
-                  variant: pagination.page === page.value ? "filled" : "outlined",
+                  variant: pagination.page === page.value ? "secondary" : "outlined",
                 })}
                 key={index}
                 {...page}
