@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/Select";
 import { Tab, TabList, TabPanel, Tabs } from "@/components/ui/Tabs";
 import { Tooltip, TooltipTrigger } from "@/components/ui/Tooltip";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 
 import ComponentBox from "@/components/web/component-box";
 import {
@@ -44,13 +45,7 @@ export default function HomePage() {
   return (
     <main className="py-10 container max-w-3xl space-y-10">
       <div className="flex justify-end mb-6">
-        <Button onPress={cycleTheme}>
-          {theme === "light"
-            ? "🔆 Light"
-            : theme === "dark"
-            ? "🌙 Dark"
-            : "💻 System"}
-        </Button>
+        <ThemeSwitcher />
       </div>
 
       {/* Basic Elements */}

@@ -17,7 +17,9 @@ import { cn, tv } from "@/lib/tv.config";
 
 const selectVariants = tv({
   slots: {
-    trigger: ["justify-between px-2 text-left"],
+    select: 'grid group gap-1',
+    trigger: ["justify-between px-2 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground"],
+    selectValue: ['font-medium']
   },
 });
 
@@ -26,7 +28,10 @@ const Select = (props: SelectProps) => {
   return (
     <SelectPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
-        cn(renderProps.defaultClassName, className)
+        selectVariants().select({
+            ...renderProps,
+            className,
+          })
       )}
       {...rest}
     />
@@ -47,7 +52,7 @@ const SelectTrigger = (props: Omit<ButtonProps, "children">) => {
       )}
       {...rest}
     >
-      <SelectValue />
+      <SelectValue className={selectVariants().selectValue()} />
       <RiExpandUpDownLine className="size-4" />
     </Button>
   );
