@@ -12,7 +12,7 @@ export default function ComponentBox({
   return (
     <div className="border border-accent-subtle shadow-2xs rounded-lg">
       <div className="py-2 border-b border-accent-subtle px-4 bg-muted rounded-t-[inherit]">
-        <p className="text-foreground font-medium text-xs">{title}</p>
+        <p className="text-muted-foreground font-mono text-xs">{title}</p>
       </div>
       <div className={cn("p-4 grid  min-h-28 rounded-b-[inherit] overflow-hidden items-center", !fullWidth && 'justify-center')}>{children}</div>
     </div>

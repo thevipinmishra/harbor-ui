@@ -205,26 +205,23 @@ export default function HomePage() {
       <ComponentBox fullWidth title="Tabs">
         <Tabs>
           <TabList>
-            <Tab id="tab-1">Overview</Tab>
-            <Tab id="tab-2">Features</Tab>
-            <Tab id="tab-3">Pricing</Tab>
+            <Tab id="tab-1">Profile</Tab>
+            <Tab id="tab-2">Account</Tab>
+            <Tab id="tab-3">Notifications</Tab>
           </TabList>
           <TabPanel id="tab-1">
             <p>
-              Discover the key highlights and benefits of using these UI
-              components for your projects.
+              Update your personal details like name, email, and profile picture.
             </p>
           </TabPanel>
           <TabPanel id="tab-2">
             <p>
-              Explore the wide range of components and tools available to
-              enhance your application.
+              Manage your subscription, billing information, and password.
             </p>
           </TabPanel>
           <TabPanel id="tab-3">
             <p>
-              Choose a plan that suits your needs and start building your
-              application today.
+              Configure your notification preferences for email and in-app alerts.
             </p>
           </TabPanel>
         </Tabs>

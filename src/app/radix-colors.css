@@ -34,6 +34,8 @@
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
 
+    --font-mono: var(--font-mono);
+    --font-sans: var(--font-sans);
 
     --color-primary: var(--primary);
     --color-primary-foreground: var(--primary-foreground);
