@@ -15,6 +15,7 @@ const fontMono = DM_Mono({
     display: "swap",
     weight: ["500"],
     variable: "--font-mono",
+    subsets: ["latin"],
   });
 
 export default function Layout({ children }: { children: ReactNode }) {
