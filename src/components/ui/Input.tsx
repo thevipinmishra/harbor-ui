@@ -38,7 +38,7 @@ export const TextField = (props: TextFieldProps) => {
 
 export const inputVariants = tv({
   base: [
-    "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded border-accent-subtle ",
+    "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded-md border-accent-subtle ",
     "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
     "data-invalid:text-destructive",

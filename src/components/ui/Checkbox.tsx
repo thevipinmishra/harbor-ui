@@ -6,6 +6,7 @@ import {
   CheckboxGroup as CheckboxGroupPrimitive,
   CheckboxProps as CheckboxPrimitiveProps,
   CheckboxGroupProps,
+  composeRenderProps,
 } from "react-aria-components";
 import { tv } from "@/lib/tv.config";
 import { RiCheckLine } from "@remixicon/react";
@@ -16,14 +17,14 @@ const checkboxVariants = tv({
     root: ["flex group text-sm gap-2"],
     group: ["space-y-4"],
     control: [
-      "size-4.5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-accent-subtle group-data-selected:bg-accent group-data-selected:text-accent-foreground group-data-selected:border-accent",
+      "size-5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-accent-subtle group-data-selected:bg-accent group-data-selected:text-accent-foreground group-data-selected:border-accent",
       "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary",
       accentFocusRing,
       "data-invalid:group-data-selected:border-destructive data-invalid:group-data-selected:bg-destructive data-invalid:data-focus-visible:ring-destructive/50",
       "data-disabled:opacity-50 data-disabled:pointer-events-none",
       "motion-safe:transition-[background-color]",
     ],
-    indicator: ["size-3.5 hidden group-data-selected:block"],
+    indicator: ["size-4 hidden group-data-selected:block"],
   },
 });
 
@@ -49,7 +50,15 @@ Checkbox.displayName = "Checkbox";
 const CheckboxGroup = (props: CheckboxGroupProps) => {
   const { className, ...rest } = props;
   return (
-    <CheckboxGroupPrimitive className={checkboxVariants().group()} {...rest} />
+    <CheckboxGroupPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        checkboxVariants().group({
+          ...renderProps,
+          className,
+        })
+      )}
+      {...rest}
+    />
   );
 };
 

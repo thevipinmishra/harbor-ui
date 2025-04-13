@@ -31,23 +31,15 @@ import {
   RiSettings5Line,
   RiUserSmileLine,
 } from "@remixicon/react";
-import { useTheme } from "next-themes";
 import { Slider, SliderControl } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
 import { Form } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
+import { NumberField } from "@/components/ui/NumberField";
 
 export default function HomePage() {
-  const { theme, setTheme } = useTheme();
-
-  const cycleTheme = () => {
-    if (theme === "light") setTheme("dark");
-    else if (theme === "dark") setTheme("system");
-    else setTheme("light");
-  };
-
   return (
     <main className="py-10 container max-w-3xl space-y-10">
       <div className="flex justify-end mb-6">
@@ -57,11 +49,11 @@ export default function HomePage() {
       {/* Basic Elements */}
       <ComponentBox title="Button">
         <div className="flex flex-wrap gap-5">
-          <Button>Primary</Button>
+          <Button size="sm">Small</Button>
           <Button isLoading>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
+          <Button variant="secondary" size="md">Secondary</Button>
           <Button variant="plain">Plain</Button>
-          <Button variant="outlined">Outlined</Button>
+          <Button variant="outlined" size="lg">Outlined</Button>
           <Button variant="outlined" isLoading>
             Outlined
           </Button>
@@ -246,6 +238,11 @@ export default function HomePage() {
           <Label>Username</Label>
           <Input />
         </TextField>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="NumberField">
+        <NumberField size="sm" label="NumberField" />
+         
       </ComponentBox>
 
       <ComponentBox fullWidth title="DatePicker">

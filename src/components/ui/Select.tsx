@@ -20,7 +20,7 @@ const selectVariants = tv({
   slots: {
     select: "grid group gap-1",
     trigger: [
-      "justify-between px-2 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
+      "justify-between text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
     ],
     selectValue: ["font-medium data-placeholder:text-muted-foreground"],
   },
@@ -42,12 +42,13 @@ const Select = (props: SelectProps) => {
 };
 
 const SelectTrigger = (props: Omit<ButtonProps, "children">) => {
-  const { variant = "outlined", className, ...rest } = props;
+  const { variant = "outlined", size = 'md', className, ...rest } = props;
   const state = React.useContext(SelectStateContext);
   return (
     <Button
       fullWidth
       variant={variant}
+      size={size}
       className={composeRenderProps(className, (className, renderProps) =>
         selectVariants().trigger({
           ...renderProps,
