@@ -28,6 +28,7 @@ export const calendarVariants = tv({
     td: ["p-1"],
     cellTrigger: [
       buttonVariants({ size: "icon-md", variant: "plain" }),
+      "font-medium",
       "data-disabled:opacity-50 data-disabled:pointer-events-none",
       "data-selected:bg-accent data-selected:text-accent-foreground data-in-range:bg-muted",
       "data-range-start:bg-primary data-range-start:text-primary-foreground",
@@ -40,6 +41,8 @@ export const calendarVariants = tv({
     ],
   },
 });
+
+
 
 const Calendar = (props: CalendarProps<DateValue>) => {
   const { className, ...rest } = props;

@@ -43,7 +43,6 @@ export const inputVariants = tv({
     "placeholder:text-muted-foreground placeholder:font-normal",
     "data-invalid:text-destructive",
     "disabled:opacity-50 disabled:pointer-events-none",
-    accentFocusRingVisible,
     "data-invalid:border-destructive data-invalid:focus:ring-destructive/50",
   ],
   variants: {
@@ -52,21 +51,27 @@ export const inputVariants = tv({
       md: [fieldHeight.md, "text-sm px-3 py-1.5"],
       lg: [fieldHeight.lg, "text-base px-3.5 py-1.5"],
     },
+    focusRing: {
+      true: [accentFocusRingVisible],
+      false: [],
+    },
   },
   defaultVariants: {
     size: "md",
+    focusRing: true,
   },
 });
 
 const Input = (props: InputProps) => {
-  const { className, size, ...rest } = props;
+  const { className, size, focusRing, ...rest } = props;
   return (
     <InputPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
         inputVariants({
           ...renderProps,
-          className,
           size,
+          focusRing,
+          className,
         })
       )}
       {...rest}

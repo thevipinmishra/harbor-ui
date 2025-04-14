@@ -24,13 +24,6 @@ import { Tooltip, TooltipTrigger } from "@/components/ui/Tooltip";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 
 import ComponentBox from "@/components/web/component-box";
-import {
-  RiHome6Line,
-  RiLogoutCircleLine,
-  RiQuestionLine,
-  RiSettings5Line,
-  RiUserSmileLine,
-} from "@remixicon/react";
 import { Slider, SliderControl } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
 import { Form } from "react-aria-components";
@@ -38,8 +31,24 @@ import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
 import { NumberField } from "@/components/ui/NumberField";
+import { SearchField } from "@/components/ui/SearchField";
+import {
+  ComboBox,
+  ComboBoxContent,
+  ComboBoxItem,
+  ComboBoxTrigger,
+} from "@/components/ui/ComboBox";
 
 export default function HomePage() {
+  const animals = [
+    "Aardvark",
+    "Cat",
+    "Dog",
+    "Kangaroo",
+    "Panda",
+    "Snake",
+  ];
+
   return (
     <main className="py-10 container max-w-3xl space-y-10">
       <div className="flex justify-end mb-6">
@@ -51,9 +60,13 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-5">
           <Button size="sm">Small</Button>
           <Button isLoading>Primary</Button>
-          <Button variant="secondary" size="md">Secondary</Button>
+          <Button variant="secondary" size="md">
+            Secondary
+          </Button>
           <Button variant="plain">Plain</Button>
-          <Button variant="outlined" size="lg">Outlined</Button>
+          <Button variant="outlined" size="lg">
+            Outlined
+          </Button>
           <Button variant="outlined" isLoading>
             Outlined
           </Button>
@@ -147,16 +160,30 @@ export default function HomePage() {
       <ComponentBox title="Select">
         <Select className={"w-[200px]"}>
           <Label>Favorite Animal</Label>
-          <SelectTrigger />
+          <SelectTrigger size="sm" />
           <SelectContent>
-            <SelectItem textValue="aardvark">Aardvark</SelectItem>
-            <SelectItem textValue="cat">Cat</SelectItem>
-            <SelectItem textValue="dog">Dog</SelectItem>
-            <SelectItem textValue="kangaroo">Kangaroo</SelectItem>
-            <SelectItem textValue="panda">Panda</SelectItem>
-            <SelectItem textValue="snake">Snake</SelectItem>
+            {animals.map((animal) => (
+              <SelectItem
+                key={animal.toLowerCase()}
+                textValue={animal}
+              >
+                {animal}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
+      </ComponentBox>
+
+      <ComponentBox title="ComboBox">
+        <ComboBox className={"w-[200px]"}>
+          <Label>Favorite Animal</Label>
+          <ComboBoxTrigger size="sm" />
+          <ComboBoxContent>
+            {animals.map((animal) => (
+              <ComboBoxItem key={animal.toLowerCase()}   textValue={animal}>{animal}</ComboBoxItem>
+            ))}
+          </ComboBoxContent>
+        </ComboBox>
       </ComponentBox>
 
       <ComponentBox title="Listbox">
@@ -165,12 +192,14 @@ export default function HomePage() {
           className="w-[200px]"
           selectionMode="single"
         >
-          <ListBoxItem textValue="aardvark">Aardvark</ListBoxItem>
-          <ListBoxItem textValue="cat">Cat</ListBoxItem>
-          <ListBoxItem textValue="dog">Dog</ListBoxItem>
-          <ListBoxItem textValue="kangaroo">Kangaroo</ListBoxItem>
-          <ListBoxItem textValue="panda">Panda</ListBoxItem>
-          <ListBoxItem textValue="snake">Snake</ListBoxItem>
+          {animals.map((animal) => (
+            <ListBoxItem
+              key={animal.toLowerCase()}
+              textValue={animal}
+            >
+              {animal}
+            </ListBoxItem>
+          ))}
         </ListBox>
       </ComponentBox>
 
@@ -178,21 +207,11 @@ export default function HomePage() {
         <MenuTrigger>
           <Button>Options</Button>
           <Menu>
-            <MenuItem>
-              <RiHome6Line /> Dashboard
-            </MenuItem>
-            <MenuItem>
-              <RiUserSmileLine /> Profile
-            </MenuItem>
-            <MenuItem>
-              <RiSettings5Line /> Settings
-            </MenuItem>
-            <MenuItem>
-              <RiQuestionLine /> Support
-            </MenuItem>
-            <MenuItem isDisabled>
-              <RiLogoutCircleLine /> Sign Out
-            </MenuItem>
+            <MenuItem>Dashboard</MenuItem>
+            <MenuItem>Profile</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <MenuItem>Support</MenuItem>
+            <MenuItem isDisabled>Sign Out</MenuItem>
           </Menu>
         </MenuTrigger>
       </ComponentBox>
@@ -242,11 +261,14 @@ export default function HomePage() {
 
       <ComponentBox fullWidth title="NumberField">
         <NumberField size="sm" label="NumberField" />
-         
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="SearchField">
+        <SearchField size="sm" label="Search" />
       </ComponentBox>
 
       <ComponentBox fullWidth title="DatePicker">
-        <DatePicker label="Select a date" />
+        <DatePicker shouldForceLeadingZeros size="sm" label="Select a date" />
       </ComponentBox>
 
       <ComponentBox fullWidth title="RadioGroup">

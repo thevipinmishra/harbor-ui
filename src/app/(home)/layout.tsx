@@ -1,6 +1,8 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { LocaleProvider } from "../../components/utils";
+import { I18nProvider } from "react-aria-components";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return <LocaleProvider locale="en-IN">{children}</LocaleProvider>;
+  return <I18nProvider locale="en-IN">{children}</I18nProvider>;
 }

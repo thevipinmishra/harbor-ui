@@ -1,6 +1,6 @@
 "use client";
 
-import { tv, } from "@/lib/tv.config";
+import { tv } from "@/lib/tv.config";
 import {
   DatePicker as DatePickerPrimitive,
   Group,
@@ -10,43 +10,44 @@ import {
   DateValue,
 } from "react-aria-components";
 import { Button } from "./Button";
-import { RiCalendar2Line } from "@remixicon/react";
+import { RiCalendarLine } from "@remixicon/react";
 import { Popover } from "./Popover";
 import { Calendar } from "./Calendar";
 import { Label } from "./Label";
-import { baseInputStyles, fieldHeight, FieldHeight } from "@/utils/styles";
+import { baseInputStyles, fieldHeight } from "@/utils/styles";
 import { VariantProps } from "tailwind-variants";
 
 const datePickerVariants = tv({
   slots: {
     root: "flex flex-col gap-1",
     label: "",
-    group: [
-      "flex items-center gap-4 ps-2 py-2", baseInputStyles(),
-    ],
+    group: ["flex items-center gap-4 ps-2 py-2 pe-1", baseInputStyles()],
     dateInput: "flex-1",
-    dateSegment: "text-sm rounded font-medium outline-none p-0.5 data-[type=literal]:text-muted-foreground",
+    dateSegment:
+      "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-accent focus:text-accent-foreground",
     calendarButton: "",
   },
   variants: {
     size: {
-        sm: {
-            group: fieldHeight.sm
-        },
-        md: {
-            group: fieldHeight.md
-        },
-        lg: {
-            group: fieldHeight.lg
-        }
-    }
+      sm: {
+        group: fieldHeight.sm,
+      },
+      md: {
+        group: fieldHeight.md,
+      },
+      lg: {
+        group: fieldHeight.lg,
+      },
+    },
   },
   defaultVariants: {
     size: "md",
-  }
+  },
 });
 
-interface DatePickerWithLabelProps extends DatePickerProps<DateValue>, VariantProps<typeof datePickerVariants> {
+interface DatePickerWithLabelProps
+  extends DatePickerProps<DateValue>,
+    VariantProps<typeof datePickerVariants> {
   label?: string;
 }
 
@@ -56,19 +57,22 @@ const DatePicker = (props: DatePickerWithLabelProps) => {
   return (
     <DatePickerPrimitive {...rest} className={slots.root()}>
       {label && <Label className={slots.label()}>{label}</Label>}
-      <Group className={slots.group({
-        size
-      })}>
+      <Group
+        className={slots.group({
+          size,
+        })}
+      >
         <DateInput className={slots.dateInput()}>
           {(segment) => (
-            <DateSegment
-              segment={segment}
-              className={slots.dateSegment()}
-            />
+            <DateSegment segment={segment} className={slots.dateSegment()} />
           )}
         </DateInput>
-        <Button size="icon-md" variant="plain" className={slots.calendarButton()}>
-          <RiCalendar2Line />
+        <Button
+          size="icon-md"
+          variant="plain"
+          className={slots.calendarButton()}
+        >
+          <RiCalendarLine />
         </Button>
       </Group>
       <Popover className={"p-0"}>

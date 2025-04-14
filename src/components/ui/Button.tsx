@@ -67,7 +67,7 @@ export const buttonVariants = tv({
     },
   },
   defaultVariants: {
-    size: "md",
+    size: "sm",
     variant: "primary",
   },
 });

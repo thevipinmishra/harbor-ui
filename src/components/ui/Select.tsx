@@ -15,6 +15,11 @@ import { ListBox, ListBoxItem } from "./ListBox";
 import { Button, type ButtonProps } from "./Button";
 import { menuVariants } from "./Menu";
 import { tv } from "@/lib/tv.config";
+import { FieldHeight } from "@/utils/styles";
+
+interface SelectTriggerProps extends Omit<ButtonProps, "children" | "size"> {
+    size?: FieldHeight;
+}
 
 const selectVariants = tv({
   slots: {
@@ -41,7 +46,7 @@ const Select = (props: SelectProps) => {
   );
 };
 
-const SelectTrigger = (props: Omit<ButtonProps, "children">) => {
+const SelectTrigger = (props: SelectTriggerProps) => {
   const { variant = "outlined", size = 'md', className, ...rest } = props;
   const state = React.useContext(SelectStateContext);
   return (

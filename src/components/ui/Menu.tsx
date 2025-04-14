@@ -33,6 +33,9 @@ const menuVariants = tv({
     ],
   },
 });
+
+
+
 const Menu = (props: MenuProps<object>) => {
   const { className, ...rest } = props;
   return (
@@ -52,7 +55,17 @@ const Menu = (props: MenuProps<object>) => {
 
 const MenuItem = (props: MenuItemProps) => {
   const { className, ...rest } = props;
-  return <MenuItemPrimitive className={menuVariants().item()} {...rest} />;
+  return (
+    <MenuItemPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        menuVariants().item({
+          ...renderProps,
+          className,
+        })
+      )}
+      {...rest}
+    />
+  );
 };
 
 const MenuSection = (props: MenuSectionProps<object>) => {
