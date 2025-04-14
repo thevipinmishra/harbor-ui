@@ -4,7 +4,7 @@ import {
   type ToggleGroupItemProps,
   type ToggleGroupRootProps,
 } from "@ark-ui/react/toggle-group";
-import { chipVariants } from "./Chip";
+import { chipVariants } from "./ToggleButton";
 import { Check } from "@phosphor-icons/react";
 
 const chipGroupVariants = tv({

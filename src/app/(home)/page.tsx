@@ -26,7 +26,7 @@ import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import ComponentBox from "@/components/web/component-box";
 import { Slider, SliderControl } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
-import { Form } from "react-aria-components";
+import { FileTrigger, Form } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
@@ -38,16 +38,18 @@ import {
   ComboBoxItem,
   ComboBoxTrigger,
 } from "@/components/ui/ComboBox";
+import { ToggleButton } from "@/components/ui/ToggleButton";
+import {
+  RiNotification3Fill,
+  RiNotification3Line,
+  RiGridFill,
+  RiListCheck,
+  RiBookmarkFill,
+  RiBookmarkLine,
+} from "@remixicon/react";
 
 export default function HomePage() {
-  const animals = [
-    "Aardvark",
-    "Cat",
-    "Dog",
-    "Kangaroo",
-    "Panda",
-    "Snake",
-  ];
+  const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
 
   return (
     <main className="py-10 container max-w-3xl space-y-10">
@@ -73,15 +75,34 @@ export default function HomePage() {
           <Button variant="destructive">Secondary</Button>
         </div>
       </ComponentBox>
+      <ComponentBox title="FileTrigger">
+        <FileTrigger>
+          <Button>Select a file</Button>
+        </FileTrigger>
+      </ComponentBox>
 
       <ComponentBox title="Popover">
         <PopoverTrigger>
-          <Button>Open</Button>
-          <Popover>
-            <h3 className="text-lg font-semibold">Popover Title</h3>
-            <p className="text-sm text-muted-foreground">
-              This is a simple popover example.
-            </p>
+          <Button>Quick Subscribe</Button>
+          <Popover className="w-80 p-4">
+            <h3 className="text-lg font-semibold mb-3">Newsletter Signup</h3>
+            <Form className="grid gap-3">
+              <TextField>
+                <Label>Email</Label>
+                <Input placeholder="your@email.com" />
+              </TextField>
+              <Select>
+                <Label>Update Frequency</Label>
+                <SelectTrigger size="sm" />
+                <SelectContent>
+                  <SelectItem textValue="daily">Daily</SelectItem>
+                  <SelectItem textValue="weekly">Weekly</SelectItem>
+                  <SelectItem textValue="monthly">Monthly</SelectItem>
+                </SelectContent>
+              </Select>
+              <Checkbox>Receive product updates</Checkbox>
+              <Button size="sm">Subscribe</Button>
+            </Form>
           </Popover>
         </PopoverTrigger>
       </ComponentBox>
@@ -121,32 +142,92 @@ export default function HomePage() {
         <DialogTrigger>
           <Button>Open Dialog</Button>
           <DialogContent>
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Sign Up</h3>
-              <Form className="grid gap-4">
+            <Form className="grid gap-4">
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Create your account</h3>
+                <p className="text-sm text-muted-foreground">
+                  Fill in your details to get started
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
                 <TextField>
-                  <Label>Username</Label>
+                  <Label>First name</Label>
                   <Input />
                 </TextField>
                 <TextField>
-                  <Label>Password</Label>
-                  <Input type="password" />
+                  <Label>Last name</Label>
+                  <Input />
                 </TextField>
-                <Select>
-                  <Label>Account Type</Label>
-                  <SelectTrigger />
-                  <SelectContent>
-                    <SelectItem textValue="personal">Personal</SelectItem>
-                    <SelectItem textValue="business">Business</SelectItem>
-                    <SelectItem textValue="enterprise">Enterprise</SelectItem>
-                  </SelectContent>
-                </Select>
+              </div>
+
+              <TextField>
+                <Label>Email</Label>
+                <Input type="email" />
+              </TextField>
+
+              <TextField>
+                <Label>Username</Label>
+                <Input />
+              </TextField>
+
+              <TextField>
+                <Label>Password</Label>
+                <Input type="password" />
+              </TextField>
+
+              <TextField>
+                <Label>Confirm Password</Label>
+                <Input type="password" />
+              </TextField>
+
+              <Accordion className="mt-2">
+                <AccordionItem id="additional-info">
+                  <AccordionItemTrigger>
+                    Additional Information
+                  </AccordionItemTrigger>
+                  <AccordionItemContent>
+                    <div className="space-y-4 pt-2">
+                      <DatePicker size="sm" label="Date of Birth" />
+
+                      <Select>
+                        <Label>Account Type</Label>
+                        <SelectTrigger />
+                        <SelectContent>
+                          <SelectItem textValue="personal">Personal</SelectItem>
+                          <SelectItem textValue="business">Business</SelectItem>
+                          <SelectItem textValue="enterprise">
+                            Enterprise
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+
+                      <RadioGroup>
+                        <Label>Primary Usage</Label>
+                        <Radio value="personal">Personal Projects</Radio>
+                        <Radio value="work">Work</Radio>
+                        <Radio value="education">Education</Radio>
+                      </RadioGroup>
+                    </div>
+                  </AccordionItemContent>
+                </AccordionItem>
+              </Accordion>
+
+              <div className="space-y-4">
                 <Checkbox>I agree to the terms and conditions.</Checkbox>
-                <div className="flex justify-end">
-                  <Button>Sign Up</Button>
-                </div>
-              </Form>
-            </div>
+                <Checkbox>Subscribe to our newsletter</Checkbox>
+              </div>
+
+              <div className="flex flex-col gap-4 pt-2">
+                <Button isLoading={false}>Create Account</Button>
+                <p className="text-center text-sm text-muted-foreground">
+                  Already have an account?{" "}
+                  <a href="#" className="underline">
+                    Sign in
+                  </a>
+                </p>
+              </div>
+            </Form>
           </DialogContent>
         </DialogTrigger>
       </ComponentBox>
@@ -163,10 +244,7 @@ export default function HomePage() {
           <SelectTrigger size="sm" />
           <SelectContent>
             {animals.map((animal) => (
-              <SelectItem
-                key={animal.toLowerCase()}
-                textValue={animal}
-              >
+              <SelectItem key={animal.toLowerCase()} textValue={animal}>
                 {animal}
               </SelectItem>
             ))}
@@ -180,7 +258,9 @@ export default function HomePage() {
           <ComboBoxTrigger size="sm" />
           <ComboBoxContent>
             {animals.map((animal) => (
-              <ComboBoxItem key={animal.toLowerCase()}   textValue={animal}>{animal}</ComboBoxItem>
+              <ComboBoxItem key={animal.toLowerCase()} textValue={animal}>
+                {animal}
+              </ComboBoxItem>
             ))}
           </ComboBoxContent>
         </ComboBox>
@@ -193,10 +273,7 @@ export default function HomePage() {
           selectionMode="single"
         >
           {animals.map((animal) => (
-            <ListBoxItem
-              key={animal.toLowerCase()}
-              textValue={animal}
-            >
+            <ListBoxItem key={animal.toLowerCase()} textValue={animal}>
               {animal}
             </ListBoxItem>
           ))}
@@ -278,6 +355,37 @@ export default function HomePage() {
           <Radio value="cats">Cat</Radio>
           <Radio value="dragon">Dragon</Radio>
         </RadioGroup>
+      </ComponentBox>
+
+      <ComponentBox title="ToggleButton">
+        <div className="flex flex-wrap gap-4">
+          <ToggleButton variant="outlined" defaultSelected>
+            {({ isSelected }) => (
+              <>
+                {isSelected ? <RiNotification3Fill /> : <RiNotification3Line />}{" "}
+                {isSelected ? "Notifications On" : "Notifications Off"}
+              </>
+            )}
+          </ToggleButton>
+
+          <ToggleButton variant="secondary">
+            {({ isSelected }) => (
+              <>
+                {isSelected ? <RiGridFill /> : <RiListCheck />}{" "}
+                {isSelected ? "Grid View" : "List View"}
+              </>
+            )}
+          </ToggleButton>
+
+          <ToggleButton variant="plain">
+            {({ isSelected }) => (
+              <>
+                {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}{" "}
+                {isSelected ? "Saved" : "Save"}
+              </>
+            )}
+          </ToggleButton>
+        </div>
       </ComponentBox>
     </main>
   );

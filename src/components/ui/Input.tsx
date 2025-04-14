@@ -57,7 +57,7 @@ export const inputVariants = tv({
     },
   },
   defaultVariants: {
-    size: "md",
+    size: "sm",
     focusRing: true,
   },
 });

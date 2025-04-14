@@ -33,7 +33,7 @@
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.2",
-    "oxlint": "^0.16.5",
+    "oxlint": "^0.16.6",
     "postcss": "^8.5.3",
     "storybook": "8.6.0-alpha.0",
     "tailwindcss": "^4.1.3",

@@ -47,7 +47,7 @@ const Select = (props: SelectProps) => {
 };
 
 const SelectTrigger = (props: SelectTriggerProps) => {
-  const { variant = "outlined", size = 'md', className, ...rest } = props;
+  const { variant = "outlined", size, className, ...rest } = props;
   const state = React.useContext(SelectStateContext);
   return (
     <Button
