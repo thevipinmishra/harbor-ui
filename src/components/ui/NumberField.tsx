@@ -2,36 +2,38 @@
 
 import { tv } from "@/lib/tv.config";
 import {
-    Button,
+  Button,
   composeRenderProps,
   Group,
+  Input,
   NumberField as NumberFieldPrimitive,
   NumberFieldProps,
 } from "react-aria-components";
 import { Label } from "./Label";
-import { baseInputStyles, FieldHeight } from "@/utils/styles";
+import { baseInputStyles } from "@/utils/styles";
 import React from "react";
-import { Input } from "./Input";
-import {  RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
+import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
+import { VariantProps } from "tailwind-variants";
 
-interface NumberFieldPrimitiveProps extends Omit<NumberFieldProps, "size"> {
+interface NumberFieldPrimitiveProps
+  extends Omit<NumberFieldProps, "size">,
+    VariantProps<typeof baseInputStyles> {
   label?: string;
-  size?: FieldHeight;
 }
 
 const numberFieldVariants = tv({
   slots: {
     root: ["grid gap-1"],
-    group: [baseInputStyles(),"grid grid-cols-[1fr_auto] grid-rows-2"],
-    input: [
-      "row-span-2", "border-y-0 border-l-0 rounded-r-none shadow-none"
+    group: [baseInputStyles(), "p-0 grid grid-cols-[1fr_auto] grid-rows-2"],
+    input: ["row-span-2", "outline-0 h-full py-1 px-2.5 border-r border-accent-subtle"],
+    trigger: [
+      "outline-none col-start-2 col-end-3 w-7 flex justify-center items-center",
     ],
-    trigger: ['outline-none col-start-2 col-end-3 w-7 flex justify-center items-center'],
   },
 });
 
 const NumberField = (props: NumberFieldPrimitiveProps) => {
-  const { className, label, size = 'md', ...rest } = props;
+  const { className, label, size, ...rest } = props;
   return (
     <NumberFieldPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
@@ -43,12 +45,16 @@ const NumberField = (props: NumberFieldPrimitiveProps) => {
       {...rest}
     >
       {label && <Label>{label}</Label>}
-      <Group className={numberFieldVariants().group()}>
-        <Input size={size} className={numberFieldVariants().input()} />
+      <Group
+        className={numberFieldVariants().group({
+          size,
+        })}
+      >
+        <Input className={numberFieldVariants().input()} />
         <Button
           slot="increment"
           className={numberFieldVariants().trigger({
-            className: 'row-start-1 row-end-2 '
+            className: "row-start-1 row-end-2 ",
           })}
         >
           <RiArrowUpSLine className="size-4" />
@@ -56,13 +62,11 @@ const NumberField = (props: NumberFieldPrimitiveProps) => {
         <Button
           slot="decrement"
           className={numberFieldVariants().trigger({
-            className: ' row-start-2 row-end-3  border-t border-accent-subtle'
+            className: " row-start-2 row-end-3  border-t border-accent-subtle",
           })}
         >
           <RiArrowDownSLine className="size-4" />
         </Button>
-
-       
       </Group>
     </NumberFieldPrimitive>
   );

@@ -26,7 +26,7 @@ import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import ComponentBox from "@/components/web/component-box";
 import { Slider, SliderControl } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
-import { FileTrigger, Form } from "react-aria-components";
+import { FileTrigger, Form, useFilter } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
@@ -39,14 +39,19 @@ import {
   ComboBoxTrigger,
 } from "@/components/ui/ComboBox";
 import { ToggleButton } from "@/components/ui/ToggleButton";
-import {
-  RiBookmarkFill,
-  RiBookmarkLine,
-} from "@remixicon/react";
+import { RiBookmarkFill, RiBookmarkLine } from "@remixicon/react";
 import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteItem,
+} from "@/components/ui/Autocomplete";
+import { DateField } from "@/components/ui/DateField";
 
 export default function HomePage() {
   const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
+
+  const { contains } = useFilter({ sensitivity: "base" });
 
   return (
     <main className="py-10 container max-w-3xl space-y-10">
@@ -341,8 +346,12 @@ export default function HomePage() {
         <SearchField size="sm" label="Search" />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="DatePicker">
+      <ComponentBox fullWidth title="DateField">
         <DatePicker shouldForceLeadingZeros size="sm" label="Select a date" />
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="DatePicker">
+        <DateField label="DateField" />
       </ComponentBox>
 
       <ComponentBox fullWidth title="RadioGroup">
@@ -355,41 +364,72 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="ToggleButton">
-          <ToggleButton variant="outlined">
-            {({ isSelected }) => (
-              <>
-                {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}{" "}
-                {isSelected ? "Saved" : "Save"}
-              </>
-            )}
-          </ToggleButton>
+        <ToggleButton variant="outlined">
+          {({ isSelected }) => (
+            <>
+              {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}{" "}
+              {isSelected ? "Saved" : "Save"}
+            </>
+          )}
+        </ToggleButton>
       </ComponentBox>
 
       <ComponentBox title="ToggleButtonGroup">
         <ToggleButtonGroup>
           {({ state }) => (
             <>
-              <ToggleButton 
-                id='left'
-                variant={!state.selectedKeys.has('left') ? "outlined" : "secondary"}
+              <ToggleButton
+                id="left"
+                variant={
+                  !state.selectedKeys.has("left") ? "outlined" : "secondary"
+                }
               >
                 Left
               </ToggleButton>
-              <ToggleButton 
-                id='center'
-                variant={!state.selectedKeys.has('center') ? "outlined" : "secondary"}
+              <ToggleButton
+                id="center"
+                variant={
+                  !state.selectedKeys.has("center") ? "outlined" : "secondary"
+                }
               >
                 Center
               </ToggleButton>
-              <ToggleButton 
-                id='right'
-                variant={!state.selectedKeys.has('right') ? "outlined" : "secondary"}
+              <ToggleButton
+                id="right"
+                variant={
+                  !state.selectedKeys.has("right") ? "outlined" : "secondary"
+                }
               >
                 Right
               </ToggleButton>
             </>
           )}
         </ToggleButtonGroup>
+      </ComponentBox>
+
+      <ComponentBox title="Autocomplete">
+        <Autocomplete filter={contains}>
+          <SearchField label="Command Menu" inputProps={{
+            placeholder: "Search...",
+          }} />
+          <AutocompleteContent className="mt-2">
+            {/* Navigation */}
+            <AutocompleteItem>Go to Dashboard</AutocompleteItem>
+            <AutocompleteItem>Open Settings</AutocompleteItem>
+            <AutocompleteItem>View Profile</AutocompleteItem>
+            <AutocompleteItem>Show Notifications</AutocompleteItem>
+            {/* Actions */}
+            <AutocompleteItem>Create New Project</AutocompleteItem>
+            <AutocompleteItem>Invite Team Member</AutocompleteItem>
+            {/* <AutocompleteItem>Upload File</AutocompleteItem>
+            <AutocompleteItem>Export Data</AutocompleteItem> */}
+            {/* Help */}
+            {/* <AutocompleteItem>Show Keyboard Shortcuts</AutocompleteItem>
+            <AutocompleteItem>Open Documentation</AutocompleteItem>
+            <AutocompleteItem>Contact Support</AutocompleteItem>
+            <AutocompleteItem>Log Out</AutocompleteItem> */}
+          </AutocompleteContent>
+        </Autocomplete>
       </ComponentBox>
     </main>
   );

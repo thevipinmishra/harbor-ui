@@ -17,7 +17,7 @@ import { popoverAnimation } from "../utils/popoverAnimation";
 
 const MenuTrigger = MenuTriggerPrimitive;
 
-const menuVariants = tv({
+ const menuVariants = tv({
   slots: {
     content: [
       "bg-background border border-accent-subtle text-foreground shadow-xs rounded-md min-w-16",

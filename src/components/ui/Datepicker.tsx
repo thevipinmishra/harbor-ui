@@ -14,7 +14,7 @@ import { RiCalendarLine } from "@remixicon/react";
 import { Popover } from "./Popover";
 import { Calendar } from "./Calendar";
 import { Label } from "./Label";
-import { baseInputStyles, fieldHeight } from "@/utils/styles";
+import { baseInputStyles } from "@/utils/styles";
 import { VariantProps } from "tailwind-variants";
 
 const datePickerVariants = tv({
@@ -24,30 +24,15 @@ const datePickerVariants = tv({
     group: ["flex items-center gap-4 ps-2 py-2 pe-1", baseInputStyles()],
     dateInput: "flex-1",
     dateSegment:
-      "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-accent focus:text-accent-foreground",
+      "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-accent focus:text-accent-foreground data-[type=literal]:p-0",
     calendarButton: "",
-  },
-  variants: {
-    size: {
-      sm: {
-        group: fieldHeight.sm,
-      },
-      md: {
-        group: fieldHeight.md,
-      },
-      lg: {
-        group: fieldHeight.lg,
-      },
-    },
-  },
-  defaultVariants: {
-    size: "md",
   },
 });
 
 interface DatePickerWithLabelProps
   extends DatePickerProps<DateValue>,
-    VariantProps<typeof datePickerVariants> {
+    VariantProps<typeof datePickerVariants>,
+    VariantProps<typeof baseInputStyles> {
   label?: string;
 }
 
@@ -82,4 +67,4 @@ const DatePicker = (props: DatePickerWithLabelProps) => {
   );
 };
 
-export { DatePicker };
+export { DatePicker, datePickerVariants };

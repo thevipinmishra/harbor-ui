@@ -12,6 +12,7 @@ import { tv } from "@/lib/tv.config";
 
 interface SearchFieldWithLabelProps extends SearchFieldProps {
   label?: string;
+  inputProps?: InputProps;
   size?: InputProps["size"];
 }
 
@@ -22,7 +23,7 @@ const searchFieldVariants = tv({
 });
 
 const SearchField = (props: SearchFieldWithLabelProps) => {
-  const { label, className, size, ...rest } = props;
+  const { label, className, size, inputProps, ...rest } = props;
   return (
     <SearchFieldPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
@@ -35,7 +36,7 @@ const SearchField = (props: SearchFieldWithLabelProps) => {
     >
       {label && <Label>{label}</Label>}
       <Group className="relative">
-        <Input size={size} />
+        <Input size={size} {...inputProps} />
         <Button
           size="icon-md"
           variant="plain"
