@@ -29,13 +29,11 @@ export const buttonVariants = tv({
     variant: {
       primary: [
         "bg-primary text-primary-foreground",
-        "font-medium",
         "hover:opacity-90",
         primaryFocusRingVisible
       ],
       secondary: [
         "bg-accent text-accent-foreground",
-        "font-medium",
         "hover:opacity-90",
         accentFocusRingVisible
       ],
@@ -72,6 +70,8 @@ export const buttonVariants = tv({
   },
 });
 
+export const staticClass = "hbui-button";
+
 interface ButtonProps
   extends Omit<RACButtonProps, "size">,
     VariantProps<typeof buttonVariants> {
@@ -91,7 +91,7 @@ const _Button = (props: ButtonProps) => {
     ...rest
   } = props;
 
-  const staticClass = "hbui-button";
+
   return (
     <Button
       isDisabled={isLoading || isDisabled}

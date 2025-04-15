@@ -40,13 +40,10 @@ import {
 } from "@/components/ui/ComboBox";
 import { ToggleButton } from "@/components/ui/ToggleButton";
 import {
-  RiNotification3Fill,
-  RiNotification3Line,
-  RiGridFill,
-  RiListCheck,
   RiBookmarkFill,
   RiBookmarkLine,
 } from "@remixicon/react";
+import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
 
 export default function HomePage() {
   const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
@@ -358,26 +355,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="ToggleButton">
-        <div className="flex flex-wrap gap-4">
-          <ToggleButton variant="outlined" defaultSelected>
-            {({ isSelected }) => (
-              <>
-                {isSelected ? <RiNotification3Fill /> : <RiNotification3Line />}{" "}
-                {isSelected ? "Notifications On" : "Notifications Off"}
-              </>
-            )}
-          </ToggleButton>
-
-          <ToggleButton variant="secondary">
-            {({ isSelected }) => (
-              <>
-                {isSelected ? <RiGridFill /> : <RiListCheck />}{" "}
-                {isSelected ? "Grid View" : "List View"}
-              </>
-            )}
-          </ToggleButton>
-
-          <ToggleButton variant="plain">
+          <ToggleButton variant="outlined">
             {({ isSelected }) => (
               <>
                 {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}{" "}
@@ -385,7 +363,33 @@ export default function HomePage() {
               </>
             )}
           </ToggleButton>
-        </div>
+      </ComponentBox>
+
+      <ComponentBox title="ToggleButtonGroup">
+        <ToggleButtonGroup>
+          {({ state }) => (
+            <>
+              <ToggleButton 
+                id='left'
+                variant={!state.selectedKeys.has('left') ? "outlined" : "secondary"}
+              >
+                Left
+              </ToggleButton>
+              <ToggleButton 
+                id='center'
+                variant={!state.selectedKeys.has('center') ? "outlined" : "secondary"}
+              >
+                Center
+              </ToggleButton>
+              <ToggleButton 
+                id='right'
+                variant={!state.selectedKeys.has('right') ? "outlined" : "secondary"}
+              >
+                Right
+              </ToggleButton>
+            </>
+          )}
+        </ToggleButtonGroup>
       </ComponentBox>
     </main>
   );

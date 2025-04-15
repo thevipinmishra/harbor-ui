@@ -4,7 +4,8 @@ import {
   ToggleButton as ToggleButtonPrimitive,
   ToggleButtonProps,
 } from "react-aria-components";
-import { buttonVariants } from "./Button";
+import { buttonVariants, staticClass } from "./Button";
+import { cn } from "@/lib/tv.config";
 
 type ToggleButtonPrimitiveProps = ToggleButtonProps &
   VariantProps<typeof buttonVariants>;
@@ -14,13 +15,16 @@ const ToggleButton = (props: ToggleButtonPrimitiveProps) => {
   return (
     <ToggleButtonPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
-        buttonVariants({
-          ...renderProps,
-          size,
-          variant,
-          fullWidth,
-          className,
-        })
+        cn(
+          buttonVariants({
+            ...renderProps,
+            size,
+            variant,
+            fullWidth,
+            className,
+          }),
+          staticClass
+        )
       )}
       {...rest}
     />

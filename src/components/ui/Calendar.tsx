@@ -22,7 +22,6 @@ export const calendarVariants = tv({
     root: ["w-max bg-background shadow-md p-4 rounded-md"],
     view: ["flex flex-col gap-4"],
     viewControl: ["flex justify-between gap-4"],
-    nextPrevTrigger: [buttonVariants({ size: "icon", variant: "outlined" })],
     viewTrigger: ["font-semibold"],
     tableHeader: ["text-sm text-muted-foreground font-medium text-left"],
     td: ["p-1"],
@@ -42,8 +41,6 @@ export const calendarVariants = tv({
   },
 });
 
-
-
 const Calendar = (props: CalendarProps<DateValue>) => {
   const { className, ...rest } = props;
   return (
@@ -57,11 +54,11 @@ const Calendar = (props: CalendarProps<DateValue>) => {
       {...rest}
     >
       <Header className="flex mb-2 items-center justify-between gap-4">
-        <Button size="icon" slot="previous" variant="outlined">
+        <Button size="icon-md" slot="previous" variant="outlined">
           <RiArrowLeftSLine />
         </Button>
         <Heading className="flex-1 text-sm font-semibold text-center" />
-        <Button size="icon" slot="next" variant="outlined">
+        <Button size="icon-md" slot="next" variant="outlined">
           <RiArrowRightSLine />
         </Button>
       </Header>
