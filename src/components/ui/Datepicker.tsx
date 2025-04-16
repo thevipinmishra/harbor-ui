@@ -24,7 +24,7 @@ const datePickerVariants = tv({
     group: ["flex items-center gap-4 ps-2 py-2 pe-1", baseInputStyles()],
     dateInput: "flex-1",
     dateSegment:
-      "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-accent focus:text-accent-foreground data-[type=literal]:p-0",
+      "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-accent focus:text-accent-foreground",
     calendarButton: "",
   },
 });

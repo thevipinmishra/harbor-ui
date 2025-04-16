@@ -3,14 +3,18 @@ import {
   ComboBoxProps,
   composeRenderProps,
   Group,
+  Input,
+  InputProps,
 } from "react-aria-components";
-import { Input, InputProps } from "./Input";
 import { Button } from "./Button";
 import { RiExpandUpDownLine } from "@remixicon/react";
 import { SelectContent } from "./Select";
 import { ListBoxItem } from "./ListBox";
 import { cn, tv } from "@/lib/tv.config";
 import { baseInputStyles } from "@/utils/styles";
+import { VariantProps } from "tailwind-variants";
+
+interface ComboBoxInputProps extends VariantProps<typeof baseInputStyles>, Omit<InputProps, 'size'> {}
 
 const comboboxVariants = tv({
   slots: {
@@ -33,16 +37,18 @@ const ComboBox = (props: ComboBoxProps<object>) => {
   );
 };
 
-const ComboBoxTrigger = (props: InputProps) => {
+const ComboBoxTrigger = (props: ComboBoxInputProps) => {
   const { size, ...rest } = props;
   return (
-    <Group className={cn("flex items-center pe-1", baseInputStyles())}>
-      <Input
-        size={size}
-        focusRing={false}
-        className={"border-0 shadow-none rounded-r-none"}
-        {...rest}
-      />
+    <Group
+      className={cn(
+        baseInputStyles({
+          size,
+        }),
+        "flex items-center p-0"
+      )}
+    >
+      <Input className='h-full w-full px-2.5 py-1 outline-0' {...rest} />
       <Button size="icon-md" variant="plain">
         <RiExpandUpDownLine />
       </Button>

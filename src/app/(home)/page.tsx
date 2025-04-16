@@ -7,7 +7,7 @@ import {
   AccordionItemTrigger,
 } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
-import { Checkbox } from "@/components/ui/Checkbox";
+import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
 import { DialogContent, DialogTrigger } from "@/components/ui/Dialog";
 import { Label } from "@/components/ui/Label";
 import { ListBox, ListBoxItem } from "@/components/ui/ListBox";
@@ -47,6 +47,7 @@ import {
   AutocompleteItem,
 } from "@/components/ui/Autocomplete";
 import { DateField } from "@/components/ui/DateField";
+import { Meter } from "@/components/ui/Meter";
 
 export default function HomePage() {
   const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
@@ -240,6 +241,15 @@ export default function HomePage() {
         </Checkbox>
       </ComponentBox>
 
+      <ComponentBox title="CheckboxGroup">
+        <CheckboxGroup>
+          <Label>Favorite sports</Label>
+          <Checkbox value="soccer">Soccer</Checkbox>
+          <Checkbox value="baseball">Baseball</Checkbox>
+          <Checkbox value="basketball">Basketball</Checkbox>
+        </CheckboxGroup>
+      </ComponentBox>
+
       <ComponentBox title="Select">
         <Select className={"w-[200px]"}>
           <Label>Favorite Animal</Label>
@@ -409,9 +419,12 @@ export default function HomePage() {
 
       <ComponentBox title="Autocomplete">
         <Autocomplete filter={contains}>
-          <SearchField label="Command Menu" inputProps={{
-            placeholder: "Search...",
-          }} />
+          <SearchField
+            label="Command Menu"
+            inputProps={{
+              placeholder: "Search...",
+            }}
+          />
           <AutocompleteContent className="mt-2">
             {/* Navigation */}
             <AutocompleteItem>Go to Dashboard</AutocompleteItem>
@@ -430,6 +443,10 @@ export default function HomePage() {
             <AutocompleteItem>Log Out</AutocompleteItem> */}
           </AutocompleteContent>
         </Autocomplete>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="Meter">
+        <Meter label="Storage" value={44} />
       </ComponentBox>
     </main>
   );
