@@ -17,13 +17,14 @@ const Dialog = (props: DialogProps) => {
 const dialogVariants = tv({
   slots: {
     backdrop: [
-      "fixed inset-0 bg-accent-subtle/60  backdrop-blur-xs z-40",
+      "fixed inset-0 bg-accent-subtle/60  backdrop-blur-xs z-40 max-h-[var(--visual-viewport-height)]",
       "flex justify-center items-end md:items-center",
       "motion-safe:entering:motion-opacity-in-0 motion-duration-200",
       "motion-safe:exiting:motion-opacity-out-0",
     ],
     content: [
       "bg-background relative shadow-md grid gap-2 p-6 rounded-t-md md:rounded-md w-full md:max-w-md",
+      "max-h-[calc(var(--visual-viewport-height)-theme(space.10))] overflow-y-auto",
       "motion-safe:entering:motion-duration-300 motion-safe:exiting:motion-duration-100",
       "motion-safe:entering:motion-translate-y-in-100 motion-safe:entering:md:motion-translate-y-in-[1rem]  ",
       "motion-safe:exiting:motion-opacity-out-0 motion-safe:exiting:motion-translate-y-out-[1rem]",

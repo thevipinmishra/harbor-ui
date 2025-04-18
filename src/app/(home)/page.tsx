@@ -48,6 +48,8 @@ import {
 } from "@/components/ui/Autocomplete";
 import { DateField } from "@/components/ui/DateField";
 import { Meter } from "@/components/ui/Meter";
+import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
+import { ProgressBar } from "@/components/ui/Progress";
 
 export default function HomePage() {
   const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
@@ -184,37 +186,26 @@ export default function HomePage() {
                 <Input type="password" />
               </TextField>
 
-              <Accordion className="mt-2">
-                <AccordionItem id="additional-info">
-                  <AccordionItemTrigger>
-                    Additional Information
-                  </AccordionItemTrigger>
-                  <AccordionItemContent>
-                    <div className="space-y-4 pt-2">
-                      <DatePicker size="sm" label="Date of Birth" />
+              <Select>
+                <Label>Account Type</Label>
+                <SelectTrigger />
+                <SelectContent>
+                  <SelectItem textValue="personal">Personal</SelectItem>
+                  <SelectItem textValue="business">Business</SelectItem>
+                  <SelectItem textValue="enterprise">
+                    Enterprise
+                  </SelectItem>
+                </SelectContent>
+              </Select>
 
-                      <Select>
-                        <Label>Account Type</Label>
-                        <SelectTrigger />
-                        <SelectContent>
-                          <SelectItem textValue="personal">Personal</SelectItem>
-                          <SelectItem textValue="business">Business</SelectItem>
-                          <SelectItem textValue="enterprise">
-                            Enterprise
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
+              <RadioGroup>
+                <Label>Primary Usage</Label>
+                <Radio value="personal">Personal Projects</Radio>
+                <Radio value="work">Work</Radio>
+                <Radio value="education">Education</Radio>
+              </RadioGroup>
 
-                      <RadioGroup>
-                        <Label>Primary Usage</Label>
-                        <Radio value="personal">Personal Projects</Radio>
-                        <Radio value="work">Work</Radio>
-                        <Radio value="education">Education</Radio>
-                      </RadioGroup>
-                    </div>
-                  </AccordionItemContent>
-                </AccordionItem>
-              </Accordion>
+              <DatePicker size="sm" label="Date of Birth" />
 
               <div className="space-y-4">
                 <Checkbox>I agree to the terms and conditions.</Checkbox>
@@ -447,6 +438,24 @@ export default function HomePage() {
 
       <ComponentBox fullWidth title="Meter">
         <Meter label="Storage" value={44} />
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="ProgressBar">
+        <div className="grid gap-6">
+          <ProgressBar label="Loading" value={88} />
+        </div>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="TagGroup">
+        <TagGroup selectionMode="multiple">
+          <Label>Categories</Label>
+          <TagList>
+            <Tag>News</Tag>
+            <Tag>Travel</Tag>
+            <Tag>Gaming</Tag>
+            <Tag>Shopping</Tag>
+          </TagList>
+        </TagGroup>
       </ComponentBox>
     </main>
   );
