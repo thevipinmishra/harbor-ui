@@ -11,14 +11,13 @@ import {
 } from "react-aria-components";
 import * as React from "react";
 import type { VariantProps } from "tailwind-variants";
-import { accentFocusRingVisible } from "../utils/focusRing";
 
 export interface InputProps
   extends Omit<InputPrimitiveProps, "size">,
     VariantProps<typeof inputVariants> {}
 
 export const textfieldStyles = tv({
-  base: ["grid group gap-1"],
+  base: ["grid group gap-1.5"],
 });
 
 export const TextField = (props: TextFieldProps) => {
@@ -41,6 +40,7 @@ export const inputVariants = tv({
     "border w-full shadow-xs shadow-input/40 outline-0 text-foreground bg-background rounded-md border-input ",
     "hover:border-border-hover motion-safe:transition-[background-color,border-color]",
     "placeholder:text-muted-foreground placeholder:font-normal",
+    "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground [&::-webkit-search-cancel-button]:hidden",
     "data-invalid:text-destructive",
     "disabled:opacity-50 disabled:pointer-events-none",
     "data-invalid:border-destructive data-invalid:focus:ring-destructive/50",
@@ -52,7 +52,7 @@ export const inputVariants = tv({
       lg: [fieldHeight.lg, "text-base px-3.5 py-1.5"],
     },
     focusRing: {
-      true: [accentFocusRingVisible],
+      true: ['focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'],
       false: [],
     },
   },

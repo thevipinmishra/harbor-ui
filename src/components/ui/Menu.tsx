@@ -26,7 +26,7 @@ const MenuTrigger = MenuTriggerPrimitive;
     ],
     menu: ["space-y-0.5"],
     item: [
-      "flex w-full cursor-pointer px-3 py-1.5 text-sm text-foreground bg-background items-center justify-start gap-3 rounded-md",
+      "flex w-full cursor-default px-3 py-1.25 text-sm text-foreground bg-background items-center justify-start gap-3 rounded-md",
       "hover:bg-muted focus:bg-muted outline-0",
       "motion-safe:transition-colors",
       "data-disabled:opacity-50 data-disabled:pointer-events-none [&_svg]:size-5",

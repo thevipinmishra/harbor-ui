@@ -19,7 +19,7 @@ import { VariantProps } from "tailwind-variants";
 
 const datePickerVariants = tv({
   slots: {
-    root: "flex flex-col gap-1",
+    root: "flex flex-col gap-1.5",
     label: "",
     group: ["flex items-center gap-4 ps-2 py-2 pe-1", baseInputStyles()],
     dateInput: "flex-1",

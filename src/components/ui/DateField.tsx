@@ -20,7 +20,7 @@ interface DateFieldWithLabelProps
 
 const dateFieldVariants = tv({
   slots: {
-    root: "grid gap-1",
+    root: "grid gap-1.5",
     dateInput: [baseInputStyles(), "flex items-center"],
   },
 });

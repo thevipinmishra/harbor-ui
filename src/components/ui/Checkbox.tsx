@@ -18,6 +18,7 @@ const checkboxVariants = tv({
     group: ["space-y-4"],
     control: [
       "size-5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-input group-data-selected:bg-primary group-data-selected:text-primary-foreground group-data-selected:border-accent",
+      "group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-1",
       "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary",
       accentFocusRing,
       "data-invalid:group-data-selected:border-destructive data-invalid:group-data-selected:bg-destructive data-invalid:data-focus-visible:ring-destructive/50",

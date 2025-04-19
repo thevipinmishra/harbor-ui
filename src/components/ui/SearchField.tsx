@@ -18,7 +18,7 @@ interface SearchFieldWithLabelProps extends SearchFieldProps {
 
 const searchFieldVariants = tv({
   slots: {
-    root: ["grid group gap-1"],
+    root: ["grid group gap-1.5"],
   },
 });
 
@@ -36,11 +36,11 @@ const SearchField = (props: SearchFieldWithLabelProps) => {
     >
       {label && <Label>{label}</Label>}
       <Group className="relative">
-        <Input size={size} {...inputProps} />
+        <Input size={size} className='pr-8' {...inputProps} />
         <Button
           size="icon-md"
           variant="plain"
-          className="absolute top-1/2 right-1 -translate-y-1/2 flex group-empty:hidden"
+          className="absolute inset-y-px right-px h-auto rounded-l-none rounded-r-md flex group-empty:hidden"
         >
           <RiCloseLine />
         </Button>

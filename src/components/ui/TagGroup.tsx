@@ -11,10 +11,10 @@ import {
 
 const tagGroupVariants = tv({
   slots: {
-    root: ["grid gap-1"],
-    list: ["flex flex-wrap gap-1"],
+    root: ["grid gap-1.5"],
+    list: ["flex flex-wrap gap-2"],
     tag: [
-      "inline-flex px-3 py-1 rounded-md border border-input hover:bg-muted motion-safe:transition-colors text-xs font-medium cursor-pointer aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:border-primary",
+      "inline-flex px-3 py-1.5 rounded-md border border-input hover:bg-muted motion-safe:transition-colors text-xs font-medium cursor-pointer aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:border-primary",
     ],
   },
 });

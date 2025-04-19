@@ -22,7 +22,7 @@ const accordionVariants = tv({
       "relative bg-background text-foreground",
     ],
     itemTrigger: [
-      "font-medium group cursor-pointer text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
+      "font-medium group cursor-pointer rounded-md text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
     ],
     itemContent: [
       "px-3 aria-hidden:hidden transition-[padding-bottom] pb-3 text-sm",

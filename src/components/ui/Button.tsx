@@ -10,7 +10,6 @@ import {
 import {  RiLoader3Line } from "@remixicon/react";
 import * as React from "react";
 import type { VariantProps } from "tailwind-variants";
-import { accentFocusRingVisible, destructiveFocusRingVisible, primaryFocusRingVisible } from "../utils/focusRing";
 
 const buttonGroupVariants = tv({
   base: [
@@ -20,9 +19,10 @@ const buttonGroupVariants = tv({
 
 export const buttonVariants = tv({
   base: [
-    "select-none cursor-pointer inline-flex text-sm no-underline items-center rounded-sm justify-center gap-2",
+    "select-none cursor-pointer inline-flex text-sm no-underline items-center outline-0 rounded-sm justify-center gap-2",
     "disabled:opacity-50 disabled:pointer-events-none",
     "motion-safe:transition-[opacity,background-color,color]",
+    "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     "[&_svg]:shrink-0",
   ],
   variants: {
@@ -30,23 +30,19 @@ export const buttonVariants = tv({
       primary: [
         "bg-primary text-primary-foreground",
         "hover:opacity-90",
-        primaryFocusRingVisible
       ],
       secondary: [
         "bg-accent text-accent-foreground",
         "hover:opacity-90",
-        accentFocusRingVisible
       ],
-      plain: ["bg-background text-foreground", "hover:bg-muted", accentFocusRingVisible],
+      plain: ["bg-background text-foreground", "hover:bg-muted"],
       outlined: [
         "bg-background text-foreground border border-input",
         "hover:bg-muted",
-        accentFocusRingVisible
       ],
       destructive: [
         "bg-destructive text-white",
         "hover:opacity-90",
-        destructiveFocusRingVisible
       ],
     },
     size: {

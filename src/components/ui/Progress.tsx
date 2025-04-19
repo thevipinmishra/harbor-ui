@@ -11,7 +11,7 @@ import { tv } from "@/lib/tv.config";
 
 export const progressBarVariants = tv({
   slots: {
-    root: ["group grid gap-1"],
+    root: ["group grid gap-1.5"],
     bar: ["rounded-md w-full bg-input h-2.5"],
     fill: [
       "rounded-l-[inherit] bg-primary h-full relative",

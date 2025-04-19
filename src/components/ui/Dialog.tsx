@@ -8,10 +8,11 @@ import {
   Modal,
   ModalOverlay,
 } from "react-aria-components";
-import { tv } from "@/lib/tv.config";
+import { tv, cn } from "@/lib/tv.config";
 
 const Dialog = (props: DialogProps) => {
-  return <DialogPrimitive {...props} />;
+  const { className, ...rest } = props;
+  return <DialogPrimitive className={cn("outline-0", className)} {...rest} />;
 };
 
 const dialogVariants = tv({

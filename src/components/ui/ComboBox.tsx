@@ -49,7 +49,7 @@ const ComboBoxTrigger = (props: ComboBoxInputProps) => {
       )}
     >
       <Input className='h-full w-full px-2.5 py-1 outline-0' {...rest} />
-      <Button size="icon-md" variant="plain">
+      <Button size="icon-md" variant="plain" className='self-stretch rounded-r-[inherit] h-auto rounded-l-none text-muted-foreground'>
         <RiExpandUpDownLine />
       </Button>
     </Group>

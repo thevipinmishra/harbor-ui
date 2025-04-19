@@ -298,6 +298,7 @@ export default function HomePage() {
 
       <ComponentBox title="SearchField">
         <SearchField
+        className={'w-[200px]'}
           label="Search Products"
           inputProps={{
             placeholder: "Enter keywords",

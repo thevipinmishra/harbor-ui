@@ -17,7 +17,7 @@ interface MeterPropsWithLabel extends MeterProps {
     bar: ["rounded-md w-full bg-input h-2.5"],
     fill: ["rounded-l-[inherit] bg-primary h-full"],
     valueText: ["text-sm text-muted-foreground font-medium"],
-    group: ["flex items-center justify-between gap-4 mb-1"],
+    group: ["flex items-center justify-between gap-4 mb-1.5"],
   },
 });
 

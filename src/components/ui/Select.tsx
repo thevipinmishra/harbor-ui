@@ -9,25 +9,28 @@ import {
   SelectProps,
   composeRenderProps,
   SelectStateContext,
+  ButtonProps,
+  Button,
 } from "react-aria-components";
 import { RiExpandUpDownLine } from "@remixicon/react";
 import { ListBox, ListBoxItem } from "./ListBox";
-import { Button, type ButtonProps } from "./Button";
 import { menuVariants } from "./Menu";
 import { tv } from "@/lib/tv.config";
-import { FieldHeight } from "@/utils/styles";
+import { fieldHeight, FieldHeight } from "@/utils/styles";
 
 interface SelectTriggerProps extends Omit<ButtonProps, "children" | "size"> {
-    size?: FieldHeight;
+  size?: FieldHeight;
 }
 
 const selectVariants = tv({
   slots: {
     select: "grid group gap-1",
     trigger: [
-      "justify-between px-2.5 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
+      "flex items-center cursor-pointer justify-between px-2.5 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
+      fieldHeight.sm,
+      "border border-input rounded-md text-foreground bg-background",
     ],
-    selectValue: ["font-medium data-placeholder:text-muted-foreground"],
+    selectValue: ["text-sm data-placeholder:text-muted-foreground"],
   },
 });
 
@@ -47,13 +50,10 @@ const Select = (props: SelectProps) => {
 };
 
 const SelectTrigger = (props: SelectTriggerProps) => {
-  const { variant = "outlined", size, className, ...rest } = props;
+  const { className, ...rest } = props;
   const state = React.useContext(SelectStateContext);
   return (
     <Button
-      fullWidth
-      variant={variant}
-      size={size}
       className={composeRenderProps(className, (className, renderProps) =>
         selectVariants().trigger({
           ...renderProps,

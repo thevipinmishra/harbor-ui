@@ -23,7 +23,7 @@ interface NumberFieldPrimitiveProps
 
 const numberFieldVariants = tv({
   slots: {
-    root: ["grid gap-1"],
+    root: ["grid gap-1.5"],
     group: [baseInputStyles(), "p-0 grid grid-cols-[1fr_auto] grid-rows-2"],
     input: ["row-span-2", "outline-0 h-full w-full py-1 px-2.5 border-r border-input"],
     trigger: [
