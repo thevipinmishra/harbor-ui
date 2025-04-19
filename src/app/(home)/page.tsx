@@ -50,14 +50,14 @@ import {
   RiSettings3Line,
   RiLogoutBoxLine,
   RiDeleteBinLine,
-  RiFileCopyLine,
-  RiShareLine,
   RiFilter3Line,
   RiAddLine,
   RiUploadCloud2Line,
-  RiDownloadCloud2Line,
   RiDatabase2Line,
   RiCheckLine,
+  RiAlertLine,
+  RiCloseCircleLine,
+  RiSendPlaneLine,
 } from "@remixicon/react";
 import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
 import {
@@ -72,6 +72,9 @@ import { ProgressBar } from "@/components/ui/Progress";
 import { Switch } from "@/components/ui/Switch";
 import { RangeCalendar } from "@/components/ui/RangeCalendar";
 import { useState } from "react";
+import { Alert } from "@/components/ui/Alert";
+import { Avatar } from "@/components/ui/Avatar";
+import { Badge } from "@/components/ui/Badge";
 
 export default function HomePage() {
   const users = [
@@ -118,7 +121,6 @@ export default function HomePage() {
   ];
 
   const { contains } = useFilter({ sensitivity: "base" });
-  const [selectedTags, setSelectedTags] = useState(new Set(["Bug", "UI/UX"]));
 
   return (
     <main className="py-10 container max-w-3xl space-y-10">
@@ -159,22 +161,19 @@ export default function HomePage() {
             <Popover>
               <Form className="grid gap-4 w-72">
                 <h3 className="text-lg font-semibold">Share Your Thoughts</h3>
-               
-                 
-                  <Select placeholder="Select type">
-                    <SelectTrigger size="sm" />
-                    <Label>Feedback Type</Label>
-                    <SelectContent>
-                      <SelectItem textValue="bug">Bug Report</SelectItem>
-                      <SelectItem textValue="feature">
-                        Feature Request
-                      </SelectItem>
-                      <SelectItem textValue="general">
-                        General Feedback
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-               
+
+                <Select placeholder="Select type">
+                  <SelectTrigger size="sm" />
+                  <Label>Feedback Type</Label>
+                  <SelectContent>
+                    <SelectItem textValue="bug">Bug Report</SelectItem>
+                    <SelectItem textValue="feature">Feature Request</SelectItem>
+                    <SelectItem textValue="general">
+                      General Feedback
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+
                 <TextField isRequired>
                   <Label>Your Feedback</Label>
                   <Input placeholder="Describe your experience..." />
@@ -314,59 +313,83 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Dialog">
-        <DialogTrigger>
-          <Button variant="destructive">Delete Project</Button>
-          <DialogContent>
-            {({ close }) => (
-              <div className="grid gap-4">
-                <div className="space-y-1">
-                  <h3 className="text-lg font-semibold">
-                    Confirm Project Deletion
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Are you absolutely sure you want to delete the 'Q3 Marketing
-                    Campaign' project? This action cannot be undone and all
-                    associated data will be permanently lost.
-                  </p>
+        <div className="flex flex-wrap gap-4">
+          {/* Existing Delete Project Dialog */}
+          <DialogTrigger>
+            <Button variant="destructive">Delete Project</Button>
+            <DialogContent>
+              {({ close }) => (
+                <div className="grid gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold">
+                      Confirm Project Deletion
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Are you absolutely sure you want to delete the 'Q3 Marketing
+                      Campaign' project? This action cannot be undone and all
+                      associated data will be permanently lost.
+                    </p>
+                  </div>
+                  <TextField>
+                    <Label>Type "DELETE" to confirm</Label>
+                    <Input placeholder="DELETE" />
+                    {/* Add validation logic here */}
+                  </TextField>
+                  <div className="flex justify-end gap-2 pt-2">
+                    <Button variant="secondary" onPress={close}>
+                      Cancel
+                    </Button>
+                    <Button variant="destructive" onPress={close}>
+                      {" "}
+                      {/* Add isDisabled based on input validation */}
+                      Yes, Delete Project
+                    </Button>
+                  </div>
                 </div>
-                <TextField>
-                  <Label>Type "DELETE" to confirm</Label>
-                  <Input placeholder="DELETE" />
-                  {/* Add validation logic here */}
-                </TextField>
-                <div className="flex justify-end gap-2 pt-2">
-                  <Button variant="secondary" onPress={close}>
-                    Cancel
-                  </Button>
-                  <Button variant="destructive" onPress={close}>
-                    {" "}
-                    {/* Add isDisabled based on input validation */}
-                    Yes, Delete Project
-                  </Button>
+              )}
+            </DialogContent>
+          </DialogTrigger>
+
+          {/* New Publish Article Dialog */}
+          <DialogTrigger>
+            <Button variant="primary">
+              <RiSendPlaneLine className="w-4 h-4 mr-1" /> Publish Article
+            </Button>
+            <DialogContent>
+              {({ close }) => (
+                <div className="grid gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold">Confirm Publication</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Ready to publish the article "The Future of Web
+                      Development"? Once published, it will be visible to all
+                      visitors.
+                    </p>
+                  </div>
+                  <Checkbox>Notify subscribers via email</Checkbox>
+                  <DatePicker label="Schedule publication for (optional)" />
+                  <div className="flex justify-end gap-2 pt-2">
+                    <Button variant="secondary" onPress={close}>
+                      Save Draft
+                    </Button>
+                    <Button variant="primary" onPress={close}>
+                      Publish Now
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            )}
-          </DialogContent>
-        </DialogTrigger>
+              )}
+            </DialogContent>
+          </DialogTrigger>
+        </div>
       </ComponentBox>
 
       <ComponentBox title="Checkbox">
-        <Form>
-          <Checkbox isRequired>
-            I agree to the{" "}
-            <a href="#" className="text-primary underline">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-primary underline">
-              Privacy Policy
-            </a>
-            .
+        
+          <Checkbox>
+            I agree to the Terms of Service and Privacy Policy.
           </Checkbox>
-          <Button type="submit" className="mt-4">
-            Create Account
-          </Button>
-        </Form>
+          
+       
       </ComponentBox>
 
       <ComponentBox title="CheckboxGroup">
@@ -638,8 +661,6 @@ export default function HomePage() {
       <ComponentBox fullWidth title="TagGroup">
         <TagGroup
           selectionMode="multiple"
-          selectedKeys={selectedTags}
-          onSelectionChange={setSelectedTags as any} // Type assertion might be needed depending on TagGroup props
         >
           <Label>Assign Labels to Issue</Label>
           <TagList>
@@ -650,6 +671,61 @@ export default function HomePage() {
             ))}
           </TagList>
         </TagGroup>
+      </ComponentBox>
+
+      <ComponentBox fullWidth title="Alert">
+        <div className="grid gap-4">
+          {/* Default */}
+          <Alert title="Default Alert" description="This is a standard alert." />
+
+          {/* Info */}
+          <Alert
+            variant="info"
+            icon={<RiInformationLine />}
+            title="Informational Alert"
+            description="Here's some helpful information you might need."
+          />
+
+          {/* Success */}
+          <Alert
+            variant="success"
+            icon={<RiCheckLine />}
+            title="Success!"
+            description="Your profile has been updated successfully."
+          />
+
+          {/* Warning */}
+          <Alert
+            variant="warning"
+            icon={<RiAlertLine />}
+            title="Warning: Low Disk Space"
+            description="Your cloud storage is almost full. Consider upgrading or deleting files."
+          />
+
+          {/* Destructive */}
+          <Alert
+            variant="destructive"
+            icon={<RiCloseCircleLine />}
+            title="Error: Deletion Failed"
+            description="Could not delete the project. Please try again later."
+          />
+        </div>
+      </ComponentBox>
+
+      <ComponentBox title="Avatar">
+        <div className="flex gap-4">
+            <Avatar src='https://avatar.iran.liara.run/public/45' />
+            <Avatar src='https://avatar.iran.liara.run/public/37' />
+        </div>
+      </ComponentBox>
+
+      <ComponentBox title="Badge">
+        <div className="flex flex-wrap gap-4 items-center">
+            <Badge>Active</Badge>
+            <Badge variant="outlined">Draft</Badge>
+            <Badge variant="plain">UI/UX</Badge>
+            <Badge variant="destructive">Failed</Badge>
+        </div>
       </ComponentBox>
     </main>
   );

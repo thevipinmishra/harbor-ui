@@ -18,7 +18,7 @@ const alertVariants = tv({
       "grid grid-cols-[minmax(24px,max-content)_1fr] items-center gap-x-2 gap-y-1 border p-3 rounded-md",
     ],
     description: ["text-sm col-start-2"],
-    title: ["font-semibold col-start-2 text-base -tracking-wide "],
+    title: ["font-semibold col-start-2 text-base"],
     iconSlot: ["text-lg flex justify-center items-center"],
   },
   variants: {
@@ -56,6 +56,7 @@ const Alert = (props: AlertProps) => {
 
   return (
     <div
+      role="alert"
       className={alertVariants().root({
         className,
         variant,

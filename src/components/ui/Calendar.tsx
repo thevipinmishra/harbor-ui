@@ -33,11 +33,6 @@ export const calendarVariants = tv({
       "data-range-start:bg-primary data-range-start:text-primary-foreground",
       "data-range-end:bg-primary data-range-end:text-primary-foreground",
     ],
-    cellTriggerMonthYear: [
-      buttonVariants({ size: "md", variant: "plain" }),
-      "data-disabled:opacity-50 data-disabled:pointer-events-none",
-      "data-selected:bg-primary data-selected:text-primary-foreground w-full",
-    ],
   },
 });
 

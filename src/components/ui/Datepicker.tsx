@@ -21,11 +21,11 @@ const datePickerVariants = tv({
   slots: {
     root: "flex flex-col gap-1.5",
     label: "",
-    group: ["flex items-center gap-4 ps-2 py-2 pe-1", baseInputStyles()],
+    group: [baseInputStyles(), "flex items-center gap-4 ps-2", ],
     dateInput: "flex-1",
     dateSegment:
       "text-sm motion-safe:transition-colors rounded font-medium outline-none py-0.5 px-1 data-[type=literal]:text-muted-foreground focus:bg-primary focus:text-primary-foreground",
-    calendarButton: "",
+    calendarButton: "self-stretch h-full rounded-r-[inherit] rounded-l-none",
   },
 });
 
