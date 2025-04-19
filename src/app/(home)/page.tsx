@@ -46,6 +46,18 @@ import {
   RiAlignCenter,
   RiAlignLeft,
   RiAlignRight,
+  RiUserLine,
+  RiSettings3Line,
+  RiLogoutBoxLine,
+  RiDeleteBinLine,
+  RiFileCopyLine,
+  RiShareLine,
+  RiFilter3Line,
+  RiAddLine,
+  RiUploadCloud2Line,
+  RiDownloadCloud2Line,
+  RiDatabase2Line,
+  RiCheckLine,
 } from "@remixicon/react";
 import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
 import {
@@ -59,18 +71,54 @@ import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
 import { ProgressBar } from "@/components/ui/Progress";
 import { Switch } from "@/components/ui/Switch";
 import { RangeCalendar } from "@/components/ui/RangeCalendar";
+import { useState } from "react";
 
 export default function HomePage() {
-  const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
-  const categories = ["Electronics", "Clothing", "Home Goods", "Books"];
-  const commands = [
-    "Create New File",
-    "Open Settings",
-    "Search Documentation",
-    "Deploy Project",
+  const users = [
+    { id: 1, name: "Alice Johnson" },
+    { id: 2, name: "Bob Williams" },
+    { id: 3, name: "Charlie Brown" },
+    { id: 4, name: "Diana Garcia" },
+    { id: 5, name: "Ethan Rodriguez" },
+  ];
+  const projectStatuses = [
+    "Not Started",
+    "In Progress",
+    "Completed",
+    "On Hold",
+  ];
+  const issueLabels = [
+    "Bug",
+    "Feature",
+    "Improvement",
+    "Documentation",
+    "Help Wanted",
+  ];
+  const countries = [
+    "United States",
+    "Canada",
+    "Mexico",
+    "United Kingdom",
+    "Germany",
+    "France",
+  ];
+  const priorities = ["Low", "Medium", "High", "Urgent"];
+  const fileFormats = ["PDF", "DOCX", "XLSX", "CSV", "JSON"];
+  const shippingMethods = ["Standard", "Express", "Next Day"];
+  const accountTypes = ["Personal", "Business", "Enterprise"];
+  const skills = [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "TypeScript",
+    "CSS",
+    "HTML",
+    "SQL",
+    "Python",
   ];
 
   const { contains } = useFilter({ sensitivity: "base" });
+  const [selectedTags, setSelectedTags] = useState(new Set(["Bug", "UI/UX"]));
 
   return (
     <main className="py-10 container max-w-3xl space-y-10">
@@ -81,63 +129,173 @@ export default function HomePage() {
       {/* Basic Elements */}
       <ComponentBox title="Button">
         <div className="flex flex-wrap items-center gap-4">
-          <Button>Submit</Button>
+          <Button>
+            <RiAddLine className="w-4 h-4 mr-1" /> Create Project
+          </Button>
           <Button variant="secondary">Cancel</Button>
-          <Button variant="outlined">Learn More</Button>
-          <Button variant="destructive">Delete</Button>
-          <Button isLoading>Loading...</Button>
-          <Button isDisabled>Disabled</Button>
+          <Button variant="outlined">
+            <RiFilter3Line className="w-4 h-4 mr-1" /> Filter Results
+          </Button>
+          <Button variant="destructive">
+            <RiDeleteBinLine className="w-4 h-4 mr-1" /> Delete Account
+          </Button>
+          <Button isLoading>Processing...</Button>
+          <Button isDisabled>Submit Application</Button>
         </div>
       </ComponentBox>
       <ComponentBox title="FileTrigger">
-        <FileTrigger>
-          <Button variant="outlined">Upload Profile Picture</Button>
+        <FileTrigger allowsMultiple>
+          <Button variant="outlined">
+            <RiUploadCloud2Line className="w-4 h-4 mr-1" /> Upload Documents
+          </Button>
         </FileTrigger>
       </ComponentBox>
 
       <ComponentBox title="Popover">
-        <PopoverTrigger>
-          <Button>Feedback</Button>
-          <Popover>
-            <Form className="grid gap-4 w-64">
-              <TextField isRequired>
-                <Label>Your Feedback</Label>
-                <Input placeholder="Enter your feedback" />
-              </TextField>
-              <div className="flex justify-end gap-2">
-                <Button variant="secondary" size="sm">
-                  Cancel
-                </Button>
-                <Button type="submit" size="sm">
-                  Submit
-                </Button>
-              </div>
-            </Form>
-          </Popover>
-        </PopoverTrigger>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Feedback Popover */}
+          <PopoverTrigger>
+            <Button>Leave Feedback</Button>
+            <Popover>
+              <Form className="grid gap-4 w-72">
+                <h3 className="text-lg font-semibold">Share Your Thoughts</h3>
+               
+                 
+                  <Select placeholder="Select type">
+                    <SelectTrigger size="sm" />
+                    <Label>Feedback Type</Label>
+                    <SelectContent>
+                      <SelectItem textValue="bug">Bug Report</SelectItem>
+                      <SelectItem textValue="feature">
+                        Feature Request
+                      </SelectItem>
+                      <SelectItem textValue="general">
+                        General Feedback
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+               
+                <TextField isRequired>
+                  <Label>Your Feedback</Label>
+                  <Input placeholder="Describe your experience..." />
+                </TextField>
+                <div className="flex justify-end gap-2">
+                  <Button variant="secondary" size="sm">
+                    Cancel
+                  </Button>
+                  <Button type="submit" size="sm">
+                    Submit Feedback
+                  </Button>
+                </div>
+              </Form>
+            </Popover>
+          </PopoverTrigger>
+
+          {/* Settings Popover */}
+          <PopoverTrigger>
+            <Button variant="secondary">
+              <RiSettings3Line className="w-4 h-4 mr-1" /> App Settings
+            </Button>
+            <Popover>
+              <Form className="grid gap-4 w-80">
+                <h3 className="text-lg font-semibold mb-2">
+                  Application Settings
+                </h3>
+                <Switch>Enable Dark Mode</Switch>
+                <CheckboxGroup defaultValue={["mentions", "updates"]}>
+                  <Label>Email Notifications For:</Label>
+                  <Checkbox value="mentions">Mentions</Checkbox>
+                  <Checkbox value="comments">New Comments</Checkbox>
+                  <Checkbox value="updates">Product Updates</Checkbox>
+                </CheckboxGroup>
+                <Select
+                  placeholder="Select frequency"
+                  defaultSelectedKey="daily"
+                >
+                  <Label>Notification Frequency</Label>
+                  <SelectTrigger size="sm" />
+                  <SelectContent>
+                    <SelectItem id="instant" textValue="instant">
+                      Instant
+                    </SelectItem>
+                    <SelectItem id="daily" textValue="daily">
+                      Daily Digest
+                    </SelectItem>
+                    <SelectItem id="weekly" textValue="weekly">
+                      Weekly Digest
+                    </SelectItem>
+                    <SelectItem id="never" textValue="never">
+                      Never
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <Slider defaultValue={70}>
+                  <Label>UI Scale</Label>
+                  <SliderControl />
+                </Slider>
+                <div className="flex justify-end gap-2 mt-4">
+                  <Button variant="secondary" size="sm">
+                    Reset Defaults
+                  </Button>
+                  <Button type="submit" size="sm">
+                    Save Settings
+                  </Button>
+                </div>
+              </Form>
+            </Popover>
+          </PopoverTrigger>
+        </div>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Accordion">
-        <Accordion>
-          <AccordionItem id="faq-1">
+        <Accordion allowsMultipleExpanded>
+          <AccordionItem id="feature-1">
             <AccordionItemTrigger>
-              What is the return policy?
+              Real-time Collaboration Tools
             </AccordionItemTrigger>
             <AccordionItemContent>
               <p>
-                Our return policy allows returns within 30 days of purchase.
-                Items must be unused and in original packaging.
+                Work together seamlessly with shared cursors, live commenting,
+                and version history. See changes from your teammates instantly
+                and resolve conflicts effortlessly. Supports up to 50 concurrent
+                editors.
               </p>
             </AccordionItemContent>
           </AccordionItem>
-          <AccordionItem id="faq-2">
+          <AccordionItem id="feature-2">
             <AccordionItemTrigger>
-              How do I track my order?
+              Advanced Analytics Dashboard
             </AccordionItemTrigger>
             <AccordionItemContent>
               <p>
-                You can track your order using the tracking link sent to your
-                email after shipment.
+                Gain deep insights into your project performance with
+                customizable widgets, trend analysis, and data export options.
+                Track key metrics like task completion rates, user engagement,
+                and resource allocation. Integrates with popular BI tools.
+              </p>
+            </AccordionItemContent>
+          </AccordionItem>
+          <AccordionItem id="feature-3">
+            <AccordionItemTrigger>
+              Integrated Project Management
+            </AccordionItemTrigger>
+            <AccordionItemContent>
+              <p>
+                Manage tasks, deadlines, and milestones all in one place.
+                Utilize Gantt charts, Kanban boards, and calendar views to
+                visualize progress. Assign tasks, set dependencies, and receive
+                automated reminders for upcoming deadlines.
+              </p>
+            </AccordionItemContent>
+          </AccordionItem>
+          <AccordionItem id="feature-4">
+            <AccordionItemTrigger>Secure Cloud Storage</AccordionItemTrigger>
+            <AccordionItemContent>
+              <p>
+                Store all your project files securely with end-to-end encryption
+                and granular access controls. Benefit from automatic backups,
+                versioning, and easy sharing options. Compliant with industry
+                standards like SOC 2 and ISO 27001.
               </p>
             </AccordionItemContent>
           </AccordionItem>
@@ -146,34 +304,44 @@ export default function HomePage() {
 
       <ComponentBox title="Tooltip">
         <TooltipTrigger>
-          <Button size="icon-md" variant="primary" aria-label="Information">
-            <RiInformationLine />
+          <Button size="icon-md" variant="primary" aria-label="User Profile">
+            <RiUserLine />
           </Button>
           <Tooltip>
-            <p>Additional information about this setting.</p>
+            <p>View your profile and account settings.</p>
           </Tooltip>
         </TooltipTrigger>
       </ComponentBox>
 
       <ComponentBox title="Dialog">
         <DialogTrigger>
-          <Button variant="destructive">Delete Account</Button>
+          <Button variant="destructive">Delete Project</Button>
           <DialogContent>
             {({ close }) => (
               <div className="grid gap-4">
                 <div className="space-y-1">
-                  <h3 className="text-lg font-semibold">Confirm Deletion</h3>
+                  <h3 className="text-lg font-semibold">
+                    Confirm Project Deletion
+                  </h3>
                   <p className="text-sm text-muted-foreground">
-                    Are you sure you want to delete your account? This action
-                    cannot be undone.
+                    Are you absolutely sure you want to delete the 'Q3 Marketing
+                    Campaign' project? This action cannot be undone and all
+                    associated data will be permanently lost.
                   </p>
                 </div>
+                <TextField>
+                  <Label>Type "DELETE" to confirm</Label>
+                  <Input placeholder="DELETE" />
+                  {/* Add validation logic here */}
+                </TextField>
                 <div className="flex justify-end gap-2 pt-2">
                   <Button variant="secondary" onPress={close}>
                     Cancel
                   </Button>
                   <Button variant="destructive" onPress={close}>
-                    Delete
+                    {" "}
+                    {/* Add isDisabled based on input validation */}
+                    Yes, Delete Project
                   </Button>
                 </div>
               </div>
@@ -183,38 +351,63 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Checkbox">
-        <Checkbox>Enable email notifications</Checkbox>
+        <Form>
+          <Checkbox isRequired>
+            I agree to the{" "}
+            <a href="#" className="text-primary underline">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-primary underline">
+              Privacy Policy
+            </a>
+            .
+          </Checkbox>
+          <Button type="submit" className="mt-4">
+            Create Account
+          </Button>
+        </Form>
       </ComponentBox>
 
       <ComponentBox title="CheckboxGroup">
-        <CheckboxGroup>
-          <Label>Notification Preferences</Label>
-          <Checkbox value="newsletter">Newsletter</Checkbox>
-          <Checkbox value="promotions">Promotions</Checkbox>
-          <Checkbox value="updates">Product Updates</Checkbox>
+        <CheckboxGroup defaultValue={["tech", "design"]}>
+          <Label>Select Your Interests</Label>
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            <Checkbox value="tech">Technology</Checkbox>
+            <Checkbox value="design">Design</Checkbox>
+            <Checkbox value="business">Business</Checkbox>
+            <Checkbox value="marketing">Marketing</Checkbox>
+            <Checkbox value="finance">Finance</Checkbox>
+            <Checkbox value="health">Health & Wellness</Checkbox>
+          </div>
         </CheckboxGroup>
       </ComponentBox>
 
       <ComponentBox title="Select">
-        <Select placeholder="Select criteria" className={"w-[200px]"}>
-          <Label>Sort By</Label>
+        <Select placeholder="Select status" className={"w-[200px]"}>
+          <Label>Filter Tasks By Status</Label>
           <SelectTrigger size="sm" />
           <SelectContent>
-            <SelectItem textValue="price-asc">Price: Low to High</SelectItem>
-            <SelectItem textValue="price-desc">Price: High to Low</SelectItem>
-            <SelectItem textValue="newest">Newest Arrivals</SelectItem>
+            {projectStatuses.map((status) => (
+              <SelectItem
+                key={status.toLowerCase().replace(" ", "-")}
+                textValue={status}
+              >
+                {status}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </ComponentBox>
 
       <ComponentBox title="ComboBox">
-        <ComboBox className={"w-[200px]"}>
-          <Label>Select Category</Label>
-          <ComboBoxTrigger size="sm" placeholder="Search category" />
+        <ComboBox className={"w-[250px]"}>
+          <Label>Assign Task To</Label>
+          <ComboBoxTrigger size="sm" placeholder="Search user..." />
           <ComboBoxContent>
-            {categories.map((category) => (
-              <ComboBoxItem key={category.toLowerCase()} textValue={category}>
-                {category}
+            {users.map((user) => (
+              <ComboBoxItem key={user.id} textValue={user.name}>
+                {user.name}
               </ComboBoxItem>
             ))}
           </ComboBoxContent>
@@ -223,103 +416,139 @@ export default function HomePage() {
 
       <ComponentBox title="Listbox">
         <ListBox
-          aria-label="Select Template"
+          aria-label="Select Task Priority"
           className="w-[200px]"
           selectionMode="single"
+          defaultSelectedKeys={["medium"]}
         >
-          <ListBoxItem textValue="blank">Blank Template</ListBoxItem>
-          <ListBoxItem textValue="report">Report Template</ListBoxItem>
-          <ListBoxItem textValue="invoice">Invoice Template</ListBoxItem>
+          <Label>Set Priority</Label>
+          {priorities.map((p) => (
+            <ListBoxItem key={p.toLowerCase()} textValue={p}>
+              {p}
+            </ListBoxItem>
+          ))}
         </ListBox>
       </ComponentBox>
 
       <ComponentBox title="Menu">
         <MenuTrigger>
-          <Button>File</Button>
+          <Button variant="secondary">
+            <RiUserLine className="w-4 h-4 mr-1" /> User Menu
+          </Button>
           <Menu>
-            <MenuItem>New</MenuItem>
-            <MenuItem>Open</MenuItem>
-            <MenuItem>Save As...</MenuItem>
-            <MenuItem isDisabled>Print</MenuItem>
+            <MenuItem>
+              <RiUserLine className="w-4 h-4 mr-2" /> Profile
+            </MenuItem>
+            <MenuItem>
+              <RiSettings3Line className="w-4 h-4 mr-2" /> Settings
+            </MenuItem>
+            <MenuItem isDisabled>
+              <RiDatabase2Line className="w-4 h-4 mr-2" /> Billing
+            </MenuItem>
+            <MenuItem>
+              <RiLogoutBoxLine className="w-4 h-4 mr-2 text-destructive" />{" "}
+              Logout
+            </MenuItem>
           </Menu>
         </MenuTrigger>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Tabs">
         <Tabs>
-          <TabList aria-label="Task Status">
-            <Tab id="tab-all">All Tasks</Tab>
-            <Tab id="tab-active">Active</Tab>
-            <Tab id="tab-completed">Completed</Tab>
+          <TabList aria-label="Project Information">
+            <Tab id="tab-overview">Overview</Tab>
+            <Tab id="tab-tasks">Tasks (12)</Tab>
+            <Tab id="tab-files">Files (5)</Tab>
+            <Tab id="tab-settings">Settings</Tab>
           </TabList>
-          <TabPanel id="tab-all">
-            <p className="p-4">Showing all tasks.</p>
+          <TabPanel id="tab-overview">
+            <div className="p-4 space-y-2">
+              <h4 className="font-semibold">Project Summary</h4>
+              <p>This project aims to redesign the company website...</p>
+              <p>Deadline: 2024-12-31</p>
+            </div>
           </TabPanel>
-          <TabPanel id="tab-active">
-            <p className="p-4">Showing only active tasks.</p>
+          <TabPanel id="tab-tasks">
+            <p className="p-4">List of project tasks goes here...</p>
           </TabPanel>
-          <TabPanel id="tab-completed">
-            <p className="p-4">Showing completed tasks.</p>
+          <TabPanel id="tab-files">
+            <p className="p-4">List of project files goes here...</p>
+          </TabPanel>
+          <TabPanel id="tab-settings">
+            <p className="p-4">Project settings form goes here...</p>
           </TabPanel>
         </Tabs>
       </ComponentBox>
 
       <ComponentBox title="Switch">
-        <Switch>
-            Dark mode
+        <Switch defaultSelected>
+          Enable Two-Factor Authentication (Recommended)
         </Switch>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Slider">
-        <Slider defaultValue={60}>
-          <Label>Brightness</Label>
+        <Slider defaultValue={[20, 80]} className="max-w-md">
+          <Label>Filter Price Range ($)</Label>
           <SliderControl />
         </Slider>
       </ComponentBox>
 
       <ComponentBox title="Calendar">
-        <Calendar />
+        <Form className="space-y-2">
+          <Label>Select Event Date</Label>
+          <Calendar />
+        </Form>
       </ComponentBox>
 
       <ComponentBox title="RangeCalendar">
-       <RangeCalendar />
+        <Form className="space-y-2">
+          <Label>Select Booking Dates</Label>
+          <RangeCalendar />
+        </Form>
       </ComponentBox>
 
       <ComponentBox title="TextField">
-        <TextField className="w-[250px]">
-          <Label>Email Address</Label>
-          <Input type="email" placeholder="you@example.com" />
+        <TextField className="w-[300px]" isRequired>
+          <Label>Project Name</Label>
+          <Input placeholder="Enter a descriptive name" />
         </TextField>
       </ComponentBox>
 
       <ComponentBox title="NumberField">
-        <NumberField label="Quantity" defaultValue={1} minValue={1} />
+        <NumberField
+          label="Order Quantity"
+          defaultValue={1}
+          minValue={1}
+          maxValue={10}
+        />
       </ComponentBox>
 
       <ComponentBox title="SearchField">
         <SearchField
-        className={'w-[200px]'}
-          label="Search Products"
+          className={"w-[250px]"}
+          label="Search Users"
           inputProps={{
-            placeholder: "Enter keywords",
+            placeholder: "Enter name or email",
           }}
         />
       </ComponentBox>
 
       <ComponentBox title="DateField">
-        <DateField shouldForceLeadingZeros label="Event Date" />
+        <DateField shouldForceLeadingZeros label="Project Start Date" />
       </ComponentBox>
 
       <ComponentBox title="DatePicker">
-        <DatePicker shouldForceLeadingZeros label="Select Appointment Date" />
+        <DatePicker shouldForceLeadingZeros label="Task Due Date" />
       </ComponentBox>
 
       <ComponentBox title="RadioGroup">
-        <RadioGroup>
-          <Label>Subscription Plan</Label>
-          <Radio value="free">Free Tier</Radio>
-          <Radio value="pro">Pro Tier</Radio>
-          <Radio value="enterprise">Enterprise</Radio>
+        <RadioGroup defaultValue="standard">
+          <Label>Select Shipping Method</Label>
+          {shippingMethods.map((method) => (
+            <Radio key={method.toLowerCase()} value={method.toLowerCase()}>
+              {method}
+            </Radio>
+          ))}
         </RadioGroup>
       </ComponentBox>
 
@@ -328,34 +557,46 @@ export default function HomePage() {
           {({ isSelected }) => (
             <>
               {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}
-              <span className="ml-1">{isSelected ? "Saved" : "Save"}</span>
+              <span className="ml-1">
+                {isSelected ? "Saved" : "Save for Later"}
+              </span>
             </>
           )}
         </ToggleButton>
       </ComponentBox>
 
       <ComponentBox title="ToggleButtonGroup">
-        <ToggleButtonGroup selectionMode="single" defaultSelectedKeys={['center']}>
+        <Label>Text Alignment</Label>
+        <ToggleButtonGroup
+          selectionMode="single"
+          defaultSelectedKeys={["left"]}
+        >
           {({ state }) => (
             <>
               <ToggleButton
                 id="left"
                 aria-label="Align Left"
-                variant={state.selectedKeys.has("left") ? "primary" : "outlined"}
+                variant={
+                  state.selectedKeys.has("left") ? "primary" : "outlined"
+                }
               >
                 <RiAlignLeft />
               </ToggleButton>
               <ToggleButton
                 id="center"
                 aria-label="Align Center"
-                variant={state.selectedKeys.has("center") ? "primary" : "outlined"}
+                variant={
+                  state.selectedKeys.has("center") ? "primary" : "outlined"
+                }
               >
                 <RiAlignCenter />
               </ToggleButton>
               <ToggleButton
                 id="right"
                 aria-label="Align Right"
-                variant={state.selectedKeys.has("right") ? "primary" : "outlined"}
+                variant={
+                  state.selectedKeys.has("right") ? "primary" : "outlined"
+                }
               >
                 <RiAlignRight />
               </ToggleButton>
@@ -367,15 +608,15 @@ export default function HomePage() {
       <ComponentBox title="Autocomplete">
         <Autocomplete filter={contains}>
           <SearchField
-            label="Command Palette"
+            label="Add Skill"
             inputProps={{
-              placeholder: "Type a command...",
+              placeholder: "Type a skill...",
             }}
           />
           <AutocompleteContent className="mt-2 w-[--trigger-width]">
-            {commands.map((cmd) => (
-              <AutocompleteItem key={cmd.toLowerCase().replace(/\s+/g, "-")}>
-                {cmd}
+            {skills.map((skill) => (
+              <AutocompleteItem key={skill.toLowerCase().replace(/\s+/g, "-")}>
+                {skill}
               </AutocompleteItem>
             ))}
           </AutocompleteContent>
@@ -383,21 +624,30 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox fullWidth title="Meter">
-        <Meter label="Password Strength" value={75} />
+        <Meter
+          label="Cloud Storage Used"
+          value={85}
+          valueLabel="850 GB / 1 TB"
+        />
       </ComponentBox>
 
       <ComponentBox fullWidth title="ProgressBar">
-        <ProgressBar label="Uploading files..." value={60} />
+        <ProgressBar label="Syncing account data..." value={45} />
       </ComponentBox>
 
       <ComponentBox fullWidth title="TagGroup">
-        <TagGroup selectionMode="multiple">
-          <Label>Filter by Tags</Label>
+        <TagGroup
+          selectionMode="multiple"
+          selectedKeys={selectedTags}
+          onSelectionChange={setSelectedTags as any} // Type assertion might be needed depending on TagGroup props
+        >
+          <Label>Assign Labels to Issue</Label>
           <TagList>
-            <Tag>Feature Request</Tag>
-            <Tag>Bug Report</Tag>
-            <Tag>Documentation</Tag>
-            <Tag>UI/UX</Tag>
+            {issueLabels.map((label) => (
+              <Tag key={label.toLowerCase()} textValue={label}>
+                {label}
+              </Tag>
+            ))}
           </TagList>
         </TagGroup>
       </ComponentBox>
