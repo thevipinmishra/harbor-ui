@@ -2,10 +2,10 @@
 
 import { tv } from "@/lib/tv.config";
 import {
-  Calendar as CalendarPrimitive,
+  RangeCalendar as RangeCalendarPrimitive,
   CalendarCell,
   CalendarGrid,
-  CalendarProps,
+  RangeCalendarProps,
   DateValue,
   composeRenderProps,
   CalendarGridHeader,
@@ -41,10 +41,10 @@ export const calendarVariants = tv({
   },
 });
 
-const Calendar = (props: CalendarProps<DateValue>) => {
+const RangeCalendar = (props: RangeCalendarProps<DateValue>) => {
   const { className, ...rest } = props;
   return (
-    <CalendarPrimitive
+    <RangeCalendarPrimitive
       className={composeRenderProps(className, (className, renderProps) =>
         calendarVariants().root({
           ...renderProps,
@@ -82,8 +82,8 @@ const Calendar = (props: CalendarProps<DateValue>) => {
           )}
         </CalendarGridBody>
       </CalendarGrid>
-    </CalendarPrimitive>
+    </RangeCalendarPrimitive>
   );
 };
 
-export { Calendar };
+export { RangeCalendar };

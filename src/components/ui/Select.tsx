@@ -25,7 +25,7 @@ const selectVariants = tv({
   slots: {
     select: "grid group gap-1",
     trigger: [
-      "justify-between text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
+      "justify-between px-2.5 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
     ],
     selectValue: ["font-medium data-placeholder:text-muted-foreground"],
   },

@@ -20,7 +20,7 @@ const MenuTrigger = MenuTriggerPrimitive;
  const menuVariants = tv({
   slots: {
     content: [
-      "bg-background border border-accent-subtle text-foreground shadow-xs rounded-md min-w-16",
+      "bg-background border border-border text-foreground shadow-xs rounded-md min-w-16",
       popoverAnimation(),
       "flex flex-col gap-1 outline-hidden p-1",
     ],

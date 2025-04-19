@@ -1,49 +1,47 @@
 "use client";
 
 import * as React from "react";
-import { Switch as SwitchPrimitive, type SwitchRootProps } from "@ark-ui/react/switch";
+import {
+  composeRenderProps,
+  Switch as SwitchPrimitive,
+  SwitchProps,
+} from "react-aria-components";
 import { tv } from "@/lib/tv.config";
-import { labelVariants } from "./Label";
-
-interface SwitchProps extends SwitchRootProps {
-  label?: string;
-}
 
 const switchVariants = tv({
   slots: {
-    root: ["flex gap-2 items-baseline"],
+    root: ["flex group gap-2"],
     control: [
-      "w-10 rounded-full cursor-pointer inline-flex items-center h-6 shrink-0 border-2 border-transparent",
+      "relative w-10 rounded-full cursor-pointer inline-flex items-center h-6 shrink-0 border-2 border-transparent", // Added relative
       "transition-colors",
-      "data-[state=unchecked]:bg-input data-[state=checked]:bg-primary",
-    ],
-    thumb: [
-      "size-5 rounded-full bg-primary-foreground data-[state=checked]:translate-x-4 ddata-[state=checked]:bg-accent-foreground",
-      "transition-all will-change-transform",
-      "pointer-events-none",
+      "bg-input group-selected:bg-primary",
+      "before:content-[''] before:absolute before:size-5 before:rounded-full before:bg-primary-foreground",
+      "before:transition-all before:will-change-transform",
+      "group-selected:before:translate-x-4", 
+      "before:pointer-events-none",
     ],
   },
 });
 
 const Switch = (props: SwitchProps) => {
-  const { className, label, ...rest } = props;
+  const { className, children, ...rest } = props;
   return (
-    <SwitchPrimitive.Root className={switchVariants().root()} {...rest}>
-      <SwitchPrimitive.Control className={switchVariants().control()}>
-        &#x200B;
-        <SwitchPrimitive.Thumb className={switchVariants().thumb()} />
-      </SwitchPrimitive.Control>
-      {label ? (
-        <SwitchPrimitive.Label
-          className={labelVariants({
-            className: "text-base text-foreground",
-          })}
-        >
-          {label}
-        </SwitchPrimitive.Label>
-      ) : null}
-      <SwitchPrimitive.HiddenInput />
-    </SwitchPrimitive.Root>
+    <SwitchPrimitive
+      className={composeRenderProps(className, (className, renderProps) =>
+        switchVariants().root({
+          ...renderProps,
+          className,
+        })
+      )}
+      {...rest}
+    >
+      {(renderProps) => (
+        <>
+          <div className={switchVariants().control()} />
+          {typeof children === "function" ? children(renderProps) : children}
+        </>
+      )}
+    </SwitchPrimitive>
   );
 };
 

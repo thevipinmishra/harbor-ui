@@ -17,7 +17,7 @@ import { RiAddLine } from "@remixicon/react";
 
 const accordionVariants = tv({
   slots: {
-    root: " rounded-md divide-y divide-muted-subtle",
+    root: " rounded-md divide-y divide-border",
     item: [
       "relative bg-background text-foreground",
     ],

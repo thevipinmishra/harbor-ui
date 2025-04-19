@@ -17,7 +17,7 @@ const Dialog = (props: DialogProps) => {
 const dialogVariants = tv({
   slots: {
     backdrop: [
-      "fixed inset-0 bg-accent-subtle/60  backdrop-blur-xs z-40 max-h-[var(--visual-viewport-height)]",
+      "fixed inset-0 bg-black/80  backdrop-blur-xs z-40 max-h-[var(--visual-viewport-height)]",
       "flex justify-center items-end md:items-center",
       "motion-safe:entering:motion-opacity-in-0 motion-duration-200",
       "motion-safe:exiting:motion-opacity-out-0",

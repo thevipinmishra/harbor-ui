@@ -39,7 +39,14 @@ import {
   ComboBoxTrigger,
 } from "@/components/ui/ComboBox";
 import { ToggleButton } from "@/components/ui/ToggleButton";
-import { RiBookmarkFill, RiBookmarkLine } from "@remixicon/react";
+import {
+  RiBookmarkFill,
+  RiBookmarkLine,
+  RiInformationLine,
+  RiAlignCenter,
+  RiAlignLeft,
+  RiAlignRight,
+} from "@remixicon/react";
 import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
 import {
   Autocomplete,
@@ -50,9 +57,18 @@ import { DateField } from "@/components/ui/DateField";
 import { Meter } from "@/components/ui/Meter";
 import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
 import { ProgressBar } from "@/components/ui/Progress";
+import { Switch } from "@/components/ui/Switch";
+import { RangeCalendar } from "@/components/ui/RangeCalendar";
 
 export default function HomePage() {
   const animals = ["Aardvark", "Cat", "Dog", "Kangaroo", "Panda", "Snake"];
+  const categories = ["Electronics", "Clothing", "Home Goods", "Books"];
+  const commands = [
+    "Create New File",
+    "Open Settings",
+    "Search Documentation",
+    "Deploy Project",
+  ];
 
   const { contains } = useFilter({ sensitivity: "base" });
 
@@ -64,49 +80,38 @@ export default function HomePage() {
 
       {/* Basic Elements */}
       <ComponentBox title="Button">
-        <div className="flex flex-wrap gap-5">
-          <Button size="sm">Small</Button>
-          <Button isLoading>Primary</Button>
-          <Button variant="secondary" size="md">
-            Secondary
-          </Button>
-          <Button variant="plain">Plain</Button>
-          <Button variant="outlined" size="lg">
-            Outlined
-          </Button>
-          <Button variant="outlined" isLoading>
-            Outlined
-          </Button>
-          <Button variant="destructive">Secondary</Button>
+        <div className="flex flex-wrap items-center gap-4">
+          <Button>Submit</Button>
+          <Button variant="secondary">Cancel</Button>
+          <Button variant="outlined">Learn More</Button>
+          <Button variant="destructive">Delete</Button>
+          <Button isLoading>Loading...</Button>
+          <Button isDisabled>Disabled</Button>
         </div>
       </ComponentBox>
       <ComponentBox title="FileTrigger">
         <FileTrigger>
-          <Button>Select a file</Button>
+          <Button variant="outlined">Upload Profile Picture</Button>
         </FileTrigger>
       </ComponentBox>
 
       <ComponentBox title="Popover">
         <PopoverTrigger>
-          <Button>Quick Subscribe</Button>
-          <Popover className="w-80 p-4">
-            <h3 className="text-lg font-semibold mb-3">Newsletter Signup</h3>
-            <Form className="grid gap-3">
-              <TextField>
-                <Label>Email</Label>
-                <Input placeholder="your@email.com" />
+          <Button>Feedback</Button>
+          <Popover>
+            <Form className="grid gap-4 w-64">
+              <TextField isRequired>
+                <Label>Your Feedback</Label>
+                <Input placeholder="Enter your feedback" />
               </TextField>
-              <Select>
-                <Label>Update Frequency</Label>
-                <SelectTrigger size="sm" />
-                <SelectContent>
-                  <SelectItem textValue="daily">Daily</SelectItem>
-                  <SelectItem textValue="weekly">Weekly</SelectItem>
-                  <SelectItem textValue="monthly">Monthly</SelectItem>
-                </SelectContent>
-              </Select>
-              <Checkbox>Receive product updates</Checkbox>
-              <Button size="sm">Subscribe</Button>
+              <div className="flex justify-end gap-2">
+                <Button variant="secondary" size="sm">
+                  Cancel
+                </Button>
+                <Button type="submit" size="sm">
+                  Submit
+                </Button>
+              </div>
             </Form>
           </Popover>
         </PopoverTrigger>
@@ -114,20 +119,25 @@ export default function HomePage() {
 
       <ComponentBox fullWidth title="Accordion">
         <Accordion>
-          <AccordionItem id="personal">
-            <AccordionItemTrigger>Personal Information</AccordionItemTrigger>
+          <AccordionItem id="faq-1">
+            <AccordionItemTrigger>
+              What is the return policy?
+            </AccordionItemTrigger>
             <AccordionItemContent>
               <p>
-                Please provide your full name, email address, and phone number.
+                Our return policy allows returns within 30 days of purchase.
+                Items must be unused and in original packaging.
               </p>
             </AccordionItemContent>
           </AccordionItem>
-          <AccordionItem id="billing">
-            <AccordionItemTrigger>Billing Address</AccordionItemTrigger>
+          <AccordionItem id="faq-2">
+            <AccordionItemTrigger>
+              How do I track my order?
+            </AccordionItemTrigger>
             <AccordionItemContent>
               <p>
-                Enter your billing details, including street address, city, and
-                postal code.
+                You can track your order using the tracking link sent to your
+                email after shipment.
               </p>
             </AccordionItemContent>
           </AccordionItem>
@@ -136,133 +146,75 @@ export default function HomePage() {
 
       <ComponentBox title="Tooltip">
         <TooltipTrigger>
-          <Button>Learn More</Button>
+          <Button size="icon-md" variant="primary" aria-label="Information">
+            <RiInformationLine />
+          </Button>
           <Tooltip>
-            <p>Click to get more details about this feature.</p>
+            <p>Additional information about this setting.</p>
           </Tooltip>
         </TooltipTrigger>
       </ComponentBox>
 
       <ComponentBox title="Dialog">
         <DialogTrigger>
-          <Button>Open Dialog</Button>
+          <Button variant="destructive">Delete Account</Button>
           <DialogContent>
-            <Form className="grid gap-4">
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold">Create your account</h3>
-                <p className="text-sm text-muted-foreground">
-                  Fill in your details to get started
-                </p>
+            {({ close }) => (
+              <div className="grid gap-4">
+                <div className="space-y-1">
+                  <h3 className="text-lg font-semibold">Confirm Deletion</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Are you sure you want to delete your account? This action
+                    cannot be undone.
+                  </p>
+                </div>
+                <div className="flex justify-end gap-2 pt-2">
+                  <Button variant="secondary" onPress={close}>
+                    Cancel
+                  </Button>
+                  <Button variant="destructive" onPress={close}>
+                    Delete
+                  </Button>
+                </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <TextField>
-                  <Label>First name</Label>
-                  <Input />
-                </TextField>
-                <TextField>
-                  <Label>Last name</Label>
-                  <Input />
-                </TextField>
-              </div>
-
-              <TextField>
-                <Label>Email</Label>
-                <Input type="email" />
-              </TextField>
-
-              <TextField>
-                <Label>Username</Label>
-                <Input />
-              </TextField>
-
-              <TextField>
-                <Label>Password</Label>
-                <Input type="password" />
-              </TextField>
-
-              <TextField>
-                <Label>Confirm Password</Label>
-                <Input type="password" />
-              </TextField>
-
-              <Select>
-                <Label>Account Type</Label>
-                <SelectTrigger />
-                <SelectContent>
-                  <SelectItem textValue="personal">Personal</SelectItem>
-                  <SelectItem textValue="business">Business</SelectItem>
-                  <SelectItem textValue="enterprise">
-                    Enterprise
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-
-              <RadioGroup>
-                <Label>Primary Usage</Label>
-                <Radio value="personal">Personal Projects</Radio>
-                <Radio value="work">Work</Radio>
-                <Radio value="education">Education</Radio>
-              </RadioGroup>
-
-              <DatePicker size="sm" label="Date of Birth" />
-
-              <div className="space-y-4">
-                <Checkbox>I agree to the terms and conditions.</Checkbox>
-                <Checkbox>Subscribe to our newsletter</Checkbox>
-              </div>
-
-              <div className="flex flex-col gap-4 pt-2">
-                <Button isLoading={false}>Create Account</Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  Already have an account?{" "}
-                  <a href="#" className="underline">
-                    Sign in
-                  </a>
-                </p>
-              </div>
-            </Form>
+            )}
           </DialogContent>
         </DialogTrigger>
       </ComponentBox>
 
       <ComponentBox title="Checkbox">
-        <Checkbox>
-          I agree to the terms and conditions of using this application.
-        </Checkbox>
+        <Checkbox>Enable email notifications</Checkbox>
       </ComponentBox>
 
       <ComponentBox title="CheckboxGroup">
         <CheckboxGroup>
-          <Label>Favorite sports</Label>
-          <Checkbox value="soccer">Soccer</Checkbox>
-          <Checkbox value="baseball">Baseball</Checkbox>
-          <Checkbox value="basketball">Basketball</Checkbox>
+          <Label>Notification Preferences</Label>
+          <Checkbox value="newsletter">Newsletter</Checkbox>
+          <Checkbox value="promotions">Promotions</Checkbox>
+          <Checkbox value="updates">Product Updates</Checkbox>
         </CheckboxGroup>
       </ComponentBox>
 
       <ComponentBox title="Select">
-        <Select className={"w-[200px]"}>
-          <Label>Favorite Animal</Label>
+        <Select placeholder="Select criteria" className={"w-[200px]"}>
+          <Label>Sort By</Label>
           <SelectTrigger size="sm" />
           <SelectContent>
-            {animals.map((animal) => (
-              <SelectItem key={animal.toLowerCase()} textValue={animal}>
-                {animal}
-              </SelectItem>
-            ))}
+            <SelectItem textValue="price-asc">Price: Low to High</SelectItem>
+            <SelectItem textValue="price-desc">Price: High to Low</SelectItem>
+            <SelectItem textValue="newest">Newest Arrivals</SelectItem>
           </SelectContent>
         </Select>
       </ComponentBox>
 
       <ComponentBox title="ComboBox">
         <ComboBox className={"w-[200px]"}>
-          <Label>Favorite Animal</Label>
-          <ComboBoxTrigger size="sm" />
+          <Label>Select Category</Label>
+          <ComboBoxTrigger size="sm" placeholder="Search category" />
           <ComboBoxContent>
-            {animals.map((animal) => (
-              <ComboBoxItem key={animal.toLowerCase()} textValue={animal}>
-                {animal}
+            {categories.map((category) => (
+              <ComboBoxItem key={category.toLowerCase()} textValue={category}>
+                {category}
               </ComboBoxItem>
             ))}
           </ComboBoxContent>
@@ -271,96 +223,102 @@ export default function HomePage() {
 
       <ComponentBox title="Listbox">
         <ListBox
-          aria-label="Favorite animal"
+          aria-label="Select Template"
           className="w-[200px]"
           selectionMode="single"
         >
-          {animals.map((animal) => (
-            <ListBoxItem key={animal.toLowerCase()} textValue={animal}>
-              {animal}
-            </ListBoxItem>
-          ))}
+          <ListBoxItem textValue="blank">Blank Template</ListBoxItem>
+          <ListBoxItem textValue="report">Report Template</ListBoxItem>
+          <ListBoxItem textValue="invoice">Invoice Template</ListBoxItem>
         </ListBox>
       </ComponentBox>
 
       <ComponentBox title="Menu">
         <MenuTrigger>
-          <Button>Options</Button>
+          <Button>File</Button>
           <Menu>
-            <MenuItem>Dashboard</MenuItem>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <MenuItem>Support</MenuItem>
-            <MenuItem isDisabled>Sign Out</MenuItem>
+            <MenuItem>New</MenuItem>
+            <MenuItem>Open</MenuItem>
+            <MenuItem>Save As...</MenuItem>
+            <MenuItem isDisabled>Print</MenuItem>
           </Menu>
         </MenuTrigger>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Tabs">
         <Tabs>
-          <TabList>
-            <Tab id="tab-1">Profile</Tab>
-            <Tab id="tab-2">Account</Tab>
-            <Tab id="tab-3">Notifications</Tab>
+          <TabList aria-label="Task Status">
+            <Tab id="tab-all">All Tasks</Tab>
+            <Tab id="tab-active">Active</Tab>
+            <Tab id="tab-completed">Completed</Tab>
           </TabList>
-          <TabPanel id="tab-1">
-            <p>
-              Update your personal details like name, email, and profile
-              picture.
-            </p>
+          <TabPanel id="tab-all">
+            <p className="p-4">Showing all tasks.</p>
           </TabPanel>
-          <TabPanel id="tab-2">
-            <p>Manage your subscription, billing information, and password.</p>
+          <TabPanel id="tab-active">
+            <p className="p-4">Showing only active tasks.</p>
           </TabPanel>
-          <TabPanel id="tab-3">
-            <p>
-              Configure your notification preferences for email and in-app
-              alerts.
-            </p>
+          <TabPanel id="tab-completed">
+            <p className="p-4">Showing completed tasks.</p>
           </TabPanel>
         </Tabs>
       </ComponentBox>
 
+      <ComponentBox title="Switch">
+        <Switch>
+            Dark mode
+        </Switch>
+      </ComponentBox>
+
       <ComponentBox fullWidth title="Slider">
-        <Slider>
-          <Label>Volume</Label>
+        <Slider defaultValue={60}>
+          <Label>Brightness</Label>
           <SliderControl />
         </Slider>
       </ComponentBox>
 
-      <ComponentBox fullWidth title="Calendar">
+      <ComponentBox title="Calendar">
         <Calendar />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="TextField">
-        <TextField>
-          <Label>Username</Label>
-          <Input />
+      <ComponentBox title="RangeCalendar">
+       <RangeCalendar />
+      </ComponentBox>
+
+      <ComponentBox title="TextField">
+        <TextField className="w-[250px]">
+          <Label>Email Address</Label>
+          <Input type="email" placeholder="you@example.com" />
         </TextField>
       </ComponentBox>
 
-      <ComponentBox fullWidth title="NumberField">
-        <NumberField size="sm" label="NumberField" />
+      <ComponentBox title="NumberField">
+        <NumberField label="Quantity" defaultValue={1} minValue={1} />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="SearchField">
-        <SearchField size="sm" label="Search" />
+      <ComponentBox title="SearchField">
+        <SearchField
+          label="Search Products"
+          inputProps={{
+            placeholder: "Enter keywords",
+          }}
+        />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="DateField">
-        <DatePicker shouldForceLeadingZeros size="sm" label="Select a date" />
+      <ComponentBox title="DateField">
+        <DateField shouldForceLeadingZeros label="Event Date" />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="DatePicker">
-        <DateField label="DateField" />
+      <ComponentBox title="DatePicker">
+        <DatePicker shouldForceLeadingZeros label="Select Appointment Date" />
       </ComponentBox>
 
-      <ComponentBox fullWidth title="RadioGroup">
+      <ComponentBox title="RadioGroup">
         <RadioGroup>
-          <Label>Favorite pet</Label>
-          <Radio value="dogs">Dog</Radio>
-          <Radio value="cats">Cat</Radio>
-          <Radio value="dragon">Dragon</Radio>
+          <Label>Subscription Plan</Label>
+          <Radio value="free">Free Tier</Radio>
+          <Radio value="pro">Pro Tier</Radio>
+          <Radio value="enterprise">Enterprise</Radio>
         </RadioGroup>
       </ComponentBox>
 
@@ -368,40 +326,37 @@ export default function HomePage() {
         <ToggleButton variant="outlined">
           {({ isSelected }) => (
             <>
-              {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}{" "}
-              {isSelected ? "Saved" : "Save"}
+              {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}
+              <span className="ml-1">{isSelected ? "Saved" : "Save"}</span>
             </>
           )}
         </ToggleButton>
       </ComponentBox>
 
       <ComponentBox title="ToggleButtonGroup">
-        <ToggleButtonGroup>
+        <ToggleButtonGroup selectionMode="single" defaultSelectedKeys={['center']}>
           {({ state }) => (
             <>
               <ToggleButton
                 id="left"
-                variant={
-                  !state.selectedKeys.has("left") ? "outlined" : "secondary"
-                }
+                aria-label="Align Left"
+                variant={state.selectedKeys.has("left") ? "primary" : "outlined"}
               >
-                Left
+                <RiAlignLeft />
               </ToggleButton>
               <ToggleButton
                 id="center"
-                variant={
-                  !state.selectedKeys.has("center") ? "outlined" : "secondary"
-                }
+                aria-label="Align Center"
+                variant={state.selectedKeys.has("center") ? "primary" : "outlined"}
               >
-                Center
+                <RiAlignCenter />
               </ToggleButton>
               <ToggleButton
                 id="right"
-                variant={
-                  !state.selectedKeys.has("right") ? "outlined" : "secondary"
-                }
+                aria-label="Align Right"
+                variant={state.selectedKeys.has("right") ? "primary" : "outlined"}
               >
-                Right
+                <RiAlignRight />
               </ToggleButton>
             </>
           )}
@@ -411,49 +366,37 @@ export default function HomePage() {
       <ComponentBox title="Autocomplete">
         <Autocomplete filter={contains}>
           <SearchField
-            label="Command Menu"
+            label="Command Palette"
             inputProps={{
-              placeholder: "Search...",
+              placeholder: "Type a command...",
             }}
           />
-          <AutocompleteContent className="mt-2">
-            {/* Navigation */}
-            <AutocompleteItem>Go to Dashboard</AutocompleteItem>
-            <AutocompleteItem>Open Settings</AutocompleteItem>
-            <AutocompleteItem>View Profile</AutocompleteItem>
-            <AutocompleteItem>Show Notifications</AutocompleteItem>
-            {/* Actions */}
-            <AutocompleteItem>Create New Project</AutocompleteItem>
-            <AutocompleteItem>Invite Team Member</AutocompleteItem>
-            {/* <AutocompleteItem>Upload File</AutocompleteItem>
-            <AutocompleteItem>Export Data</AutocompleteItem> */}
-            {/* Help */}
-            {/* <AutocompleteItem>Show Keyboard Shortcuts</AutocompleteItem>
-            <AutocompleteItem>Open Documentation</AutocompleteItem>
-            <AutocompleteItem>Contact Support</AutocompleteItem>
-            <AutocompleteItem>Log Out</AutocompleteItem> */}
+          <AutocompleteContent className="mt-2 w-[--trigger-width]">
+            {commands.map((cmd) => (
+              <AutocompleteItem key={cmd.toLowerCase().replace(/\s+/g, "-")}>
+                {cmd}
+              </AutocompleteItem>
+            ))}
           </AutocompleteContent>
         </Autocomplete>
       </ComponentBox>
 
       <ComponentBox fullWidth title="Meter">
-        <Meter label="Storage" value={44} />
+        <Meter label="Password Strength" value={75} />
       </ComponentBox>
 
       <ComponentBox fullWidth title="ProgressBar">
-        <div className="grid gap-6">
-          <ProgressBar label="Loading" value={88} />
-        </div>
+        <ProgressBar label="Uploading files..." value={60} />
       </ComponentBox>
 
       <ComponentBox fullWidth title="TagGroup">
         <TagGroup selectionMode="multiple">
-          <Label>Categories</Label>
+          <Label>Filter by Tags</Label>
           <TagList>
-            <Tag>News</Tag>
-            <Tag>Travel</Tag>
-            <Tag>Gaming</Tag>
-            <Tag>Shopping</Tag>
+            <Tag>Feature Request</Tag>
+            <Tag>Bug Report</Tag>
+            <Tag>Documentation</Tag>
+            <Tag>UI/UX</Tag>
           </TagList>
         </TagGroup>
       </ComponentBox>

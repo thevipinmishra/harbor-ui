@@ -12,9 +12,9 @@ import { tv } from "@/lib/tv.config";
 export const progressBarVariants = tv({
   slots: {
     root: ["group grid gap-1"],
-    bar: ["rounded-md w-full border border-accent h-3"],
+    bar: ["rounded-md w-full bg-input h-2.5"],
     fill: [
-      "rounded-l-[inherit] bg-accent h-full relative",
+      "rounded-l-[inherit] bg-primary h-full relative",
     ],
     valueText: ["text-sm text-muted-foreground font-medium"],
     group: ["flex items-center justify-between gap-4"],

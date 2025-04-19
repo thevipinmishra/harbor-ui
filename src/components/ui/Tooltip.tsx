@@ -11,7 +11,7 @@ import { tv } from "@/lib/tv.config";
 const tooltipContentVariants = tv({
   slots: {
     content: [
-      "bg-accent text-accent-foreground shadow-sm rounded-md text-xs will-change-transform px-3 py-2.5",
+      "bg-primary text-primary-foreground shadow-sm rounded-md text-xs will-change-transform px-3 py-2.5",
       "motion-duration-200 motion-safe:exiting:motion-opacity-out-0",
       "motion-safe:entering:data-[placement^=bottom]:motion-preset-slide-up-md",
       "motion-safe:exiting:data-[placement^=bottom]:motion-translate-y-out-25",

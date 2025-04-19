@@ -18,9 +18,9 @@ import { accentFocusRingVisible } from "../utils/focusRing";
 const tabVariants = tv({
   slots: {
     root: "flex flex-col gap-2",
-    list: "w-full border-b-2 border-accent-subtle",
+    list: "w-full border-b-2 border-border",
     trigger: [
-      "inline-flex relative text-sm outline-hidden cursor-pointer items-center font-medium bg-background rounded-t-md gap-2 px-3 motion-safe:transition-colors py-2 text-muted-foreground aria-selected:text-foreground disabled:pointer-events-none disabled:opacity-50 after:absolute after:-bottom-0.5 after:inset-x-0 after:h-0.5 aria-selected:after:bg-accent",
+      "inline-flex relative text-sm outline-hidden cursor-pointer items-center font-medium bg-background rounded-t-md gap-2 px-3 motion-safe:transition-colors py-2 text-muted-foreground aria-selected:text-foreground disabled:pointer-events-none disabled:opacity-50 after:absolute after:-bottom-0.5 after:inset-x-0 after:h-0.5 aria-selected:after:bg-primary",
       accentFocusRingVisible,
       "focus-visible:z-[1]"
     ],

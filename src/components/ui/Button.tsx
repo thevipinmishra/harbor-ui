@@ -39,7 +39,7 @@ export const buttonVariants = tv({
       ],
       plain: ["bg-background text-foreground", "hover:bg-muted", accentFocusRingVisible],
       outlined: [
-        "bg-background text-foreground border border-accent-subtle",
+        "bg-background text-foreground border border-input",
         "hover:bg-muted",
         accentFocusRingVisible
       ],
@@ -50,9 +50,9 @@ export const buttonVariants = tv({
       ],
     },
     size: {
-      sm: [fieldHeight.sm, "px-3 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],
-      md: [fieldHeight.md, "px-4 py-2", "[&_svg]:size-5"],
-      lg: [fieldHeight.lg, "px-5 py-3 text-base", "[&_svg]:size-6"],
+      sm: [fieldHeight.sm, "px-4 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],
+      md: [fieldHeight.md, "px-6 py-2", "[&_svg]:size-5"],
+      lg: [fieldHeight.lg, "px-7 py-3 text-base", "[&_svg]:size-6"],
       icon: ["size-6", "[&_svg]:size-3 shrink-0"],
       "icon-md": ["size-8", "[&_svg]:size-4 shrink-0"],
       "icon-lg": ["size-10", "[&_svg]:size-5 shrink-0"],

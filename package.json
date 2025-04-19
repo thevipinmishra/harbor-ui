@@ -14,7 +14,6 @@
     "@base-ui-components/react": "1.0.0-alpha.5",
     "@mantine/form": "^7.17.4",
     "@phosphor-icons/react": "^2.1.7",
-    "@radix-ui/colors": "^3.0.0",
     "@remixicon/react": "^4.6.0",
     "clsx": "^2.1.1",
     "next": "15.1.5",

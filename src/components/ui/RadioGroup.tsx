@@ -13,7 +13,7 @@ import { tv } from "@/lib/tv.config";
 const radioGroupVariants = tv({
   slots: {
     root: ["flex flex-col gap-2 items-start"],
-    item: ["flex items-center cursor-pointer gap-2 text-sm font-medium before:size-5 before:rounded-full before:border before:border-accent selected:before:border-6 motion-safe:before:transition-all"],
+    item: ["flex items-center cursor-pointer gap-2 text-sm font-medium before:size-5 before:rounded-full before:border before:border-primary selected:before:border-6 motion-safe:before:transition-all"],
   },
 });
 

@@ -7,7 +7,7 @@ export const fieldHeight = {
 };
 
 export const baseInputStyles = tv({
-  base: ["border border-accent-subtle rounded-md"],
+  base: ["border border-input rounded-md"],
   variants: {
     size: {
       sm: ["h-9", "text-sm px-2.5 py-1"],

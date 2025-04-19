@@ -20,11 +20,11 @@ const sliderVariants = tv({
     control:
       "flex data-[orientation=vertical]:flex-col items-center data-[orientation=vertical]:w-max",
     track:
-      "bg-muted rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
+      "bg-input rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
     range:
       "bg-primary data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",
     thumb:
-      "bg-background border-2 top-1/2 cursor-pointer border-accent size-5 rounded-full block",
+      "bg-background border-2 top-1/2 cursor-pointer border-primary size-5 rounded-full block",
     valueText: ["text-sm font-medium"],
   },
 });
@@ -54,7 +54,7 @@ const SliderControl = (props: SliderTrackProps) => {
     <SliderTrackPrimitive className={sliderVariants().track()} {...rest}>
       {state?.values.map((_, i) => (
         <React.Fragment key={i}>
-            <div className="absolute rounded-[inherit] inset-y-0 bg-accent" style={{ width: state.getThumbPercent(0) * 100 + '%' }} />
+            <div className="absolute rounded-[inherit] inset-y-0 bg-primary" style={{ width: state.getThumbPercent(0) * 100 + '%' }} />
           <SliderThumbPrimitive
             index={i}
             className={sliderVariants().thumb()}
