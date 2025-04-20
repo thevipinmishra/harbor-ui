@@ -17,9 +17,9 @@ const alertVariants = tv({
     root: [
       "grid grid-cols-[minmax(24px,max-content)_1fr] items-center gap-x-2 gap-y-1 border p-3 rounded-md",
     ],
-    description: ["text-sm col-start-2"],
-    title: ["font-semibold col-start-2 text-base"],
-    iconSlot: ["text-lg flex justify-center items-center"],
+    description: ["text-xs lg:text-sm col-start-2"],
+    title: ["font-semibold col-start-2 text-sm lg:text-base"],
+    iconSlot: ["flex justify-center items-center *:size-5"],
   },
   variants: {
     variant: {

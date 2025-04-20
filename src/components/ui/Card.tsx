@@ -1,18 +1,18 @@
 import { tv } from "@/lib/tv.config";
-import { ark, type HTMLArkProps } from "@ark-ui/react";
+import { HTMLAttributes } from "react";
 
 const cardVariants = tv({
   slots: {
-    card: ["bg-card text-card-foreground rounded-md border border-border shadow-xs"],
-    cardSection: ["-mx-5 px-5 first:-mt-5 py-3 first:rounded-t-[inherit] last:-mb-5 last:rounded-b-[inherit]"],
-    cardBody: ["p-5 rounded-[inherit]"],
+    card: [
+      "bg-card text-card-foreground rounded-md border border-border p-5",
+    ],
   },
 });
 
-const Card = (props: HTMLArkProps<"div">) => {
+const Card = (props: HTMLAttributes<HTMLDivElement>) => {
   const { className, ...rest } = props;
   return (
-    <ark.div
+    <div
       className={cardVariants().card({
         className,
       })}
@@ -21,34 +21,6 @@ const Card = (props: HTMLArkProps<"div">) => {
   );
 };
 
-const CardSection = (props: HTMLArkProps<"div">) => {
-  const { className, ...rest } = props;
-  return (
-    <ark.div
-      className={cardVariants().cardSection({
-        className,
-      })}
-      {...rest}
-    />
-  );
-};
-
-const CardBody = (props: HTMLArkProps<"div">) => {
-  const { className, ...rest } = props;
-  return (
-    <ark.div
-      className={cardVariants().cardBody({
-        className,
-      })}
-      {...rest}
-    />
-  );
-};
-
-Card.Body = CardBody;
-Card.Section = CardSection;
 Card.displayName = "Card";
-CardSection.displayName = "CardSection";
-CardBody.displayName = "CardBody";
 
 export { Card };

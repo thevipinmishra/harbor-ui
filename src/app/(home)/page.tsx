@@ -24,7 +24,7 @@ import { Tooltip, TooltipTrigger } from "@/components/ui/Tooltip";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 
 import ComponentBox from "@/components/web/component-box";
-import { Slider, SliderControl } from "@/components/ui/Slider";
+import { Slider, SliderControl, SliderOutput } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
 import { FileTrigger, Form, useFilter } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
@@ -75,6 +75,7 @@ import { useState } from "react";
 import { Alert } from "@/components/ui/Alert";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
+import { Card } from "@/components/ui/Card";
 
 export default function HomePage() {
   const users = [
@@ -230,6 +231,7 @@ export default function HomePage() {
                 </Select>
                 <Slider defaultValue={70}>
                   <Label>UI Scale</Label>
+
                   <SliderControl />
                 </Slider>
                 <div className="flex justify-end gap-2 mt-4">
@@ -325,9 +327,9 @@ export default function HomePage() {
                       Confirm Project Deletion
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Are you absolutely sure you want to delete the 'Q3 Marketing
-                      Campaign' project? This action cannot be undone and all
-                      associated data will be permanently lost.
+                      Are you absolutely sure you want to delete the 'Q3
+                      Marketing Campaign' project? This action cannot be undone
+                      and all associated data will be permanently lost.
                     </p>
                   </div>
                   <TextField>
@@ -359,7 +361,9 @@ export default function HomePage() {
               {({ close }) => (
                 <div className="grid gap-4">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold">Confirm Publication</h3>
+                    <h3 className="text-lg font-semibold">
+                      Confirm Publication
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Ready to publish the article "The Future of Web
                       Development"? Once published, it will be visible to all
@@ -384,12 +388,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Checkbox">
-        
-          <Checkbox>
-            I agree to the Terms of Service and Privacy Policy.
-          </Checkbox>
-          
-       
+        <Checkbox>I agree to the Terms of Service and Privacy Policy.</Checkbox>
       </ComponentBox>
 
       <ComponentBox title="CheckboxGroup">
@@ -460,16 +459,16 @@ export default function HomePage() {
           </Button>
           <Menu>
             <MenuItem>
-              <RiUserLine className="w-4 h-4 mr-2" /> Profile
+              <RiUserLine className="mr-2" /> Profile
             </MenuItem>
             <MenuItem>
-              <RiSettings3Line className="w-4 h-4 mr-2" /> Settings
+              <RiSettings3Line className="mr-2" /> Settings
             </MenuItem>
             <MenuItem isDisabled>
-              <RiDatabase2Line className="w-4 h-4 mr-2" /> Billing
+              <RiDatabase2Line className="mr-2" /> Billing
             </MenuItem>
             <MenuItem>
-              <RiLogoutBoxLine className="w-4 h-4 mr-2 text-destructive" />{" "}
+              <RiLogoutBoxLine className="mr-2 text-destructive" />
               Logout
             </MenuItem>
           </Menu>
@@ -511,7 +510,10 @@ export default function HomePage() {
 
       <ComponentBox fullWidth title="Slider">
         <Slider defaultValue={[20, 80]} className="max-w-md">
-          <Label>Filter Price Range ($)</Label>
+          <div className="flex gap-4 justify-between">
+            <Label>Filter Price Range ($)</Label>
+            <SliderOutput />
+          </div>
           <SliderControl />
         </Slider>
       </ComponentBox>
@@ -659,9 +661,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox fullWidth title="TagGroup">
-        <TagGroup
-          selectionMode="multiple"
-        >
+        <TagGroup selectionMode="multiple">
           <Label>Assign Labels to Issue</Label>
           <TagList>
             {issueLabels.map((label) => (
@@ -676,7 +676,10 @@ export default function HomePage() {
       <ComponentBox fullWidth title="Alert">
         <div className="grid gap-4">
           {/* Default */}
-          <Alert title="Default Alert" description="This is a standard alert." />
+          <Alert
+            title="Default Alert"
+            description="This is a standard alert."
+          />
 
           {/* Info */}
           <Alert
@@ -714,18 +717,57 @@ export default function HomePage() {
 
       <ComponentBox title="Avatar">
         <div className="flex gap-4">
-            <Avatar src='https://avatar.iran.liara.run/public/45' />
-            <Avatar src='https://avatar.iran.liara.run/public/37' />
+          <Avatar src="https://avatar.iran.liara.run/public/45" />
+          <Avatar src="https://avatar.iran.liara.run/public/37" />
         </div>
       </ComponentBox>
 
       <ComponentBox title="Badge">
         <div className="flex flex-wrap gap-4 items-center">
-            <Badge>Active</Badge>
-            <Badge variant="outlined">Draft</Badge>
-            <Badge variant="plain">UI/UX</Badge>
-            <Badge variant="destructive">Failed</Badge>
+          <Badge>Active</Badge>
+          <Badge variant="outlined">Draft</Badge>
+          <Badge variant="plain">UI/UX</Badge>
+          <Badge variant="destructive">Failed</Badge>
         </div>
+      </ComponentBox>
+
+      <ComponentBox title="Card">
+        <Card>
+         <div className="space-y-4">
+         <div className="flex items-center gap-4">
+            <Avatar src="https://avatar.iran.liara.run/public/45" size="md" />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-lg">Alice Johnson</span>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                Product Designer
+              </span>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Alice is a passionate product designer with 8+ years of experience
+            in SaaS and fintech. She loves crafting delightful user experiences
+            and mentoring junior designers.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="plain">UI/UX</Badge>
+            <Badge variant="plain">Figma</Badge>
+            <Badge variant="plain">Leadership</Badge>
+            <Badge variant="plain">Accessibility</Badge>
+          </div>
+          <div className="flex gap-2 justify-end mt-2">
+            <Button size="sm" variant="secondary">
+              <RiUserLine className="w-4 h-4 mr-1" />
+              View Profile
+            </Button>
+            <Button size="sm" variant="primary">
+              <RiSendPlaneLine className="w-4 h-4 mr-1" />
+              Message
+            </Button>
+          </div>
+         </div>
+        </Card>
       </ComponentBox>
     </main>
   );
