@@ -19,7 +19,7 @@ const buttonGroupVariants = tv({
 
 export const buttonVariants = tv({
   base: [
-    "select-none cursor-pointer inline-flex text-sm no-underline items-center outline-0 rounded-sm justify-center gap-2",
+    "select-none font-medium cursor-pointer inline-flex text-sm no-underline items-center outline-0 rounded-sm justify-center gap-2",
     "disabled:opacity-50 disabled:pointer-events-none",
     "motion-safe:transition-[opacity,background-color,color]",
     "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -46,9 +46,9 @@ export const buttonVariants = tv({
       ],
     },
     size: {
-      sm: [fieldHeight.sm, "px-4 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],
-      md: [fieldHeight.md, "px-6 py-2", "[&_svg]:size-5"],
-      lg: [fieldHeight.lg, "px-7 py-3 text-base", "[&_svg]:size-6"],
+      sm: [fieldHeight.sm, "px-3.5 py-1", "text-sm gap-1.5", "[&_svg]:size-4"],
+      md: [fieldHeight.md, "px-4 py-2", "[&_svg]:size-5"],
+      lg: [fieldHeight.lg, "px-6 py-3 text-base", "[&_svg]:size-6"],
       icon: ["size-6", "[&_svg]:size-3 shrink-0"],
       "icon-md": ["size-8", "[&_svg]:size-4 shrink-0"],
       "icon-lg": ["size-10", "[&_svg]:size-5 shrink-0"],

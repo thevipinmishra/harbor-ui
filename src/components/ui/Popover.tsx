@@ -14,7 +14,7 @@ import { popoverAnimation } from "../utils/popoverAnimation";
 export const popoverVariants = tv({
   slots: {
     content: [
-      "bg-popover text-popover-foreground rounded-md shadow-sm p-4",
+      "bg-popover text-popover-foreground rounded-md overflow-y-auto shadow-sm p-4",
      popoverAnimation()
     ],
   },

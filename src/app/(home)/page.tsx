@@ -164,8 +164,9 @@ export default function HomePage() {
                 <h3 className="text-lg font-semibold">Share Your Thoughts</h3>
 
                 <Select placeholder="Select type">
-                  <SelectTrigger size="sm" />
                   <Label>Feedback Type</Label>
+                  <SelectTrigger size="sm" />
+
                   <SelectContent>
                     <SelectItem textValue="bug">Bug Report</SelectItem>
                     <SelectItem textValue="feature">Feature Request</SelectItem>
@@ -459,16 +460,16 @@ export default function HomePage() {
           </Button>
           <Menu>
             <MenuItem>
-              <RiUserLine className="mr-2" /> Profile
+              <RiUserLine /> Profile
             </MenuItem>
             <MenuItem>
-              <RiSettings3Line className="mr-2" /> Settings
+              <RiSettings3Line /> Settings
             </MenuItem>
             <MenuItem isDisabled>
-              <RiDatabase2Line className="mr-2" /> Billing
+              <RiDatabase2Line /> Billing
             </MenuItem>
             <MenuItem>
-              <RiLogoutBoxLine className="mr-2 text-destructive" />
+              <RiLogoutBoxLine className="text-destructive" />
               Logout
             </MenuItem>
           </Menu>
@@ -733,40 +734,40 @@ export default function HomePage() {
 
       <ComponentBox title="Card">
         <Card>
-         <div className="space-y-4">
-         <div className="flex items-center gap-4">
-            <Avatar src="https://avatar.iran.liara.run/public/45" size="md" />
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-lg">Alice Johnson</span>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <Avatar src="https://avatar.iran.liara.run/public/45" size="md" />
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-lg">Alice Johnson</span>
+                </div>
+                <span className="text-sm text-muted-foreground">
+                  Product Designer
+                </span>
               </div>
-              <span className="text-sm text-muted-foreground">
-                Product Designer
-              </span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Alice is a passionate product designer with 8+ years of experience
+              in SaaS and fintech. She loves crafting delightful user
+              experiences and mentoring junior designers.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="plain">UI/UX</Badge>
+              <Badge variant="plain">Figma</Badge>
+              <Badge variant="plain">Leadership</Badge>
+              <Badge variant="plain">Accessibility</Badge>
+            </div>
+            <div className="flex gap-2 justify-end mt-2">
+              <Button size="sm" variant="secondary">
+                <RiUserLine className="w-4 h-4 mr-1" />
+                View Profile
+              </Button>
+              <Button size="sm" variant="primary">
+                <RiSendPlaneLine className="w-4 h-4 mr-1" />
+                Message
+              </Button>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Alice is a passionate product designer with 8+ years of experience
-            in SaaS and fintech. She loves crafting delightful user experiences
-            and mentoring junior designers.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="plain">UI/UX</Badge>
-            <Badge variant="plain">Figma</Badge>
-            <Badge variant="plain">Leadership</Badge>
-            <Badge variant="plain">Accessibility</Badge>
-          </div>
-          <div className="flex gap-2 justify-end mt-2">
-            <Button size="sm" variant="secondary">
-              <RiUserLine className="w-4 h-4 mr-1" />
-              View Profile
-            </Button>
-            <Button size="sm" variant="primary">
-              <RiSendPlaneLine className="w-4 h-4 mr-1" />
-              Message
-            </Button>
-          </div>
-         </div>
         </Card>
       </ComponentBox>
     </main>

@@ -17,12 +17,12 @@ import { RiAddLine } from "@remixicon/react";
 
 const accordionVariants = tv({
   slots: {
-    root: " rounded-md divide-y divide-border",
+    root: " rounded-md group divide-y divide-border",
     item: [
-      "relative bg-background text-foreground",
+      "relative bg-background text-foreground group-disabled:opacity-50 group-disabled:pointer-events-none",
     ],
     itemTrigger: [
-      "font-medium group cursor-pointer rounded-md text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
+      "font-medium disabled:opacity-50 disabled:pointer-events-none group cursor-pointer rounded-md text-left w-full text-sm flex items-center justify-between gap-4 p-3 text-foreground",
     ],
     itemContent: [
       "px-3 aria-hidden:hidden transition-[padding-bottom] pb-3 text-sm",

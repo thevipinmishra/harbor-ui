@@ -14,7 +14,7 @@ const tagGroupVariants = tv({
     root: ["grid gap-1.5"],
     list: ["flex flex-wrap gap-2"],
     tag: [
-      "inline-flex px-3 py-1.5 rounded-md border border-input hover:bg-muted motion-safe:transition-colors text-xs font-medium cursor-pointer aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:border-primary",
+      "inline-flex px-3.5 py-2 h-9 cursor-default items-center text-ellipsis rounded-md border border-input hover:bg-muted motion-safe:transition-colors text-xs font-medium aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:border-primary",
     ],
   },
 });

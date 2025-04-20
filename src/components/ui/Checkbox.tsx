@@ -14,10 +14,11 @@ import { accentFocusRing } from "../utils/focusRing";
 
 const checkboxVariants = tv({
   slots: {
-    root: ["flex group text-sm gap-2"],
+    root: ["flex group text-sm font-medium gap-3"],
     group: ["space-y-4"],
     control: [
       "size-4.5 shrink-0 rounded cursor-pointer border flex justify-center items-center border-primary group-data-selected:bg-primary group-data-selected:text-primary-foreground",
+      "group-disabled:opacity-50 group-disabled:pointer-events-none",
       "group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-1",
       "data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary",
       accentFocusRing,

@@ -15,9 +15,9 @@ const tooltipContentVariants = tv({
       "motion-duration-200 motion-safe:exiting:motion-opacity-out-0",
       "motion-safe:entering:data-[placement^=bottom]:motion-preset-slide-up-md",
       "motion-safe:exiting:data-[placement^=bottom]:motion-translate-y-out-25",
-      "motion-safe:entering:data-[placement^=top]:motion-preset-slide-down-md ",
-      "motion-safe:entering:data-[placement^=right]:motion-preset-slide-left-md ",
-      "motion-safe:entering:data-[placement^=left]:motion-preset-slide-right-md ",
+      "motion-safe:entering:data-[placement^=top]:motion-preset-slide-down-md",
+      "motion-safe:entering:data-[placement^=right]:motion-preset-slide-left-md",
+      "motion-safe:entering:data-[placement^=left]:motion-preset-slide-right-md",
     ],
   },
 });

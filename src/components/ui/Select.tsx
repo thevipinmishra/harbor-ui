@@ -29,6 +29,8 @@ const selectVariants = tv({
       "flex items-center cursor-pointer justify-between px-2.5 text-left [&_svg]:size-4 [&_svg]:text-muted-foreground",
       fieldHeight.sm,
       "border border-input rounded-md text-foreground bg-background",
+      'disabled:opacity-50 disabled:pointer-events-none',
+            "outline-0 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     ],
     selectValue: ["text-sm data-placeholder:text-muted-foreground"],
   },

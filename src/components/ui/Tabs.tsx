@@ -13,7 +13,6 @@ import {
   composeRenderProps,
 } from "react-aria-components";
 import { tv } from "@/lib/tv.config";
-import { accentFocusRingVisible } from "../utils/focusRing";
 
 const tabVariants = tv({
   slots: {
@@ -21,8 +20,6 @@ const tabVariants = tv({
     list: "w-full border-b-2 border-border",
     trigger: [
       "inline-flex relative text-sm outline-hidden cursor-pointer items-center font-medium bg-background rounded-t-md gap-2 px-3 motion-safe:transition-colors py-2 text-muted-foreground aria-selected:text-foreground disabled:pointer-events-none disabled:opacity-50 after:absolute after:-bottom-0.5 after:inset-x-0 after:h-0.5 aria-selected:after:bg-primary",
-      accentFocusRingVisible,
-      "focus-visible:z-[1]"
     ],
   },
 });

@@ -45,7 +45,9 @@ const ComboBoxTrigger = (props: ComboBoxInputProps) => {
         baseInputStyles({
           size,
         }),
-        "flex items-center p-0"
+        "flex items-center p-0",
+        "disabled:opacity-50 disabled:pointer-events-none",
+              "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       )}
     >
       <Input className='h-full w-full px-2.5 py-1 outline-0' {...rest} />

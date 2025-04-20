@@ -10,15 +10,16 @@ import { tv } from "@/lib/tv.config";
 
 const switchVariants = tv({
   slots: {
-    root: ["flex group gap-2"],
+    root: ["flex items-center text-sm text-foreground group font-medium group gap-4"],
     control: [
-      "relative w-10 rounded-full cursor-pointer inline-flex items-center h-6 shrink-0 border-2 border-transparent", // Added relative
+      "relative w-10 rounded-full cursor-pointer inline-flex items-center h-6 shrink-0 border-2 border-transparent",
       "transition-colors",
       "bg-input group-selected:bg-primary",
       "before:content-[''] before:absolute before:size-5 before:rounded-full before:bg-primary-foreground",
       "before:transition-all before:will-change-transform",
       "group-selected:before:translate-x-4", 
       "before:pointer-events-none",
+            "group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2",
     ],
   },
 });
