@@ -26,7 +26,7 @@ import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import ComponentBox from "@/components/web/component-box";
 import { Slider, SliderControl, SliderOutput } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
-import { FileTrigger, Form, useFilter } from "react-aria-components";
+import {  FileTrigger, Form, useFilter } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
@@ -71,11 +71,12 @@ import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
 import { ProgressBar } from "@/components/ui/Progress";
 import { Switch } from "@/components/ui/Switch";
 import { RangeCalendar } from "@/components/ui/RangeCalendar";
-import { useState } from "react";
 import { Alert } from "@/components/ui/Alert";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { Carousel } from "@/components/ui/Carousel";
 
 export default function HomePage() {
   const users = [
@@ -98,18 +99,8 @@ export default function HomePage() {
     "Documentation",
     "Help Wanted",
   ];
-  const countries = [
-    "United States",
-    "Canada",
-    "Mexico",
-    "United Kingdom",
-    "Germany",
-    "France",
-  ];
   const priorities = ["Low", "Medium", "High", "Urgent"];
-  const fileFormats = ["PDF", "DOCX", "XLSX", "CSV", "JSON"];
   const shippingMethods = ["Standard", "Express", "Next Day"];
-  const accountTypes = ["Personal", "Business", "Enterprise"];
   const skills = [
     "JavaScript",
     "React",
@@ -567,6 +558,10 @@ export default function HomePage() {
         <DatePicker shouldForceLeadingZeros label="Task Due Date" />
       </ComponentBox>
 
+      <ComponentBox title="DateRangePicker">
+        <DateRangePicker shouldForceLeadingZeros label="Project Timeline" />
+      </ComponentBox>
+
       <ComponentBox title="RadioGroup">
         <RadioGroup defaultValue="standard">
           <Label>Select Shipping Method</Label>
@@ -769,6 +764,43 @@ export default function HomePage() {
             </div>
           </div>
         </Card>
+      </ComponentBox>
+
+      <ComponentBox title="Carousel" fullWidth>
+        <Carousel className="max-w-3xl mx-auto">
+          <Carousel.Slide>
+            <Card>
+              <div className="p-4">
+                <h3 className="text-lg font-medium mb-2">Team Collaboration</h3>
+                <p className="text-muted-foreground">
+                  Work seamlessly with your team members in real-time.
+                </p>
+              </div>
+            </Card>
+          </Carousel.Slide>
+          
+          <Carousel.Slide>
+            <Card>
+              <div className="p-4">
+                <h3 className="text-lg font-medium mb-2">Advanced Analytics</h3>
+                <p className="text-muted-foreground">
+                  Gain valuable insights through customizable dashboards.
+                </p>
+              </div>
+            </Card>
+          </Carousel.Slide>
+          
+          <Carousel.Slide>
+            <Card>
+              <div className="p-4">
+                <h3 className="text-lg font-medium mb-2">Enterprise Security</h3>
+                <p className="text-muted-foreground">
+                  Data protection with industry-leading security practices.
+                </p>
+              </div>
+            </Card>
+          </Carousel.Slide>
+        </Carousel>
       </ComponentBox>
     </main>
   );

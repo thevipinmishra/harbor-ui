@@ -7,7 +7,7 @@ import {
   DateValue,
 } from "react-aria-components";
 import { Label } from "./Label";
-import { cn, tv } from "@/lib/tv.config";
+import {  tv } from "@/lib/tv.config";
 import { datePickerVariants } from "./Datepicker";
 import { baseInputStyles } from "@/utils/styles";
 import { VariantProps } from "tailwind-variants";

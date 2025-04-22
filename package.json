@@ -6,7 +6,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "oxlint --fix",
+    "lint": "oxlint --fix-suggestions",
     "format": "biome format --write"
   },
   "dependencies": {
@@ -16,6 +16,8 @@
     "@phosphor-icons/react": "^2.1.7",
     "@remixicon/react": "^4.6.0",
     "clsx": "^2.1.1",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "next": "15.1.5",
     "next-themes": "^0.4.6",
     "react": "19.0.0",
@@ -32,7 +34,7 @@
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "oxlint": "^0.16.6",
+    "oxlint": "^0.16.7",
     "postcss": "^8.5.3",
     "storybook": "8.6.0-alpha.0",
     "tailwindcss": "^4.1.4",

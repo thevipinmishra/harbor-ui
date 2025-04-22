@@ -11,6 +11,7 @@ import {
   DisclosureProps,
   HeadingProps,
   DisclosurePanelProps,
+  composeRenderProps,
 } from "react-aria-components";
 import { tv } from "@/lib/tv.config";
 import { RiAddLine } from "@remixicon/react";
@@ -35,12 +36,18 @@ const accordionVariants = tv({
 
 const Accordion = (props: DisclosureGroupProps) => {
   const { className, ...rest } = props;
-  return <DisclosureGroup className={accordionVariants().root()} {...rest} />;
+  return <DisclosureGroup className={composeRenderProps(className, (className, renderProps) => accordionVariants().root({
+    ...renderProps,
+    className,
+}))} {...rest} />;
 };
 
 const AccordionItem = (props: DisclosureProps) => {
   const { className, ...rest } = props;
-  return <Disclosure className={accordionVariants().item()} {...rest} />;
+  return <Disclosure className={composeRenderProps(className, (className, renderProps) => accordionVariants().item({
+    ...renderProps,
+    className,
+}))} {...rest} />;
 };
 
 const AccordionItemTrigger = (props: HeadingProps) => {
@@ -59,7 +66,10 @@ const AccordionItemTrigger = (props: HeadingProps) => {
 const AccordionItemContent = (props: DisclosurePanelProps) => {
   const { className, ...rest } = props;
   return (
-    <DisclosurePanel className={accordionVariants().itemContent()} {...rest} />
+    <DisclosurePanel className={composeRenderProps(className, (className, renderProps) => accordionVariants().itemContent({
+        ...renderProps,
+        className,
+    }))} {...rest} />
   );
 };
 

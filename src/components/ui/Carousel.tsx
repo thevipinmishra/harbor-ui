@@ -1,60 +1,62 @@
 "use client";
 
-import {
-  type CarouselControlProps,
-  type CarouselIndicatorGroupProps,
-  type CarouselIndicatorProps,
-  type CarouselItemGroupProps,
-  type CarouselItemProps,
-  type CarouselNextTriggerProps,
-  type CarouselPrevTriggerProps,
-  type CarouselRootProps,
-  Carousel as Primitive,
-} from "@ark-ui/react/carousel";
+import { cn, tv } from "@/lib/tv.config";
+import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
+import React from "react";
 
-const Carousel = (props: CarouselRootProps) => {
-  const { allowMouseDrag = true, ...rest } = props;
-  return <Primitive.Root allowMouseDrag={allowMouseDrag} {...rest} />;
+interface CarouselProps extends React.HTMLProps<HTMLDivElement> {
+  onEmblaApi?: (api: EmblaCarouselType | undefined) => void;
+}
+
+const carouselVariants = tv({
+  slots: {
+    carousel: "relative overflow-hidden",
+    carouselContainer: "flex",
+    slide: "min-w-0 flex-[0_0_100%]",
+  },
+});
+
+const Carousel = (props: CarouselProps) => {
+  const { className, onEmblaApi, ...rest } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  React.useEffect(() => {
+    if (onEmblaApi) {
+      onEmblaApi(emblaApi);
+    }
+  }, [emblaApi, onEmblaApi]);
+
+  return (
+    <div className={cn(carouselVariants().carousel())} ref={emblaRef}>
+      <div
+        className={cn(
+          carouselVariants().carouselContainer({
+            className,
+          })
+        )}
+        {...rest}
+      />
+    </div>
+  );
 };
 
-const CarouselControl = (props: CarouselControlProps) => {
-  return <Primitive.Control {...props} />;
+const Slide = (props: React.HTMLAttributes<HTMLDivElement>) => {
+  const { className, ...rest } = props;
+  return (
+    <div
+      className={cn(
+        carouselVariants().slide({
+          className,
+        })
+      )}
+      {...rest}
+    />
+  );
 };
 
-const CarouselPrevTrigger = (props: CarouselPrevTriggerProps) => {
-  return <Primitive.PrevTrigger {...props} />;
-};
+Carousel.Slide = Slide;
+Carousel.displayName = "Carousel";
 
-const CarouselNextTrigger = (props: CarouselNextTriggerProps) => {
-  return <Primitive.NextTrigger {...props} />;
-};
-
-const CarouselIndicatorGroup = (props: CarouselIndicatorGroupProps) => {
-  return <Primitive.IndicatorGroup {...props} />;
-};
-
-const CarouselIndicator = (props: CarouselIndicatorProps) => {
-  return <Primitive.Indicator {...props} />;
-};
-
-const CarouselItemGroup = (props: CarouselItemGroupProps) => {
-  return <Primitive.ItemGroup {...props} />;
-};
-
-const CarouselItem = (props: CarouselItemProps) => {
-  return <Primitive.Item {...props} />;
-};
-
-const CarouselContext = Primitive.Context;
-
-export {
-  Carousel,
-  CarouselControl,
-  CarouselPrevTrigger,
-  CarouselNextTrigger,
-  CarouselIndicatorGroup,
-  CarouselIndicator,
-  CarouselItemGroup,
-  CarouselItem,
-  CarouselContext,
-};
+export { Carousel, carouselVariants };
+export type { CarouselProps };
