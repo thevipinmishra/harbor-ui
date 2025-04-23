@@ -12,6 +12,7 @@
   "dependencies": {
     "@ark-ui/react": "^5.6.0",
     "@base-ui-components/react": "1.0.0-alpha.5",
+    "@internationalized/date": "^3.8.0",
     "@mantine/form": "^7.17.4",
     "@phosphor-icons/react": "^2.1.7",
     "@remixicon/react": "^4.6.0",

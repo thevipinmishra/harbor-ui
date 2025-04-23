@@ -42,6 +42,7 @@ import {
   RiAlignCenter,
   RiAlignRight,
 } from "@remixicon/react";
+import { getLocalTimeZone, today } from "@internationalized/date";
 
 export default function SettingsPage() {
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -175,7 +176,7 @@ export default function SettingsPage() {
                     <Input defaultValue="+1 (555) 123-4567" />
                   </TextField>
 
-                  <DatePicker label="Date of Birth" shouldForceLeadingZeros />
+                  <DatePicker label="Date of Birth"   shouldForceLeadingZeros />
 
                   <Select defaultSelectedKey="dev" placeholder="Select role">
                     <Label>Job Title</Label>

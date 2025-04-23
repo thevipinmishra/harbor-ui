@@ -26,7 +26,7 @@ export const calendarVariants = tv({
     tableHeader: ["text-sm text-muted-foreground font-medium text-left"],
     td: ["p-1"],
     cellTrigger: [
-      buttonVariants({ size: "icon-md", variant: "plain" }),
+      buttonVariants({ size: "icon-lg", variant: "plain" }),
       "font-medium",
       "data-disabled:opacity-50 data-disabled:pointer-events-none",
       "data-selected:bg-primary data-selected:text-primary-foreground data-in-range:bg-muted",

@@ -3,10 +3,11 @@
 import { cn, tv } from "@/lib/tv.config";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaCarouselType } from "embla-carousel";
-import React from "react";
+import * as React from "react";
 
 interface CarouselProps extends React.HTMLProps<HTMLDivElement> {
   onEmblaApi?: (api: EmblaCarouselType | undefined) => void;
+  gap?: React.CSSProperties["gap"];
 }
 
 const carouselVariants = tv({
@@ -17,8 +18,51 @@ const carouselVariants = tv({
   },
 });
 
+type UseDotButtonType = {
+  selectedIndex: number;
+  scrollSnaps: number[];
+  onDotButtonClick: (index: number) => void;
+};
+
+export const useDotButton = (
+  emblaApi: EmblaCarouselType | undefined
+): UseDotButtonType => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+
+  const onDotButtonClick = React.useCallback(
+    (index: number) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const onInit = React.useCallback((emblaApi: EmblaCarouselType) => {
+    setScrollSnaps(emblaApi.scrollSnapList());
+  }, []);
+
+  const onSelect = React.useCallback((emblaApi: EmblaCarouselType) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onInit).on("reInit", onSelect).on("select", onSelect);
+  }, [emblaApi, onInit, onSelect]);
+
+  return {
+    selectedIndex,
+    scrollSnaps,
+    onDotButtonClick,
+  };
+};
+
 const Carousel = (props: CarouselProps) => {
-  const { className, onEmblaApi, ...rest } = props;
+  const { className, onEmblaApi, gap, ...rest } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel();
 
   React.useEffect(() => {
@@ -35,6 +79,12 @@ const Carousel = (props: CarouselProps) => {
             className,
           })
         )}
+        style={
+          {
+            "--slide-gap": typeof gap === "number" ? `${gap}px` : gap,
+            marginInlineStart: "calc(var(--slide-gap) * -1)",
+          } as React.CSSProperties
+        }
         {...rest}
       />
     </div>
@@ -50,6 +100,9 @@ const Slide = (props: React.HTMLAttributes<HTMLDivElement>) => {
           className,
         })
       )}
+      style={{
+        paddingInlineStart: "var(--slide-gap)",
+      }}
       {...rest}
     />
   );

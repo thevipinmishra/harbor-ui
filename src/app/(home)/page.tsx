@@ -26,7 +26,7 @@ import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import ComponentBox from "@/components/web/component-box";
 import { Slider, SliderControl, SliderOutput } from "@/components/ui/Slider";
 import { Input, TextField } from "@/components/ui/Input";
-import {  FileTrigger, Form, useFilter } from "react-aria-components";
+import { FileTrigger, Form, useFilter } from "react-aria-components";
 import { Calendar } from "@/components/ui/Calendar";
 import { DatePicker } from "@/components/ui/Datepicker";
 import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
@@ -76,7 +76,11 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
-import { Carousel } from "@/components/ui/Carousel";
+import { Carousel, useDotButton } from "@/components/ui/Carousel";
+import { getLocalTimeZone, today } from "@internationalized/date";
+import * as React from "react";
+import { EmblaCarouselType } from "embla-carousel";
+import { cn } from "@/lib/tv.config";
 
 export default function HomePage() {
   const users = [
@@ -114,6 +118,8 @@ export default function HomePage() {
 
   const { contains } = useFilter({ sensitivity: "base" });
 
+  const [carouselApi, setCarouselApi] = React.useState<EmblaCarouselType | undefined>(undefined);
+const {scrollSnaps, selectedIndex, onDotButtonClick} = useDotButton(carouselApi);
   return (
     <main className="py-10 container max-w-3xl space-y-10">
       <div className="flex justify-end mb-6">
@@ -555,7 +561,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="DatePicker">
-        <DatePicker shouldForceLeadingZeros label="Task Due Date" />
+        <DatePicker shouldForceLeadingZeros minValue={today(getLocalTimeZone())} validationBehavior="aria" label="Task Due Date" />
       </ComponentBox>
 
       <ComponentBox title="DateRangePicker">
@@ -767,7 +773,7 @@ export default function HomePage() {
       </ComponentBox>
 
       <ComponentBox title="Carousel" fullWidth>
-        <Carousel className="max-w-3xl mx-auto">
+        <Carousel onEmblaApi={setCarouselApi} gap={10}>
           <Carousel.Slide>
             <Card>
               <div className="p-4">
@@ -801,6 +807,28 @@ export default function HomePage() {
             </Card>
           </Carousel.Slide>
         </Carousel>
+        {scrollSnaps.length > 1 && (
+          <div className="flex justify-center mt-4">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                className={cn(
+                  "w-2 h-2 mx-1 rounded-full transition-colors",
+                  selectedIndex === index
+                    ? "bg-primary"
+                    : "bg-muted"
+                )}
+                style={{
+                  backgroundColor: selectedIndex === index
+                    ? "var(--primary)"
+                    : "var(--muted)",
+                }}
+                onClick={() => onDotButtonClick(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </ComponentBox>
     </main>
   );

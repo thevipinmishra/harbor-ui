@@ -1,11 +1,11 @@
 import "./globals.css";
-import { DM_Mono, Inter } from "next/font/google";
+import { DM_Mono, DM_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 import clsx from "clsx";
 import { Toaster } from "@/components/ui/Toast";
 
-const fontSans = Inter({
+const fontSans = DM_Sans({
   display: "swap",
   variable: "--font-sans",
   subsets: ["latin"],
