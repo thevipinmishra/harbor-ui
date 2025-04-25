@@ -73,14 +73,17 @@ const SelectTrigger = (props: SelectTriggerProps) => {
   );
 };
 
-const SelectContent = (props: ListBoxProps<object>) => {
+const SelectContent = <T extends object>(props: ListBoxProps<T>) => {
+    const {children, ...rest} = props;
   return (
     <Popover
       className={menuVariants().content({
         className: "w-[var(--trigger-width)]",
       })}
     >
-      <ListBox {...props} />
+      <ListBox {...rest}>
+        {children as React.ReactNode | ((item: object) => React.ReactNode)}
+      </ListBox>
     </Popover>
   );
 };

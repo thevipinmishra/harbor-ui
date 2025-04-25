@@ -48,10 +48,10 @@ const ListBoxItem = (props: ListBoxItemProps) => {
       )}
       {...rest}
     >
-      {({ isSelected }) => (
+      {(values) => (
         <>
-          {children}
-          {isSelected && <RiCheckLine className="ml-auto" />}
+          {typeof children === "function" ? children(values) : children}
+          {values.isSelected && <RiCheckLine className="ml-auto" />}
         </>
       )}
     </ListBoxItemPrimitive>

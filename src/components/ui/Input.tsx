@@ -17,7 +17,7 @@ export interface InputProps
     VariantProps<typeof inputVariants> {}
 
 export const textfieldStyles = tv({
-  base: ["grid group gap-1.5"],
+  base: ["grid group gap-1.5 w-full"],
 });
 
 export const TextField = (props: TextFieldProps) => {

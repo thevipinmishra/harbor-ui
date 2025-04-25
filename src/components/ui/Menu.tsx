@@ -11,16 +11,22 @@ import {
   MenuItemProps,
   composeRenderProps,
   Popover,
+  SubmenuTrigger,
+  PopoverProps
 } from "react-aria-components";
 import React from "react";
 import { popoverAnimation } from "../utils/popoverAnimation";
+
+interface MenuWithPopoverProps extends MenuProps<object> {
+    popoverProps?: PopoverProps;
+}
 
 const MenuTrigger = MenuTriggerPrimitive;
 
  const menuVariants = tv({
   slots: {
     content: [
-      "bg-background border border-border text-foreground shadow-xs rounded-md min-w-16",
+      "bg-background border border-border text-foreground shadow-xs rounded-md min-w-20 overflow-y-auto",
       popoverAnimation(),
       "flex flex-col gap-1 outline-hidden p-1",
     ],
@@ -36,10 +42,10 @@ const MenuTrigger = MenuTriggerPrimitive;
 
 
 
-const Menu = (props: MenuProps<object>) => {
-  const { className, ...rest } = props;
+const Menu = (props: MenuWithPopoverProps) => {
+  const { className, popoverProps, ...rest } = props;
   return (
-    <Popover className={menuVariants().content()}>
+    <Popover className={menuVariants().content()} {...popoverProps}>
       <MenuPrimitive
         className={composeRenderProps(className, (className, renderProps) =>
           menuVariants().menu({
@@ -72,4 +78,4 @@ const MenuSection = (props: MenuSectionProps<object>) => {
   return <MenuSectionPrimitive {...props} />;
 };
 
-export { MenuTrigger, Menu, MenuSection, MenuItem, menuVariants };
+export { MenuTrigger, Menu, MenuSection, MenuItem, SubmenuTrigger, menuVariants };

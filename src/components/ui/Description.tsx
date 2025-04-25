@@ -1,12 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/tv.config";
-import { Field as Primitive, type FieldHelperTextProps } from "@ark-ui/react/field";
+import { Text, TextProps } from "react-aria-components";
 
-const Description = (props: FieldHelperTextProps) => {
-  const { className, ...rest } = props;
+const Description = (props: TextProps) => {
+  const { className, slot = 'description', ...rest } = props;
   return (
-    <Primitive.HelperText
+    <Text
+      slot={slot}
       className={cn("text-sm text-muted-foreground", className)}
       {...rest}
     />

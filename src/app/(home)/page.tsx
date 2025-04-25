@@ -6,830 +6,798 @@ import {
   AccordionItemContent,
   AccordionItemTrigger,
 } from "@/components/ui/Accordion";
-import { Button } from "@/components/ui/Button";
-import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
-import { DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { Label } from "@/components/ui/Label";
-import { ListBox, ListBoxItem } from "@/components/ui/ListBox";
-import { Menu, MenuItem, MenuTrigger } from "@/components/ui/Menu";
-import { Popover, PopoverTrigger } from "@/components/ui/Popover";
+import { Alert } from "@/components/ui/Alert";
 import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectItem,
-} from "@/components/ui/Select";
-import { Tab, TabList, TabPanel, Tabs } from "@/components/ui/Tabs";
-import { Tooltip, TooltipTrigger } from "@/components/ui/Tooltip";
-import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
-
-import ComponentBox from "@/components/web/component-box";
-import { Slider, SliderControl, SliderOutput } from "@/components/ui/Slider";
-import { Input, TextField } from "@/components/ui/Input";
-import { FileTrigger, Form, useFilter } from "react-aria-components";
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteItem,
+} from "@/components/ui/Autocomplete";
+import { Avatar } from "@/components/ui/Avatar";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import { Calendar } from "@/components/ui/Calendar";
-import { DatePicker } from "@/components/ui/Datepicker";
-import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
-import { NumberField } from "@/components/ui/NumberField";
-import { SearchField } from "@/components/ui/SearchField";
+import { Card } from "@/components/ui/Card";
+import { Carousel, useDotButton } from "@/components/ui/Carousel";
+import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
 import {
   ComboBox,
   ComboBoxContent,
   ComboBoxItem,
   ComboBoxTrigger,
 } from "@/components/ui/ComboBox";
-import { ToggleButton } from "@/components/ui/ToggleButton";
+import { DateField } from "@/components/ui/DateField";
+import { DatePicker } from "@/components/ui/Datepicker";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { DialogContent, DialogTrigger } from "@/components/ui/Dialog";
+import { Input, TextField } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { ListBox, ListBoxItem } from "@/components/ui/ListBox";
 import {
-  RiBookmarkFill,
-  RiBookmarkLine,
-  RiInformationLine,
+  Menu,
+  MenuItem,
+  MenuTrigger,
+  SubmenuTrigger,
+} from "@/components/ui/Menu";
+import { Meter } from "@/components/ui/Meter";
+import { NumberField } from "@/components/ui/NumberField";
+import { Popover, PopoverTrigger } from "@/components/ui/Popover";
+import { ProgressBar } from "@/components/ui/Progress";
+import { Radio, RadioGroup } from "@/components/ui/RadioGroup";
+import { RangeCalendar } from "@/components/ui/RangeCalendar";
+import { SearchField } from "@/components/ui/SearchField";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/Select";
+import { Slider, SliderControl, SliderOutput } from "@/components/ui/Slider";
+import { Switch } from "@/components/ui/Switch";
+import { Tab, TabList, TabPanel, Tabs } from "@/components/ui/Tabs";
+import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import { ToggleButton } from "@/components/ui/ToggleButton";
+import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
+import { Tooltip, TooltipTrigger } from "@/components/ui/Tooltip";
+import ComponentBox from "@/components/web/component-box";
+import { cn } from "@/lib/tv.config";
+import { getLocalTimeZone, today } from "@internationalized/date";
+import {
+  RiAddLine,
+  RiAlertLine,
   RiAlignCenter,
   RiAlignLeft,
   RiAlignRight,
-  RiUserLine,
-  RiSettings3Line,
-  RiLogoutBoxLine,
+  RiArrowRightSLine,
+  RiBookmarkFill,
+  RiBookmarkLine,
+  RiCheckLine,
+  RiCloseCircleLine,
+  RiDatabase2Line,
   RiDeleteBinLine,
   RiFilter3Line,
-  RiAddLine,
-  RiUploadCloud2Line,
-  RiDatabase2Line,
-  RiCheckLine,
-  RiAlertLine,
-  RiCloseCircleLine,
+  RiInformationLine,
+  RiLogoutBoxLine,
+  RiMailLine,
   RiSendPlaneLine,
+  RiSettings3Line,
+  RiUploadCloud2Line,
+  RiUserLine,
 } from "@remixicon/react";
-import { ToggleButtonGroup } from "@/components/ui/ToggleButtonGroup";
-import {
-  Autocomplete,
-  AutocompleteContent,
-  AutocompleteItem,
-} from "@/components/ui/Autocomplete";
-import { DateField } from "@/components/ui/DateField";
-import { Meter } from "@/components/ui/Meter";
-import { Tag, TagGroup, TagList } from "@/components/ui/TagGroup";
-import { ProgressBar } from "@/components/ui/Progress";
-import { Switch } from "@/components/ui/Switch";
-import { RangeCalendar } from "@/components/ui/RangeCalendar";
-import { Alert } from "@/components/ui/Alert";
-import { Avatar } from "@/components/ui/Avatar";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { DateRangePicker } from "@/components/ui/DateRangePicker";
-import { Carousel, useDotButton } from "@/components/ui/Carousel";
-import { getLocalTimeZone, today } from "@internationalized/date";
-import * as React from "react";
 import { EmblaCarouselType } from "embla-carousel";
-import { cn } from "@/lib/tv.config";
+import * as React from "react";
+import { FileTrigger, Form, useFilter } from "react-aria-components";
+
+// Mock Data
+const users = [
+  { id: 1, name: "Alice Johnson", role: "Product Manager" },
+  { id: 2, name: "Bob Williams", role: "Frontend Developer" },
+  { id: 3, name: "Charlie Brown", role: "Backend Developer" },
+  { id: 4, name: "Diana Garcia", role: "UX Designer" },
+  { id: 5, name: "Ethan Rodriguez", role: "QA Engineer" },
+];
+const projectStatuses = [
+  "Not Started",
+  "In Progress",
+  "Completed",
+  "On Hold",
+  "Cancelled",
+];
+const issueLabels = [
+  "Bug",
+  "Feature Request",
+  "Improvement",
+  "Documentation",
+  "Help Wanted",
+  "UI/UX",
+  "Backend",
+  "Frontend",
+];
+const priorities = ["Low", "Medium", "High", "Urgent"];
+const shippingMethods = ["Standard", "Express", "Next Day", "Store Pickup"];
+const skills = [
+  "JavaScript",
+  "React",
+  "Node.js",
+  "TypeScript",
+  "CSS",
+  "HTML",
+  "SQL",
+  "Python",
+  "AWS",
+  "Docker",
+  "Figma",
+];
+const faqItems = [
+  {
+    id: "faq-1",
+    question: "How do I reset my password?",
+    answer:
+      "You can reset your password by clicking the 'Forgot Password' link on the login page. Follow the instructions sent to your registered email address.",
+  },
+  {
+    id: "faq-2",
+    question: "What payment methods are accepted?",
+    answer:
+      "We accept major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. Specific options may vary by region.",
+  },
+  {
+    id: "faq-3",
+    question: "How can I track my order?",
+    answer:
+      "Once your order ships, you will receive an email with a tracking number and a link to the carrier's website. You can also track your order status in your account dashboard.",
+  },
+  {
+    id: "faq-4",
+    question: "What is the return policy?",
+    answer:
+      "We offer a 30-day return policy for most items. Please visit our Returns & Exchanges page for detailed information and instructions.",
+  },
+];
+const teamMembers = [
+  {
+    id: "tm-1",
+    name: "Alice Johnson",
+    role: "Product Designer",
+    avatar: "https://avatar.iran.liara.run/public/45",
+    bio: "Alice is a passionate product designer with 8+ years of experience in SaaS and fintech. She loves crafting delightful user experiences.",
+    skills: ["UI/UX", "Figma", "Leadership", "Accessibility"],
+  },
+  {
+    id: "tm-2",
+    name: "Bob Williams",
+    role: "Lead Frontend Engineer",
+    avatar: "https://avatar.iran.liara.run/public/37",
+    bio: "Bob leads the frontend team, specializing in React and performance optimization. He enjoys building scalable and maintainable UIs.",
+    skills: ["React", "TypeScript", "Performance", "Testing"],
+  },
+  {
+    id: "tm-3",
+    name: "Charlie Brown",
+    role: "Backend Developer",
+    avatar: "https://avatar.iran.liara.run/public/15",
+    bio: "Charlie focuses on building robust APIs and managing database infrastructure. He's proficient in Node.js and cloud services.",
+    skills: ["Node.js", "SQL", "AWS", "Microservices"],
+  },
+];
+const features = [
+  {
+    title: "Team Collaboration",
+    description: "Work seamlessly with your team members in real-time.",
+  },
+  {
+    title: "Advanced Analytics",
+    description: "Gain valuable insights through customizable dashboards.",
+  },
+  {
+    title: "Enterprise Security",
+    description: "Data protection with industry-leading security practices.",
+  },
+  {
+    title: "Task Management",
+    description: "Organize and track project tasks efficiently.",
+  },
+];
 
 export default function HomePage() {
-  const users = [
-    { id: 1, name: "Alice Johnson" },
-    { id: 2, name: "Bob Williams" },
-    { id: 3, name: "Charlie Brown" },
-    { id: 4, name: "Diana Garcia" },
-    { id: 5, name: "Ethan Rodriguez" },
-  ];
-  const projectStatuses = [
-    "Not Started",
-    "In Progress",
-    "Completed",
-    "On Hold",
-  ];
-  const issueLabels = [
-    "Bug",
-    "Feature",
-    "Improvement",
-    "Documentation",
-    "Help Wanted",
-  ];
-  const priorities = ["Low", "Medium", "High", "Urgent"];
-  const shippingMethods = ["Standard", "Express", "Next Day"];
-  const skills = [
-    "JavaScript",
-    "React",
-    "Node.js",
-    "TypeScript",
-    "CSS",
-    "HTML",
-    "SQL",
-    "Python",
-  ];
-
   const { contains } = useFilter({ sensitivity: "base" });
+  const [carouselApi, setCarouselApi] = React.useState<
+    EmblaCarouselType | undefined
+  >(undefined);
+  const { scrollSnaps, selectedIndex, onDotButtonClick } =
+    useDotButton(carouselApi);
 
-  const [carouselApi, setCarouselApi] = React.useState<EmblaCarouselType | undefined>(undefined);
-const {scrollSnaps, selectedIndex, onDotButtonClick} = useDotButton(carouselApi);
   return (
-    <main className="py-10 container max-w-3xl space-y-10">
-      <div className="flex justify-end mb-6">
+    <main className="py-10 container max-w-4xl space-y-10">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Component Showcase</h1>
         <ThemeSwitcher />
       </div>
 
-      {/* Basic Elements */}
-      <ComponentBox title="Button">
-        <div className="flex flex-wrap items-center gap-4">
-          <Button>
-            <RiAddLine className="w-4 h-4 mr-1" /> Create Project
-          </Button>
-          <Button variant="secondary">Cancel</Button>
-          <Button variant="outlined">
-            <RiFilter3Line className="w-4 h-4 mr-1" /> Filter Results
-          </Button>
-          <Button variant="destructive">
-            <RiDeleteBinLine className="w-4 h-4 mr-1" /> Delete Account
-          </Button>
-          <Button isLoading>Processing...</Button>
-          <Button isDisabled>Submit Application</Button>
-        </div>
-      </ComponentBox>
-      <ComponentBox title="FileTrigger">
-        <FileTrigger allowsMultiple>
-          <Button variant="outlined">
-            <RiUploadCloud2Line className="w-4 h-4 mr-1" /> Upload Documents
-          </Button>
-        </FileTrigger>
-      </ComponentBox>
+      {/* Section: Forms & Inputs */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Forms & Inputs</h2>
 
-      <ComponentBox title="Popover">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Feedback Popover */}
-          <PopoverTrigger>
-            <Button>Leave Feedback</Button>
-            <Popover>
-              <Form className="grid gap-4 w-72">
-                <h3 className="text-lg font-semibold">Share Your Thoughts</h3>
+        {/* Example: Project Creation Form */}
+        <ComponentBox fullWidth title="Project Creation Form">
+          <Card>
+            <Form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h3 className="text-xl font-semibold col-span-full mb-2">
+                Create New Project
+              </h3>
 
-                <Select placeholder="Select type">
-                  <Label>Feedback Type</Label>
-                  <SelectTrigger size="sm" />
+              <TextField className="col-span-full" isRequired>
+                <Label>Project Name</Label>
+                <Input placeholder="Enter a descriptive project name" />
+              </TextField>
 
-                  <SelectContent>
-                    <SelectItem textValue="bug">Bug Report</SelectItem>
-                    <SelectItem textValue="feature">Feature Request</SelectItem>
-                    <SelectItem textValue="general">
-                      General Feedback
+              <ComboBox className="col-span-full md:col-span-1">
+                <Label>Assign Project Manager</Label>
+                <ComboBoxTrigger placeholder="Select a user..." />
+                <ComboBoxContent>
+                  {users.map((user) => (
+                    <ComboBoxItem key={user.id} textValue={user.name}>
+                      <div className="flex items-center gap-2">
+                        <Avatar
+                          src={`https://avatar.iran.liara.run/public/${
+                            user.id * 5 + 10
+                          }`}
+                          size="sm"
+                        />
+                        <span>{user.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          ({user.role})
+                        </span>
+                      </div>
+                    </ComboBoxItem>
+                  ))}
+                </ComboBoxContent>
+              </ComboBox>
+
+              <Select
+                placeholder="Select initial status"
+                className="col-span-full md:col-span-1"
+              >
+                <Label>Initial Status</Label>
+                <SelectTrigger />
+                <SelectContent>
+                  {projectStatuses.slice(0, 3).map((status) => (
+                    <SelectItem
+                      key={status.toLowerCase().replace(" ", "-")}
+                      textValue={status}
+                    >
+                      {status}
                     </SelectItem>
-                  </SelectContent>
-                </Select>
+                  ))}
+                </SelectContent>
+              </Select>
 
-                <TextField isRequired>
-                  <Label>Your Feedback</Label>
-                  <Input placeholder="Describe your experience..." />
-                </TextField>
-                <div className="flex justify-end gap-2">
-                  <Button variant="secondary" size="sm">
-                    Cancel
-                  </Button>
-                  <Button type="submit" size="sm">
-                    Submit Feedback
+              <DatePicker
+                label="Target Completion Date"
+                className="col-span-full md:col-span-1"
+                minValue={today(getLocalTimeZone())}
+              />
+
+              <NumberField
+                label="Estimated Budget ($)"
+                className="col-span-full md:col-span-1"
+                minValue={0}
+                formatOptions={{ style: "currency", currency: "USD" }}
+              />
+
+              <CheckboxGroup
+                className="col-span-full space-y-2"
+                defaultValue={["frontend"]}
+              >
+                <Label>Project Tags</Label>
+                <Checkbox value="frontend">Frontend</Checkbox>
+                <Checkbox value="backend">Backend</Checkbox>
+                <Checkbox value="design">Design System</Checkbox>
+                <Checkbox value="mobile">Mobile App</Checkbox>
+              </CheckboxGroup>
+
+              <div className="col-span-full flex justify-end gap-3 mt-4">
+                <Button variant="secondary">Cancel</Button>
+                <Button type="submit">
+                  <RiAddLine className="w-4 h-4 mr-1" /> Create Project
+                </Button>
+              </div>
+            </Form>
+          </Card>
+        </ComponentBox>
+
+        {/* Example: User Profile Settings */}
+        <ComponentBox fullWidth title="User Profile Settings">
+          <Form className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <TextField className="md:col-span-2">
+              <Label>Full Name</Label>
+              <Input defaultValue="Diana Garcia" />
+            </TextField>
+            <SearchField
+              label="Location"
+              className="md:col-span-1"
+              inputProps={{ placeholder: "Search city..." }}
+            />
+           <div>
+           <Autocomplete filter={contains}>
+              <SearchField
+                label="Skills"
+                inputProps={{
+                  placeholder: "Add skills (e.g., React, Figma)...",
+                }}
+              />
+              <AutocompleteContent className="mt-2 w-[--trigger-width]">
+                {skills.map((skill) => (
+                  <AutocompleteItem
+                    key={skill.toLowerCase().replace(/\s+/g, "-")}
+                  >
+                    {skill}
+                  </AutocompleteItem>
+                ))}
+              </AutocompleteContent>
+            </Autocomplete>
+           </div>
+            <DateField
+              label="Date of Birth"
+              className="md:col-span-1"
+              shouldForceLeadingZeros
+            />
+            <div className="md:col-span-2 flex items-end">
+              <Switch defaultSelected>Receive Newsletter</Switch>
+            </div>
+            <div className="md:col-span-3 flex justify-end">
+              <Button>Save Changes</Button>
+            </div>
+          </Form>
+        </ComponentBox>
+
+        {/* Example: File Upload & Toggles */}
+        <ComponentBox title="File Upload & Toggles">
+          <div className="flex flex-col md:flex-row gap-6 items-start">
+            <div className="flex-1 space-y-4">
+              <Label>Upload Project Assets</Label>
+              <FileTrigger allowsMultiple>
+                <Button variant="outlined">
+                  <RiUploadCloud2Line className="w-4 h-4 mr-1" /> Select Files
+                </Button>
+              </FileTrigger>
+              <p className="text-xs text-muted-foreground">
+                Max file size: 50MB. Allowed types: JPG, PNG, PDF, ZIP.
+              </p>
+            </div>
+            <div className="flex-1 space-y-4">
+              <Label>Editor Preferences</Label>
+              <ToggleButtonGroup
+                selectionMode="single"
+                defaultSelectedKeys={["left"]}
+                aria-label="Text alignment"
+              >
+                {({ state }) => (
+                  <>
+                    <ToggleButton
+                      id="left"
+                      aria-label="Align Left"
+                      variant={
+                        state.selectedKeys.has("left") ? "primary" : "outlined"
+                      }
+                    >
+                      <RiAlignLeft />
+                    </ToggleButton>
+                    <ToggleButton
+                      id="center"
+                      aria-label="Align Center"
+                      variant={
+                        state.selectedKeys.has("center")
+                          ? "primary"
+                          : "outlined"
+                      }
+                    >
+                      <RiAlignCenter />
+                    </ToggleButton>
+                    <ToggleButton
+                      id="right"
+                      aria-label="Align Right"
+                      variant={
+                        state.selectedKeys.has("right") ? "primary" : "outlined"
+                      }
+                    >
+                      <RiAlignRight />
+                    </ToggleButton>
+                  </>
+                )}
+              </ToggleButtonGroup>
+              <ToggleButton variant="outlined">
+                {({ isSelected }) => (
+                  <>
+                    {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}
+                    <span className="ml-1">
+                      {isSelected ? "Bookmarked" : "Bookmark"}
+                    </span>
+                  </>
+                )}
+              </ToggleButton>
+            </div>
+          </div>
+        </ComponentBox>
+      </section>
+
+      {/* Section: Navigation & Interaction */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">
+          Navigation & Interaction
+        </h2>
+
+        {/* Example: Application Header Menu */}
+        <ComponentBox title="Application Header Menu">
+          <MenuTrigger>
+            <TooltipTrigger>
+              <Button
+                size="icon-md"
+                className="rounded-full"
+                aria-label="User Menu"
+              >
+                <Avatar
+                  src="https://avatar.iran.liara.run/public/45"
+                  size="sm"
+                />
+              </Button>
+              <Tooltip>Account & Settings</Tooltip>
+            </TooltipTrigger>
+            <Menu>
+              <MenuItem>
+                <RiUserLine /> Profile
+              </MenuItem>
+              <SubmenuTrigger>
+                <MenuItem className="flex items-center">
+                  <RiSettings3Line className="w-4 h-4 mr-1" />
+                  <span className="flex-1 text-left mr-2">Settings</span>
+                  <RiArrowRightSLine />
+                </MenuItem>
+                <Menu popoverProps={{ offset: -2 }}>
+                  <MenuItem>General</MenuItem>
+                  <MenuItem>Security</MenuItem>
+                  <MenuItem>Notifications</MenuItem>
+                </Menu>
+              </SubmenuTrigger>
+              <SubmenuTrigger>
+                <MenuItem className="flex items-center">
+                  <RiDatabase2Line className="w-4 h-4 mr-1" />
+                  <span className="flex-1 text-left mr-2">Billing</span>
+                  <RiArrowRightSLine />
+                </MenuItem>
+                <Menu popoverProps={{ offset: -2 }}>
+                  <MenuItem>View Invoices</MenuItem>
+                  <MenuItem>Payment Methods</MenuItem>
+                  <MenuItem>Current Plan</MenuItem>
+                </Menu>
+              </SubmenuTrigger>
+              <MenuItem isDisabled>
+                <RiDatabase2Line /> Data Export (Admin Only)
+              </MenuItem>
+              <MenuItem className="text-destructive">
+                <RiLogoutBoxLine />
+                Logout
+              </MenuItem>
+            </Menu>
+          </MenuTrigger>
+        </ComponentBox>
+
+        {/* Example: Project Dashboard Tabs */}
+        <ComponentBox fullWidth title="Project Dashboard Tabs">
+          <Tabs className="space-y-4">
+            <TabList aria-label="Project Dashboard Sections">
+              <Tab id="tab-overview">Overview</Tab>
+              <Tab id="tab-tasks">Tasks</Tab>
+              <Tab id="tab-team">Team Members</Tab>
+              <Tab id="tab-settings">Settings</Tab>
+            </TabList>
+            <TabPanel id="tab-overview">
+              <div className="space-y-4">
+                <h4 className="font-semibold text-lg">Project Health</h4>
+                <Meter
+                  label="Overall Progress"
+                  value={65}
+                  valueLabel="65% Complete"
+                />
+                <ProgressBar label="Budget Utilization" value={80} />
+                <Alert
+                  variant="info"
+                  icon={<RiInformationLine />}
+                  title="Upcoming Deadline"
+                  description="Phase 1 due date is approaching in 5 days."
+                />
+              </div>
+            </TabPanel>
+            <TabPanel id="tab-tasks">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <h4 className="font-semibold text-lg">Task List</h4>
+                  <Button size="sm" variant="secondary">
+                    <RiAddLine className="w-4 h-4 mr-1" /> Add Task
                   </Button>
                 </div>
-              </Form>
-            </Popover>
-          </PopoverTrigger>
-
-          {/* Settings Popover */}
-          <PopoverTrigger>
-            <Button variant="secondary">
-              <RiSettings3Line className="w-4 h-4 mr-1" /> App Settings
-            </Button>
-            <Popover>
-              <Form className="grid gap-4 w-80">
-                <h3 className="text-lg font-semibold mb-2">
-                  Application Settings
-                </h3>
-                <Switch>Enable Dark Mode</Switch>
-                <CheckboxGroup defaultValue={["mentions", "updates"]}>
-                  <Label>Email Notifications For:</Label>
-                  <Checkbox value="mentions">Mentions</Checkbox>
-                  <Checkbox value="comments">New Comments</Checkbox>
-                  <Checkbox value="updates">Product Updates</Checkbox>
-                </CheckboxGroup>
-                <Select
-                  placeholder="Select frequency"
-                  defaultSelectedKey="daily"
-                >
-                  <Label>Notification Frequency</Label>
-                  <SelectTrigger size="sm" />
-                  <SelectContent>
-                    <SelectItem id="instant" textValue="instant">
-                      Instant
-                    </SelectItem>
-                    <SelectItem id="daily" textValue="daily">
-                      Daily Digest
-                    </SelectItem>
-                    <SelectItem id="weekly" textValue="weekly">
-                      Weekly Digest
-                    </SelectItem>
-                    <SelectItem id="never" textValue="never">
-                      Never
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                <Slider defaultValue={70}>
-                  <Label>UI Scale</Label>
-
-                  <SliderControl />
-                </Slider>
-                <div className="flex justify-end gap-2 mt-4">
-                  <Button variant="secondary" size="sm">
-                    Reset Defaults
+                {/* Placeholder for task list */}
+                <p className="text-muted-foreground">
+                  Task listing component would go here (e.g., using a Table or
+                  List).
+                </p>
+                <TagGroup selectionMode="multiple">
+                  <Label>Filter by Label</Label>
+                  <TagList>
+                    {issueLabels.slice(0, 5).map((label) => (
+                      <Tag key={label.toLowerCase()} textValue={label}>
+                        {label}
+                      </Tag>
+                    ))}
+                  </TagList>
+                </TagGroup>
+              </div>
+            </TabPanel>
+            <TabPanel id="tab-team">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {teamMembers.map((member) => (
+                  <Card key={member.id}>
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <Avatar src={member.avatar} size="md" />
+                        <div>
+                          <span className="font-semibold">{member.name}</span>
+                          <p className="text-sm text-muted-foreground">
+                            {member.role}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {member.skills.map((skill) => (
+                          <Badge key={skill} variant="plain">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex justify-end gap-2">
+                        <Button size="sm" variant="outlined">
+                          Profile
+                        </Button>
+                        <Button size="sm">Message</Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </TabPanel>
+            <TabPanel id="tab-settings">
+              <div className="space-y-4">
+                <h4 className="font-semibold text-lg">Project Settings</h4>
+                {/* Placeholder for settings form */}
+                <p className="text-muted-foreground">
+                  Project settings form component would go here.
+                </p>
+                <DialogTrigger>
+                  <Button variant="destructive">
+                    <RiDeleteBinLine className="w-4 h-4 mr-1" /> Delete Project
                   </Button>
-                  <Button type="submit" size="sm">
-                    Save Settings
-                  </Button>
-                </div>
-              </Form>
-            </Popover>
-          </PopoverTrigger>
-        </div>
-      </ComponentBox>
+                  <DialogContent>
+                    {({ close }) => (
+                      <div className="grid gap-4">
+                        <div className="space-y-1">
+                          <h3 className="text-lg font-semibold">
+                            Confirm Deletion
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            Are you sure? This action cannot be undone.
+                          </p>
+                        </div>
+                        <div className="flex justify-end gap-2 pt-2">
+                          <Button variant="secondary" onPress={close}>
+                            Cancel
+                          </Button>
+                          <Button variant="destructive" onPress={close}>
+                            Yes, Delete
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </DialogTrigger>
+              </div>
+            </TabPanel>
+          </Tabs>
+        </ComponentBox>
+      </section>
 
-      <ComponentBox fullWidth title="Accordion">
-        <Accordion allowsMultipleExpanded>
-          <AccordionItem id="feature-1">
-            <AccordionItemTrigger>
-              Real-time Collaboration Tools
-            </AccordionItemTrigger>
-            <AccordionItemContent>
-              <p>
-                Work together seamlessly with shared cursors, live commenting,
-                and version history. See changes from your teammates instantly
-                and resolve conflicts effortlessly. Supports up to 50 concurrent
-                editors.
-              </p>
-            </AccordionItemContent>
-          </AccordionItem>
-          <AccordionItem id="feature-2">
-            <AccordionItemTrigger>
-              Advanced Analytics Dashboard
-            </AccordionItemTrigger>
-            <AccordionItemContent>
-              <p>
-                Gain deep insights into your project performance with
-                customizable widgets, trend analysis, and data export options.
-                Track key metrics like task completion rates, user engagement,
-                and resource allocation. Integrates with popular BI tools.
-              </p>
-            </AccordionItemContent>
-          </AccordionItem>
-          <AccordionItem id="feature-3">
-            <AccordionItemTrigger>
-              Integrated Project Management
-            </AccordionItemTrigger>
-            <AccordionItemContent>
-              <p>
-                Manage tasks, deadlines, and milestones all in one place.
-                Utilize Gantt charts, Kanban boards, and calendar views to
-                visualize progress. Assign tasks, set dependencies, and receive
-                automated reminders for upcoming deadlines.
-              </p>
-            </AccordionItemContent>
-          </AccordionItem>
-          <AccordionItem id="feature-4">
-            <AccordionItemTrigger>Secure Cloud Storage</AccordionItemTrigger>
-            <AccordionItemContent>
-              <p>
-                Store all your project files securely with end-to-end encryption
-                and granular access controls. Benefit from automatic backups,
-                versioning, and easy sharing options. Compliant with industry
-                standards like SOC 2 and ISO 27001.
-              </p>
-            </AccordionItemContent>
-          </AccordionItem>
-        </Accordion>
-      </ComponentBox>
+      {/* Section: Data Display & Feedback */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">
+          Data Display & Feedback
+        </h2>
 
-      <ComponentBox title="Tooltip">
-        <TooltipTrigger>
-          <Button size="icon-md" variant="primary" aria-label="User Profile">
-            <RiUserLine />
-          </Button>
-          <Tooltip>
-            <p>View your profile and account settings.</p>
-          </Tooltip>
-        </TooltipTrigger>
-      </ComponentBox>
-
-      <ComponentBox title="Dialog">
-        <div className="flex flex-wrap gap-4">
-          {/* Existing Delete Project Dialog */}
-          <DialogTrigger>
-            <Button variant="destructive">Delete Project</Button>
-            <DialogContent>
-              {({ close }) => (
-                <div className="grid gap-4">
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-semibold">
-                      Confirm Project Deletion
+        {/* Example: Product Feature Carousel */}
+        <ComponentBox title="Product Feature Carousel" fullWidth>
+          <Carousel onEmblaApi={setCarouselApi} gap={16} loop>
+            {features.map((feature, index) => (
+              <Carousel.Slide key={index}>
+                <Card>
+                  <div className="flex flex-col justify-center">
+                    <h3 className="text-lg font-medium mb-2">
+                      {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Are you absolutely sure you want to delete the 'Q3
-                      Marketing Campaign' project? This action cannot be undone
-                      and all associated data will be permanently lost.
+                    <p className="text-muted-foreground">
+                      {feature.description}
                     </p>
                   </div>
-                  <TextField>
-                    <Label>Type "DELETE" to confirm</Label>
-                    <Input placeholder="DELETE" />
-                    {/* Add validation logic here */}
+                </Card>
+              </Carousel.Slide>
+            ))}
+          </Carousel>
+          {scrollSnaps.length > 1 && (
+            <div className="flex justify-center mt-4">
+              {scrollSnaps.map((_, index) => (
+                <button
+                  key={index}
+                  className={cn(
+                    "w-2 h-2 mx-1 rounded-full transition-colors",
+                    selectedIndex === index ? "bg-primary" : "bg-muted"
+                  )}
+                  style={{
+                    backgroundColor:
+                      selectedIndex === index
+                        ? "var(--primary)"
+                        : "var(--muted)",
+                  }}
+                  onClick={() => onDotButtonClick(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </ComponentBox>
+
+        {/* Example: FAQ Accordion */}
+        <ComponentBox fullWidth title="Frequently Asked Questions (FAQ)">
+          <Accordion allowsMultipleExpanded>
+            {faqItems.map((item) => (
+              <AccordionItem key={item.id} id={item.id}>
+                <AccordionItemTrigger>{item.question}</AccordionItemTrigger>
+                <AccordionItemContent>
+                  <p>{item.answer}</p>
+                </AccordionItemContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </ComponentBox>
+
+        {/* Example: System Status Alerts */}
+        <ComponentBox fullWidth title="System Status Alerts">
+          <div className="grid gap-4">
+            <Alert
+              variant="success"
+              icon={<RiCheckLine />}
+              title="System Operational"
+              description="All systems are running smoothly."
+            />
+            <Alert
+              variant="warning"
+              icon={<RiAlertLine />}
+              title="Scheduled Maintenance"
+              description="Brief maintenance window scheduled for Sunday at 2 AM UTC."
+            />
+            <Alert
+              variant="destructive"
+              icon={<RiCloseCircleLine />}
+              title="Service Disruption"
+              description="We are currently experiencing issues with the reporting service. Our team is investigating."
+            />
+          </div>
+        </ComponentBox>
+      </section>
+
+      {/* Section: Date & Time Selection */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">
+          Date & Time Selection
+        </h2>
+
+        {/* Example: Booking System */}
+        <ComponentBox title="Booking System">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Form className="space-y-2">
+              <Label>Select Appointment Date</Label>
+              <Calendar aria-label="Appointment Date" />
+            </Form>
+            <Form className="space-y-2">
+              <Label>Select Vacation Dates</Label>
+              <RangeCalendar aria-label="Vacation Dates" />
+            </Form>
+            <DateRangePicker
+              label="Event Duration"
+              shouldForceLeadingZeros
+              className="md:col-span-1"
+            />
+            <ListBox
+              aria-label="Select Time Slot"
+              className="md:col-span-1"
+              selectionMode="single"
+            >
+              <Label>Available Time Slots</Label>
+              <ListBoxItem textValue="09:00 AM">09:00 AM</ListBoxItem>
+              <ListBoxItem textValue="11:00 AM">11:00 AM</ListBoxItem>
+              <ListBoxItem textValue="02:00 PM">02:00 PM</ListBoxItem>
+              <ListBoxItem textValue="04:00 PM">04:00 PM</ListBoxItem>
+            </ListBox>
+          </div>
+        </ComponentBox>
+      </section>
+
+      {/* Section: Miscellaneous */}
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Miscellaneous</h2>
+
+        {/* Example: Popovers for Actions */}
+        <ComponentBox title="Popovers for Actions">
+          <div className="flex flex-wrap gap-4">
+            <PopoverTrigger>
+              <Button variant="secondary">
+                <RiFilter3Line className="w-4 h-4 mr-1" /> Filter Options
+              </Button>
+              <Popover>
+                <Form className="grid gap-4 w-72">
+                  <h3 className="text-lg font-semibold">Filter Results</h3>
+                  <RadioGroup defaultValue="date">
+                    <Label>Sort By</Label>
+                    <Radio value="date">Date</Radio>
+                    <Radio value="priority">Priority</Radio>
+                    <Radio value="assignee">Assignee</Radio>
+                  </RadioGroup>
+                  <Slider defaultValue={50}>
+                    <Label>Confidence Score</Label>
+                    <SliderControl />
+                  </Slider>
+                  <div className="flex justify-end gap-2">
+                    <Button variant="secondary" size="sm">
+                      Clear
+                    </Button>
+                    <Button type="submit" size="sm">
+                      Apply Filters
+                    </Button>
+                  </div>
+                </Form>
+              </Popover>
+            </PopoverTrigger>
+
+            <PopoverTrigger>
+              <Button>
+                <RiSendPlaneLine className="w-4 h-4 mr-1" /> Share
+              </Button>
+              <Popover>
+                <Form className="grid gap-4 w-80">
+                  <h3 className="text-lg font-semibold">Share Project</h3>
+                  <TextField type="email" isRequired>
+                    <Label>Recipient Email</Label>
+                    <Input placeholder="Enter email address" />
                   </TextField>
-                  <div className="flex justify-end gap-2 pt-2">
-                    <Button variant="secondary" onPress={close}>
+                  <Select placeholder="Select permission level">
+                    <Label>Permission Level</Label>
+                    <SelectTrigger size="sm" />
+                    <SelectContent>
+                      <SelectItem textValue="view">View Only</SelectItem>
+                      <SelectItem textValue="comment">Comment</SelectItem>
+                      <SelectItem textValue="edit">Edit</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <div className="flex justify-end gap-2">
+                    <Button variant="secondary" size="sm">
                       Cancel
                     </Button>
-                    <Button variant="destructive" onPress={close}>
-                      {" "}
-                      {/* Add isDisabled based on input validation */}
-                      Yes, Delete Project
+                    <Button type="submit" size="sm">
+                      Send Invite
                     </Button>
                   </div>
-                </div>
-              )}
-            </DialogContent>
-          </DialogTrigger>
-
-          {/* New Publish Article Dialog */}
-          <DialogTrigger>
-            <Button variant="primary">
-              <RiSendPlaneLine className="w-4 h-4 mr-1" /> Publish Article
-            </Button>
-            <DialogContent>
-              {({ close }) => (
-                <div className="grid gap-4">
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-semibold">
-                      Confirm Publication
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Ready to publish the article "The Future of Web
-                      Development"? Once published, it will be visible to all
-                      visitors.
-                    </p>
-                  </div>
-                  <Checkbox>Notify subscribers via email</Checkbox>
-                  <DatePicker label="Schedule publication for (optional)" />
-                  <div className="flex justify-end gap-2 pt-2">
-                    <Button variant="secondary" onPress={close}>
-                      Save Draft
-                    </Button>
-                    <Button variant="primary" onPress={close}>
-                      Publish Now
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </DialogContent>
-          </DialogTrigger>
-        </div>
-      </ComponentBox>
-
-      <ComponentBox title="Checkbox">
-        <Checkbox>I agree to the Terms of Service and Privacy Policy.</Checkbox>
-      </ComponentBox>
-
-      <ComponentBox title="CheckboxGroup">
-        <CheckboxGroup defaultValue={["tech", "design"]}>
-          <Label>Select Your Interests</Label>
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            <Checkbox value="tech">Technology</Checkbox>
-            <Checkbox value="design">Design</Checkbox>
-            <Checkbox value="business">Business</Checkbox>
-            <Checkbox value="marketing">Marketing</Checkbox>
-            <Checkbox value="finance">Finance</Checkbox>
-            <Checkbox value="health">Health & Wellness</Checkbox>
+                </Form>
+              </Popover>
+            </PopoverTrigger>
           </div>
-        </CheckboxGroup>
-      </ComponentBox>
-
-      <ComponentBox title="Select">
-        <Select placeholder="Select status" className={"w-[200px]"}>
-          <Label>Filter Tasks By Status</Label>
-          <SelectTrigger size="sm" />
-          <SelectContent>
-            {projectStatuses.map((status) => (
-              <SelectItem
-                key={status.toLowerCase().replace(" ", "-")}
-                textValue={status}
-              >
-                {status}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </ComponentBox>
-
-      <ComponentBox title="ComboBox">
-        <ComboBox className={"w-[250px]"}>
-          <Label>Assign Task To</Label>
-          <ComboBoxTrigger size="sm" placeholder="Search user..." />
-          <ComboBoxContent>
-            {users.map((user) => (
-              <ComboBoxItem key={user.id} textValue={user.name}>
-                {user.name}
-              </ComboBoxItem>
-            ))}
-          </ComboBoxContent>
-        </ComboBox>
-      </ComponentBox>
-
-      <ComponentBox title="Listbox">
-        <ListBox
-          aria-label="Select Task Priority"
-          className="w-[200px]"
-          selectionMode="single"
-          defaultSelectedKeys={["medium"]}
-        >
-          <Label>Set Priority</Label>
-          {priorities.map((p) => (
-            <ListBoxItem key={p.toLowerCase()} textValue={p}>
-              {p}
-            </ListBoxItem>
-          ))}
-        </ListBox>
-      </ComponentBox>
-
-      <ComponentBox title="Menu">
-        <MenuTrigger>
-          <Button variant="secondary">
-            <RiUserLine className="w-4 h-4 mr-1" /> User Menu
-          </Button>
-          <Menu>
-            <MenuItem>
-              <RiUserLine /> Profile
-            </MenuItem>
-            <MenuItem>
-              <RiSettings3Line /> Settings
-            </MenuItem>
-            <MenuItem isDisabled>
-              <RiDatabase2Line /> Billing
-            </MenuItem>
-            <MenuItem>
-              <RiLogoutBoxLine className="text-destructive" />
-              Logout
-            </MenuItem>
-          </Menu>
-        </MenuTrigger>
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="Tabs">
-        <Tabs>
-          <TabList aria-label="Project Information">
-            <Tab id="tab-overview">Overview</Tab>
-            <Tab id="tab-tasks">Tasks (12)</Tab>
-            <Tab id="tab-files">Files (5)</Tab>
-            <Tab id="tab-settings">Settings</Tab>
-          </TabList>
-          <TabPanel id="tab-overview">
-            <div className="p-4 space-y-2">
-              <h4 className="font-semibold">Project Summary</h4>
-              <p>This project aims to redesign the company website...</p>
-              <p>Deadline: 2024-12-31</p>
-            </div>
-          </TabPanel>
-          <TabPanel id="tab-tasks">
-            <p className="p-4">List of project tasks goes here...</p>
-          </TabPanel>
-          <TabPanel id="tab-files">
-            <p className="p-4">List of project files goes here...</p>
-          </TabPanel>
-          <TabPanel id="tab-settings">
-            <p className="p-4">Project settings form goes here...</p>
-          </TabPanel>
-        </Tabs>
-      </ComponentBox>
-
-      <ComponentBox title="Switch">
-        <Switch defaultSelected>
-          Enable Two-Factor Authentication (Recommended)
-        </Switch>
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="Slider">
-        <Slider defaultValue={[20, 80]} className="max-w-md">
-          <div className="flex gap-4 justify-between">
-            <Label>Filter Price Range ($)</Label>
-            <SliderOutput />
-          </div>
-          <SliderControl />
-        </Slider>
-      </ComponentBox>
-
-      <ComponentBox title="Calendar">
-        <Form className="space-y-2">
-          <Label>Select Event Date</Label>
-          <Calendar />
-        </Form>
-      </ComponentBox>
-
-      <ComponentBox title="RangeCalendar">
-        <Form className="space-y-2">
-          <Label>Select Booking Dates</Label>
-          <RangeCalendar />
-        </Form>
-      </ComponentBox>
-
-      <ComponentBox title="TextField">
-        <TextField className="w-[300px]" isRequired>
-          <Label>Project Name</Label>
-          <Input placeholder="Enter a descriptive name" />
-        </TextField>
-      </ComponentBox>
-
-      <ComponentBox title="NumberField">
-        <NumberField
-          label="Order Quantity"
-          defaultValue={1}
-          minValue={1}
-          maxValue={10}
-        />
-      </ComponentBox>
-
-      <ComponentBox title="SearchField">
-        <SearchField
-          className={"w-[250px]"}
-          label="Search Users"
-          inputProps={{
-            placeholder: "Enter name or email",
-          }}
-        />
-      </ComponentBox>
-
-      <ComponentBox title="DateField">
-        <DateField shouldForceLeadingZeros label="Project Start Date" />
-      </ComponentBox>
-
-      <ComponentBox title="DatePicker">
-        <DatePicker shouldForceLeadingZeros minValue={today(getLocalTimeZone())} validationBehavior="aria" label="Task Due Date" />
-      </ComponentBox>
-
-      <ComponentBox title="DateRangePicker">
-        <DateRangePicker shouldForceLeadingZeros label="Project Timeline" />
-      </ComponentBox>
-
-      <ComponentBox title="RadioGroup">
-        <RadioGroup defaultValue="standard">
-          <Label>Select Shipping Method</Label>
-          {shippingMethods.map((method) => (
-            <Radio key={method.toLowerCase()} value={method.toLowerCase()}>
-              {method}
-            </Radio>
-          ))}
-        </RadioGroup>
-      </ComponentBox>
-
-      <ComponentBox title="ToggleButton">
-        <ToggleButton variant="outlined">
-          {({ isSelected }) => (
-            <>
-              {isSelected ? <RiBookmarkFill /> : <RiBookmarkLine />}
-              <span className="ml-1">
-                {isSelected ? "Saved" : "Save for Later"}
-              </span>
-            </>
-          )}
-        </ToggleButton>
-      </ComponentBox>
-
-      <ComponentBox title="ToggleButtonGroup">
-        <Label>Text Alignment</Label>
-        <ToggleButtonGroup
-          selectionMode="single"
-          defaultSelectedKeys={["left"]}
-        >
-          {({ state }) => (
-            <>
-              <ToggleButton
-                id="left"
-                aria-label="Align Left"
-                variant={
-                  state.selectedKeys.has("left") ? "primary" : "outlined"
-                }
-              >
-                <RiAlignLeft />
-              </ToggleButton>
-              <ToggleButton
-                id="center"
-                aria-label="Align Center"
-                variant={
-                  state.selectedKeys.has("center") ? "primary" : "outlined"
-                }
-              >
-                <RiAlignCenter />
-              </ToggleButton>
-              <ToggleButton
-                id="right"
-                aria-label="Align Right"
-                variant={
-                  state.selectedKeys.has("right") ? "primary" : "outlined"
-                }
-              >
-                <RiAlignRight />
-              </ToggleButton>
-            </>
-          )}
-        </ToggleButtonGroup>
-      </ComponentBox>
-
-      <ComponentBox title="Autocomplete">
-        <Autocomplete filter={contains}>
-          <SearchField
-            label="Add Skill"
-            inputProps={{
-              placeholder: "Type a skill...",
-            }}
-          />
-          <AutocompleteContent className="mt-2 w-[--trigger-width]">
-            {skills.map((skill) => (
-              <AutocompleteItem key={skill.toLowerCase().replace(/\s+/g, "-")}>
-                {skill}
-              </AutocompleteItem>
-            ))}
-          </AutocompleteContent>
-        </Autocomplete>
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="Meter">
-        <Meter
-          label="Cloud Storage Used"
-          value={85}
-          valueLabel="850 GB / 1 TB"
-        />
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="ProgressBar">
-        <ProgressBar label="Syncing account data..." value={45} />
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="TagGroup">
-        <TagGroup selectionMode="multiple">
-          <Label>Assign Labels to Issue</Label>
-          <TagList>
-            {issueLabels.map((label) => (
-              <Tag key={label.toLowerCase()} textValue={label}>
-                {label}
-              </Tag>
-            ))}
-          </TagList>
-        </TagGroup>
-      </ComponentBox>
-
-      <ComponentBox fullWidth title="Alert">
-        <div className="grid gap-4">
-          {/* Default */}
-          <Alert
-            title="Default Alert"
-            description="This is a standard alert."
-          />
-
-          {/* Info */}
-          <Alert
-            variant="info"
-            icon={<RiInformationLine />}
-            title="Informational Alert"
-            description="Here's some helpful information you might need."
-          />
-
-          {/* Success */}
-          <Alert
-            variant="success"
-            icon={<RiCheckLine />}
-            title="Success!"
-            description="Your profile has been updated successfully."
-          />
-
-          {/* Warning */}
-          <Alert
-            variant="warning"
-            icon={<RiAlertLine />}
-            title="Warning: Low Disk Space"
-            description="Your cloud storage is almost full. Consider upgrading or deleting files."
-          />
-
-          {/* Destructive */}
-          <Alert
-            variant="destructive"
-            icon={<RiCloseCircleLine />}
-            title="Error: Deletion Failed"
-            description="Could not delete the project. Please try again later."
-          />
-        </div>
-      </ComponentBox>
-
-      <ComponentBox title="Avatar">
-        <div className="flex gap-4">
-          <Avatar src="https://avatar.iran.liara.run/public/45" />
-          <Avatar src="https://avatar.iran.liara.run/public/37" />
-        </div>
-      </ComponentBox>
-
-      <ComponentBox title="Badge">
-        <div className="flex flex-wrap gap-4 items-center">
-          <Badge>Active</Badge>
-          <Badge variant="outlined">Draft</Badge>
-          <Badge variant="plain">UI/UX</Badge>
-          <Badge variant="destructive">Failed</Badge>
-        </div>
-      </ComponentBox>
-
-      <ComponentBox title="Card">
-        <Card>
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <Avatar src="https://avatar.iran.liara.run/public/45" size="md" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-lg">Alice Johnson</span>
-                </div>
-                <span className="text-sm text-muted-foreground">
-                  Product Designer
-                </span>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Alice is a passionate product designer with 8+ years of experience
-              in SaaS and fintech. She loves crafting delightful user
-              experiences and mentoring junior designers.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="plain">UI/UX</Badge>
-              <Badge variant="plain">Figma</Badge>
-              <Badge variant="plain">Leadership</Badge>
-              <Badge variant="plain">Accessibility</Badge>
-            </div>
-            <div className="flex gap-2 justify-end mt-2">
-              <Button size="sm" variant="secondary">
-                <RiUserLine className="w-4 h-4 mr-1" />
-                View Profile
-              </Button>
-              <Button size="sm" variant="primary">
-                <RiSendPlaneLine className="w-4 h-4 mr-1" />
-                Message
-              </Button>
-            </div>
-          </div>
-        </Card>
-      </ComponentBox>
-
-      <ComponentBox title="Carousel" fullWidth>
-        <Carousel onEmblaApi={setCarouselApi} gap={10}>
-          <Carousel.Slide>
-            <Card>
-              <div className="p-4">
-                <h3 className="text-lg font-medium mb-2">Team Collaboration</h3>
-                <p className="text-muted-foreground">
-                  Work seamlessly with your team members in real-time.
-                </p>
-              </div>
-            </Card>
-          </Carousel.Slide>
-          
-          <Carousel.Slide>
-            <Card>
-              <div className="p-4">
-                <h3 className="text-lg font-medium mb-2">Advanced Analytics</h3>
-                <p className="text-muted-foreground">
-                  Gain valuable insights through customizable dashboards.
-                </p>
-              </div>
-            </Card>
-          </Carousel.Slide>
-          
-          <Carousel.Slide>
-            <Card>
-              <div className="p-4">
-                <h3 className="text-lg font-medium mb-2">Enterprise Security</h3>
-                <p className="text-muted-foreground">
-                  Data protection with industry-leading security practices.
-                </p>
-              </div>
-            </Card>
-          </Carousel.Slide>
-        </Carousel>
-        {scrollSnaps.length > 1 && (
-          <div className="flex justify-center mt-4">
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                className={cn(
-                  "w-2 h-2 mx-1 rounded-full transition-colors",
-                  selectedIndex === index
-                    ? "bg-primary"
-                    : "bg-muted"
-                )}
-                style={{
-                  backgroundColor: selectedIndex === index
-                    ? "var(--primary)"
-                    : "var(--muted)",
-                }}
-                onClick={() => onDotButtonClick(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-      </ComponentBox>
+        </ComponentBox>
+      </section>
     </main>
   );
 }

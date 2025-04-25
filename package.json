@@ -13,7 +13,7 @@
     "@ark-ui/react": "^5.6.0",
     "@base-ui-components/react": "1.0.0-alpha.5",
     "@internationalized/date": "^3.8.0",
-    "@mantine/form": "^7.17.4",
+    "@mantine/form": "^7.17.5",
     "@phosphor-icons/react": "^2.1.7",
     "@remixicon/react": "^4.6.0",
     "clsx": "^2.1.1",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@tailwindcss/postcss": "^4.1.4",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.2",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "oxlint": "^0.16.7",

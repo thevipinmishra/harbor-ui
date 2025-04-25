@@ -16,7 +16,29 @@ import {
 } from "react-aria-components";
 import { Button } from "./Button";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
-import { calendarVariants } from "./Calendar";
+import { tv } from "@/lib/tv.config";
+
+export const calendarVariants = tv({
+  slots: {
+    root: ["w-max bg-background shadow-md p-4 rounded-md"],
+    view: ["flex flex-col gap-4"],
+    viewControl: ["flex justify-between gap-4"],
+    viewTrigger: ["font-semibold"],
+    tableHeader: ["text-sm text-muted-foreground font-medium text-left"],
+    td: ["p-1"],
+    cellTrigger: [
+      "select-none relative size-9 font-medium cursor-pointer inline-flex text-sm no-underline items-center outline-0 justify-center gap-2",
+      "disabled:opacity-50 disabled:pointer-events-none",
+      "motion-safe:transition-[opacity,background-color,color]",
+      "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:z-20",
+      "bg-background text-foreground", "hover:bg-accent",
+      "font-medium",
+      "disabled:opacity-50 disabled:pointer-events-none",
+      "selected:bg-accent selected:text-accent-foreground",
+      "selection-start:bg-primary selection-start:text-primary-foreground selection-end:bg-primary selection-end:text-primary-foreground selection-start:rounded-l-sm selection-end:rounded-r-sm",
+    ],
+  },
+});
 
 const RangeCalendar = (props: RangeCalendarProps<DateValue>) => {
   const { className, ...rest } = props;
@@ -41,7 +63,6 @@ const RangeCalendar = (props: RangeCalendarProps<DateValue>) => {
       </Header>
       <CalendarGrid
         weekdayStyle="short"
-        className="border-separate border-spacing-1"
       >
         <CalendarGridHeader>
           {(day) => (

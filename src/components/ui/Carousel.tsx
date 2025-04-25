@@ -2,19 +2,21 @@
 
 import { cn, tv } from "@/lib/tv.config";
 import useEmblaCarousel from "embla-carousel-react";
-import type { EmblaCarouselType } from "embla-carousel";
+import type { EmblaCarouselType, EmblaOptionsType, EmblaPluginType } from "embla-carousel";
 import * as React from "react";
 
 interface CarouselProps extends React.HTMLProps<HTMLDivElement> {
+    options?: EmblaOptionsType;
+    plugins?: EmblaPluginType[];
   onEmblaApi?: (api: EmblaCarouselType | undefined) => void;
   gap?: React.CSSProperties["gap"];
 }
 
 const carouselVariants = tv({
   slots: {
-    carousel: "relative overflow-hidden",
-    carouselContainer: "flex",
-    slide: "min-w-0 flex-[0_0_100%]",
+    carousel: "overflow-hidden",
+    carouselContainer: "flex touch-pan-y touch-pinch-zoom",
+    slide: "min-w-0 flex-[0_0_100%] transform-[translate3d(0,0,0)]",
   },
 });
 
@@ -62,8 +64,8 @@ export const useDotButton = (
 };
 
 const Carousel = (props: CarouselProps) => {
-  const { className, onEmblaApi, gap, ...rest } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { className, onEmblaApi, gap, options, plugins, ...rest } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
 
   React.useEffect(() => {
     if (onEmblaApi) {
@@ -82,7 +84,7 @@ const Carousel = (props: CarouselProps) => {
         style={
           {
             "--slide-gap": typeof gap === "number" ? `${gap}px` : gap,
-            marginInlineStart: "calc(var(--slide-gap) * -1)",
+            marginLeft: "calc(var(--slide-gap) * -1)",
           } as React.CSSProperties
         }
         {...rest}
@@ -101,7 +103,7 @@ const Slide = (props: React.HTMLAttributes<HTMLDivElement>) => {
         })
       )}
       style={{
-        paddingInlineStart: "var(--slide-gap)",
+        paddingLeft: "var(--slide-gap)",
       }}
       {...rest}
     />
