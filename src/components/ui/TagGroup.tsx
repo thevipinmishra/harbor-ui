@@ -15,6 +15,7 @@ const tagGroupVariants = tv({
     list: ["flex flex-wrap gap-2"],
     tag: [
       "inline-flex px-3.5 py-2 h-9 cursor-default items-center text-ellipsis rounded-md border border-input hover:bg-muted motion-safe:transition-colors text-xs font-medium aria-selected:bg-primary aria-selected:text-primary-foreground aria-selected:border-primary",
+      "disabled:opacity-50 disabled:pointer-events-none",
     ],
   },
 });

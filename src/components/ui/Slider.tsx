@@ -20,9 +20,9 @@ const sliderVariants = tv({
     control:
       "flex data-[orientation=vertical]:flex-col items-center data-[orientation=vertical]:w-max",
     track:
-      "bg-input relative rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full",
+     [ "bg-input relative rounded-md data-[orientation=horizontal]:h-2 data-[orientation=vertical]:min-h-[280px] data-[orientation=vertical]:w-2 data-[orientation=horizontal]:w-full", "disabled:opacity-50 disabled:pointer-events-none"],
     range:
-      "bg-primary absolute data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",
+     [ "bg-primary absolute data-[orientation=horizontal]:h-2 data-[orientation=vertical]:w-2 rounded-md",  ],
     thumb:
       "bg-background border-2 top-1/2 cursor-pointer border-primary size-5 rounded-full block",
     valueText: ["text-sm font-medium"],

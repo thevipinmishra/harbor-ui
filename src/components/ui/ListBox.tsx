@@ -16,6 +16,7 @@ const listboxVariants = tv({
     listboxItem: [
       "px-3 py-1.5 flex cursor-default gap-2 rounded-md items-center text-sm font-medium outline-0 selected:bg-muted hover:bg-muted focus:bg-muted  selected:text-foreground [&>svg]:size-4",
       "motion-safe:transition-colors",
+      "disabled:opacity-50 disabled:pointer-events-none",
     ],
   },
 });

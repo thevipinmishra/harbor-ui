@@ -20,6 +20,7 @@ const switchVariants = tv({
       "group-selected:before:translate-x-4", 
       "before:pointer-events-none",
             "group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2",
+            "group-disabled:opacity-50 group-disabled:pointer-events-none",
     ],
   },
 });
