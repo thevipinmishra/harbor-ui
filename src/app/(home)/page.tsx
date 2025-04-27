@@ -68,6 +68,13 @@ import {
   RiUserLine,
 } from "@remixicon/react";
 import { Form } from "react-aria-components";
+import { ColorArea } from "@/components/ui/ColorArea";
+import { ColorWheel } from "@/components/ui/ColorWheel";
+import {
+  ColorSwatch,
+  ColorSwatchPicker,
+  ColorSwatchPickerItem,
+} from "@/components/ui/ColorSwatch";
 
 export default function HomePage() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -521,10 +528,9 @@ export default function HomePage() {
         <ComponentBox fullWidth title="Progress & Meter">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <Label>Progress Bar</Label>
-              <ProgressBar value={30} valueLabel="30%" />
-              <ProgressBar value={75} valueLabel="75% Complete" />
-              <ProgressBar isIndeterminate label="Loading..." />
+              <ProgressBar label="Progress Bar (30%)" value={30} valueLabel="30%" />
+              <ProgressBar label="Progress Bar (75%)" value={75} valueLabel="75% Complete" />
+              <ProgressBar label="Indeterminate Progress" isIndeterminate valueLabel="Loading..." />
             </div>
             <div className="space-y-4">
               <Meter label="Storage Used" value={20} valueLabel="20%" />
@@ -631,27 +637,29 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold border-b pb-2">Miscellaneous</h2>
         <ComponentBox fullWidth title="Slider">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
-            <div className="grid gap-1.5">
-              <Label>Volume</Label>
-              <Slider defaultValue={50}>
-                <SliderControl />
+            <Slider defaultValue={50}>
+              <div className="flex gap-4 justify-between">
+                <Label>Volume</Label>
                 <SliderOutput />
-              </Slider>
-            </div>
-            <div className="grid gap-1.5">
-              <Label>Brightness</Label>
-              <Slider defaultValue={80} isDisabled>
-                <SliderControl />
+              </div>
+              <SliderControl />
+            </Slider>
+
+            <Slider defaultValue={80} isDisabled>
+              <div className="flex gap-4 justify-between">
+                <Label>Brightness</Label>
                 <SliderOutput />
-              </Slider>
-            </div>
-            <div className="grid gap-1.5">
-              <Label>Range Slider</Label>
-              <Slider defaultValue={[25, 75]}>
-                <SliderControl />
+              </div>
+              <SliderControl />
+            </Slider>
+
+            <Slider defaultValue={[25, 75]}>
+              <div className="flex gap-4 justify-between">
+                <Label>Range Slider</Label>
                 <SliderOutput />
-              </Slider>
-            </div>
+              </div>
+              <SliderControl />
+            </Slider>
           </div>
         </ComponentBox>
         <ComponentBox title="Toggle Buttons">
@@ -695,6 +703,39 @@ export default function HomePage() {
               </div>
             </ToggleButtonGroup>
           </div>
+        </ComponentBox>
+
+        <ComponentBox title="ColorArea">
+          <ColorArea />
+        </ComponentBox>
+
+        <ComponentBox title="ColorWheel">
+          <ColorWheel />
+        </ComponentBox>
+        <ComponentBox title="ColorSwatch">
+          <ColorSwatch color="#f00" />
+        </ComponentBox>
+        <ComponentBox title="ColorSwatchPicker">
+          <ColorSwatchPicker>
+            <ColorSwatchPickerItem color="#A00">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+            <ColorSwatchPickerItem color="#f80">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+            <ColorSwatchPickerItem color="#080">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+            <ColorSwatchPickerItem color="#08f">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+            <ColorSwatchPickerItem color="#088">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+            <ColorSwatchPickerItem color="#008">
+              <ColorSwatch />
+            </ColorSwatchPickerItem>
+          </ColorSwatchPicker>
         </ComponentBox>
       </section>
     </main>
